@@ -1,0 +1,175 @@
+---
+const clientLogos = [
+  { name: "HSBC", url: "https://media.salo.uk/salo-website-prod/hsbc.svg" },
+  { name: "Lab", url: "https://media.salo.uk/salo-website-prod/lab.svg" },
+  { name: "Octopus Money", url: "https://media.salo.uk/salo-website-prod/octopus-money.svg" },
+  { name: "Picniq", url: "https://media.salo.uk/salo-website-prod/picniq.svg" },
+  { name: "Wilderness", url: "https://media.salo.uk/salo-website-prod/wilderness.svg" },
+  { name: "Threecolts", url: "https://media.salo.uk/salo-website-prod/threecolts.svg" },
+  { name: "Bucherer", url: "https://media.salo.uk/salo-website-prod/bucherer.svg" },
+  { name: "Coda", url: "https://media.salo.uk/salo-website-prod/coda.svg" },
+  { name: "Ratio", url: "https://media.salo.uk/salo-website-prod/ratio.svg" },
+  { name: "Brixton", url: "https://media.salo.uk/salo-website-prod/brixton.svg" }
+];
+---
+
+<section class="section HomeCta" data-padding="xl">
+  <div class="stack" data-gap="2xl">
+    <div class="container" data-size="prose">
+      <div class="stack text-center" data-justify="center" data-gap="lg">
+        <span class="heading eyebrow">Got a project in mind?</span>
+        <h2 class="heading" data-font-size="5">Give your team the firepower it deserves</h2>
+        
+        <div class="reactive-divider horizontal" x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })">
+          <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
+          <div class="divider-line" x-ref="dividerLine">
+            <div class="width-display" x-text="formattedWidth" x-cloak>0px</div>
+          </div>
+          <div class="anchor end-anchor"><div class="anchor-circle"></div></div>
+        </div>
+        
+        <div class="stack" data-gap="lg">
+          <div class="prose">
+            <p>Don’t let limited resources or expertise hold you back. Level up your creative with design support that feels in-house, not outsourced. Get direct access to designers ready to bring your ideas to life.</p>
+          </div>
+          
+          <div class="cluster actions" data-gap="sm" data-justify="center" data-align="center">
+            <a href="/contact" class="btn size-md primary" x-data="buttonHover" @mousemove="handleMouseMove($event)" @mouseenter="handleMouseEnter()" @mouseleave="handleMouseLeave()">
+              <span class="btn-content">
+                <span class="btn-bg" :style="{ top: bgY + '%', left: bgX + '%', opacity: isHovering ? 1 : 0, '--_scale': isHovering ? 1 : 0.75 }"></span>
+                <span>
+                  Start a project
+                  <span class="icon" aria-hidden="true" role="img">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+                      <path d="M5 12h14"></path>
+                      <path d="m12 5 7 7-7 7"></path>
+                    </svg>
+                  </span>
+                </span>
+              </span>
+            </a>
+          </div>
+          
+          <span class="eyebrow">Replies in 24 hours. No obligation.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bottom Marquee Section -->
+<section class="section bottom-marquee-section" data-pt="none" data-pb="2xl-4xl">
+  <div class="marquee" data-marquee-speed="24">
+    <div class="marquee__track">
+      <ul class="marquee__content">
+        {clientLogos.map((logo) => (
+          <li class="marquee__item">
+            <img src={logo.url} alt={`${logo.name} Logo.`} loading="lazy" decoding="async" width="160" height="120" />
+          </li>
+        ))}
+      </ul>
+      <ul class="marquee__content" aria-hidden="true">
+        {clientLogos.map((logo) => (
+          <li class="marquee__item">
+            <img src={logo.url} alt={`${logo.name} Logo.`} loading="lazy" decoding="async" width="160" height="120" />
+          </li>
+        ))}
+      </ul>
+      <ul class="marquee__content" aria-hidden="true">
+        {clientLogos.map((logo) => (
+          <li class="marquee__item">
+            <img src={logo.url} alt={`${logo.name} Logo.`} loading="lazy" decoding="async" width="160" height="120" />
+          </li>
+        ))}
+      </ul>
+      <ul class="marquee__content" aria-hidden="true">
+        {clientLogos.map((logo) => (
+          <li class="marquee__item">
+            <img src={logo.url} alt={`${logo.name} Logo.`} loading="lazy" decoding="async" width="160" height="120" />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .HomeCta {
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-bg);
+    
+    .text-center {
+      text-align: center;
+    }
+  }
+
+  .bottom-marquee-section {
+    background-color: var(--color-bg);
+    overflow: hidden;
+    padding-block-start: 0;
+    padding-block-end: var(--space-3xl);
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+
+  function initCtaMarquee() {
+    const marquee = document.querySelector('.bottom-marquee-section .marquee');
+    if (!marquee) return;
+
+    const track = marquee.querySelector('.marquee__track');
+    const content = marquee.querySelector('.marquee__content');
+    if (!track || !content) return;
+
+    const speed = Number.parseFloat(marquee.getAttribute('data-marquee-speed') ?? '24') || 24;
+    let timeline: any = null;
+
+    function rebuild() {
+      if (!track || !content) return;
+      while (track.children.length > 1) {
+        track.removeChild(track.lastElementChild!);
+      }
+
+      const contentWidth = content.getBoundingClientRect().width;
+      if (!contentWidth) return;
+
+      const targetWidth = window.innerWidth * 2 + contentWidth;
+      const cloneCount = Math.ceil(targetWidth / contentWidth);
+
+      for (let index = 0; index < cloneCount; index += 1) {
+        const clone = content.cloneNode(true) as HTMLElement;
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
+      }
+
+      timeline?.kill();
+      timeline = gsap.fromTo(
+        track,
+        { x: 0 },
+        {
+          x: () => -content.getBoundingClientRect().width,
+          ease: 'none',
+          duration: speed,
+          repeat: -1,
+        }
+      );
+    }
+
+    rebuild();
+    window.addEventListener('resize', rebuild);
+    
+    document.addEventListener('astro:before-swap', () => {
+      window.removeEventListener('resize', rebuild);
+      timeline?.kill();
+    }, { once: true });
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    const path = window.location.pathname;
+    if (path === '/' || path === '' || /^\/about\/?/.test(path)) {
+      return;
+    }
+    initCtaMarquee();
+  });
+</script>

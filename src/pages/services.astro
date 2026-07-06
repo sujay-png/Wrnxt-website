@@ -1,0 +1,181 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Services from '../components/Services.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Creative Design Services • Salo" description="We're a full-service creative team with experience across a wide range of design projects. UX/UI, Websites, Branding & Flexi Design.">
+  <Header />
+
+  <main class="page--services">
+    <!-- Hero Text Section -->
+    <section class="section TextBlock" data-padding="lg">
+      <div class="container">
+        <div class="stack content" data-gap="md">
+          <h1 class="heading" data-font-size="5">Our services</h1>
+          <div class="reactive-divider horizontal" x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })">
+            <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
+            <div class="divider-line" x-ref="dividerLine">
+              <div class="width-display" x-text="formattedWidth" x-cloak>0px</div>
+            </div>
+            <div class="anchor end-anchor"><div class="anchor-circle"></div></div>
+          </div>
+          <div class="stack" data-gap="lg">
+            <div class="prose">
+              <p>We're a full-service creative team with experience across a wide range of design projects.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Replicated Home Services Section -->
+    <Services />
+
+    <CTA />
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  let animCleanup = null;
+
+  function initServicesPageAnimations() {
+    if (animCleanup) animCleanup();
+
+    const cleanups = [];
+    const section = document.querySelector('.HomeQuadrants');
+    
+    if (section) {
+      // Set to ready so interactions/pointer-events work
+      section.setAttribute('data-ready', 'true');
+
+      // Initialize dividers to 0 for anim
+      gsap.set('.HomeQuadrants .reactive-divider', { opacity: 0 });
+      gsap.set(['.HomeQuadrants .divider__left', '.HomeQuadrants .divider__right'], { width: 0 });
+      gsap.set(['.HomeQuadrants .divider__top', '.HomeQuadrants .divider__bottom'], { height: 0 });
+
+      // Animate dividers on scroll
+      const dividerTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.HomeQuadrants',
+          start: 'top 85%',
+          end: 'top 30%',
+          scrub: 1
+        }
+      });
+
+      dividerTimeline
+        .to(['.HomeQuadrants .divider__left', '.HomeQuadrants .divider__right'], { width: '100%', duration: 1, ease: 'power1.inOut' }, 0)
+        .to(['.HomeQuadrants .divider__left', '.HomeQuadrants .divider__right'], { opacity: 1, duration: 1, ease: 'power3.out' }, 0)
+        .to(['.HomeQuadrants .divider__top', '.HomeQuadrants .divider__bottom'], { height: '100%', duration: 1.1, ease: 'power1.out' }, 1.1)
+        .to(['.HomeQuadrants .divider__top', '.HomeQuadrants .divider__bottom'], { opacity: 1, duration: 0.75, ease: 'power3.out' }, 0.8);
+
+      cleanups.push(() => {
+        dividerTimeline.kill();
+        ScrollTrigger.getAll().forEach(t => {
+          if (t.vars.trigger === '.HomeQuadrants') t.kill();
+        });
+      });
+
+      // Quadrant hover animations (makes them hidden initially and reveals on hover)
+      const isTabletUp = window.matchMedia('(min-width: 768px)').matches;
+      if (isTabletUp) {
+        document.querySelectorAll('.HomeQuadrants .quadrant').forEach((quadrant) => {
+          const hiddenContent = quadrant.querySelector('.hidden-content');
+          const background = quadrant.querySelector('.background');
+          const paragraph = hiddenContent?.querySelector('p');
+          const actions = hiddenContent?.querySelector('.actions');
+          const images = quadrant.querySelectorAll('.quadrant__image');
+
+          gsap.set(background, { opacity: 0 });
+          gsap.set(hiddenContent, { height: 0 });
+          gsap.set(paragraph, { opacity: 0, y: 20 });
+          gsap.set(actions, { opacity: 0, y: 15 });
+          gsap.set(images, { opacity: 0, scale: 0.9 });
+
+          const hoverTimeline = gsap.timeline({ paused: true });
+          hoverTimeline
+            .to(background, { opacity: 0.6, duration: 0.8, ease: 'power2.out' }, 0)
+            .to(hiddenContent, { height: 'auto', duration: 0.75, ease: 'power2.out' }, 0)
+            .to(paragraph, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0.2)
+            .to(actions, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, 0.4)
+            .to(images, { opacity: 1, scale: 1, duration: 0.75, ease: 'power2.inOut' }, 0);
+
+          const onEnter = () => hoverTimeline.timeScale(1).play();
+          const onLeave = () => hoverTimeline.timeScale(1.5).reverse();
+
+          quadrant.addEventListener('mouseenter', onEnter);
+          quadrant.addEventListener('mouseleave', onLeave);
+
+          cleanups.push(() => {
+            quadrant.removeEventListener('mouseenter', onEnter);
+            quadrant.removeEventListener('mouseleave', onLeave);
+            hoverTimeline.kill();
+          });
+        });
+      }
+    }
+
+    // Ambient Spin for Center Logo
+    const logoSpinEl = document.getElementById('HomeQuadrants__logoSpin');
+    if (logoSpinEl) {
+      const spinTween = gsap.to(logoSpinEl, {
+        rotate: 360,
+        duration: 25,
+        repeat: -1,
+        ease: 'none'
+      });
+      cleanups.push(() => spinTween.kill());
+    }
+
+    animCleanup = () => {
+      cleanups.forEach(fn => fn());
+      animCleanup = null;
+    };
+  }
+
+  // Handle page transitions & loads
+  document.addEventListener('astro:page-load', () => {
+    initServicesPageAnimations();
+  });
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initServicesPageAnimations();
+  } else {
+    document.addEventListener('DOMContentLoaded', initServicesPageAnimations);
+  }
+
+  // Scroll Unlocker
+  function unlockScroll() {
+    document.documentElement.style.overflow = '';
+  }
+
+  document.addEventListener('astro:page-load', unlockScroll);
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    unlockScroll();
+  } else {
+    document.addEventListener('DOMContentLoaded', unlockScroll);
+  }
+</script>
+
+<style lang="scss">
+  main {
+    position: relative;
+    z-index: 1;
+  }
+
+  .TextBlock {
+    padding-top: calc(var(--space-3xl) + 5rem);
+    background-color: var(--color-bg);
+  }
+</style>

@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import AboutHero from '../components/AboutHero.astro';
+import AboutStory from '../components/AboutStory.astro';
+import AboutVideo from '../components/AboutVideo.astro';
+import AboutCulture from '../components/AboutCulture.astro';
+import AboutTeam from '../components/AboutTeam.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="About • Salo" description="A hand-picked team of passionate creatives. Meet the people behind Salo Creative.">
+  <Header />
+
+  <main class="page--about">
+    <AboutHero />
+    <AboutStory />
+    <AboutVideo />
+    <AboutCulture />
+    <AboutTeam />
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  import { initAboutAnimations } from '../scripts/about-animations.js';
+
+  let initialised = false;
+
+  function runInit() {
+    if (initialised) return;
+    initialised = true;
+    requestAnimationFrame(() => initAboutAnimations());
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    initialised = false;
+    runInit();
+  });
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    runInit();
+  } else {
+    document.addEventListener('DOMContentLoaded', runInit);
+  }
+</script>
+
+<style>
+  main {
+    position: relative;
+    z-index: 1;
+  }
+</style>

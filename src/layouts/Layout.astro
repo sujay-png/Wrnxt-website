@@ -1,0 +1,136 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import "../styles/globals.scss";
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { 
+  title = "Web and brand design agency • Creative Digital Agency • Salo",
+  description = "Exceptional design. Seamless collaboration. We provide logical & beautiful design capabilities with value by seamlessly integrating as your creative team."
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+		<link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+		<link rel="shortcut icon" href="/favicon/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="Salo Creative" />
+		<meta name="generator" content={Astro.generator} />
+		
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://salo.uk/" />
+		<meta property="og:title" content="Web and brand design agency • Creative Digital Agency" />
+		<meta property="og:description" content={description} />
+		
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="Web and brand design agency • Creative Digital Agency" />
+		<meta name="twitter:description" content={description} />
+    
+    <script>
+      // Lock scroll until GSAP is fully initialised. Must be inline so it
+      // runs synchronously before the browser paints.
+      document.documentElement.style.overflow = 'hidden';
+      window.addEventListener('pageshow', function (e) {
+        if (e.persisted) {
+          document.documentElement.style.overflow = 'hidden';
+        }
+      });
+    </script>
+    <ClientRouter />
+	</head>
+	<body data-color-scheme="dark">
+		<slot />
+
+    <script>
+      import Alpine from 'alpinejs';
+      import Lenis from 'lenis';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+      import gsap from 'gsap';
+
+      // Setup Alpine button hover effect once
+      if (!window.__alpineInitialized) {
+        window.__alpineInitialized = true;
+        
+        Alpine.data("buttonHover", () => ({
+          isHovering: false,
+          mouseX: 0,
+          mouseY: 0,
+          bgX: 75,
+          bgY: 75,
+          raf: null,
+          handleMouseMove(e) {
+            if (!this.isHovering) return;
+            const rect = e.currentTarget.getBoundingClientRect();
+            this.mouseX = ((e.clientX - rect.left) / rect.width) * 100;
+            this.mouseY = ((e.clientY - rect.top) / rect.height) * 100;
+            if (this.raf) cancelAnimationFrame(this.raf);
+            this.raf = requestAnimationFrame(() => {
+              this.bgX = this.mouseX;
+              this.bgY = this.mouseY;
+            });
+          },
+          handleMouseEnter() {
+            this.isHovering = true;
+          },
+          handleMouseLeave() {
+            this.isHovering = false;
+          }
+        }));
+
+        window.Alpine = Alpine;
+        Alpine.start();
+      }
+
+      // Setup Lenis Smooth Scrolling once
+      if (!window.__lenisInitialized) {
+        window.__lenisInitialized = true;
+        
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
+        window.__lenis = lenis;
+
+        // Update ScrollTrigger on Lenis scroll
+        lenis.on('scroll', ScrollTrigger.update);
+
+        // Add Lenis to GSAP ticker
+        gsap.ticker.add((time) => {
+          lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
+      }
+
+      // Re-trigger Alpine discovery and GSAP refresh on View Transition page loads
+      document.addEventListener('astro:after-swap', () => {
+        if (window.__lenis) {
+          window.__lenis.scrollTo(0, { immediate: true });
+        }
+      });
+
+      document.addEventListener('astro:page-load', () => {
+        if (window.Alpine) {
+          window.Alpine.discover();
+        }
+        if (window.__lenis) {
+          window.__lenis.scrollTo(0, { immediate: true });
+        }
+        ScrollTrigger.refresh();
+        window.dispatchEvent(new CustomEvent('lenis:ready'));
+      });
+    </script>
+	</body>
+</html>

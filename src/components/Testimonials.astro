@@ -1,0 +1,198 @@
+---
+const subClients = [
+  { name: "HSBC", url: "https://media.salo.uk/salo-website-prod/hsbc.svg" },
+  { name: "Keith Prowse", url: "https://media.salo.uk/salo-website-prod/keith-prowse.svg" },
+  { name: "The Experience", url: "https://media.salo.uk/salo-website-prod/the-experience.svg" },
+  { name: "Capco", url: "https://media.salo.uk/salo-website-prod/capco.svg" }
+];
+---
+
+<section class="section TestimonialCaseStudyBlock" data-padding="2xl">
+  <div class="container">
+    <div class="sidebar testimonial-sidebar" data-side="right" data-gap="md-2xl">
+      <!-- Left Column (Text & Client Info) -->
+      <div class="stack" data-gap="xl" data-align="start" data-justify="between">
+        <div class="anchor-card anchor-card--simple logo-card">
+          <div class="anchor-content">
+            <img src="https://media.salo.uk/salo-website-prod/ratio.svg" alt="Ratio logo." loading="lazy" decoding="async" width="160" height="120" class="logo" />
+          </div>
+        </div>
+        
+        <h2 class="heading" data-font-size="4-5" data-weight="regular" data-color="foreground">
+          Why Ratio has trusted us with their key accounts for over 3 years.
+        </h2>
+        
+        <div class="sub-clients-wrap">
+          <div class="stack" data-gap="2xs">
+            <h3 class="heading eyebrow">We've delivered for:</h3>
+            <div class="anchor-card anchor-card--simple clients-grid-card">
+              <div class="anchor-content">
+                <div class="cluster subClients flex-nowrap" data-gap="sm" data-justify="start" data-align="center">
+                  {subClients.map((client) => (
+                    <img src={client.url} alt={`${client.name} Logo.`} loading="lazy" decoding="async" width="160" height="120" class="logo" />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column (Quote Widget & Preview Mockup) -->
+      <div class="stack right-col" data-gap="md">
+        <!-- Quote Card -->
+        <div class="anchor-card anchor-card--simple videoTestimonial">
+          <div class="anchor-content">
+            <div class="sidebar" data-side="right" data-gap="md">
+              <div class="stack videoTestimonial__content" data-justify="center">
+                <h3 class="heading eyebrow">Testimonial</h3>
+                <blockquote>
+                  <p>“I've always been very impressed with the quality, care, enthusiasm and end results of everything they've done”</p>
+                  <footer>
+                    <cite>Steve Renshaw | Co-Founder</cite>
+                  </footer>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Image Frame -->
+        <a href="#" class="anchor-card anchor-card--rounded main-image">
+          <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
+            <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
+            <circle cx="19.5" cy="3.5" r="3"></circle>
+            <circle cx="calc(100% - 19.5px)" cy="3.5" r="3"></circle>
+            <circle cx="19.5" cy="calc(100% - 3.5px)" r="3"></circle>
+            <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3"></circle>
+            <circle cx="3.5" cy="19.5" r="3"></circle>
+            <circle cx="3.5" cy="calc(100% - 19.5px)" r="3"></circle>
+            <circle cx="calc(100% - 3.5px)" cy="19.5" r="3"></circle>
+            <circle cx="calc(100% - 3.5px)" cy="calc(100% - 19.5px)" r="3"></circle>
+          </svg>
+          <div class="anchor-content">
+            <div class="frame" style="--frame-ratio: 4/3; --frame-min-h: 20rem;">
+              <img src="https://media.salo.uk/salo-website-prod/the-experience-1.jpg" alt="The Experience website mockup." loading="lazy" decoding="async" width="1440" height="1086" />
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .TestimonialCaseStudyBlock {
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-bg);
+  }
+
+  .testimonial-sidebar {
+    --sidebar-width: var(--custom-sidebar-width);
+    --content-min: 50%;
+    --gutter: var(--space-md-2xl);
+    --custom-sidebar-width: clamp(18.75rem, 14.4404vw + 15.3655rem, 31.25rem);
+    
+    @media (max-width: 1023px) {
+      flex-direction: column;
+    }
+  }
+
+  .logo-card {
+    width: max-content;
+    
+    .logo {
+      height: var(--space-xl);
+      width: auto;
+      object-fit: contain;
+    }
+  }
+
+  .heading {
+    line-height: var(--line-height-snug);
+    letter-spacing: var(--letter-spacing-tight);
+  }
+
+  .sub-clients-wrap {
+    width: 100%;
+  }
+
+  .clients-grid-card {
+    width: 100%;
+    padding: var(--space-xs);
+    
+    .subClients {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: var(--space-md);
+      scrollbar-width: none;
+      
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      
+      @media (max-width: 767px) {
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }
+    }
+    
+    .logo {
+      height: var(--space-md);
+      width: auto;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: 0.5;
+    }
+  }
+
+  .right-col {
+    width: 100%;
+  }
+
+  .videoTestimonial {
+    width: 100%;
+    
+    &__content {
+      padding: var(--space-md) var(--space-lg);
+      min-height: 150px;
+      
+      blockquote {
+        font-size: var(--font-size-1);
+        font-family: var(--font-family-body);
+        line-height: var(--line-height-snug);
+        margin: 0;
+        
+        p {
+          text-indent: -0.75ch;
+          color: var(--color-foreground);
+        }
+        
+        footer {
+          margin-top: var(--space-sm);
+          font-family: var(--font-family-alt);
+          font-size: var(--font-size--1);
+          color: var(--color-foreground-secondary);
+          
+          cite {
+            font-style: normal;
+          }
+        }
+      }
+    }
+  }
+
+  .main-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 25rem;
+    
+    .frame {
+      width: 100%;
+      height: 100%;
+      min-height: 20rem;
+    }
+  }
+</style>

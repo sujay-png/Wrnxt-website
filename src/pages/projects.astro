@@ -1,0 +1,573 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CTA from '../components/CTA.astro';
+---
+
+<Layout title="Projects | Salo">
+  <Header />
+
+  <main>
+    <div data-block-type="projectCarousel" data-first="true">
+      <section class="section ProjectCarouselBlock" data-index="0" data-padding="xl">
+        <div class="stack" data-gap="xl">
+          <div class="container">
+            <div class="cluster carousel-header" data-align="center" data-gap="sm" data-justify="between">
+              <h2 class="heading" data-color="foreground" data-font-size="4" data-trim="normal" data-weight="regular">
+                Projects
+              </h2>
+              <div class="cluster reel-nav carousel-nav" data-align="center" data-gap="lg" data-justify="start" data-reel-id="carousel-0" data-reel-nav="true" x-data="{ progress: 0 }">
+                <button aria-label="Previous project" class="btn size-md ghost icon-only" data-reel-prev="true" type="button">
+                  <span class="btn-content">
+                    <span aria-hidden="true" class="icon" role="img" style="--icon-size:1em;">
+                      <svg aria-hidden="true" class="lucide lucide-arrow-left" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m12 19-7-7 7-7"></path>
+                        <path d="M19 12H5"></path>
+                      </svg>
+                    </span>
+                  </span>
+                </button>
+                <div class="progress-bar">
+                  <div class="progress-fill" x-bind:style="`width: ${progress}%`"></div>
+                </div>
+                <button aria-label="Next project" class="btn size-md ghost icon-only" data-reel-next="true" type="button">
+                  <span class="btn-content">
+                    <span aria-hidden="true" class="icon" role="img" style="--icon-size:1em;">
+                      <svg aria-hidden="true" class="lucide lucide-arrow-right" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                      </svg>
+                    </span>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <ul class="reel carousel" data-gap="xl-4xl" id="carousel-0">
+            <!-- Slide 1: Wilderness -->
+            <li class="cluster item" data-align="start" data-gap="2xl" data-justify="start" data-nowrap="">
+              <a class="gradient-border content" href="/projects/wilderness">
+                <div class="stack inner" data-align="start">
+                  <div class="frame mobile-image" style="--frame-ratio:4/3;--frame-pos:center;">
+                    <img alt="Simpson Travel Website design." decoding="async" fetchpriority="auto" height="1629" loading="lazy" src="https://media.salo.uk/salo-website-prod/simpson-travel-desktop-1.jpg" width="2160"/>
+                  </div>
+                  <div class="anchor-card anchor-card--simple logoCard">
+                    <div class="anchor-content">
+                      <div data-color-scheme="dark">
+                        <img alt="Wilderness logo." class="logo" decoding="async" fetchpriority="auto" height="120" loading="lazy" src="https://media.salo.uk/salo-website-prod/wilderness.svg" width="160"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cluster categories" data-align="center" data-gap-x="md" data-justify="start">
+                    <span class="Tag" style="--tag-color:var(--color-purple)">
+                      High-Performing Website
+                    </span>
+                  </div>
+                  <h3 class="heading" data-color="foreground" data-font-size="1" data-trim="normal" data-weight="regular">
+                    Optimising conversion without compromising luxury
+                  </h3>
+                  <div class="prose prose--md">
+                    <p>
+                      We redesigned user journeys across the site to make them smoother and more intuitive.
+                    </p>
+                  </div>
+                  <span class="btn size-md secondary">
+                    <span class="btn-content">
+                      View Project
+                      <span aria-hidden="true" class="icon" role="img" style="--icon-size:1em;">
+                        <svg aria-hidden="true" class="lucide lucide-arrow-right" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5 12h14"></path>
+                          <path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                      </span>
+                    </span>
+                  </span>
+                </div>
+              </a>
+              <a class="anchor-card anchor-card--rounded image" href="/projects/wilderness">
+                <svg class="anchor-border" height="100%" preserveAspectRatio="none" width="100%">
+                  <rect height="calc(100% - 7px)" rx="16" ry="16" width="calc(100% - 7px)" x="3.5" y="3.5"></rect>
+                  <circle cx="19.5" cy="3.5" r="3"></circle>
+                  <circle cx="calc(100% - 19.5px)" cy="3.5" r="3"></circle>
+                  <circle cx="19.5" cy="calc(100% - 3.5px)" r="3"></circle>
+                  <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3"></circle>
+                  <circle cx="3.5" cy="19.5" r="3"></circle>
+                  <circle cx="3.5" cy="calc(100% - 19.5px)" r="3"></circle>
+                  <circle cx="calc(100% - 3.5px)" cy="19.5" r="3"></circle>
+                  <circle cx="calc(100% - 3.5px)" cy="calc(100% - 19.5px)" r="3"></circle>
+                </svg>
+                <div class="anchor-content">
+                  <div class="frame" style="--frame-ratio:250/543;--frame-pos:center;">
+                    <img alt="Simpson Travel Website design." decoding="async" fetchpriority="auto" height="1629" loading="lazy" src="https://media.salo.uk/salo-website-prod/simpson-travel-mobile-2.jpg" width="750"/>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <!-- Slide 2: BBD Boom -->
+            <li class="cluster item" data-align="start" data-gap="2xl" data-justify="start" data-nowrap="">
+              <a class="gradient-border content" href="/projects/BBD-Boom">
+                <div class="stack inner" data-align="start">
+                  <div class="frame mobile-image" style="--frame-ratio:4/3;--frame-pos:center;">
+                    <img alt="Website homepage for BBD Boom." decoding="async" fetchpriority="auto" height="1629" loading="lazy" src="https://media.salo.uk/salo-website-prod/BBD Desktop 2-1.png" width="2160"/>
+                  </div>
+                  <div class="anchor-card anchor-card--simple logoCard">
+                    <div class="anchor-content">
+                      <div data-color-scheme="dark">
+                        <img alt="BBD Boom logo." class="logo" decoding="async" fetchpriority="auto" height="120" loading="lazy" src="https://media.salo.uk/salo-website-prod/bbd-boom.svg" width="160"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cluster categories" data-align="center" data-gap-x="md" data-justify="start">
+                    <span class="Tag" style="--tag-color:var(--color-purple)">
+                      High-Performing Website
+                    </span>
+                  </div>
+                  <h3 class="heading" data-color="foreground" data-font-size="1" data-trim="normal" data-weight="regular">
+                    Fully integrated design support for a high-volume Hubspot agency
+                  </h3>
+                  <div class="prose prose--md">
+                    <p>
+                      170+ creative projects in 18 months, with zero burnout.
+                    </p>
+                  </div>
+                  <span class="btn size-md secondary">
+                    <span class="btn-content">
+                      View Project
+                      <span aria-hidden="true" class="icon" role="img" style="--icon-size:1em;">
+                        <svg aria-hidden="true" class="lucide lucide-arrow-right" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5 12h14"></path>
+                          <path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                      </span>
+                    </span>
+                  </span>
+                </div>
+              </a>
+              <a class="anchor-card anchor-card--rounded image" href="/projects/BBD-Boom">
+                <svg class="anchor-border" height="100%" preserveAspectRatio="none" width="100%">
+                  <rect height="calc(100% - 7px)" rx="16" ry="16" width="calc(100% - 7px)" x="3.5" y="3.5"></rect>
+                  <circle cx="19.5" cy="3.5" r="3"></circle>
+                  <circle cx="calc(100% - 19.5px)" cy="3.5" r="3"></circle>
+                  <circle cx="19.5" cy="calc(100% - 3.5px)" r="3"></circle>
+                  <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3"></circle>
+                  <circle cx="3.5" cy="19.5" r="3"></circle>
+                  <circle cx="3.5" cy="calc(100% - 19.5px)" r="3"></circle>
+                  <circle cx="calc(100% - 3.5px)" cy="19.5" r="3"></circle>
+                  <circle cx="calc(100% - 3.5px)" cy="calc(100% - 19.5px)" r="3"></circle>
+                </svg>
+                <div class="anchor-content">
+                  <div class="frame" style="--frame-ratio:250/543;--frame-pos:center;">
+                    <img alt="Homepage mobile for BBD Boom." decoding="async" fetchpriority="auto" height="1629" loading="lazy" src="https://media.salo.uk/salo-website-prod/BBD Mobile 1-1.png" width="750"/>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <!-- Slide 3: Roswell -->
+            <li class="cluster item" data-align="start" data-gap="2xl" data-justify="start" data-nowrap="">
+              <a class="gradient-border content" href="/projects/roswell">
+                <div class="stack inner" data-align="start">
+                  <div class="frame mobile-image" style="--frame-ratio:4/3;--frame-pos:center;">
+                    <img alt="Mockup of Roswell website homepage design." decoding="async" fetchpriority="auto" height="1086" loading="lazy" src="https://media.salo.uk/salo-website-prod/Roswell Desktop 1.jpg" width="1440"/>
+                  </div>
+                  <div class="anchor-card anchor-card--simple logoCard">
+                    <div class="anchor-content">
+                      <div data-color-scheme="dark">
+                        <img alt="Roswell Logo." class="logo" decoding="async" fetchpriority="auto" height="120" loading="lazy" src="https://media.salo.uk/salo-website-prod/roswell.svg" width="160"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cluster categories" data-align="center" data-gap-x="md" data-justify="start">
+                    <span class="Tag" style="--tag-color:var(--color-green)">
+                      UI / UX
+                    </span>
+                  </div>
+                  <h3 class="heading" data-color="foreground" data-font-size="1" data-trim="normal" data-weight="regular">
+                    A bold new identity for a Shopify Platinum Partner
+                  </h3>
+                  <div class="prose prose--md">
+                    <p>
+                      The new website needed to reflect Roswell’s bold, confident identity while letting their work take center stage.
+                    </p>
+                  </div>
+                  <span class="btn size-md secondary">
+                    <span class="btn-content">
+                      View Project
+                      <span aria-hidden="true" class="icon" role="img" style="--icon-size:1em;">
+                        <svg aria-hidden="true" class="lucide lucide-arrow-right" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5 12h14"></path>
+                          <path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                      </span>
+                    </span>
+                  </span>
+                </div>
+              </a>
+              <a class="anchor-card anchor-card--rounded image" href="/projects/roswell">
+                <svg class="anchor-border" height="100%" preserveAspectRatio="none" width="100%">
+                  <rect height="calc(100% - 7px)" rx="16" ry="16" width="calc(100% - 7px)" x="3.5" y="3.5"></rect>
+                  <circle cx="19.5" cy="3.5" r="3"></circle>
+                  <circle cx="calc(100% - 19.5px)" cy="3.5" r="3"></circle>
+                  <circle cx="19.5" cy="calc(100% - 3.5px)" r="3"></circle>
+                  <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3"></circle>
+                  <circle cx="3.5" cy="19.5" r="3"></circle>
+                  <circle cx="3.5" cy="calc(100% - 19.5px)" r="3"></circle>
+                  <circle cx="calc(100% - 3.5px)" cy="19.5" r="3"></circle>
+                  <circle cx="calc(100% - 3.5px)" cy="calc(100% - 19.5px)" r="3"></circle>
+                </svg>
+                <div class="anchor-content">
+                  <div class="frame" style="--frame-ratio:250/543;--frame-pos:center;">
+                    <img alt="Mockup of Roswell website homepage design." decoding="async" fetchpriority="auto" height="1086" loading="lazy" src="https://media.salo.uk/salo-website-prod/Roswell Mobile 1.jpg" width="500"/>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <!-- Slide 4: Solent Rib Charter -->
+            <li class="cluster item" data-align="start" data-gap="2xl" data-justify="start" data-nowrap="">
+              <a class="gradient-border content" href="/projects/solent-rib-charter">
+                <div class="stack inner" data-align="start">
+                  <div class="frame mobile-image" style="--frame-ratio:4/3;--frame-pos:center;">
+                    <img alt="Mockup of SRC website design." decoding="async" fetchpriority="auto" height="1086" loading="lazy" src="https://media.salo.uk/salo-website-prod/SRC Desktop 1.jpg" width="1440"/>
+                  </div>
+                  <div class="anchor-card anchor-card--simple logoCard">
+                    <div class="anchor-content">
+                      <div data-color-scheme="dark">
+                        <img alt="Solent Rib Charter logo." class="logo" decoding="async" fetchpriority="auto" height="120" loading="lazy" src="https://media.salo.uk/salo-website-prod/src.svg" width="160"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cluster categories" data-align="center" data-gap-x="md" data-justify="start">
+                    <span class="Tag" style="--tag-color:var(--color-purple)">
+                      High-Performing Website
+                    </span>
+                  </div>
+                  <h3 class="heading" data-color="foreground" data-font-size="1" data-trim="normal" data-weight="regular">
+                    Modernising a group of sites for a marine services provider
+                  </h3>
+                  <div class="prose prose--md">
+                    <p>
+                      Breaking key pages into modular components allowed us to build a shared design system.
+                    </p>
+                  </div>
+                  <span class="btn size-md secondary">
+                    <span class="btn-content">
+                      View Project
+                      <span aria-hidden="true" class="icon" role="img" style="--icon-size:1em;">
+                        <svg aria-hidden="true" class="lucide lucide-arrow-right" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5 12h14"></path>
+                          <path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                      </span>
+                    </span>
+                  </span>
+                </div>
+              </a>
+              <a class="anchor-card anchor-card--rounded image" href="/projects/solent-rib-charter">
+                <svg class="anchor-border" height="100%" preserveAspectRatio="none" width="100%">
+                  <rect height="calc(100% - 7px)" rx="16" ry="16" width="calc(100% - 7px)" x="3.5" y="3.5"></rect>
+                  <circle cx="19.5" cy="3.5" r="3"></circle>
+                  <circle cx="calc(100% - 19.5px)" cy="3.5" r="3"></circle>
+                  <circle cx="19.5" cy="calc(100% - 3.5px)" r="3"></circle>
+                  <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3"></circle>
+                  <circle cx="3.5" cy="19.5" r="3"></circle>
+                  <circle cx="3.5" cy="calc(100% - 19.5px)" r="3"></circle>
+                  <circle cx="calc(100% - 3.5px)" cy="19.5" r="3"></circle>
+                  <circle cx="calc(100% - 3.5px)" cy="calc(100% - 19.5px)" r="3"></circle>
+                </svg>
+                <div class="anchor-content">
+                  <div class="frame" style="--frame-ratio:250/543;--frame-pos:center;">
+                    <img alt="Mockup of SRC website design." decoding="async" fetchpriority="auto" height="1086" loading="lazy" src="https://media.salo.uk/salo-website-prod/SRC Mobile 1.jpg" width="500"/>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <CTA />
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  function p() {
+    document.querySelectorAll("[data-reel-nav]").forEach((e) => {
+      if (e.dataset.reelNavBound) return;
+      e.dataset.reelNavBound = "1";
+      const c = e.dataset.reelId;
+      if (!c) return;
+      const t = document.getElementById(c);
+      const n = e.querySelector("[data-reel-prev]");
+      const o = e.querySelector("[data-reel-next]");
+      if (!t || !n || !o) return;
+
+      const d = () => {
+        const s = t.firstElementChild;
+        return s ? s.offsetWidth + (parseFloat(getComputedStyle(t).gap) || 0) : t.clientWidth;
+      };
+
+      const i = () => {
+        n.disabled = t.scrollLeft <= 0;
+        o.disabled = t.scrollLeft >= t.scrollWidth - t.clientWidth - 1;
+        const s = t.scrollWidth - t.clientWidth;
+        const a = s > 0 ? (t.scrollLeft / s) * 100 : 0;
+        if (e._x_dataStack) {
+          e._x_dataStack[0].progress = Math.min(100, Math.max(0, a));
+        }
+      };
+
+      let r;
+      const m = (s) => {
+        const a = t.scrollLeft;
+        const S = t.scrollWidth - t.clientWidth;
+        const f = Math.min(Math.max(s, 0), S) - a;
+        if (f === 0) return;
+        if (r !== undefined) cancelAnimationFrame(r);
+        t.classList.add("is-animating");
+        const g = 250;
+        let l;
+        const u = (h) => {
+          if (l === undefined) l = h;
+          const L = Math.min((h - l) / g, 1);
+          const v = 1 - Math.pow(1 - L, 1.5);
+          t.scrollLeft = a + f * v;
+          i();
+          if (L < 1) {
+            r = requestAnimationFrame(u);
+          } else {
+            t.classList.remove("is-animating");
+            r = undefined;
+          }
+        };
+        r = requestAnimationFrame(u);
+      };
+
+      n.addEventListener("click", () => m(t.scrollLeft - d()));
+      o.addEventListener("click", () => m(t.scrollLeft + d()));
+      t.addEventListener("scroll", i);
+      setTimeout(i, 100);
+    });
+  }
+
+  p();
+  document.addEventListener("astro:page-load", p);
+
+  function unlockScroll() {
+    document.documentElement.style.overflow = '';
+  }
+  document.addEventListener('astro:page-load', unlockScroll);
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    unlockScroll();
+  } else {
+    document.addEventListener('DOMContentLoaded', unlockScroll);
+  }
+</script>
+
+<style lang="scss">
+  main {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ProjectCarouselBlock {
+    padding-top: calc(var(--space-3xl) + 5rem);
+    padding-bottom: var(--space-2xl);
+    background-color: var(--color-bg);
+    overflow: hidden;
+  }
+
+  .carousel-header {
+    margin-bottom: var(--space-xl);
+  }
+
+  .progress-bar {
+    position: relative;
+    width: 200px;
+    height: 2px;
+    background: var(--color-border, rgba(255, 255, 255, 0.2));
+    border-radius: 1px;
+    overflow: hidden;
+
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+  }
+
+  .progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--color-foreground, white);
+    border-radius: 1px;
+    transition: width 0.1s ease-out;
+  }
+
+  .carousel-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+
+    @media (max-width: 767px) {
+      width: 100%;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+    }
+  }
+
+  .reel {
+    --_offset: calc( ( ( 100% - ( min(var(--container-max-width, 110rem), 100%) + (var(--container-padding, var(--space-md-lg)) * 2) ) ) / 2 ) + (var(--container-padding, var(--space-md-lg)) * 2) );
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-inline: var(--_offset);
+    scroll-padding-inline-start: var(--_offset);
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &.is-animating {
+      scroll-snap-type: none !important;
+    }
+  }
+
+  .item {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+
+    @media (max-width: 767px) {
+      max-width: 90%;
+      gap: var(--space-lg);
+    }
+
+    .logo {
+      max-width: clamp(6.25rem, 4.3321vw + 5.2347rem, 10rem) !important;
+    }
+
+    .logoCard {
+      @media (max-width: 519px) {
+        margin-top: calc(-40px - var(--space-md));
+      }
+    }
+
+    .content {
+      width: 35ch;
+      flex-shrink: 0;
+
+      @media (max-width: 767px) {
+        flex-basis: 60%;
+        flex-grow: 1;
+      }
+
+      @media (max-width: 519px) {
+        height: 100%;
+      }
+    }
+
+    .image {
+      flex-shrink: 0;
+      width: 30ch;
+
+      @media (max-width: 767px) {
+        flex-basis: 40%;
+        flex-shrink: 1;
+      }
+
+      @media (max-width: 519px) {
+        display: none;
+      }
+    }
+
+    .mobile-image {
+      display: none;
+      margin-inline: calc(var(--space-md) * -1);
+      width: calc(100% + var(--space-md) * 2);
+      margin-block-start: calc(var(--space-md) * -1);
+      border-bottom: 1px solid var(--color-border);
+
+      @media (max-width: 519px) {
+        display: block;
+      }
+    }
+
+    .prose {
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+
+  .inner {
+    padding: var(--space-md);
+
+    @media (max-width: 519px) {
+      height: 100%;
+    }
+  }
+
+  // ── Anchor Card local styles ──
+  .anchor-card--rounded {
+    padding: 0.75em;
+    position: relative;
+    display: block;
+  }
+
+  .anchor-content {
+    border-radius: 0.5em;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+  }
+
+  .anchor-border {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+
+    rect {
+      fill: none;
+      stroke: var(--color-border, #585858);
+      stroke-width: 1px;
+      vector-effect: non-scaling-stroke;
+    }
+
+    circle {
+      fill: var(--color-bg, #060606);
+      stroke: var(--color-border, #585858);
+      stroke-width: 1px;
+    }
+  }
+
+  .frame {
+    aspect-ratio: var(--frame-ratio, 4/3);
+    overflow: hidden;
+    position: relative;
+
+    > * {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+</style>

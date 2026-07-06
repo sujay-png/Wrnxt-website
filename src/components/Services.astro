@@ -1,0 +1,622 @@
+---
+const quadrants = [
+  {
+    title: "UX/UI & Digital Products",
+    href: "/services/ui-ux",
+    desc: "Is poor design costing you users? We fix friction. We design intuitive, human-centered interfaces that reduce churn, delight customers, and make your product a joy to use.",
+    images: {
+      top: "https://media.salo.uk/salo-website-prod/Sunseeker mobile mockup 1.jpg",
+      main: "https://media.salo.uk/salo-website-prod/Threecolts Tactical Arbitrage Mockup Mobile.jpg",
+      bottom: "https://media.salo.uk/salo-website-prod/Amanacard mobile mockup 1.jpg"
+    }
+  },
+  {
+    title: "High-Performance Websites",
+    href: "/services/websites",
+    desc: "Beautiful sites that perform. Whether it’s a custom build or a Shopify store, we create responsive websites designed to turn visitors into customers.",
+    images: {
+      top: "https://media.salo.uk/salo-website-prod/Provenant-1.jpg",
+      main: "https://media.salo.uk/salo-website-prod/Octopus Money mobile mockup 1.jpg",
+      bottom: "https://media.salo.uk/salo-website-prod/Solent Rib Charter mobile mockup 1.jpg"
+    }
+  },
+  {
+    title: "Brand Identity & Positioning",
+    href: "/services/branding",
+    desc: "We build memorable brands that stand out in crowded markets. From visual identity systems to voice and tone, we ensure your brand signals trust and drives loyalty.",
+    images: {
+      top: "https://media.salo.uk/salo-website-prod/Pubeck Cider branding mockup 1.jpg",
+      main: "https://media.salo.uk/salo-website-prod/Provenant Branding mockup.jpg",
+      bottom: "https://media.salo.uk/salo-website-prod/Coda Comms mobile mockup 1.jpg"
+    }
+  },
+  {
+    title: "Flexible Design Support",
+    href: "/services/flexi-design",
+    desc: "Your on-demand creative department. Clear your design backlog and keep your brand evolving with our flexible, credit-based support model. No cost commitments, only pay for what you need.",
+    images: {
+      top: "https://media.salo.uk/salo-website-prod/Genesis mobile mockup 1.jpg",
+      main: "https://media.salo.uk/salo-website-prod/BBD Boom mobile mockup 1.jpg",
+      bottom: "https://media.salo.uk/salo-website-prod/Experience Golf mobile mockup 1.jpg"
+    }
+  }
+];
+---
+
+<section data-ready="false" class="section HomeQuadrants">
+  <!-- Horizontal Top Grid Border -->
+  <div class="reactive-divider horizontal HomeQuadrantsSectionDivider__top" x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })">
+    <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
+    <div class="divider-line" x-ref="dividerLine">
+      <div class="width-display" x-text="formattedWidth" x-cloak>0px</div>
+    </div>
+    <div class="anchor end-anchor"><div class="anchor-circle"></div></div>
+  </div>
+
+  <h2 class="heading sr-only">Our Services</h2>
+  
+  <div class="container" data-size="full">
+    {quadrants.map((quad, idx) => (
+      <a href={quad.href} class={`quadrant quadrant--${idx + 1}`}>
+        <div class="background"></div>
+        <div class="stack content" data-gap="sm">
+          <h3 class="heading quadrant__heading">
+            <span>{quad.title}</span>
+          </h3>
+          <div class="stack hidden-content" data-gap="sm">
+            <div class="prose prose--md">
+              <p>{quad.desc}</p>
+            </div>
+            <div class="cluster actions" data-gap="sm" data-justify="start" data-align="center">
+              <span class="btn size-md secondary">
+                <span class="btn-content">
+                  Explore
+                  <span class="icon" aria-hidden="true" role="img">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+                      <path d="M5 12h14"></path>
+                      <path d="m12 5 7 7-7 7"></path>
+                    </svg>
+                  </span>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="quadrant__imageContainer">
+          <div class="quadrant__imageContainerInner">
+            <div class="stack">
+              <!-- Top Image -->
+              <div class="anchor-card anchor-card--rounded quadrant__image quadrant__image--top">
+                <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
+                  <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
+                  <circle cx="19.5" cy="3.5" r="3"></circle>
+                  <circle cx="calc(100% - 19.5px)" cy="3.5" r="3"></circle>
+                  <circle cx="19.5" cy="calc(100% - 3.5px)" r="3"></circle>
+                  <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3"></circle>
+                  <circle cx="3.5" cy="19.5" r="3"></circle>
+                  <circle cx="3.5" cy="calc(100% - 19.5px)" r="3"></circle>
+                  <circle cx="calc(100% - 3.5px)" cy="19.5" r="3"></circle>
+                  <circle cx="calc(100% - 3.5px)" cy="calc(100% - 19.5px)" r="3"></circle>
+                </svg>
+                <div class="anchor-content">
+                  <img src={quad.images.top} alt={`${quad.title} mockup top.`} loading="lazy" decoding="async" width="502" height="1086" />
+                </div>
+              </div>
+              
+              <!-- Main Image -->
+              <div class="anchor-card anchor-card--rounded quadrant__image quadrant__image--main">
+                <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
+                  <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
+                  <circle cx="19.5" cy="3.5" r="3"></circle>
+                  <circle cx="calc(100% - 19.5px)" cy="3.5" r="3"></circle>
+                  <circle cx="19.5" cy="calc(100% - 3.5px)" r="3"></circle>
+                  <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3"></circle>
+                  <circle cx="3.5" cy="19.5" r="3"></circle>
+                  <circle cx="3.5" cy="calc(100% - 19.5px)" r="3"></circle>
+                  <circle cx="calc(100% - 3.5px)" cy="19.5" r="3"></circle>
+                  <circle cx="calc(100% - 3.5px)" cy="calc(100% - 19.5px)" r="3"></circle>
+                </svg>
+                <div class="anchor-content">
+                  <img src={quad.images.main} alt={`${quad.title} mockup main.`} loading="lazy" decoding="async" width="502" height="1086" />
+                </div>
+              </div>
+              
+              <!-- Bottom Image -->
+              <div class="anchor-card anchor-card--rounded quadrant__image quadrant__image--bottom">
+                <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
+                  <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
+                  <circle cx="19.5" cy="3.5" r="3"></circle>
+                  <circle cx="calc(100% - 19.5px)" cy="3.5" r="3"></circle>
+                  <circle cx="19.5" cy="calc(100% - 3.5px)" r="3"></circle>
+                  <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3"></circle>
+                  <circle cx="3.5" cy="19.5" r="3"></circle>
+                  <circle cx="3.5" cy="calc(100% - 19.5px)" r="3"></circle>
+                  <circle cx="calc(100% - 3.5px)" cy="19.5" r="3"></circle>
+                  <circle cx="calc(100% - 3.5px)" cy="calc(100% - 19.5px)" r="3"></circle>
+                </svg>
+                <div class="anchor-content">
+                  <img src={quad.images.bottom} alt={`${quad.title} mockup bottom.`} loading="lazy" decoding="async" width="502" height="1086" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  <!-- Central Logo Overlay (divider partition) -->
+  <div class="overlay">
+    <!-- Top Vertical Divider -->
+    <div class="dividerWrapper dividerWrapper__top">
+      <div class="reactive-divider vertical divider__top" x-data="reactiveDivider({ orientation: 'vertical', unit: 'px' })">
+        <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
+        <div class="divider-line" x-ref="dividerLine">
+          <div class="width-display" x-text="formattedWidth" x-cloak>0px</div>
+        </div>
+        <div class="anchor end-anchor"><div class="anchor-circle"></div></div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <!-- Left Horizontal Divider -->
+      <div class="dividerWrapper dividerWrapper__left">
+        <div class="reactive-divider horizontal divider__left" x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })">
+          <div class="divider-line" x-ref="dividerLine">
+            <div class="width-display" x-text="formattedWidth" x-cloak>0px</div>
+          </div>
+          <div class="anchor end-anchor"><div class="anchor-circle"></div></div>
+        </div>
+      </div>
+
+      <!-- Center Logo Watermark -->
+      <div class="center">
+        <div id="HomeQuadrants__logoMask" class="logoMask"></div>
+        <!-- Continuous idle spin wrapper: keeps an ambient rotation running independently
+             of the scroll-scrubbed +180 flip tween applied to the inner SVG, so the two
+             rotations compose instead of fighting over the same GSAP "rotate" property. -->
+        <div class="logoSpin" id="HomeQuadrants__logoSpin">
+          <svg class="logo" id="HomeQuadrants__logo" viewBox="0 0 358 334" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="logomark-path logomark-path--4" opacity="0.1" d="M108.965 17.6077C195.9 -23.0772 299.303 14.4975 339.931 101.558C380.419 188.316 343.285 291.435 256.993 332.413L249.775 316.941L249.351 316.033L248.445 316.458C161.509 357.143 58.1065 319.568 17.478 232.507C-23.0092 145.749 14.1253 42.6205 100.417 1.64188L107.635 17.1243L108.058 18.0315L108.965 17.6077ZM130.992 64.805C79.1277 89.08 56.7283 150.857 80.9683 202.802C105.068 254.434 166.181 276.905 217.865 253.313L225.088 268.788L225.511 269.696L226.418 269.271C278.283 244.995 300.681 183.219 276.442 131.274C252.342 79.6413 191.228 57.169 139.544 80.762L132.322 65.2874L131.898 64.3802L130.992 64.805Z"></path>
+            <path class="logomark-path logomark-path--3" opacity="0.2" d="M108.965 17.6077C195.9 -23.0772 299.303 14.4975 339.931 101.558C380.419 188.316 343.285 291.435 256.993 332.413L249.775 316.941L249.351 316.033L248.445 316.458C161.509 357.143 58.1065 319.568 17.478 232.507C-23.0092 145.749 14.1253 42.6205 100.417 1.64188L107.635 17.1243L108.058 18.0315L108.965 17.6077ZM130.992 64.805C79.1277 89.08 56.7283 150.857 80.9683 202.802C105.068 254.434 166.181 276.905 217.865 253.313L225.088 268.788L225.511 269.696L226.418 269.271C278.283 244.995 300.681 183.219 276.442 131.274C252.342 79.6413 191.228 57.169 139.544 80.762L132.322 65.2874L131.898 64.3802L130.992 64.805Z"></path>
+            <path class="logomark-path logomark-path--2" opacity="0.3" d="M108.965 17.6077C195.9 -23.0772 299.303 14.4975 339.931 101.558C380.419 188.316 343.285 291.435 256.993 332.413L249.775 316.941L249.351 316.033L248.445 316.458C161.509 357.143 58.1065 319.568 17.478 232.507C-23.0092 145.749 14.1253 42.6205 100.417 1.64188L107.635 17.1243L108.058 18.0315L108.965 17.6077ZM130.992 64.805C79.1277 89.08 56.7283 150.857 80.9683 202.802C105.068 254.434 166.181 276.905 217.865 253.313L225.088 268.788L225.511 269.696L226.418 269.271C278.283 244.995 300.681 183.219 276.442 131.274C252.342 79.6413 191.228 57.169 139.544 80.762L132.322 65.2874L131.898 64.3802L130.992 64.805Z"></path>
+            <path class="logomark-path logomark-path--1" d="M108.965 17.6077C195.9 -23.0772 299.303 14.4975 339.931 101.558C380.419 188.316 343.285 291.435 256.993 332.413L249.775 316.941L249.351 316.033L248.445 316.458C161.509 357.143 58.1065 319.568 17.478 232.507C-23.0092 145.749 14.1253 42.6205 100.417 1.64188L107.635 17.1243L108.058 18.0315L108.965 17.6077ZM130.992 64.805C79.1277 89.08 56.7283 150.857 80.9683 202.802C105.068 254.434 166.181 276.905 217.865 253.313L225.088 268.788L225.511 269.696L226.418 269.271C278.283 244.995 300.681 183.219 276.442 131.274C252.342 79.6413 191.228 57.169 139.544 80.762L132.322 65.2874L131.898 64.3802L130.992 64.805Z" fill="white"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Horizontal Divider -->
+      <div class="dividerWrapper dividerWrapper__right">
+        <div class="reactive-divider horizontal divider__right" x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })">
+          <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
+          <div class="divider-line" x-ref="dividerLine">
+            <div class="width-display" x-text="formattedWidth" x-cloak>0px</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Vertical Divider -->
+    <div class="dividerWrapper dividerWrapper__bottom">
+      <div class="reactive-divider vertical divider__bottom" x-data="reactiveDivider({ orientation: 'vertical', unit: 'px' })">
+        <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
+        <div class="divider-line" x-ref="dividerLine">
+          <div class="width-display" x-text="formattedWidth" x-cloak>0px</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Setup reactive divider dimensions
+  import Alpine from 'alpinejs';
+
+  if (!window.__dividerAlpineRegistered) {
+    window.__dividerAlpineRegistered = true;
+    
+    document.addEventListener("alpine:init", () => {
+      Alpine.data("reactiveDivider", ({ orientation, unit }) => ({
+        dimension: 0,
+        orientation: orientation,
+        resizeObserver: null,
+        init() {
+          this.measure();
+          this.resizeObserver = new ResizeObserver((entries) => {
+            for (const entry of entries) {
+              const rect = entry.contentRect;
+              this.updateDimension(rect);
+            }
+          });
+          if (this.$refs.dividerLine) {
+            this.resizeObserver.observe(this.$refs.dividerLine);
+          }
+        },
+        measure() {
+          if (this.$refs.dividerLine) {
+            const rect = this.$refs.dividerLine.getBoundingClientRect();
+            this.updateDimension(rect);
+          }
+        },
+        updateDimension(rect) {
+          this.dimension = this.orientation === "horizontal" ? rect.width : rect.height;
+        },
+        get formattedWidth() {
+          return `${Math.round(this.dimension)}${unit}`;
+        },
+        destroy() {
+          if (this.resizeObserver) {
+            this.resizeObserver.disconnect();
+          }
+        }
+      }));
+    });
+  }
+</script>
+
+<style lang="scss">
+  .HomeQuadrants {
+    position: relative;
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-bg);
+    
+    &[data-ready="false"] {
+      @media (min-width: 768px) {
+        pointer-events: none;
+      }
+    }
+    
+    .container {
+      overflow: hidden;
+      position: relative;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 0;
+      min-height: 100vh;
+      
+      @media (max-width: 767px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        min-height: auto;
+      }
+    }
+    
+    .HomeQuadrantsSectionDivider__top {
+      position: absolute;
+      top: -1px;
+      left: 0;
+      right: 0;
+      z-index: 10;
+    }
+  }
+
+  .quadrant {
+    --_padding: var(--space-xl);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--_padding);
+    overflow: hidden;
+    min-height: 50vh;
+    border: 1px solid transparent;
+    text-decoration: none;
+    color: inherit;
+    
+    @media (max-width: 767px) {
+      --_padding: var(--space-md);
+      min-height: 380px;
+      border-bottom: 1px solid var(--color-border);
+      
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+    
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
+      background-size: 24px 24px;
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
+      transition: opacity 0.5s var(--ease);
+    }
+    
+    .content {
+      position: relative;
+      z-index: 2;
+      max-width: 32rem;
+      
+      &::before {
+        --_overflow: 8%;
+        content: "";
+        position: absolute;
+        top: calc(var(--_overflow) * -1);
+        left: calc(var(--_overflow) * -1);
+        height: calc(100% + (2 * var(--_overflow)));
+        width: calc(100% + (2 * var(--_overflow)));
+        background: rgba(16, 16, 16, 0.85);
+        transition: opacity 0.3s var(--ease);
+        border-radius: var(--radius-md);
+        filter: blur(12px);
+        z-index: -1;
+        opacity: 0;
+      }
+    }
+    
+    &__heading {
+      font-size: var(--font-size-2);
+      font-weight: var(--font-weight-normal);
+      letter-spacing: var(--letter-spacing-tight);
+      margin-bottom: 0;
+      transition: color 0.3s var(--ease);
+      
+      span {
+        display: inline-block;
+      }
+    }
+    
+    .hidden-content {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.4s var(--ease-out-cubic), opacity 0.3s var(--ease-out-cubic);
+      
+      p {
+        font-size: var(--font-size--1);
+        color: var(--color-foreground-secondary);
+      }
+      
+      .btn {
+        margin-top: var(--space-2xs);
+      }
+    }
+    
+    // Images Container
+    &__imageContainer {
+      position: absolute;
+      right: var(--space-md-xl);
+      top: 10%;
+      bottom: 10%;
+      width: 40%;
+      z-index: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      pointer-events: none;
+      
+      @media (max-width: 1023px) {
+        width: 45%;
+        right: var(--space-xs);
+      }
+      
+      @media (max-width: 767px) {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        margin-top: var(--space-sm);
+        justify-content: center;
+      }
+    }
+    
+    &__imageContainerInner {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      
+      @media (max-width: 767px) {
+        position: relative;
+        justify-content: center;
+      }
+      
+      .stack {
+        position: relative;
+        width: 160px;
+        height: 100%;
+        
+        @media (max-width: 767px) {
+          width: 120px;
+        }
+      }
+    }
+    
+    &__image {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 502/1086;
+      border-radius: var(--radius-md);
+      transition: transform 0.6s var(--ease-out-cubic), opacity 0.6s var(--ease-out-cubic);
+      will-change: transform;
+      
+      &--main {
+        z-index: 5;
+        top: 15%;
+        left: 0;
+        transform: scale(1) rotate(0deg);
+        
+        @media (max-width: 767px) {
+          top: 0;
+        }
+      }
+      
+      &--top {
+        z-index: 3;
+        top: 0;
+        left: -35px;
+        transform: scale(0.9) rotate(-6deg);
+        opacity: 0.5;
+        
+        @media (max-width: 767px) {
+          display: none !important;
+        }
+      }
+      
+      &--bottom {
+        z-index: 4;
+        bottom: 0;
+        left: 35px;
+        transform: scale(0.9) rotate(6deg);
+        opacity: 0.5;
+        
+        @media (max-width: 767px) {
+          display: none !important;
+        }
+      }
+    }
+    
+    // Hover Effects (Desktop only)
+    @media (min-width: 768px) {
+      &:hover {
+        .background {
+          opacity: 0.3;
+        }
+        
+        .content::before {
+          opacity: 1;
+        }
+        
+        .hidden-content {
+          max-height: 15rem;
+          opacity: 1;
+        }
+        
+        .quadrant__image {
+          &--main {
+            transform: scale(1.08) rotate(2deg);
+          }
+          &--top {
+            transform: scale(0.95) translate(-25px, -15px) rotate(-10deg);
+            opacity: 0.8;
+          }
+          &--bottom {
+            transform: scale(0.95) translate(25px, 15px) rotate(10deg);
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }
+
+  // Dividers Layout Overlay
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto 1fr;
+    gap: var(--space-xl);
+    pointer-events: none;
+    z-index: 4;
+    overflow: hidden;
+    
+    @media (max-width: 767px) {
+      display: none;
+    }
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+
+  .dividerWrapper {
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    
+    &__top {
+      align-items: flex-start;
+      justify-content: center;
+    }
+    
+    &__bottom {
+      align-items: flex-end;
+      justify-content: center;
+    }
+    
+    &__left {
+      justify-content: flex-end;
+    }
+    
+    &__right {
+      justify-content: flex-start;
+    }
+  }
+
+  .center {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logoMask {
+    --_overflow: 20%;
+    background: var(--color-bg);
+    position: absolute;
+    top: calc(-1 * var(--_overflow));
+    left: calc(-1 * var(--_overflow));
+    width: calc(100% + (2 * var(--_overflow)));
+    height: calc(100% + (2 * var(--_overflow)));
+    filter: blur(10px);
+    border-radius: 999px;
+    z-index: 1;
+  }
+
+  .logoSpin {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .logo {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    z-index: 2;
+  }
+
+  .logomark-path {
+    transform-origin: center;
+    svg-origin: 179px 167px;
+    stroke: #fff;
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+    fill: none;
+    
+    &--1 { opacity: 1; }
+    &--2 { opacity: 0.3; }
+    &--3 { opacity: 0.2; }
+    &--4 { opacity: 0.1; }
+  }
+</style>

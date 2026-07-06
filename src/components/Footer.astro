@@ -1,0 +1,285 @@
+---
+const accreditations = [
+  { name: "Agency Hackers", url: "https://salo.uk/_astro/accreditation-agency-hackers.CskRe8_T.png" },
+  { name: "BIMA", url: "https://salo.uk/_astro/accreditation-bima.DOjLsDfZ.png" },
+  { name: "Net", url: "https://salo.uk/_astro/accreditation-net.De0nr0fC.png" },
+  { name: "Alliance of Independent Agencies", url: "https://salo.uk/_astro/accreditation-aia.B3ALZq9Y.png" }
+];
+---
+
+<footer class="section footer" data-pt="lg">
+  <div class="container" data-size="full">
+    <div class="stack" data-gap="3xl">
+      <!-- Top Section: Logo & Direct Contacts -->
+      <div class="footer__top">
+        <div class="start">
+          <a href="/" title="Go home.">
+            <svg class="footer__topLogo salo-logo" viewBox="0 0 104 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Salo Logo.">
+              <path class="salo-logo__0" d="M101.813 9.07487C98.1337 1.20259 88.7695 -2.19519 80.8963 1.48374L80.208 0.00968382C72.3348 3.68862 68.9357 13.0518 72.6151 20.9241C76.2944 28.7964 85.6587 32.1942 93.5319 28.5152L94.2202 29.9884C102.093 26.3095 105.492 16.9463 101.813 9.07398V9.07487ZM90.7839 22.6376C86.1581 24.799 80.6568 22.8017 78.4951 18.1773C76.3335 13.552 78.331 8.05137 82.956 5.88995L83.6443 7.36223C88.2701 5.20081 93.7714 7.19815 95.933 11.8225C98.0947 16.4478 96.0971 21.9485 91.4722 24.1099L90.7839 22.6376Z" fill="white"></path>
+              <path class="salo-logo__l" d="M71.9499 29.7429L58.1993 29.7438H54.8934V29.7429H54.0897L53.1859 27.8041L51.709 24.6369V0.251953H58.1993V23.2542H68.9242L71.5161 28.8134L71.9499 29.7429Z" fill="white"></path>
+              <path class="salo-logo__a" d="M39.1289 7.92716L35.5481 0.25L31.968 7.92805L32.6617 9.41452L29.0861 17.0819L23.1821 29.74H30.343L32.6661 24.7591L36.2417 17.0926L42.1395 29.74H49.2995L49.3013 29.7391L39.1289 7.92716Z" fill="white"></path>
+              <path class="salo-logo__s" d="M21.8703 20.415C21.8703 20.4815 21.8703 20.5453 21.8685 20.6101C21.7639 25.6717 17.6277 29.74 12.5416 29.74H0L3.02562 23.2504H5.04891V23.2531H12.7331C13.5164 23.2531 14.2251 22.9356 14.7378 22.423C15.2514 21.9094 15.5689 21.2008 15.5689 20.4176C15.5689 18.8513 14.2987 17.5822 12.7331 17.5822H12.6391C12.6063 17.5813 12.5744 17.5804 12.5416 17.5804H10.2034C8.06388 17.5804 6.10446 16.8185 4.59209 15.5325C2.77193 13.9866 1.59929 11.7028 1.53543 9.1449C1.53543 9.10854 1.53099 8.96042 1.53099 8.9214C1.53099 6.52672 2.50139 4.35909 4.07053 2.79013C5.63966 1.22118 7.80754 0.250887 10.2016 0.25H22.9223L19.894 6.73958H10.2034C10.191 6.73958 10.1785 6.73958 10.1661 6.74047H10.0402C9.43788 6.74047 8.89147 6.98437 8.49675 7.37993C8.10203 7.77461 7.85721 8.32007 7.85721 8.92317C7.85721 10.1285 8.8347 11.105 10.0402 11.105H12.7021C17.7803 11.1901 21.8703 15.317 21.8703 20.415Z" fill="white"></path>
+            </svg>
+          </a>
+          <span class="eyebrow">Exceptional design, seamless collaboration.</span>
+        </div>
+        
+        <div class="end footer__contact">
+          <a href="mailto:hello@salo.uk">hello@salo.uk</a>
+          <a href="tel:+4407738288101">+44 07738 288101</a>
+        </div>
+      </div>
+
+      <!-- Middle Section: Link Lists & Accreditations -->
+      <div class="stack footer__middle" data-gap="xl">
+        <div class="cluster" data-gap="lg" data-justify="between" data-align="start">
+          <div class="grid start" style="--grid-min:20rem;">
+            <div class="column">
+              <ul class="stack footer-menu" data-gap="xs">
+                <li class="eyebrow">Our services</li>
+                <li class="footer-menu-item">
+                  <a class="footer-menu-link" href="/services/ui-ux">UX/UI & Digital Products</a>
+                </li>
+                <li class="footer-menu-item">
+                  <a class="footer-menu-link" href="/services/websites">High-Performance Websites</a>
+                </li>
+                <li class="footer-menu-item">
+                  <a class="footer-menu-link" href="/services/branding">Brand Identity & Positioning</a>
+                </li>
+                <li class="footer-menu-item">
+                  <a class="footer-menu-link" href="/services/flexi-design">Flexible Design Support</a>
+                </li>
+              </ul>
+            </div>
+            
+            <nav class="column">
+              <ul class="stack footer-menu" data-gap="xs">
+                <li class="eyebrow">Useful links</li>
+                <li class="footer-menu-item">
+                  <a class="footer-menu-link" href="/projects/">Latest case studies</a>
+                </li>
+                <li class="footer-menu-item">
+                  <a class="footer-menu-link" href="/contact">Contact us</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <!-- Accreditations Badges -->
+          <div class="end">
+            <div class="accreditations">
+              {accreditations.map((badge) => (
+                <div class="accreditation">
+                  <img src={badge.url} alt={badge.name} loading="lazy" width="120" height="80" class="accreditation-image" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Copyright Row -->
+        <div class="copyright">
+          <div class="cluster" data-gap-x="lg" data-gap-y="sm" data-justify="start" data-align="center">
+            <span>© 2026 Salo Creative. All rights reserved.</span>
+            <a href="/environmental-sustainability/">Environmental Sustainability</a>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/ai-policy">AI Policy</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section Divider -->
+      <div class="reactive-divider horizontal" x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })">
+        <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
+        <div class="divider-line" x-ref="dividerLine">
+          <div class="width-display" x-text="formattedWidth" x-cloak>0px</div>
+        </div>
+        <div class="anchor end-anchor"><div class="anchor-circle"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Cropped Logo watermark moved outside container so S is not cut off by padding -->
+  <div class="footer__bottom" id="footer-bottom-logo">
+    <svg class="footer__bottomLogo salo-logo" viewBox="-1 0 106 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Salo Logo.">
+      <path class="salo-logo__0" d="M101.813 9.07487C98.1337 1.20259 88.7695 -2.19519 80.8963 1.48374L80.208 0.00968382C72.3348 3.68862 68.9357 13.0518 72.6151 20.9241C76.2944 28.7964 85.6587 32.1942 93.5319 28.5152L94.2202 29.9884C102.093 26.3095 105.492 16.9463 101.813 9.07398V9.07487ZM90.7839 22.6376C86.1581 24.799 80.6568 22.8017 78.4951 18.1773C76.3335 13.552 78.331 8.05137 82.956 5.88995L83.6443 7.36223C88.2701 5.20081 93.7714 7.19815 95.933 11.8225C98.0947 16.4478 96.0971 21.9485 91.4722 24.1099L90.7839 22.6376Z" fill="white"></path>
+      <path class="salo-logo__l" d="M71.9499 29.7429L58.1993 29.7438H54.8934V29.7429H54.0897L53.1859 27.8041L51.709 24.6369V0.251953H58.1993V23.2542H68.9242L71.5161 28.8134L71.9499 29.7429Z" fill="white"></path>
+      <path class="salo-logo__a" d="M39.1289 7.92716L35.5481 0.25L31.968 7.92805L32.6617 9.41452L29.0861 17.0819L23.1821 29.74H30.343L32.6661 24.7591L36.2417 17.0926L42.1395 29.74H49.2995L49.3013 29.7391L39.1289 7.92716Z" fill="white"></path>
+      <path class="salo-logo__s" d="M21.8703 20.415C21.8703 20.4815 21.8703 20.5453 21.8685 20.6101C21.7639 25.6717 17.6277 29.74 12.5416 29.74H0L3.02562 23.2504H5.04891V23.2531H12.7331C13.5164 23.2531 14.2251 22.9356 14.7378 22.423C15.2514 21.9094 15.5689 21.2008 15.5689 20.4176C15.5689 18.8513 14.2987 17.5822 12.7331 17.5822H12.6391C12.6063 17.5813 12.5744 17.5804 12.5416 17.5804H10.2034C8.06388 17.5804 6.10446 16.8185 4.59209 15.5325C2.77193 13.9866 1.59929 11.7028 1.53543 9.1449C1.53543 9.10854 1.53099 8.96042 1.53099 8.9214C1.53099 6.52672 2.50139 4.35909 4.07053 2.79013C5.63966 1.22118 7.80754 0.250887 10.2016 0.25H22.9223L19.894 6.73958H10.2034C10.191 6.73958 10.1785 6.73958 10.1661 6.74047H10.0402C9.43788 6.74047 8.89147 6.98437 8.49675 7.37993C8.10203 7.77461 7.85721 8.32007 7.85721 8.92317C7.85721 10.1285 8.8347 11.105 10.0402 11.105H12.7021C17.7803 11.1901 21.8703 15.317 21.8703 20.415Z" fill="white"></path>
+    </svg>
+  </div>
+</footer>
+
+<style lang="scss">
+  .footer {
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid var(--color-border);
+    background-color: var(--color-bg);
+    color: var(--color-foreground-secondary);
+    padding-block-start: var(--space-xl);
+
+    /*
+      SPACING FIX: The container uses data-size="full" which removes padding-inline.
+      We restore it directly on the footer's inner stack so all content is
+      properly inset from the viewport edges — matching salo.uk's layout.
+    */
+    > .container > .stack {
+      padding-inline: var(--container-padding, var(--space-md-2xl));
+    }
+    
+    a {
+      transition: color 0.3s var(--ease);
+      
+      &:hover {
+        color: var(--color-foreground);
+      }
+    }
+    
+    &__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-lg);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: var(--space-md);
+      
+      @media (max-width: 1023px) {
+        align-items: flex-end;
+      }
+      
+      @media (max-width: 767px) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .start {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        
+        @media (max-width: 1023px) {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: var(--space-xs);
+        }
+      }
+    }
+    
+    &__topLogo {
+      height: var(--space-xl);
+      width: auto;
+    }
+    
+    &__contact {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4xs);
+      font-family: var(--font-family-alt);
+      font-size: var(--font-size-0);
+      
+      @media (max-width: 767px) {
+        text-align: left;
+        margin-top: var(--space-xs);
+      }
+    }
+    
+    &__middle {
+      flex-grow: 1;
+      padding-top: var(--space-md);
+      
+      .start {
+        flex-grow: 1;
+      }
+    }
+
+    .footer-menu {
+      list-style: none;
+      padding: 0;
+      
+      .eyebrow {
+        font-size: var(--font-size--2);
+        text-transform: uppercase;
+        letter-spacing: var(--letter-spacing-looser);
+        margin-bottom: var(--space-sm);
+      }
+    }
+
+    .footer-menu-link {
+      padding-block: var(--space-xs);
+      display: inline-block;
+      position: relative;
+      font-family: var(--font-family-body);
+      font-size: var(--font-size--1);
+      
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: calc(var(--space-xs) - 2px);
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: currentColor;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+      
+      &:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+      
+      &:not(:hover)::after {
+        transform: scaleX(0);
+        transform-origin: right;
+      }
+    }
+
+    .copyright {
+      font-size: var(--font-size--1);
+      opacity: 0.8;
+      border-top: 1px solid var(--color-border);
+      padding-top: var(--space-md);
+      
+      .cluster {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        gap: 1.5rem !important;
+      }
+      
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+    
+    &__bottom {
+      overflow: hidden;
+      padding-block-start: 4vh;
+      margin-block-start: -4vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+    }
+    
+    &__bottomLogo {
+      width: 94%;
+      max-width: 94%;
+      margin: 0 auto;
+      height: auto;
+      margin-bottom: -3svh;
+      display: block;
+      will-change: transform;
+      opacity: 0.88;
+      
+      path {
+        fill: #ffffff !important;
+      }
+    }
+  }
+</style>

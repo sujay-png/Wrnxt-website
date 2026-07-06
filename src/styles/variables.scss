@@ -1,0 +1,276 @@
+// Typography Font Families
+$font-family-body: "Fustat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-family-heading: "Fustat", $font-family-body;
+$font-family-alt: "Space Grotesk", $font-family-body;
+
+// Root variables mapping
+:root {
+  // Fluid Spacing Scale (based on original clamp definitions)
+  --space-4xs: clamp(.125rem, .1444vw + .0912rem, .25rem);
+  --space-3xs: clamp(.25rem, .1444vw + .2162rem, .375rem);
+  --space-2xs: clamp(.375rem, .1444vw + .3412rem, .5rem);
+  --space-xs: clamp(.5rem, .2888vw + .4323rem, .75rem);
+  --space-sm: clamp(.75rem, .2888vw + .6823rem, 1rem);
+  --space-md: clamp(1rem, .5776vw + .8646rem, 1.5rem);
+  --space-lg: clamp(1.5rem, .5776vw + 1.3646rem, 2rem);
+  --space-xl: clamp(2rem, 1.1552vw + 1.7292rem, 3rem);
+  --space-2xl: clamp(3rem, 1.1552vw + 2.7292rem, 4rem);
+  --space-3xl: clamp(4rem, 2.3105vw + 3.4585rem, 6rem);
+  --space-4xl: clamp(6rem, 2.3105vw + 5.4585rem, 8rem);
+  --space-5xl: clamp(8rem, 4.6209vw + 6.917rem, 12rem);
+  --space-6xl: clamp(12rem, 4.6209vw + 10.917rem, 16rem);
+
+  // Mixed fluid space variables
+  --space-4xs-3xs: clamp(.125rem, .2888vw + .0573rem, .375rem);
+  --space-4xs-2xs: clamp(.125rem, .4332vw + .0235rem, .5rem);
+  --space-4xs-xs: clamp(.125rem, .722vw + -.0442rem, .75rem);
+  --space-4xs-sm: clamp(.125rem, 1.0108vw + -.1119rem, 1rem);
+  --space-4xs-md: clamp(.125rem, 1.5884vw + -.2473rem, 1.5rem);
+  --space-4xs-lg: clamp(.125rem, 2.1661vw + -.3827rem, 2rem);
+  --space-4xs-xl: clamp(.125rem, 3.3213vw + -.6534rem, 3rem);
+  --space-4xs-2xl: clamp(.125rem, 4.4765vw + -.9242rem, 4rem);
+  --space-4xs-3xl: clamp(.125rem, 6.787vw + -1.4657rem, 6rem);
+  --space-4xs-4xl: clamp(.125rem, 9.0975vw + -2.0072rem, 8rem);
+  --space-3xs-2xs: clamp(.25rem, .2888vw + .1823rem, .5rem);
+  --space-3xs-xs: clamp(.25rem, .5776vw + .1146rem, .75rem);
+  --space-3xs-sm: clamp(.25rem, .8664vw + .0469rem, 1rem);
+  --space-3xs-md: clamp(.25rem, 1.444vw + -.0884rem, 1.5rem);
+  --space-3xs-lg: clamp(.25rem, 2.0217vw + -.2238rem, 2rem);
+  --space-3xs-xl: clamp(.25rem, 3.1769vw + -.4946rem, 3rem);
+  --space-3xs-2xl: clamp(.25rem, 4.3321vw + -.7653rem, 4rem);
+  --space-3xs-3xl: clamp(.25rem, 6.6426vw + -1.3069rem, 6rem);
+  --space-3xs-4xl: clamp(.25rem, 8.9531vw + -1.8484rem, 8rem);
+  --space-2xs-xs: clamp(.375rem, .4332vw + .2735rem, .75rem);
+  --space-2xs-sm: clamp(.375rem, .722vw + .2058rem, 1rem);
+  --space-2xs-md: clamp(.375rem, 1.2996vw + .0704rem, 1.5rem);
+  --space-2xs-lg: clamp(.375rem, 1.8773vw + -.065rem, 2rem);
+  --space-2xs-xl: clamp(.375rem, 3.0325vw + -.3357rem, 3rem);
+  --space-2xs-2xl: clamp(.375rem, 4.1877vw + -.6065rem, 4rem);
+  --space-2xs-3xl: clamp(.375rem, 6.4982vw + -1.148rem, 6rem);
+  --space-2xs-4xl: clamp(.375rem, 8.8087vw + -1.6895rem, 8rem);
+  --space-xs-sm: clamp(.5rem, .5776vw + .3646rem, 1rem);
+  --space-xs-md: clamp(.5rem, 1.1552vw + .2292rem, 1.5rem);
+  --space-xs-lg: clamp(.5rem, 1.7329vw + .0939rem, 2rem);
+  --space-xs-xl: clamp(.5rem, 2.8881vw + -.1769rem, 3rem);
+  --space-xs-2xl: clamp(.5rem, 4.0433vw + -.4477rem, 4rem);
+  --space-xs-3xl: clamp(.5rem, 6.3538vw + -.9892rem, 6rem);
+  --space-xs-4xl: clamp(.5rem, 8.6643vw + -1.5307rem, 8rem);
+  --space-sm-md: clamp(.75rem, .8664vw + .5469rem, 1.5rem);
+  --space-sm-lg: clamp(.75rem, 1.444vw + .4116rem, 2rem);
+  --space-sm-xl: clamp(.75rem, 2.5993vw + .1408rem, 3rem);
+  --space-sm-2xl: clamp(.75rem, 3.7545vw + -.13rem, 4rem);
+  --space-sm-3xl: clamp(.75rem, 6.065vw + -.6715rem, 6rem);
+  --space-sm-4xl: clamp(.75rem, 8.3755vw + -1.213rem, 8rem);
+  --space-md-lg: clamp(1rem, 1.1552vw + .7292rem, 2rem);
+  --space-md-xl: clamp(1rem, 2.3105vw + .4585rem, 3rem);
+  --space-md-2xl: clamp(1rem, 3.4657vw + .1877rem, 4rem);
+  --space-md-3xl: clamp(1rem, 5.7762vw + -.3538rem, 6rem);
+  --space-md-4xl: clamp(1rem, 8.0866vw + -.8953rem, 8rem);
+  --space-lg-xl: clamp(1.5rem, 1.7329vw + 1.0939rem, 3rem);
+  --space-lg-2xl: clamp(1.5rem, 2.8881vw + .8231rem, 4rem);
+  --space-lg-3xl: clamp(1.5rem, 5.1986vw + .2816rem, 6rem);
+  --space-lg-4xl: clamp(1.5rem, 7.509vw + -.2599rem, 8rem);
+  --space-xl-2xl: clamp(2rem, 2.3105vw + 1.4585rem, 4rem);
+  --space-xl-3xl: clamp(2rem, 4.6209vw + .917rem, 6rem);
+  --space-xl-4xl: clamp(2rem, 6.9314vw + .3755rem, 8rem);
+  --space-2xl-3xl: clamp(3rem, 3.4657vw + 2.1877rem, 6rem);
+  --space-2xl-4xl: clamp(3rem, 5.7762vw + 1.6462rem, 8rem);
+  --space-3xl-4xl: clamp(4rem, 4.6209vw + 2.917rem, 8rem);
+  --space-3xl-5xl: clamp(4rem, 9.2419vw + 1.834rem, 12rem);
+  --space-4xl-6xl: clamp(6rem, 11.5523vw + 3.2924rem, 16rem);
+
+  // Typography Settings
+  --font-family-body: #{$font-family-body};
+  --font-family-heading: #{$font-family-heading};
+  --font-family-alt: #{$font-family-alt};
+  
+  --letter-spacing-tight: -.05em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-loose: .05em;
+  --letter-spacing-looser: .17em;
+  --line-height-tighter: .75;
+  --line-height-tight: 1;
+  --line-height-snug: 1.33;
+  --line-height: 1.5;
+  --line-height-loose: 1.75;
+  
+  --font-weight-thin: 100;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 800;
+  --font-weight-black: 900;
+
+  // Fluid Font Sizes
+  --font-size: var(--font-size-0);
+  --font-size-0: clamp(1rem, .1444vw + .9662rem, 1.125rem);
+  --font-size-1: clamp(1.125rem, .4332vw + 1.0235rem, 1.5rem);
+  --font-size-2: clamp(1.25rem, .8664vw + 1.0469rem, 2rem);
+  --font-size-3: clamp(1.5rem, .8664vw + 1.2969rem, 2.25rem);
+  --font-size-4: clamp(1.75rem, 1.444vw + 1.4116rem, 3rem);
+  --font-size-5: clamp(2rem, 2.3105vw + 1.4585rem, 4rem);
+  --font-size--2: clamp(.6875rem, .0722vw + .6706rem, .75rem);
+  --font-size--1: clamp(.875rem, .1444vw + .8412rem, 1rem);
+  --font-size-0-1: clamp(1rem, .5776vw + .8646rem, 1.5rem);
+  --font-size-0-2: clamp(1rem, 1.1552vw + .7292rem, 2rem);
+  --font-size-0-3: clamp(1rem, 1.444vw + .6616rem, 2.25rem);
+  --font-size-0-4: clamp(1rem, 2.3105vw + .4585rem, 3rem);
+  --font-size-0-5: clamp(1rem, 3.4657vw + .1877rem, 4rem);
+  --font-size--2-0: clamp(.6875rem, .5054vw + .569rem, 1.125rem);
+  --font-size--1-0: clamp(.875rem, .2888vw + .8073rem, 1.125rem);
+  --font-size-1-2: clamp(1.125rem, 1.0108vw + .8881rem, 2rem);
+  --font-size-1-3: clamp(1.125rem, 1.2996vw + .8204rem, 2.25rem);
+  --font-size-1-4: clamp(1.125rem, 2.1661vw + .6173rem, 3rem);
+  --font-size-1-5: clamp(1.125rem, 3.3213vw + .3466rem, 4rem);
+  --font-size--2-1: clamp(.6875rem, .9386vw + .4675rem, 1.5rem);
+  --font-size--1-1: clamp(.875rem, .722vw + .7058rem, 1.5rem);
+  --font-size-2-3: clamp(1.25rem, 1.1552vw + .9792rem, 2.25rem);
+  --font-size-2-4: clamp(1.25rem, 2.0217vw + .7762rem, 3rem);
+  --font-size-2-5: clamp(1.25rem, 3.1769vw + .5054rem, 4rem);
+  --font-size--2-2: clamp(.6875rem, 1.5162vw + .3321rem, 2rem);
+  --font-size--1-2: clamp(.875rem, 1.2996vw + .5704rem, 2rem);
+  --font-size-3-4: clamp(1.5rem, 1.7329vw + 1.0939rem, 3rem);
+  --font-size-3-5: clamp(1.5rem, 2.8881vw + .8231rem, 4rem);
+  --font-size--2-3: clamp(.6875rem, 1.8051vw + .2644rem, 2.25rem);
+  --font-size--1-3: clamp(.875rem, 1.5884vw + .5027rem, 2.25rem);
+  --font-size-4-5: clamp(1.75rem, 2.5993vw + 1.1408rem, 4rem);
+  --font-size--2-4: clamp(.6875rem, 2.6715vw + .0614rem, 3rem);
+  --font-size--1-4: clamp(.875rem, 2.4549vw + .2996rem, 3rem);
+  --font-size--2-5: clamp(.6875rem, 3.8267vw + -.2094rem, 4rem);
+  --font-size--1-5: clamp(.875rem, 3.6101vw + .0289rem, 4rem);
+  --font-size--2--1: clamp(.6875rem, .361vw + .6029rem, 1rem);
+
+  // Layout Measures
+  --measure: 65ch;
+  --measure-xl: 100ch;
+  --measure-lg: 75ch;
+  --measure-md: 50ch;
+  --measure-sm: 45ch;
+  --measure-xs: 30ch;
+  --measure-heading-1: 30ch;
+  --measure-heading-2: var(--measure-sm);
+  --measure-heading-3: var(--measure-sm);
+  --measure-heading-4: var(--measure-sm);
+  --measure-heading-5: var(--measure-sm);
+  --measure-heading-6: var(--measure-sm);
+
+  // Easing Variables
+  --linear: cubic-bezier(.25, .25, .75, .75);
+  --ease: ease;
+  --ease-in: ease-in;
+  --ease-out: ease-out;
+  --ease-in-out: ease-in-out;
+  --ease-in-back: cubic-bezier(.6, -.28, .735, .045);
+  --ease-out-back: cubic-bezier(.175, .885, .32, 1.275);
+  --ease-in-out-back: cubic-bezier(.68, -.55, .265, 1.55);
+  --ease-in-sine: cubic-bezier(.47, 0, .745, .715);
+  --ease-out-sine: cubic-bezier(.39, .575, .565, 1);
+  --ease-in-out-sine: cubic-bezier(.445, .05, .55, .95);
+  --ease-in-quad: cubic-bezier(.55, .085, .68, .53);
+  --ease-out-quad: cubic-bezier(.25, .46, .45, .94);
+  --ease-in-out-quad: cubic-bezier(.455, .03, .515, .955);
+  --ease-in-cubic: cubic-bezier(.55, .085, .68, .53);
+  --ease-out-cubic: cubic-bezier(.25, .46, .45, .94);
+  --ease-in-out-cubic: cubic-bezier(.455, .03, .515, .955);
+  --ease-in-quart: cubic-bezier(.55, .085, .68, .53);
+  --ease-out-quart: cubic-bezier(.25, .46, .45, .94);
+  --ease-in-out-quart: cubic-bezier(.455, .03, .515, .955);
+  --ease-in-quint: cubic-bezier(.55, .085, .68, .53);
+  --ease-out-quint: cubic-bezier(.25, .46, .45, .94);
+  --ease-in-out-quint: cubic-bezier(.455, .03, .515, .955);
+  --ease-in-expo: cubic-bezier(.55, .085, .68, .53);
+  --ease-out-expo: cubic-bezier(.25, .46, .45, .94);
+  --ease-in-out-expo: cubic-bezier(.455, .03, .515, .955);
+  --easing: var(--ease-out-quad);
+
+  // Border Radii
+  --radius-xs: .125em;
+  --radius-sm: .25em;
+  --radius-md: .5em;
+  --radius-lg: 1em;
+  --radius-xl: 1.5em;
+  --radius-full: 9999px;
+  --radius: var(--radius-sm);
+
+  // Form & Input Settings
+  --control-height-sm: 2.5em;
+  --control-height-md: 3.5em;
+  --control-height-lg: 4.5em;
+  --control-radius: var(--radius-sm);
+  --control-font-size-sm: var(--font-size--1);
+  --control-font-size-md: var(--font-size--1);
+  --control-font-size-lg: var(--font-size-0);
+  --control-padding-inline-sm: var(--space-sm);
+  --control-padding-inline-md: var(--space-md);
+  --control-padding-inline-lg: var(--space-xl);
+  --control-padding-block-sm: var(--space-2xs);
+  --control-padding-block-md: var(--space-2xs);
+  --control-padding-block-lg: var(--space-2xs);
+  --control-gap-sm: var(--space-xs);
+  --control-gap-md: var(--space-sm);
+  --control-gap-lg: var(--space-md);
+  --control-gap: var(--control-gap-md);
+
+  // Color Palette Definitions
+  --color-white: oklch(100% 0 0);
+  --color-black: oklch(5.5% 0 0);
+  --color-neutral-50: oklch(98.5% 0 0);
+  --color-neutral-100: oklch(97% 0 0);
+  --color-neutral-200: oklch(92.2% 0 0);
+  --color-neutral-300: oklch(87% 0 0);
+  --color-neutral-400: oklch(70.8% 0 0);
+  --color-neutral-500: oklch(55.6% 0 0);
+  --color-neutral-600: oklch(43.9% 0 0);
+  --color-neutral-700: oklch(37.1% 0 0);
+  --color-neutral-800: oklch(26.9% 0 0);
+  --color-neutral-900: oklch(20.5% 0 0);
+  --color-neutral-950: oklch(14.5% 0 0);
+  
+  --color-red: #f24822;
+  --color-purple: #9e36ff;
+  --color-green: #b9ff36;
+  --color-pink: #ff24bd;
+  --color-yellow: #ffcd29;
+  --color-blue: #0d99ff;
+  --color-cyan: #61fdfc;
+  --plyr-color-main: var(--color-purple);
+
+  // Theme Context Setup (Defaulting to Dark Scheme since Salo is a dark design agency)
+  --color-bg: #101010;
+  --color-bg-alt: var(--color-neutral-900);
+  --color-border: var(--color-neutral-600);
+  --color-border-strong: var(--color-neutral-600);
+  --color-foreground: var(--color-white);
+  --color-foreground-secondary: var(--color-neutral-400);
+  
+  --color-accent: var(--color-white);
+  --color-accent-hover: var(--color-neutral-300);
+  --color-on-accent: var(--color-neutral-950);
+  --color-on-accent-hover: var(--color-neutral-950);
+  
+  --button-primary-bg: radial-gradient(circle, #5c11c5, #41186b, #160e1f);
+  --button-primary-label: var(--color-white);
+  --button-primary-border: rgba(158, 54, 255, 0.5);
+  --button-primary-hover-bg: radial-gradient(circle, #5c11c5, #41186b, #160e1f);
+  --button-primary-hover-label: var(--color-white);
+  --button-primary-hover-border: rgba(158, 54, 255, 0.9);
+  
+  --button-secondary-bg: var(--color-neutral-900);
+  --button-secondary-label: var(--color-neutral-50);
+  --button-secondary-border: transparent;
+  --button-secondary-hover-bg: var(--color-neutral-900);
+  --button-secondary-hover-label: var(--color-white);
+  --button-secondary-hover-border: transparent;
+  
+  --button-ghost-bg: transparent;
+  --button-ghost-label: currentColor;
+  --button-ghost-border: transparent;
+  --button-ghost-hover-bg: oklch(100% 0 0 / .05);
+  --button-ghost-hover-label: currentColor;
+  --button-ghost-hover-border: transparent;
+
+  --card-border: linear-gradient(0deg, #181818, #666666);
+  --card-bg: linear-gradient(0deg, #222222, #161616);
+  --header-height: calc((var(--space-lg) * 2) + var(--control-height-md));
+}

@@ -1,0 +1,570 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
+
+const teamMembers = [
+  { name: "Lauren Baker", image: "https://media.salo.uk/salo-website-prod/Lauren.jpg" },
+  { name: "James Brady", image: "https://media.salo.uk/salo-website-prod/James.jpg" },
+  { name: "Kurt Stubbings", image: "https://media.salo.uk/salo-website-prod/Kurt-1.jpg" },
+  { name: "Sophie Pongpiriyaporn", image: "https://media.salo.uk/salo-website-prod/Sophie.jpg" },
+  { name: "Sarah Levett", image: "https://media.salo.uk/salo-website-prod/Sarah.jpg" }
+];
+
+const interests = [
+  { value: "website", label: "Website" },
+  { value: "digital-product", label: "Digital Product" },
+  { value: "flexible-design-support", label: "Flexible Design Support" },
+  { value: "branding-visual-identity", label: "Branding & Visual Identity" },
+  { value: "ux-ui", label: "UX/UI" },
+  { value: "not-sure", label: "Not sure" }
+];
+---
+
+<Layout title="Contact Salo | Book Your Design Team On-Demand • Salo" description="Ready to elevate your brand or Shopify store? Contact Salo today. Get a fixed-price proposal or book flexible design hours directly with our creatives.">
+  <Header />
+
+  <main class="page--contact">
+    <!-- Contact Form Section -->
+    <section class="section ContactFormBlock" data-padding="lg">
+      <div class="container">
+        <div class="contact-grid">
+          <!-- Left Column -->
+          <div class="stack left-col" data-gap="xl">
+            <div class="stack" data-gap="md">
+              <span class="eyebrow">Contact us</span>
+              <h1 class="heading" data-font-size="4" data-weight="400">Ready to level-up<br/>your creative?</h1>
+              
+              <div class="reactive-divider horizontal" x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })">
+                <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
+                <div class="divider-line" x-ref="dividerLine">
+                  <div class="width-display" x-text="formattedWidth" x-cloak>0px</div>
+                </div>
+                <div class="anchor end-anchor"><div class="anchor-circle"></div></div>
+              </div>
+
+              <div class="prose">
+                <p>Book a quick intro call with our team and let's chat about how design can help bring your ideas to life.</p>
+              </div>
+              
+              <div class="cluster actions" data-gap="sm" data-justify="start" data-align="center">
+                <a href="https://cal.com/carlcahill/chat" target="_blank" class="btn size-md primary" x-data="buttonHover" @mousemove="handleMouseMove($event)" @mouseenter="handleMouseEnter()" @mouseleave="handleMouseLeave()">
+                  <span class="btn-content">
+                    <span class="btn-bg" :style="{ top: bgY + '%', left: bgX + '%', opacity: isHovering ? 1 : 0, '--_scale': isHovering ? 1 : 0.75 }"></span>
+                    <span>
+                      Schedule a call
+                      <span class="icon" aria-hidden="true" role="img">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                      </span>
+                    </span>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="contact-info">
+              <div class="cluster" data-gap="2xl" data-justify="start" data-align="start">
+                <div class="contact-group">
+                  <span class="contact-label">General enquiries</span>
+                  <a href="mailto:hello@salo.uk" class="contact-value">[email protected]</a>
+                  <a href="tel:+447738288010" class="contact-value">+447738 288 010</a>
+                </div>
+                <div class="contact-group">
+                  <span class="contact-label">Stay connected</span>
+                  <a href="https://www.linkedin.com/company/salo-creative/" class="contact-value" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Contact Form -->
+          <div x-data="contactForm()" class="gradient-border form-card">
+            <div class="stack inner" data-gap="lg">
+              <!-- Form Header -->
+              <div class="cluster" data-gap="md" data-justify="between" data-align="center">
+                <h2 class="heading form-heading" data-font-size="2">Talk to the team</h2>
+                
+                <!-- Avatar Stack -->
+                <div class="AvatarWidget gradient-border">
+                  <div class="avatar-inner">
+                    <div class="AvatarStack">
+                      {teamMembers.map((member, i) => (
+                        <div class="Avatar" style={`z-index: ${teamMembers.length - i}`}>
+                          <img src={member.image} alt={member.name} loading="lazy" decoding="async" width="32" height="32" />
+                        </div>
+                      ))}
+                      <div class="Avatar Avatar--add" style={`z-index: 0`}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Success Message -->
+              <div class="form-success" aria-live="polite" x-show="success" x-transition style="display:none">
+                <div class="stack" data-gap="sm" style="text-align:center; padding: var(--space-xl) 0;">
+                  <p class="heading" data-font-size="2">Thank you!</p>
+                  <p class="prose" style="color:var(--color-foreground-secondary)">We'll be in touch soon.</p>
+                </div>
+              </div>
+
+              <!-- Contact Form -->
+              <form class="contact-form" x-show="!success" @submit.prevent="handleSubmit" novalidate>
+                <!-- Honeypot -->
+                <div class="form-honeypot" aria-hidden="true">
+                  <label for="contact-company">Company</label>
+                  <input id="contact-company" name="company" type="text" autocomplete="off" tabindex="-1" />
+                </div>
+
+                <!-- Name -->
+                <div class="form-field">
+                  <label class="form-label" for="contact-name">Name</label>
+                  <input id="contact-name" type="text" class="form-input" autocomplete="name" required aria-required="true" name="name" />
+                </div>
+
+                <!-- Email -->
+                <div class="form-field">
+                  <label class="form-label" for="contact-email">Email</label>
+                  <input id="contact-email" type="email" class="form-input" autocomplete="email" required aria-required="true" name="email" />
+                </div>
+
+                <!-- Interests (Pill Tags) -->
+                <fieldset class="interests-fieldset">
+                  <legend class="form-label">I'm interested in:</legend>
+                  <div class="interests-pills">
+                    {interests.map((interest) => (
+                      <label class="pill">
+                        <input type="checkbox" name="interests" value={interest.value} class="pill-checkbox" />
+                        <span class="pill-label">{interest.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+
+                <!-- Message -->
+                <div class="form-field">
+                  <label class="form-label" for="contact-message">Message</label>
+                  <textarea id="contact-message" class="form-input form-textarea" rows="4" placeholder="Type your message here" autocomplete="off" required aria-required="true" name="message"></textarea>
+                </div>
+
+                <!-- Privacy Consent -->
+                <div class="consent-row">
+                  <label class="consent-wrapper">
+                    <input type="checkbox" class="consent-checkbox" name="privacy" value="privacy" required />
+                    <span class="consent-check">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                    </span>
+                    <span class="consent-text">
+                      I understand that Salo will securely hold my data in accordance with their <a href="/privacy" class="consent-link">privacy policy</a>.
+                    </span>
+                  </label>
+                </div>
+
+                <!-- Error -->
+                <p class="form-error" x-show="error" x-text="error" aria-live="polite" style="display:none"></p>
+
+                <!-- Submit -->
+                <button type="submit" class="btn size-md primary submit-btn" x-data="buttonHover" @mousemove="handleMouseMove($event)" @mouseenter="handleMouseEnter()" @mouseleave="handleMouseLeave()" :disabled="loading">
+                  <span class="btn-content">
+                    <span class="btn-bg" :style="{ top: bgY + '%', left: bgX + '%', opacity: isHovering ? 1 : 0, '--_scale': isHovering ? 1 : 0.75 }"></span>
+                    <span>
+                      Submit
+                      <span class="icon" aria-hidden="true" role="img">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                      </span>
+                    </span>
+                  </span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NO Recent Projects section (as requested by user) -->
+
+    <CTA />
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  // Unlock scroll — the Layout locks it until GSAP animations init,
+  // but this page doesn't use the homepage/about animation scripts.
+  function unlockScroll() {
+    document.documentElement.style.overflow = '';
+  }
+  document.addEventListener('astro:page-load', unlockScroll);
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    unlockScroll();
+  } else {
+    document.addEventListener('DOMContentLoaded', unlockScroll);
+  }
+
+  // Contact Form Alpine.js component
+  window.contactForm = function () {
+    return {
+      loading: false,
+      error: '',
+      success: false,
+      formStartedAt: 0,
+      isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      },
+      init() {
+        this.formStartedAt = Date.now();
+      },
+      async handleSubmit(e) {
+        const form = e.target;
+        const emailInput = form.elements.namedItem('email');
+        const emailValue = emailInput?.value?.trim() || '';
+
+        this.error = '';
+
+        if (!this.isValidEmail(emailValue)) {
+          this.error = 'Please enter a valid email address.';
+          emailInput?.focus();
+          return;
+        }
+
+        this.loading = true;
+
+        try {
+          await new Promise(resolve => setTimeout(resolve, 1500));
+          this.success = true;
+        } catch (err) {
+          console.error('[ContactForm]', err);
+          this.error = 'Something went wrong. Please try again.';
+        } finally {
+          this.loading = false;
+        }
+      }
+    };
+  };
+</script>
+
+<style lang="scss">
+  main {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ContactFormBlock {
+    padding-top: calc(var(--space-3xl) + 5rem);
+    background-color: var(--color-bg);
+  }
+
+  // ── Grid Layout ──
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .left-col {
+    padding-top: var(--space-sm);
+  }
+
+  // ── Contact Info ──
+  .contact-info {
+    margin-top: var(--space-sm);
+  }
+
+  .contact-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+  }
+
+  .contact-label {
+    font-family: var(--font-family-alt);
+    font-size: var(--font-size--2);
+    color: var(--color-foreground-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: var(--space-3xs);
+  }
+
+  .contact-value {
+    font-family: var(--font-family-alt);
+    font-size: var(--font-size-0);
+    color: var(--color-foreground);
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--color-foreground-secondary);
+    }
+  }
+
+  // ── Form Card ──
+  .form-card {
+    padding: var(--space-xl);
+    border-radius: var(--radius-md, 1rem);
+    background: var(--color-bg-alt, #151515);
+
+    @media (max-width: 600px) {
+      padding: var(--space-lg);
+    }
+  }
+
+  .form-heading {
+    white-space: nowrap;
+  }
+
+  // ── Avatar Stack ──
+  .AvatarWidget {
+    border-radius: 9999px;
+    padding: 3px;
+    flex-shrink: 0;
+  }
+
+  .avatar-inner {
+    display: flex;
+    align-items: center;
+    padding: 2px;
+  }
+
+  .AvatarStack {
+    --avatar-size: 1.75rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .Avatar {
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+    border-radius: 9999px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid var(--color-bg-alt, #151515);
+
+    &:not(:first-child) {
+      margin-left: -6px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    &--add {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-bg, #101010);
+      color: var(--color-foreground-secondary);
+    }
+  }
+
+  // ── Form Styles ──
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .form-honeypot {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+  }
+
+  .form-label {
+    font-family: var(--font-family-alt);
+    font-size: var(--font-size--1);
+    color: var(--color-foreground-secondary);
+    letter-spacing: 0.02em;
+  }
+
+  .form-input {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm, 0.5rem);
+    padding: var(--space-sm) var(--space-md);
+    color: var(--color-foreground);
+    font-family: var(--font-family);
+    font-size: var(--font-size-0);
+    transition: border-color 0.2s ease;
+    width: 100%;
+
+    &::placeholder {
+      color: var(--color-foreground-secondary);
+      opacity: 0.4;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-foreground-secondary);
+    }
+  }
+
+  .form-textarea {
+    resize: none;
+    min-height: 7rem;
+  }
+
+  // ── Interest Pills (Tag-style) ──
+  .interests-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .interests-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-top: var(--space-sm);
+  }
+
+  .pill {
+    cursor: pointer;
+    display: inline-flex;
+    user-select: none;
+  }
+
+  .pill-checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+
+  .pill-label {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-3xs) var(--space-sm);
+    border: 1px solid var(--color-border);
+    border-radius: 9999px;
+    font-family: var(--font-family-alt);
+    font-size: var(--font-size--1);
+    color: var(--color-foreground-secondary);
+    background: transparent;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    line-height: 1.6;
+  }
+
+  .pill-checkbox:checked + .pill-label {
+    background: var(--color-foreground);
+    color: var(--color-bg, #060606);
+    border-color: var(--color-foreground);
+  }
+
+  .pill-label:hover {
+    border-color: var(--color-foreground-secondary);
+    color: var(--color-foreground);
+  }
+
+  .pill-checkbox:focus-visible + .pill-label {
+    outline: 2px solid var(--color-foreground);
+    outline-offset: 2px;
+  }
+
+  // ── Privacy Consent ──
+  .consent-row {
+    margin-top: var(--space-2xs);
+  }
+
+  .consent-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-xs);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .consent-checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+
+  .consent-check {
+    width: 1.125rem;
+    height: 1.125rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xs, 0.25rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: all 0.2s ease;
+    color: transparent;
+  }
+
+  .consent-checkbox:checked ~ .consent-check {
+    background: var(--color-foreground);
+    border-color: var(--color-foreground);
+    color: var(--color-bg, #060606);
+  }
+
+  .consent-checkbox:focus-visible ~ .consent-check {
+    outline: 2px solid var(--color-foreground);
+    outline-offset: 2px;
+  }
+
+  .consent-text {
+    font-size: var(--font-size--1);
+    color: var(--color-foreground-secondary);
+    line-height: 1.5;
+  }
+
+  .consent-link {
+    color: var(--color-foreground);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--color-foreground-secondary);
+    }
+  }
+
+  // ── Form Status ──
+  .form-error {
+    color: var(--color-red, #f24822);
+    font-size: var(--font-size--1);
+    font-family: var(--font-family-alt);
+  }
+
+  .submit-btn {
+    width: 100%;
+    align-self: stretch;
+    justify-content: center;
+    margin-top: var(--space-xs);
+
+    &:disabled {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+  }
+</style>

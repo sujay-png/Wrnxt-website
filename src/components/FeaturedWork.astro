@@ -1,0 +1,854 @@
+---
+const projects = [
+  {
+    name: "Optimising conversion without compromising luxury",
+    category: "High-Performing Website",
+    color: "var(--color-purple)",
+    image: "https://media.salo.uk/salo-website-prod/simpson-travel-desktop-1.jpg",
+    logo: "https://media.salo.uk/salo-website-prod/wilderness.svg",
+    desc: "We redesigned user journeys across the site to make them smoother and more intuitive.",
+    slug: "wilderness"
+  },
+  {
+    name: "Modernising a group of sites for a marine services provider",
+    category: "High-Performing Website",
+    color: "var(--color-purple)",
+    image: "https://media.salo.uk/salo-website-prod/SRC Desktop 1.jpg",
+    logo: "https://media.salo.uk/salo-website-prod/src.svg",
+    desc: "Breaking key pages into modular components allowed us to build a shared design system.",
+    slug: "solent-rib-charter"
+  },
+  {
+    name: "A bold new identity for a Shopify Platinum Partner",
+    category: "UI / UX",
+    color: "var(--color-green)",
+    image: "https://media.salo.uk/salo-website-prod/Roswell Desktop 1.jpg",
+    logo: "https://media.salo.uk/salo-website-prod/roswell.svg",
+    desc: "The new website needed to reflect Roswell’s bold, confident identity while letting their work take center stage.",
+    slug: "roswell"
+  }
+];
+---
+
+<section class="section HomeShowcase" x-data="showcaseCursor()">
+  <!-- Custom Mouse Cursor labelled 'You' -->
+  <div class="Cursor" id="HomeShowcase__userCursor" x-ref="cursor" :class="{ 'visible': cursorVisible }" data-color="#ff24bd" style="--cursor-color: #ff24bd">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g filter="url(#filter0_d_showcase)">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.43938 2.43938C3.85531 2.02345 4.47597 1.88901 5.02673 2.09555L16.0267 6.22055C16.6416 6.45111 17.035 7.05477 16.9976 7.71034C16.9603 8.36592 16.5009 8.921 15.8638 9.08026L11.237 10.237L10.0803 14.8638C9.921 15.5009 9.36592 15.9603 8.71034 15.9976C8.05477 16.035 7.45111 15.6416 7.22055 15.0267L3.09555 4.02673C2.88901 3.47597 3.02345 2.85531 3.43938 2.43938Z" fill="white"></path>
+      </g>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M4.67558 3.03185C4.49199 2.963 4.2851 3.00782 4.14646 3.14646C4.00782 3.2851 3.963 3.49199 4.03185 3.67558L8.15685 14.6756C8.2337 14.8805 8.43492 15.0117 8.65345 14.9992C8.87197 14.9868 9.057 14.8336 9.11009 14.6213L10.4123 9.41232L15.6213 8.11009C15.8336 8.057 15.9868 7.87197 15.9992 7.65345C16.0117 7.43492 15.8805 7.2337 15.6756 7.15685L4.67558 3.03185Z" fill="var(--cursor-color)"></path>
+      <defs>
+        <filter id="filter0_d_showcase" x="0" y="0" width="20" height="20" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
+          <feOffset dy="1"></feOffset>
+          <feGaussianBlur stdDeviation="1.5"></feGaussianBlur>
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0"></feColorMatrix>
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_showcase"></feBlend>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_showcase" result="shape"></feBlend>
+        </filter>
+      </defs>
+    </svg>
+    <span class="Cursor__name">You</span>
+  </div>
+
+  <div class="container HomeShowcase__outerFrame" data-size="full">
+    <div class="HomeShowcase__inner">
+      <!-- Desktop Slides Sequenced Horizontally -->
+      
+      <!-- Slide 1: Showcase Intro matching live site & Screenshot 1 -->
+      <div class="HomeShowcase__intro">
+        <!-- Left Column: Solent Rib Charter Mockup -->
+        <div class="col col--1">
+          <a href="/projects/solent-rib-charter" class="anchor-card anchor-card--rounded imageCard imageCard--mobile introImage--left" style="display:block; text-decoration:none; color:inherit;">
+            <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
+              <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
+              <circle cx="19.5" cy="3.5" r="3"></circle>
+              <circle cx="calc(100% - 19.5px)" cy="3.5" r="3"></circle>
+              <circle cx="19.5" cy="calc(100% - 3.5px)" r="3"></circle>
+              <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3"></circle>
+            </svg>
+            <div class="anchor-content">
+              <img src="https://media.salo.uk/salo-website-prod/src-mobile-1.jpg" alt="Mockup of Solent Rib Charter website." width="500" height="1086" />
+            </div>
+          </a>
+        </div>
+        
+        <!-- Middle Column: Figma frame headers -->
+        <div class="col col--2">
+          <!-- Floating Mockup Top -->
+          <a href="/projects/solent-rib-charter" class="anchor-card anchor-card--rounded imageCard imageCard--mobile introImage--top" style="display:block; text-decoration:none; color:inherit;">
+            <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
+              <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
+            </svg>
+            <div class="anchor-content">
+              <img src="https://media.salo.uk/salo-website-prod/Sunseeker mobile mockup 1.jpg" alt="Sunseeker mobile mockup." width="502" height="1086" />
+            </div>
+          </a>
+          
+          <!-- Figma Frame Showcase -->
+          <div class="stack introText" data-align="center">
+            <h2 class="heading eyebrow">What we do</h2>
+            <div class="FigmaFrame" data-show-dims="true">
+              <span class="FigmaFrame__label">Main heading</span>
+              <span class="heading" data-font-size="5">Showcase</span>
+              <span class="FigmaFrame__handle FigmaFrame__handle--tl"></span>
+              <span class="FigmaFrame__handle FigmaFrame__handle--tr"></span>
+              <span class="FigmaFrame__handle FigmaFrame__handle--bl"></span>
+              <span class="FigmaFrame__handle FigmaFrame__handle--br"></span>
+              <span class="FigmaFrame__dims">358 x 120</span>
+            </div>
+            
+            <svg class="arrow-indicator" viewBox="0 0 90 53" width="90" height="53" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 26.5H89M89 26.5L64.5 2M89 26.5L64.5 51" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          
+          <!-- Floating Mockup Bottom -->
+          <a href="/projects/BBD-Boom" class="anchor-card anchor-card--rounded imageCard imageCard--mobile introImage--bottom" style="display:block; text-decoration:none; color:inherit;">
+            <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
+              <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
+            </svg>
+            <div class="anchor-content">
+              <img src="https://media.salo.uk/salo-website-prod/genesis-email-1.jpg" alt="Genesis email." width="502" height="1086" />
+            </div>
+          </a>
+        </div>
+
+        <!-- Right Column: Wilderness Mockup with Annotation Line matching Screenshot 1 -->
+        <div class="col col--3">
+          <div class="imageCardWrapper">
+            <a href="/projects/wilderness" class="anchor-card anchor-card--rounded imageCard imageCard--mobile introImage--right" style="display:block; text-decoration:none; color:inherit;">
+              <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
+                <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
+              </svg>
+              <div class="anchor-content">
+                <img src="https://media.salo.uk/salo-website-prod/simpson-travel-mobile-2.jpg" alt="Simpson Travel Website design." width="750" height="1629" />
+              </div>
+            </a>
+            
+            <div class="imageCardWrapper__detailsArrowWrapper">
+              <img src="/annotation-line.svg" width="214" height="202" alt="" class="arrow" />
+              <div class="stack ShowcaseCard">
+                <div class="cluster tags" data-gap-x="md" data-justify="start" data-align="center">
+                  <span class="Tag" style="--tag-color: var(--color-purple)">High-Performing Website</span>
+                </div>
+                <h3 class="heading" data-font-size="1"><a href="/projects/wilderness" style="text-decoration:none; color:inherit;">Optimising conversion without compromising luxury</a></h3>
+                <div class="prose">
+                  <p>We redesigned user journeys across the site to make them smoother and more intuitive.</p>
+                </div>
+                <a href="/projects/wilderness" class="btn size-md secondary"><span class="btn-content">View Project <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Main Featured Case Studies matching Screenshot 2 -->
+      <div class="HomeShowcase__middle">
+        <div class="imageCardWrapper">
+          <div class="imageCardWrapper__detailsArrowWrapper">
+            <div class="stack ShowcaseCard">
+              <div class="cluster tags" data-gap-x="md" data-justify="start" data-align="center">
+                <span class="Tag" style="--tag-color: var(--color-purple)">High-Performing Website</span>
+              </div>
+              <h3 class="heading" data-font-size="1"><a href="/projects/solent-rib-charter" style="text-decoration:none; color:inherit;">Modernising a group of sites for a marine services provider</a></h3>
+              <div class="prose">
+                <p>Breaking key pages into modular components allowed us to build a shared design system.</p>
+              </div>
+              <a href="/projects/solent-rib-charter" class="btn size-md secondary"><span class="btn-content">View Project <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></span></a>
+            </div>
+            
+            <img src="/annotation-line.svg" width="214" height="202" alt="" class="arrow" />
+          </div>
+          
+          <a href="/projects/solent-rib-charter" class="anchor-card anchor-card--rounded imageCard imageCard--desktop" style="display:block; text-decoration:none; color:inherit;">
+            <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
+              <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
+            </svg>
+            <div class="anchor-content">
+              <img src="https://media.salo.uk/salo-website-prod/SRC Desktop 1.jpg" alt="Mockup of SRC website design." width="1440" height="1086" />
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Slide 3: Ender Block matching Screenshot 3 & 4 -->
+      <div class="HomeShowcase__ender">
+        <!-- Column 1: Roswell Showcase Card & Phone Mockup -->
+        <div class="col col--1">
+          <div class="imageCardWrapper">
+            <div class="imageCardWrapper__detailsArrowWrapper">
+              <div class="stack ShowcaseCard">
+                <div class="cluster tags" data-gap-x="md" data-justify="start" data-align="center">
+                  <span class="Tag" style="--tag-color: var(--color-green)">UI / UX</span>
+                </div>
+                <h3 class="heading" data-font-size="1"><a href="/projects/roswell" style="text-decoration:none; color:inherit;">A bold new identity for a Shopify Platinum Partner</a></h3>
+                <div class="prose">
+                  <p>The new website needed to reflect Roswell’s bold, confident identity while letting their work take center stage.</p>
+                </div>
+                <a href="/projects/roswell" class="btn size-md secondary"><span class="btn-content">View Project <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></span></a>
+              </div>
+              <img src="/annotation-line.svg" width="214" height="202" alt="" class="arrow" />
+            </div>
+            <a href="/projects/roswell" class="anchor-card anchor-card--rounded imageCard imageCard--mobile introImage--right" style="display:block; text-decoration:none; color:inherit;">
+              <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
+                <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
+              </svg>
+              <div class="anchor-content">
+                <img src="https://media.salo.uk/salo-website-prod/Roswell Mobile 1.jpg" alt="Mockup of Roswell website homepage design." width="500" height="1086" />
+              </div>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Column 2: Want to see more? center stack surrounded by floating mockups -->
+        <div class="col col--2">
+          <a href="/projects/wilderness" class="anchor-card anchor-card--rounded imageCard imageCard--mobile introImage--top" style="display:block; text-decoration:none; color:inherit;">
+            <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
+              <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
+            </svg>
+            <div class="anchor-content">
+              <img src="https://media.salo.uk/salo-website-prod/Simpson Travel mobile mockup 1.jpg" alt="Simpson Travel mobile mockup 1." width="502" height="1086" />
+            </div>
+          </a>
+          
+          <div class="stack introText" data-align="center">
+            <span class="heading eyebrow">Showcase</span>
+            <h3 class="heading" data-font-size="5">Want to see more?</h3>
+            <a href="/projects" class="btn size-md secondary"><span class="btn-content">View all case studies <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></span></a>
+          </div>
+          
+          <a href="/projects/solent-rib-charter" class="anchor-card anchor-card--rounded imageCard imageCard--mobile introImage--bottom" style="display:block; text-decoration:none; color:inherit;">
+            <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
+              <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
+            </svg>
+            <div class="anchor-content">
+              <img src="https://media.salo.uk/salo-website-prod/Amanacard mobile mockup 1.jpg" alt="Amanacard mobile mockup 1." width="502" height="1086" />
+            </div>
+          </a>
+        </div>
+
+        <!-- Column 3: Octopus Money floating mockup -->
+        <div class="col col--3">
+          <a href="/projects/wilderness" class="anchor-card anchor-card--rounded imageCard imageCard--mobile introImage--right" style="display:block; text-decoration:none; color:inherit;">
+            <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
+              <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
+            </svg>
+            <div class="anchor-content">
+              <img src="https://media.salo.uk/salo-website-prod/octopus-money-mobile-1.jpg" alt="Octopus website design mockup." width="502" height="1086" />
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Responsive Mobile Carousel Fallback -->
+  <div class="HomeShowcaseMobile" x-data="showcaseCarousel()">
+    <div class="inner stack" data-gap="lg">
+      <div class="cluster carousel-header" data-justify="between" data-align="center">
+        <h2 class="heading" data-font-size="2">Showcase</h2>
+        
+        <div class="cluster carousel-nav" data-gap="xs">
+          <button type="button" class="btn size-md ghost icon-only carousel-btn" @click="scrollPrev()" :disabled="prevDisabled">
+            <span class="btn-content">
+              <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+              </span>
+            </span>
+          </button>
+          
+          <div class="progress-bar">
+            <div class="progress-fill" :style="{ width: progressWidth + '%' }"></div>
+          </div>
+          
+          <button type="button" class="btn size-md ghost icon-only carousel-btn" @click="scrollNext()" :disabled="nextDisabled">
+            <span class="btn-content">
+              <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </span>
+            </span>
+          </button>
+        </div>
+      </div>
+      
+      <div class="carousel" x-ref="carousel" @scroll="updateStates()">
+        <div class="carousel-track">
+          {projects.map((proj) => (
+            <div class="carousel-item stack" data-gap="md">
+              <a href={`/projects/${proj.slug}`} class="anchor-card anchor-card--rounded image" style="display:block; text-decoration:none; color:inherit;">
+                <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
+                  <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
+                </svg>
+                <div class="anchor-content">
+                  <div class="frame" style="--frame-ratio: 4/5;">
+                    <img src={proj.image} alt={proj.name} />
+                  </div>
+                </div>
+              </a>
+              
+              <div class="stack content" data-gap="2xs">
+                <span class="Tag" style={`--tag-color: ${proj.color}`}>{proj.category}</span>
+                <h3 class="heading" data-font-size="1"><a href={`/projects/${proj.slug}`} style="text-decoration:none; color:inherit;">{proj.name}</a></h3>
+                <div class="prose">
+                  <p>{proj.desc}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import Alpine from 'alpinejs';
+
+  if (!window.__showcaseAlpineRegistered) {
+    window.__showcaseAlpineRegistered = true;
+    
+    // Custom cursor hover/move logic for desktop showcase
+    document.addEventListener("alpine:init", () => {
+      Alpine.data("showcaseCursor", () => ({
+        cursorVisible: false,
+        init() {
+          const wrapper = this.$el;
+          const cursor = this.$refs.cursor;
+          
+          if (!wrapper || !cursor) return;
+          
+          const onMouseMove = (e) => {
+            const rect = wrapper.getBoundingClientRect();
+            // Check if mouse is inside bounding box
+            if (
+              e.clientX >= rect.left &&
+              e.clientX <= rect.right &&
+              e.clientY >= rect.top &&
+              e.clientY <= rect.bottom
+            ) {
+              this.cursorVisible = true;
+              cursor.style.left = `${e.clientX}px`;
+              cursor.style.top = `${e.clientY}px`;
+            } else {
+              this.cursorVisible = false;
+            }
+          };
+
+          const onMouseLeave = () => {
+            this.cursorVisible = false;
+          };
+
+          const isHoverAvailable = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+          if (isHoverAvailable) {
+            window.addEventListener("mousemove", onMouseMove);
+            wrapper.addEventListener("mouseleave", onMouseLeave);
+          }
+        }
+      }));
+
+      // Mobile carousel navigation
+      Alpine.data("showcaseCarousel", () => ({
+        prevDisabled: true,
+        nextDisabled: false,
+        progressWidth: 0,
+        updateStates() {
+          const carousel = this.$refs.carousel;
+          if (!carousel) return;
+          const scrollLeft = carousel.scrollLeft;
+          const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+          
+          this.prevDisabled = scrollLeft <= 5;
+          this.nextDisabled = scrollLeft >= maxScroll - 5;
+          this.progressWidth = maxScroll > 0 ? (scrollLeft / maxScroll) * 100 : 0;
+        },
+        scrollNext() {
+          const carousel = this.$refs.carousel;
+          if (!carousel) return;
+          const distance = carousel.clientWidth * 0.8;
+          carousel.scrollBy({ left: distance, behavior: 'smooth' });
+        },
+        scrollPrev() {
+          const carousel = this.$refs.carousel;
+          if (!carousel) return;
+          const distance = carousel.clientWidth * 0.8;
+          carousel.scrollBy({ left: -distance, behavior: 'smooth' });
+        }
+      }));
+    });
+  }
+</script>
+
+<style lang="scss">
+  // Desktop Horizontal Showcase Layout
+  .HomeShowcase {
+    --details-width: var(--measure-sm);
+    --details-arrow-offset: var(--space-3xl);
+    --border-inset: 24px;
+    --border-radius: 16px;
+    --border-opacity: 1;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-bg);
+    
+    @media (max-width: 1023px) {
+      height: auto;
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    &::after {
+      content: "";
+      position: absolute;
+      inset: var(--border-inset);
+      border: 1px solid rgba(110, 110, 110, var(--border-opacity));
+      border-radius: var(--border-radius);
+      pointer-events: none;
+      z-index: 10;
+      transition: border-color 0.3s var(--ease);
+      
+      @media (max-width: 1023px) {
+        display: none;
+      }
+    }
+    
+    &__outerFrame {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+      background: var(--color-neutral-950);
+      
+      @media (max-width: 1023px) {
+        display: none !important;
+      }
+    }
+    
+    &__inner {
+      cursor: none;
+      display: grid;
+      grid-template-columns: 100vw auto 100vw;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      will-change: transform;
+      
+      > * {
+        flex-shrink: 0;
+      }
+    }
+    
+    &__intro, &__ender {
+      width: 100vw;
+      height: 100%;
+      flex-shrink: 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: var(--space-xl);
+      text-align: center;
+      
+      .introText {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+      }
+      
+      .eyebrow {
+        font-size: var(--font-size-1);
+      }
+    }
+    
+    &__middle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      flex-shrink: 0;
+      padding-inline-end: 50ch;
+      padding-inline-start: 20ch;
+      
+      .imageCard {
+        position: relative !important;
+        min-width: 500px;
+      }
+      
+      .imageCard--desktop {
+        position: relative !important;
+        aspect-ratio: 4 / 3;
+        max-width: 800px;
+        width: 40vw;
+        height: auto;
+      }
+      
+      .arrow {
+        transform: rotate(90deg) scaleY(-1) translateY(13px);
+        margin-block-end: 0;
+        margin-block-start: 3px;
+        z-index: 8;
+        position: relative;
+      }
+      
+      .imageCardWrapper {
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .ShowcaseCard {
+        margin-inline-start: 0;
+        margin-inline-end: var(--details-arrow-offset);
+      }
+      
+      .imageCardWrapper__detailsArrowWrapper {
+        align-items: flex-end;
+        transform: translateY(-25%);
+      }
+    }
+    
+    .col {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    
+    .imageCard {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      
+      &--mobile {
+        height: auto;
+        max-height: min(72vh, 530px);
+        width: 100%;
+        max-width: min(clamp(9rem, 7vw + 6rem, 15rem), calc(72vh * (250 / 543)));
+        aspect-ratio: 250 / 543;
+      }
+      
+      &--desktop {
+        position: relative !important;
+      }
+    }
+    
+    .introImage {
+      &--left {
+        left: var(--space-lg);
+      }
+      &--top {
+        bottom: calc(100% - 24vmin);
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+      &--bottom {
+        top: calc(100% - 24vmin);
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+      &--right {
+        position: relative !important;
+      }
+    }
+    
+    .introText {
+      z-index: 5;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      width: 100% !important;
+
+      * {
+        align-self: center !important;
+        text-align: center !important;
+      }
+    }
+    
+    .arrow-indicator {
+      margin-top: var(--space-md);
+      color: var(--color-foreground-secondary);
+    }
+    
+    .imageCardWrapper {
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      
+      .ShowcaseCard {
+        max-width: var(--details-width);
+        width: 65ch;
+        flex-shrink: 0;
+        z-index: 1;
+      }
+      
+      &__detailsArrowWrapper {
+        display: flex;
+        flex-direction: column;
+        
+        .arrow {
+          position: relative;
+          z-index: 2;
+        }
+      }
+    }
+    
+    &__intro {
+      .ShowcaseCard {
+        margin-inline-start: var(--details-arrow-offset);
+      }
+      
+      .imageCardWrapper__detailsArrowWrapper {
+        position: absolute;
+        left: calc(100% - 6px);
+        top: 0;
+        transform: translateY(min(30%, calc(100vh - 100% - var(--space-xl))));
+        
+        .arrow {
+          margin-block-end: -3px;
+        }
+      }
+    }
+    
+    &__intro, &__ender {
+      .col, .imageCardWrapper {
+        display: flex;
+        align-items: center !important;
+        justify-content: center !important;
+        height: 100%;
+      }
+    }
+
+    &__ender {
+      .imageCardWrapper {
+        align-items: center;
+      }
+      
+      .imageCardWrapper__detailsArrowWrapper {
+        position: absolute;
+        right: calc(100% - 2px);
+        top: 0;
+        z-index: 3;
+        align-items: flex-end;
+        transform: translateY(min(-20%, calc(100vh - 100% - var(--space-xl))));
+        
+        .ShowcaseCard {
+          margin-inline-end: var(--details-arrow-offset);
+        }
+        
+        .arrow {
+          transform: rotate(-180deg);
+          margin-block-start: -4px;
+          margin-inline-end: -4px;
+          z-index: 3;
+          position: relative;
+        }
+      }
+    }
+    
+    .ShowcaseCard {
+      padding: var(--space-md);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      background: var(--color-bg-alt);
+      text-align: left;
+      width: 280px;
+      z-index: 10;
+      
+      .Tag {
+        display: flex;
+        align-items: center;
+        gap: var(--space-4xs);
+        font-family: var(--font-family-alt);
+        font-size: var(--font-size--2);
+        letter-spacing: var(--letter-spacing-loose);
+        color: var(--color-foreground-secondary);
+        margin-bottom: var(--space-2xs);
+        
+        &::before {
+          content: "";
+          display: block;
+          width: 6px;
+          height: 6px;
+          border-radius: var(--radius-full);
+          background-color: var(--tag-color, var(--color-pink));
+        }
+      }
+      
+      .heading {
+        margin-bottom: var(--space-3xs);
+      }
+      
+      .prose {
+        font-size: var(--font-size--1);
+        color: var(--color-foreground-secondary);
+      }
+    }
+  }
+
+  // Figma Frame component outline
+  .FigmaFrame {
+    --figma-blue: #18a0fb;
+    --handle-size: 7px;
+    display: block;
+    width: fit-content;
+    position: relative;
+    border: 1px solid var(--figma-blue);
+    padding: 0.5rem 1rem;
+    background: rgba(24, 160, 251, 0.05);
+    margin-block: var(--space-xs);
+    
+    &__label {
+      position: absolute;
+      bottom: calc(100% + 5px);
+      left: 0;
+      font-size: var(--font-size--2);
+      color: var(--figma-blue);
+      font-family: var(--font-family-alt);
+    }
+    
+    &__dims {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translate(-50%, 0);
+      background: var(--figma-blue);
+      color: var(--color-white);
+      font-size: var(--font-size--2);
+      font-family: var(--font-family-alt);
+      padding: 2px 6px;
+      border-radius: var(--radius-xs);
+      white-space: nowrap;
+    }
+    
+    &__handle {
+      position: absolute;
+      width: var(--handle-size);
+      height: var(--handle-size);
+      background: #fff;
+      border: 1.5px solid var(--figma-blue);
+      transform: translate(-50%, -50%);
+      
+      &--tl { top: 0; left: 0; }
+      &--tr { top: 0; left: 100%; }
+      &--bl { top: 100%; left: 0; }
+      &--br { top: 100%; left: 100%; }
+    }
+  }
+
+  // Responsive Mobile Carousel
+  .HomeShowcaseMobile {
+    display: none;
+    background-color: var(--color-bg);
+    padding: var(--space-xl) 0;
+    
+    @media (max-width: 1023px) {
+      display: block;
+    }
+    
+    .inner {
+      padding-inline: var(--space-md);
+    }
+    
+    .carousel-nav {
+      @media (max-width: 767px) {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+      }
+    }
+    
+    .progress-bar {
+      width: 150px;
+      height: 2px;
+      background: var(--color-border);
+      position: relative;
+      
+      @media (max-width: 767px) {
+        width: 100%;
+      }
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: var(--color-foreground);
+      width: 0%;
+      transition: width 0.1s ease-out;
+    }
+    
+    .carousel {
+      margin-inline: calc(-1 * var(--space-md));
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      
+      &-track {
+        display: flex;
+        gap: var(--space-md);
+        padding-inline: var(--space-md);
+        
+        &::after {
+          content: "";
+          flex: 0 0 var(--space-md);
+        }
+      }
+    }
+    
+    .carousel-item {
+      flex: 0 0 300px;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      
+      .image {
+        width: 100%;
+        aspect-ratio: 4/5;
+        
+        .frame {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      
+      .Tag {
+        display: flex;
+        align-items: center;
+        gap: var(--space-4xs);
+        font-family: var(--font-family-alt);
+        font-size: var(--font-size--2);
+        letter-spacing: var(--letter-spacing-loose);
+        color: var(--color-foreground-secondary);
+        
+        &::before {
+          content: "";
+          width: 6px;
+          height: 6px;
+          border-radius: var(--radius-full);
+          background-color: var(--tag-color, var(--color-pink));
+        }
+      }
+    }
+  }
+</style>

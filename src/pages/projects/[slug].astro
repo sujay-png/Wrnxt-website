@@ -1,0 +1,107 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CTA from '../../components/CTA.astro';
+import projectsData from '../../data/projects.json';
+
+export async function getStaticPaths() {
+  const projectsList = [
+    {
+      slug: "wilderness",
+      title: "Optimising conversion without compromising luxury",
+      client: "Wilderness Safaris",
+      logo: "https://media.salo.uk/salo-website-prod/wilderness.svg",
+      category: "High-Performing Website",
+      tagColor: "var(--color-purple)"
+    },
+    {
+      slug: "BBD-Boom",
+      title: "Fully integrated design support for a high-volume Hubspot agency",
+      client: "BBD Boom",
+      logo: "https://media.salo.uk/salo-website-prod/bbd-boom.svg",
+      category: "High-Performing Website",
+      tagColor: "var(--color-purple)"
+    },
+    {
+      slug: "roswell",
+      title: "A bold new identity for a Shopify Platinum Partner",
+      client: "Roswell NYC",
+      logo: "https://media.salo.uk/salo-website-prod/roswell.svg",
+      category: "UI / UX",
+      tagColor: "var(--color-green)"
+    },
+    {
+      slug: "solent-rib-charter",
+      title: "Modernising a group of sites for a marine services provider",
+      client: "Solent Rib Charter",
+      logo: "https://media.salo.uk/salo-website-prod/src.svg",
+      category: "High-Performing Website",
+      tagColor: "var(--color-purple)"
+    }
+  ];
+
+  return projectsList.map((proj, idx) => {
+    const nextProj = projectsList[(idx + 1) % projectsList.length];
+    return {
+      params: { slug: proj.slug },
+      props: { project: proj, nextProject: nextProj }
+    };
+  });
+}
+
+const { project, nextProject } = Astro.props;
+const { slug } = Astro.params;
+const projectBody = projectsData[slug] || { prose_html: "<p>Case study content loading...</p>" };
+---
+
+<Layout title={`${project.title} | Projects | Salo`} description={project.title}>
+  <Header />
+
+  <main class="page--project-post">
+    <!-- Project Header -->
+    <section class="section BlogPostHeader" data-pb="0" data-pt="lg">
+      <div class="container" data-size="wide">
+        <div class="stack" data-gap="lg">
+          <div class="stack" data-gap="sm">
+            <div class="cluster" data-gap="md" data-align="center">
+              <span class="Tag" style={`--tag-color: ${project.tagColor}`}>{project.category}</span>
+            </div>
+            
+            <h1 class="heading" data-color="foreground" data-font-size="5" data-trim="normal" data-weight="regular">
+              {project.title}
+            </h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Scraped Case Study Sections -->
+    <div class="project-sections-wrapper">
+      <Fragment set:html={projectBody.prose_html} />
+    </div>
+
+    <!-- Next Project Navigation -->
+    <section class="section NextProjectSection" data-padding="lg">
+      <div class="container" data-size="wide">
+        <div class="stack" data-gap="lg">
+          <h2 class="heading" data-font-size="3" data-weight="regular">Next project</h2>
+          
+          <article class="related-card">
+            <a href={`/projects/${nextProject.slug}`} class="related-link gradient-border" style="display: block; padding: var(--space-lg); border-radius: 16px; text-decoration: none; color: inherit;">
+              <div class="stack content" data-gap="sm">
+                <span class="Tag" style={`--tag-color: ${nextProject.tagColor}`}>{nextProject.category}</span>
+                <h3 class="heading" data-font-size="2">{nextProject.title}</h3>
+                <span class="read-more-link" style="color: var(--color-pink); font-size: var(--font-size-1);">View Case Study &rarr;</span>
+              </div>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <CTA />
+  </main>
+
+  <Footer />
+</Layout>

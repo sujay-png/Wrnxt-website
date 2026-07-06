@@ -1,0 +1,97 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FeaturedWork from '../components/FeaturedWork.astro';
+import Process from '../components/Process.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <Header />
+  
+  <main class="page--home">
+    <div id="background" class="cover background-logo-wrapper" style="--cover-min-height:100svh;--cover-space:var(--space-lg);">
+      <div class="cover-center">
+        <canvas id="background-canvas"></canvas>
+      </div>
+    </div>
+
+    <Hero />
+    <Services />
+    <Testimonials />
+    <FeaturedWork />
+    <Process />
+    <CTA />
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  import { initAnimations } from '../scripts/animations.js';
+
+  // Run initialisation immediately and hook into page transitions
+  let initialised = false;
+
+  function runInit() {
+    if (initialised) return;
+    initialised = true;
+    // Wait for web fonts to finish swapping in before measuring any layout (heroHeight etc).
+    // Without this, initAnimations() can run while text is still rendered in a fallback font,
+    // producing a heroHeight measurement up to ~17% off from the final settled layout — which
+    // throws off every scroll-distance calculation derived from it (the hero ring's shrink rate,
+    // when the logo handoff happens, divider reveal timing, all of it).
+    const ready = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+    ready.then(() => {
+      requestAnimationFrame(() => initAnimations());
+    });
+  }
+
+  // Support both standard loads and Astro view transitions
+  document.addEventListener('astro:page-load', () => {
+    initialised = false;
+    runInit();
+  });
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    runInit();
+  } else {
+    document.addEventListener('DOMContentLoaded', runInit);
+  }
+</script>
+
+<style lang="scss">
+  .background-logo-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100lvh;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+    visibility: hidden;
+
+    .cover-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    canvas {
+      display: block;
+      /* Explicit viewport units override the global height:auto reset on canvas */
+      width: 100vw;
+      height: 100lvh;
+    }
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+  }
+</style>

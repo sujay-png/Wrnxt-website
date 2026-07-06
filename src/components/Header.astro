@@ -1,0 +1,410 @@
+---
+---
+
+<header id="header" transition:persist="header" x-data="{ mobileOpen: false }" x-init="$watch('mobileOpen', (open) => { open ? window.__lenis?.stop() : window.__lenis?.start() })" @keydown.escape.window="mobileOpen = false" class="section">
+  <div class="container">
+    <div class="cluster start" data-gap="sm" data-justify="start" data-align="center">
+      <a href="/" title="Go to homepage" class="header-logo-link">
+        <svg class="salo-logo" transition:name="salo-logo" viewBox="0 0 104 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Salo Logo.">
+          <path class="salo-logo__0" d="M101.813 9.07487C98.1337 1.20259 88.7695 -2.19519 80.8963 1.48374L80.208 0.00968382C72.3348 3.68862 68.9357 13.0518 72.6151 20.9241C76.2944 28.7964 85.6587 32.1942 93.5319 28.5152L94.2202 29.9884C102.093 26.3095 105.492 16.9463 101.813 9.07398V9.07487ZM90.7839 22.6376C86.1581 24.799 80.6568 22.8017 78.4951 18.1773C76.3335 13.552 78.331 8.05137 82.956 5.88995L83.6443 7.36223C88.2701 5.20081 93.7714 7.19815 95.933 11.8225C98.0947 16.4478 96.0971 21.9485 91.4722 24.1099L90.7839 22.6376Z" fill="white"></path>
+          <path class="salo-logo__l" d="M71.9499 29.7429L58.1993 29.7438H54.8934V29.7429H54.0897L53.1859 27.8041L51.709 24.6369V0.251953H58.1993V23.2542H68.9242L71.5161 28.8134L71.9499 29.7429Z" fill="white"></path>
+          <path class="salo-logo__a" d="M39.1289 7.92716L35.5481 0.25L31.968 7.92805L32.6617 9.41452L29.0861 17.0819L23.1821 29.74H30.343L32.6661 24.7591L36.2417 17.0926L42.1395 29.74H49.2995L49.3013 29.7391L39.1289 7.92716Z" fill="white"></path>
+          <path class="salo-logo__s" d="M21.8703 20.415C21.8703 20.4815 21.8703 20.5453 21.8685 20.6101C21.7639 25.6717 17.6277 29.74 12.5416 29.74H0L3.02562 23.2504H5.04891V23.2531H12.7331C13.5164 23.2531 14.2251 22.9356 14.7378 22.423C15.2514 21.9094 15.5689 21.2008 15.5689 20.4176C15.5689 18.8513 14.2987 17.5822 12.7331 17.5822H12.6391C12.6063 17.5813 12.5744 17.5804 12.5416 17.5804H10.2034C8.06388 17.5804 6.10446 16.8185 4.59209 15.5325C2.77193 13.9866 1.59929 11.7028 1.53543 9.1449C1.53543 9.10854 1.53099 8.96042 1.53099 8.9214C1.53099 6.52672 2.50139 4.35909 4.07053 2.79013C5.63966 1.22118 7.80754 0.250887 10.2016 0.25H22.9223L19.894 6.73958H10.2034C10.191 6.73958 10.1785 6.73958 10.1661 6.74047H10.0402C9.43788 6.74047 8.89147 6.98437 8.49675 7.37993C8.10203 7.77461 7.85721 8.32007 7.85721 8.92317C7.85721 10.1285 8.8347 11.105 10.0402 11.105H12.7021C17.7803 11.1901 21.8703 15.317 21.8703 20.415Z" fill="white"></path>
+        </svg>
+      </a>
+      <span class="eyebrow lg-only">Exceptional design, seamless collaboration.</span>
+    </div>
+
+    <div class="cluster end" data-gap="xl" data-justify="end" data-align="center">
+      <nav class="nav">
+        <ul class="cluster nav-list" data-gap="lg" data-justify="start" data-align="center">
+          <li class="nav-item"><a class="nav-link" href="/projects">Work</a></li>
+          <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+        </ul>
+      </nav>
+      
+      <div class="cluster actions" data-gap="sm" data-justify="start" data-align="center">
+        <a href="/services/flexi-design" class="btn size-md secondary">
+          <span class="btn-content">
+            For agencies
+            <span class="icon" aria-hidden="true" role="img">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </span>
+          </span>
+        </a>
+        
+        <a href="/contact" class="btn size-md primary" x-data="buttonHover" @mousemove="handleMouseMove($event)" @mouseenter="handleMouseEnter()" @mouseleave="handleMouseLeave()">
+          <span class="btn-content">
+            <span class="btn-bg" :style="{ top: bgY + '%', left: bgX + '%', opacity: isHovering ? 1 : 0, '--_scale': isHovering ? 1 : 0.75 }"></span>
+            <span>
+              Contact us
+              <span class="icon" aria-hidden="true" role="img">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </span>
+            </span>
+          </span>
+        </a>
+      </div>
+
+      <button type="button" @click="mobileOpen = !mobileOpen" :aria-expanded="mobileOpen" aria-controls="mobile-menu" class="btn size-md ghost menu-toggle icon-only">
+        <span class="btn-content">
+          <span class="icon" aria-hidden="true" role="img">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x-show="!mobileOpen" class="lucide lucide-menu icon">
+              <path d="M4 5h16"></path>
+              <path d="M4 12h16"></path>
+              <path d="M4 19h16"></path>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x-show="mobileOpen" x-cloak="true" class="lucide lucide-x icon">
+              <path d="M18 6 6 18"></path>
+              <path d="m6 6 12 12"></path>
+            </svg>
+          </span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Teleported Mobile Menu -->
+  <template x-teleport="body">
+    <div id="mobile-menu" class="mobile-menu" data-lenis-prevent x-show="mobileOpen" x-transition:enter="overlay-enter" x-transition:enter-start="overlay-enter-start" x-transition:enter-end="overlay-enter-end" x-transition:leave="overlay-leave" x-transition:leave-start="overlay-leave-start" x-transition:leave-end="overlay-leave-end" x-cloak>
+      <div class="stack mobile-menu__inner" data-gap="xl" data-color-scheme="dark" @click.away="mobileOpen = false" x-transition:enter="panel-enter" x-transition:enter-start="panel-enter-start" x-transition:enter-end="panel-enter-end" x-transition:leave="panel-leave" x-transition:leave-start="panel-leave-start" x-transition:leave-end="panel-leave-end">
+        <div class="cluster mobile-menu__header" data-gap="sm" data-justify="between" data-align="center">
+          <svg class="salo-logo" viewBox="0 0 104 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Salo Logo.">
+            <path class="salo-logo__0" d="M101.813 9.07487C98.1337 1.20259 88.7695 -2.19519 80.8963 1.48374L80.208 0.00968382C72.3348 3.68862 68.9357 13.0518 72.6151 20.9241C76.2944 28.7964 85.6587 32.1942 93.5319 28.5152L94.2202 29.9884C102.093 26.3095 105.492 16.9463 101.813 9.07398V9.07487ZM90.7839 22.6376C86.1581 24.799 80.6568 22.8017 78.4951 18.1773C76.3335 13.552 78.331 8.05137 82.956 5.88995L83.6443 7.36223C88.2701 5.20081 93.7714 7.19815 95.933 11.8225C98.0947 16.4478 96.0971 21.9485 91.4722 24.1099L90.7839 22.6376Z" fill="white"></path>
+            <path class="salo-logo__l" d="M71.9499 29.7429L58.1993 29.7438H54.8934V29.7429H54.0897L53.1859 27.8041L51.709 24.6369V0.251953H58.1993V23.2542H68.9242L71.5161 28.8134L71.9499 29.7429Z" fill="white"></path>
+            <path class="salo-logo__a" d="M39.1289 7.92716L35.5481 0.25L31.968 7.92805L32.6617 9.41452L29.0861 17.0819L23.1821 29.74H30.343L32.6661 24.7591L36.2417 17.0926L42.1395 29.74H49.2995L49.3013 29.7391L39.1289 7.92716Z" fill="white"></path>
+            <path class="salo-logo__s" d="M21.8703 20.415C21.8703 20.4815 21.8703 20.5453 21.8685 20.6101C21.7639 25.6717 17.6277 29.74 12.5416 29.74H0L3.02562 23.2504H5.04891V23.2531H12.7331C13.5164 23.2531 14.2251 22.9356 14.7378 22.423C15.2514 21.9094 15.5689 21.2008 15.5689 20.4176C15.5689 18.8513 14.2987 17.5822 12.7331 17.5822H12.6391C12.6063 17.5813 12.5744 17.5804 12.5416 17.5804H10.2034C8.06388 17.5804 6.10446 16.8185 4.59209 15.5325C2.77193 13.9866 1.59929 11.7028 1.53543 9.1449C1.53543 9.10854 1.53099 8.96042 1.53099 8.9214C1.53099 6.52672 2.50139 4.35909 4.07053 2.79013C5.63966 1.22118 7.80754 0.250887 10.2016 0.25H22.9223L19.894 6.73958H10.2034C10.191 6.73958 10.1785 6.73958 10.1661 6.74047H10.0402C9.43788 6.74047 8.89147 6.98437 8.49675 7.37993C8.10203 7.77461 7.85721 8.32007 7.85721 8.92317C7.85721 10.1285 8.8347 11.105 10.0402 11.105H12.7021C17.7803 11.1901 21.8703 15.317 21.8703 20.415Z" fill="white"></path>
+          </svg>
+          <button aria-label="Close menu" type="button" @click="mobileOpen = false" class="btn size-md ghost icon-only">
+            <span class="btn-content">
+              <span class="icon" aria-hidden="true" role="img">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x icon">
+                  <path d="M18 6 6 18"></path>
+                  <path d="m6 6 12 12"></path>
+                </svg>
+              </span>
+            </span>
+          </button>
+        </div>
+        <nav aria-label="Mobile" class="stack mobile-nav">
+          <span class="eyebrow">Our Services</span>
+          <ul class="mobile-nav__list">
+            <li><a class="mobile-nav__link" href="/services/ui-ux">UX/UI & Digital Products</a></li>
+            <li><a class="mobile-nav__link" href="/services/websites">High-Performance Websites</a></li>
+            <li><a class="mobile-nav__link" href="/services/branding">Brand Identity & Positioning</a></li>
+            <li><a class="mobile-nav__link" href="/services/flexi-design">Flexi Design</a></li>
+          </ul>
+          <span class="eyebrow">Our Work</span>
+          <ul class="mobile-nav__list">
+            <li><a class="mobile-nav__link" href="/projects">Latest case studies</a></li>
+          </ul>
+          <span class="eyebrow">Studio</span>
+          <ul class="mobile-nav__list">
+            <li><a class="mobile-nav__link" href="/about">About us</a></li>
+            <li><a class="mobile-nav__link" href="/blog">Blog</a></li>
+          </ul>
+        </nav>
+        <div class="mobile-actions">
+          <a href="/contact" class="btn size-md primary mobile-actions__button block-all" x-data="buttonHover" @mousemove="handleMouseMove($event)" @mouseenter="handleMouseEnter()" @mouseleave="handleMouseLeave()">
+            <span class="btn-content">
+              <span class="btn-bg" :style="{ top: bgY + '%', left: bgX + '%', opacity: isHovering ? 1 : 0, '--_scale': isHovering ? 1 : 0.75 }"></span>
+              <span>
+                Start a project
+                <span class="icon" aria-hidden="true" role="img">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </span>
+              </span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </template>
+</header>
+
+<script>
+  if (!window.__headerScrollBound) {
+    let currentSticky = "default";
+    let isAnimationDisabled = false;
+    let headerEl = document.getElementById("header");
+    let headerHeight = headerEl?.offsetHeight ?? 0;
+
+    const setHeaderSticky = function (stickyState, instant) {
+      if (currentSticky !== stickyState) {
+        currentSticky = stickyState;
+        if (!instant) {
+          headerEl.style.transition = "none";
+        }
+        if (stickyState === "default") {
+          headerEl.removeAttribute("data-sticky");
+        } else if (stickyState === "hidden") {
+          headerEl.setAttribute("data-sticky", "hidden");
+        } else {
+          headerEl.setAttribute("data-sticky", "visible");
+        }
+        if (!instant) {
+          // Force reflow
+          headerEl.offsetHeight;
+          headerEl.style.transition = "";
+        }
+      }
+    };
+
+    const handleScroll = function ({ scroll, direction }) {
+      if (!isAnimationDisabled) {
+        isAnimationDisabled = true;
+        headerEl.style.animation = "none";
+      }
+      if (scroll <= 0) {
+        setHeaderSticky("default", false);
+      } else if (currentSticky === "default" && scroll >= headerHeight) {
+        setHeaderSticky("hidden", false);
+      } else if (currentSticky === "hidden" && direction === -1) {
+        setHeaderSticky("visible", true);
+      } else if (currentSticky === "visible" && direction === 1) {
+        setHeaderSticky("hidden", true);
+      }
+    };
+
+    const bindLenisScroll = function () {
+      window.__lenis?.on("scroll", handleScroll);
+    };
+
+    window.__headerScrollBound = true;
+    
+    document.addEventListener("astro:page-load", () => {
+      headerEl = document.getElementById("header");
+      headerHeight = headerEl?.offsetHeight ?? 0;
+      currentSticky = "default";
+      isAnimationDisabled = false;
+    });
+
+    if (window.__lenis) {
+      bindLenisScroll();
+    } else {
+      window.addEventListener("lenis:ready", bindLenisScroll, { once: true });
+    }
+  }
+</script>
+
+<style lang="scss">
+  header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding-block: var(--space-lg);
+    animation: header-fade-in 0.6s var(--ease) forwards;
+    
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    &[data-sticky] {
+      position: fixed;
+      animation: none;
+      background: var(--color-bg);
+      padding-block: var(--space-sm);
+      transition: transform 0.5s var(--ease);
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    &[data-sticky="hidden"] {
+      transform: translateY(-100%);
+    }
+    
+    &[data-sticky="visible"] {
+      transform: translateY(0);
+    }
+  }
+
+  .salo-logo {
+    block-size: var(--space-lg);
+    width: auto;
+  }
+
+  .lg-only {
+    @media (max-width: 1023px) {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .nav {
+      display: none;
+    }
+    .actions {
+      display: none !important;
+    }
+  }
+
+  .nav-link {
+    position: relative;
+    display: inline-block;
+    color: inherit;
+    text-decoration: none;
+    font-family: var(--font-family-alt);
+    font-size: var(--font-size--1);
+    
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: currentColor;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    
+    &:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    
+    &:not(:hover)::after {
+      transform: scaleX(0);
+      transform-origin: right;
+    }
+  }
+
+  .menu-toggle {
+    z-index: 9999;
+    
+    @media (min-width: 768px) {
+      display: none !important;
+    }
+  }
+
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: grid;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: rgba(16, 16, 16, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    @media (min-width: 768px) {
+      display: none;
+    }
+    
+    &__inner {
+      inline-size: 100%;
+      padding: var(--space-md) var(--space-md) var(--space-xl);
+      border-radius: var(--radius-sm);
+    }
+    
+    &__header {
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--color-border);
+    }
+  }
+
+  .mobile-nav {
+    flex-grow: 1;
+    margin-block: var(--space-lg);
+    
+    .eyebrow {
+      font-size: var(--font-size--2);
+      text-transform: uppercase;
+      letter-spacing: var(--letter-spacing-looser);
+      color: var(--color-foreground-secondary);
+      margin-top: var(--space-md);
+      margin-bottom: var(--space-xs);
+      display: block;
+    }
+    
+    &__list {
+      display: grid;
+      gap: var(--space-4xs);
+      list-style-type: none;
+      padding: 0;
+      
+      li {
+        display: block;
+      }
+    }
+    
+    &__link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      font-size: var(--font-size-1);
+      padding-block: var(--space-3xs);
+      transition: color 0.3s var(--ease);
+      
+      &:is(:hover, :focus-visible) {
+        color: var(--color-pink);
+      }
+    }
+  }
+
+  .mobile-actions {
+    position: sticky;
+    bottom: 0;
+    display: grid;
+    gap: var(--space-sm);
+    padding-block: var(--space-md);
+    background: linear-gradient(to bottom, transparent, var(--color-bg) 30%);
+    
+    &__button {
+      inline-size: 100%;
+      justify-content: center;
+    }
+  }
+
+  // AlpineJS Transitions matching original opacity/backdrop configurations
+  .overlay-enter, .overlay-leave {
+    transition: opacity 0.2s ease, backdrop-filter 0.2s ease;
+  }
+  .overlay-enter-start, .overlay-leave-end {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  .overlay-enter-end, .overlay-leave-start {
+    opacity: 1;
+    backdrop-filter: blur(12px);
+  }
+
+  .panel-enter, .panel-leave {
+    transition: opacity 0.22s ease, transform 0.22s ease;
+  }
+  .panel-enter-start, .panel-leave-end {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  .panel-enter-end, .panel-leave-start {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  @keyframes header-fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

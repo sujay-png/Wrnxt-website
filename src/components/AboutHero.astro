@@ -1,0 +1,235 @@
+---
+const galleryColumns = [
+  [
+    { src: "https://media.salo.uk/salo-website-prod/team-2.jpg", alt: "The team at indoor skydiving.", tag: "Josh" },
+    { src: "https://media.salo.uk/salo-website-prod/team-4.jpg", alt: "Agency Grand Prix.", tag: null }
+  ],
+  [
+    { src: "https://media.salo.uk/salo-website-prod/team-5.jpg", alt: "Carl on a racing simulator.", tag: "Carl" },
+    { src: "https://media.salo.uk/salo-website-prod/team-6.jpg", alt: "Agency Grand Prix.", tag: null },
+    { src: "https://media.salo.uk/salo-website-prod/team-3.jpg", alt: "Carl.", tag: "Carl" }
+  ]
+];
+---
+
+<section class="section AboutHero" data-padding="xl">
+  <!-- Text lives inside the container for proper left inset -->
+  <div class="container">
+    <div class="stack AboutHero__intro" data-gap="lg" data-align="start">
+      <span class="heading eyebrow">About us</span>
+      <h1 class="heading" data-font-size="4" data-weight="regular">A hand-picked team of passionate creatives</h1>
+
+      <div class="reactive-divider horizontal" x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })">
+        <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
+        <div class="divider-line" x-ref="dividerLine">
+          <div class="width-display" x-text="formattedWidth" x-cloak>0px</div>
+        </div>
+        <div class="anchor end-anchor"><div class="anchor-circle"></div></div>
+      </div>
+
+      <div class="prose">
+        <p>We're a meticulously assembled group of creatives <em>(and organisers)</em>, carefully selected for our passion for great design. Our backgrounds are varied but our vision remains the same - create something beautiful that really works.</p>
+      </div>
+
+      <div class="cluster actions" data-gap="sm" data-justify="start" data-align="center">
+        <a href="#team" class="btn size-md secondary">
+          <span class="btn-content">
+            Meet the team
+            <span class="icon" aria-hidden="true" role="img">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gallery is absolutely positioned so section height is driven by the text column,
+       not by the number/size of photos. Photos bleed to the section card's top/bottom/right
+       edges and are clipped by overflow:clip + border-radius on .AboutHero. -->
+  <div class="AboutHero__gallery">
+    {galleryColumns.map((column, colIdx) => (
+      <div class={`AboutHero__galleryCol AboutHero__galleryCol--${colIdx + 1}`}>
+        {column.map((img) => (
+          <div class="anchor-card anchor-card--rounded AboutHero__galleryItem">
+            <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
+              <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
+              <circle cx="19.5" cy="3.5" r="3"></circle>
+              <circle cx="calc(100% - 19.5px)" cy="3.5" r="3"></circle>
+              <circle cx="19.5" cy="calc(100% - 3.5px)" r="3"></circle>
+              <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3"></circle>
+            </svg>
+            <div class="anchor-content">
+              <div class="frame" style="--frame-ratio:3/4;">
+                <img src={img.src} alt={img.alt} loading="lazy" decoding="async" width="420" height="560" />
+              </div>
+            </div>
+            {img.tag && (
+              <div class="AboutHero__photoTag">
+                <span class="AboutHero__photoTagAvatar" style={`background-image:url(${img.src})`}></span>
+                <span class="AboutHero__photoTagName">{img.tag}</span>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  import Alpine from 'alpinejs';
+
+  if (!window.__dividerAlpineRegistered) {
+    window.__dividerAlpineRegistered = true;
+
+    document.addEventListener("alpine:init", () => {
+      Alpine.data("reactiveDivider", ({ orientation, unit }) => ({
+        dimension: 0,
+        orientation: orientation,
+        resizeObserver: null,
+        init() {
+          this.measure();
+          this.resizeObserver = new ResizeObserver((entries) => {
+            for (const entry of entries) {
+              const rect = entry.contentRect;
+              this.updateDimension(rect);
+            }
+          });
+          if (this.$refs.dividerLine) {
+            this.resizeObserver.observe(this.$refs.dividerLine);
+          }
+        },
+        measure() {
+          if (this.$refs.dividerLine) {
+            const rect = this.$refs.dividerLine.getBoundingClientRect();
+            this.updateDimension(rect);
+          }
+        },
+        updateDimension(rect) {
+          this.dimension = this.orientation === "horizontal" ? rect.width : rect.height;
+        },
+        get formattedWidth() {
+          return `${Math.round(this.dimension)}${unit}`;
+        },
+        destroy() {
+          if (this.resizeObserver) {
+            this.resizeObserver.disconnect();
+          }
+        }
+      }));
+    });
+  }
+</script>
+
+<style lang="scss">
+  .AboutHero {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-bg-alt);
+    // Clips gallery photos at the card's border-radius corners (top/bottom/right edges)
+    overflow: clip;
+    // Push card below absolute-positioned header; inset from viewport edges
+    margin-block-start: var(--header-height);
+    margin-inline: var(--space-sm);
+    width: auto;
+    // Reduce bottom padding — xl-4xl (~101px) creates too much dead space below the text
+    --section-pb: var(--space-xl);
+    // .section already sets position:relative — gallery uses this as its containing block
+
+    em {
+      font-style: italic;
+      color: var(--color-foreground-secondary);
+    }
+  }
+
+  .AboutHero__intro {
+    // Text takes ~65% of container content width, leaving a gap before the gallery column
+    max-width: 65%;
+
+    @media (max-width: 1023px) {
+      max-width: 100%;
+    }
+  }
+
+  .AboutHero__gallery {
+    // Absolute positioning removes the gallery from document flow entirely,
+    // so the section height is determined solely by the text column height + section padding.
+    // Photos extend to section card top/bottom/right and are clipped naturally.
+    position: absolute;
+    top: -2rem;
+    right: 0;
+    bottom: -2rem;
+    // ~34% of section width gives each sub-column ~210px, matching salo.uk proportions
+    width: clamp(21rem, 34%, 34rem);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    align-items: start;
+    // Breathing room so photos don't flush against the card's right edge
+    padding-inline-end: var(--space-md);
+
+    @media (max-width: 1023px) {
+      // Revert to normal flow below the text at medium/small viewports
+      position: static;
+      width: auto;
+      margin-top: var(--space-lg);
+    }
+
+    @media (max-width: 639px) {
+      .AboutHero__galleryCol--2 {
+        display: none;
+      }
+    }
+  }
+
+  .AboutHero__galleryCol {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+
+    // Col 2 starts slightly lower than col 1 to create the staggered layout
+    &--2 {
+      padding-top: var(--space-md);
+    }
+  }
+
+  .AboutHero__galleryItem {
+    will-change: transform;
+    // Cancel anchor-card--rounded's height:100% so photos size from their frame ratio
+    height: auto;
+  }
+
+  .AboutHero__photoTag {
+    position: absolute;
+    left: var(--space-sm);
+    bottom: var(--space-sm);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3xs);
+    background: rgba(16, 16, 16, 0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: var(--radius-full);
+    padding: var(--space-4xs) var(--space-2xs) var(--space-4xs) var(--space-4xs);
+  }
+
+  .AboutHero__photoTagAvatar {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: var(--radius-full);
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+  }
+
+  .AboutHero__photoTagName {
+    font-family: var(--font-family-alt);
+    font-size: var(--font-size--2);
+    color: var(--color-white, #fff);
+  }
+</style>

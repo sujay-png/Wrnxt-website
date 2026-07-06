@@ -1,0 +1,224 @@
+---
+import type { heroImages as HeroImages } from '../data/services';
+
+interface CTA { label: string; href: string; }
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  desc: string;
+  ctaPrimary: CTA;
+  ctaSecondary?: CTA;
+  images: typeof HeroImages;
+}
+
+const { eyebrow, title, desc, ctaPrimary, ctaSecondary, images } = Astro.props;
+---
+
+<section class="hero">
+  <div class="hero__left">
+    <p class="eyebrow">{eyebrow}</p>
+    <h1 class="hero__heading">{title}</h1>
+
+    <div class="divider" aria-hidden="true">
+      <span class="dot"></span>
+      <span class="line"></span>
+      <span class="dot"></span>
+    </div>
+
+    <p class="hero__body">{desc}</p>
+
+    <div class="cta-group">
+      <a href={ctaPrimary.href} class="cta-btn">
+        {ctaPrimary.label}
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+        </svg>
+      </a>
+
+      {ctaSecondary && (
+        <a href={ctaSecondary.href} class="cta-btn">
+          {ctaSecondary.label}
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+      )}
+    </div>
+  </div>
+
+  <aside class="hero__grid" aria-label="Project mockups">
+    {images.map((img) => (
+      <div class={`mockup ${img.card}`}>
+        <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+      </div>
+    ))}
+  </aside>
+</section>
+
+<style lang="scss">
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  min-height: 100vh;
+  padding: 120px 72px 80px 80px;
+  gap: 0;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    padding: 100px var(--space-md) var(--space-xl);
+    gap: var(--space-xl);
+  }
+}
+
+.hero__left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: 580px;
+  padding-right: var(--space-xl);
+
+  @media (max-width: 900px) {
+    max-width: 100%;
+    padding-right: 0;
+  }
+}
+
+.eyebrow {
+  font-size: var(--font-size--1);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-foreground-secondary);
+}
+
+.hero__heading {
+  font-size: clamp(2.75rem, 5.5vw, 4.5rem);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.1;
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-foreground);
+  margin: 0;
+  white-space: pre-line;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 586px;
+
+  .line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.35);
+    flex-shrink: 0;
+  }
+}
+
+.hero__body {
+  font-size: var(--font-size--1);
+  line-height: 1.7;
+  color: var(--color-foreground-secondary);
+  max-width: 42ch;
+}
+
+.cta-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--font-size--1);
+  font-weight: 500;
+  padding: 14px 22px;
+  border-radius: 10px;
+  text-decoration: none;
+  width: fit-content;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--color-foreground);
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+
+  svg { transition: transform 0.2s ease; }
+
+  &:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.2);
+    transform: translateY(-1px);
+    svg { transform: translateX(3px); }
+  }
+}
+
+/* ── Mockup grid (unchanged) ── */
+.hero__grid {
+  height: 70vh;
+  max-height: 520px;
+  width: 80%;
+  margin-left: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  border-left: 1px solid rgba(255,255,255,0.1);
+  padding-left: 32px;
+
+  @media (max-width: 900px) {
+    height: 320px;
+    max-height: 320px;
+    width: 100%;
+    margin-left: 0;
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-left: 0;
+    padding-top: 24px;
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
+
+.mockup {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: var(--color-bg);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  &:hover img { transform: scale(1.04); }
+}
+
+.card-1 { grid-column: 1; grid-row: 1; }
+.card-2 { grid-column: 2; grid-row: 1 / span 2; margin-top: -40px; }
+.card-3 { grid-column: 1; grid-row: 2 / span 2; margin-bottom: -20px; }
+.card-4 { grid-column: 2; grid-row: 3; }
+
+@media (max-width: 900px) {
+  .card-1 { grid-column: 1; grid-row: 1; margin: 0; }
+  .card-2 { grid-column: 2; grid-row: 1; margin: 0; }
+  .card-3 { grid-column: 1; grid-row: 2; margin: 0; }
+  .card-4 { grid-column: 2; grid-row: 2; margin: 0; }
+}
+</style>

@@ -1,0 +1,92 @@
+---
+const stats = [
+  { value: 50,  suffix: "+", label: "Projects delivered" },
+  { value: 98,  suffix: "%", label: "Client satisfaction" },
+  { value: 4,   suffix: " countries", label: "We've worked in" },
+  { value: 30,  suffix: " days", label: "Post-launch support" },
+];
+---
+
+<div class="stats-bar">
+  {stats.map((s) => (
+    <div class="stats-bar__item">
+      <p class="stats-bar__value" data-target={s.value} data-suffix={s.suffix}>0</p>
+      <p class="stats-bar__label">{s.label}</p>
+    </div>
+  ))}
+</div>
+
+<script>
+  const counters = document.querySelectorAll<HTMLElement>('.stats-bar__value');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target as HTMLElement;
+      const target = parseInt(el.dataset.target || '0');
+      const suffix = el.dataset.suffix || '';
+      const duration = 1400;
+      const start = performance.now();
+
+      function tick(now: number) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(ease * target) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+      observer.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(el => observer.observe(el));
+</script>
+
+<style lang="scss">
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg);
+  position: relative;
+  z-index: 1;
+
+  @media (max-width: 700px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.stats-bar__item {
+  padding: 36px 32px;
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  &:last-child { border-right: none; }
+
+  @media (max-width: 700px) {
+    &:nth-child(2) { border-right: none; }
+    &:nth-child(3), &:nth-child(4) {
+      border-top: 1px solid var(--color-border);
+    }
+  }
+}
+
+.stats-bar__value {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: var(--font-weight-normal);
+  letter-spacing: -0.03em;
+  color: var(--color-foreground);
+  line-height: 1;
+}
+
+.stats-bar__label {
+  font-size: var(--font-size--1);
+  color: var(--color-foreground-secondary);
+  line-height: 1.4;
+}
+</style>

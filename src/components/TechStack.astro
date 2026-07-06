@@ -1,0 +1,293 @@
+---
+const stacks = [
+  {
+    category: "Frontend",
+    icon: "◆",
+    tools: ["Next.js", "Astro", "Tailwind CSS", "TypeScript", "UI/UX Design"],
+  },
+  {
+    category: "Mobile",
+    icon: "◈",
+    tools: ["Flutter", "React Native", "Swift", "Kotlin", "Expo", "Firebase"],
+  },
+  {
+    category: "Backend",
+    icon: "◇",
+    tools: ["Node.js", "PostgreSQL", "MongoDB"],
+  },
+  {
+    category: "Cloud & DevOps",
+    icon: "◉",
+    tools: ["AWS", "Vercel", "Docker", "GitHub Actions", "Nginx", "Cloudflare"],
+  },
+];
+---
+
+<section class="tech-section">
+  <div class="tech-glow tech-glow--1" aria-hidden="true"></div>
+  <div class="tech-glow tech-glow--2" aria-hidden="true"></div>
+
+  <div class="tech-section__inner">
+
+    <div class="tech-section__header">
+      <p class="tech-eyebrow">Our tech stack</p>
+      <h2 class="tech-heading">Built with tools<br>that <span class="highlight">last</span></h2>
+      <p class="tech-body">
+        We don't chase trends. Every tool we use is chosen for reliability,
+        community support, and long-term maintainability.
+      </p>
+    </div>
+
+    <div class="tech-grid">
+      {stacks.map((stack, i) => (
+        <div class="tech-card" style={`--delay: ${i * 90}ms`}>
+          <span class="tech-card__border" aria-hidden="true"></span>
+
+          <div class="tech-card__head">
+            <span class="tech-card__icon">{stack.icon}</span>
+            <p class="tech-card__category">{stack.category}</p>
+          </div>
+
+          <ul class="tech-card__tools">
+            {stack.tools.map((tool) => (
+              <li class="tech-card__tool">{tool}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style lang="scss">
+.tech-section {
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.tech-glow--1 {
+  width: 420px;
+  height: 420px;
+  top: -140px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(127, 252, 255, 0.12), transparent 70%);
+}
+
+.tech-glow--2 {
+  width: 380px;
+  height: 380px;
+  bottom: -160px;
+  right: -60px;
+  background: radial-gradient(circle, rgba(168, 127, 255, 0.1), transparent 70%);
+}
+
+.tech-section__inner {
+  position: relative;
+  z-index: 1;
+  padding: 100px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (max-width: 900px) {
+    padding: 60px var(--space-md);
+  }
+}
+
+.tech-section__header {
+  max-width: 480px;
+  margin-bottom: 56px;
+}
+
+.tech-eyebrow {
+  font-size: var(--font-size--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-foreground-secondary);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: linear-gradient(90deg, #7ffcff, rgba(168, 127, 255, 0.3));
+  }
+}
+
+.tech-heading {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.08;
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-foreground);
+  margin-bottom: 16px;
+
+  .highlight {
+    background: linear-gradient(120deg, #7ffcff, #a87fff 60%, #7ffcff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 6s linear infinite;
+  }
+}
+
+@keyframes shimmer {
+  to { background-position: 200% center; }
+}
+
+.tech-body {
+  font-size: var(--font-size--1);
+  line-height: 1.7;
+  color: var(--color-foreground-secondary);
+  max-width: 42ch;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tech-card {
+  position: relative;
+  padding: 32px 26px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease,
+              box-shadow 0.4s ease;
+  animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--delay);
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: transparent;
+    box-shadow:
+      0 20px 50px rgba(0, 0, 0, 0.4),
+      0 0 30px rgba(127, 252, 255, 0.08);
+  }
+
+  &__border {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(from 0deg, #7ffcff, #a87fff, #7ffcff, #a87fff, #7ffcff);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    animation: spin 5s linear infinite;
+    pointer-events: none;
+  }
+
+  &:hover &__border { opacity: 1; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.tech-card__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.tech-card__icon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 15px;
+  background: linear-gradient(160deg, rgba(127, 252, 255, 0.14), rgba(168, 127, 255, 0.08));
+  border: 1px solid rgba(127, 252, 255, 0.2);
+  color: #7ffcff;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  .tech-card:hover & {
+    transform: scale(1.1) rotate(-6deg);
+  }
+}
+
+.tech-card__category {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  background: linear-gradient(90deg, #7ffcff, #a87fff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.tech-card__tools {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tech-card__tool {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--color-foreground-secondary);
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+
+  .tech-card:hover & {
+    color: var(--color-foreground);
+  }
+
+  &:hover {
+    background: rgba(127, 252, 255, 0.12);
+    border-color: rgba(127, 252, 255, 0.3);
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-card, .tech-card__border, .highlight {
+    animation: none !important;
+  }
+}
+</style>

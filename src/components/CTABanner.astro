@@ -1,0 +1,156 @@
+---
+---
+
+<section class="cta-banner">
+  <div class="cta-banner__inner">
+
+    <div class="cta-banner__content">
+      <p class="cta-banner__eyebrow">Ready to build?</p>
+      <h2 class="cta-banner__heading">Let's turn your idea<br>into something real</h2>
+      <p class="cta-banner__body">
+        Book a free 30-minute discovery call. No pitch, no pressure —
+        just an honest conversation about what you want to build and
+        whether we're the right fit.
+      </p>
+      <div class="cta-banner__actions">
+        <a href="/contact" class="cta-btn cta-btn--primary">
+          Book a free call
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="tel:8123455500" class="cta-btn cta-btn--ghost">
+          +91 812 345 5500
+        </a>
+      </div>
+    </div>
+
+    <div class="cta-banner__grid" aria-hidden="true">
+      {Array.from({ length: 16 }).map(() => (
+        <div class="cta-banner__grid-cell"></div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style lang="scss">
+.cta-banner {
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-banner__inner {
+  padding: 100px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+
+  @media (max-width: 900px) {
+    padding: 60px var(--space-md);
+  }
+}
+
+.cta-banner__content {
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.cta-banner__eyebrow {
+  font-size: var(--font-size--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7ffcff;
+}
+
+.cta-banner__heading {
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.05;
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-foreground);
+  margin: 0;
+}
+
+.cta-banner__body {
+  font-size: var(--font-size--1);
+  line-height: 1.75;
+  color: var(--color-foreground-secondary);
+  max-width: 44ch;
+}
+
+.cta-banner__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--font-size--1);
+  font-weight: 500;
+  padding: 14px 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+
+  svg { transition: transform 0.2s ease; }
+
+  &:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+    svg { transform: translateX(3px); }
+  }
+
+  &--primary {
+    background: var(--color-foreground);
+    color: var(--color-bg);
+  }
+
+  &--ghost {
+    background: transparent;
+    color: var(--color-foreground-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      color: var(--color-foreground);
+    }
+  }
+}
+
+/* Decorative dot-grid pattern in the corner */
+.cta-banner__grid {
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  opacity: 0.06;
+  pointer-events: none;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
+}
+
+.cta-banner__grid-cell {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-foreground);
+  border-radius: 4px;
+}
+</style>

@@ -1,0 +1,333 @@
+---
+import type { services as Services } from '../data/services';
+
+interface Props {
+  services: typeof Services;
+}
+
+const { services } = Astro.props;
+---
+
+<section class="cards-section">
+  <div class="cards-section__inner">
+
+    <div class="cards-section__left">
+      <p class="eyebrow">What we do</p>
+      <h2 class="cards-section__heading">From IT development to media production,<br/>marketing strategies to hardware installations.</h2>
+      <p class="cards-section__body">
+        Every service we offer is designed to move the needle — whether
+        that's more traffic, more conversions, or a product your users love.
+      </p>
+      <a href="/contact" class="cta-btn">
+        Start a project
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="cards-section__grid">
+      {services.map((svc) => (
+        <article class="svc-card" style={`--card-bg: url('${svc.image}')`}>
+
+          <div class="svc-card__face">
+            <span class="svc-card__icon">{svc.icon}</span>
+            <div>
+              <p class="svc-card__eyebrow">{svc.eyebrow}</p>
+              <h3 class="svc-card__title">{svc.title}</h3>
+            </div>
+          </div>
+
+          <div class="svc-card__back">
+            <p class="svc-card__eyebrow">{svc.eyebrow}</p>
+            <h3 class="svc-card__title">{svc.title}</h3>
+            <p class="svc-card__desc">{svc.desc}</p>
+            <ul class="svc-card__chips">
+              {svc.chips.map((chip) => (
+                <li class="svc-chip">✓ {chip}</li>
+              ))}
+            </ul>
+          </div>
+
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style lang="scss">
+.cards-section {
+  position: relative;
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+}
+
+.cards-section__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  padding: 100px 72px 100px 80px;
+  gap: 0;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    padding: 60px var(--space-md);
+    gap: var(--space-xl);
+  }
+}
+
+/* ── Left ── */
+.cards-section__left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: 540px;
+  padding-right: var(--space-xl);
+  position: sticky;
+  top: 100px;
+
+  @media (max-width: 900px) {
+    position: static;
+    max-width: 100%;
+    padding-right: 0;
+  }
+}
+
+.eyebrow {
+  font-size: var(--font-size--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-foreground-secondary);
+}
+
+.cards-section__heading {
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.05;
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-foreground);
+  margin: 0;
+}
+
+.cards-section__body {
+  font-size: var(--font-size--1);
+  line-height: 1.7;
+  color: var(--color-foreground-secondary);
+  max-width: 38ch;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  background: var(--color-foreground);
+  color: var(--color-bg);
+  font-size: var(--font-size--1);
+  font-weight: 500;
+  padding: 14px 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  width: fit-content;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+
+  svg { transition: transform 0.2s ease; }
+
+  &:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+    svg { transform: translateX(3px); }
+  }
+}
+
+/* ── Cards grid ── */
+.cards-section__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  border-left: 1px solid var(--color-border);
+  padding-left: 48px;
+
+  @media (max-width: 900px) {
+    border-left: none;
+    border-top: 1px solid var(--color-border);
+    padding-left: 0;
+    padding-top: 40px;
+  }
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Card ── */
+.svc-card {
+  position: relative;
+  min-height: 420px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1),
+              border-color 0.4s ease,
+              box-shadow 0.4s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,255,255,0.22);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  /* bg photo */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--card-bg);
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: scale(1.06);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  /* dark overlay */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+      rgba(0,0,0,0.92) 0%,
+      rgba(0,0,0,0.6) 45%,
+      rgba(0,0,0,0.2) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+  }
+
+  &:hover::before { opacity: 1; transform: scale(1); }
+  &:hover::after  { opacity: 1; }
+}
+
+/* default face */
+.svc-card__face {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 32px;
+  text-align: center;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+
+  .svc-card:hover & {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.97);
+    pointer-events: none;
+  }
+}
+
+.svc-card__icon {
+  font-size: 3.5rem;
+  line-height: 1;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(10px);
+}
+
+/* hover back */
+.svc-card__back {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s cubic-bezier(0.16,1,0.3,1),
+              transform 0.4s cubic-bezier(0.16,1,0.3,1);
+
+  .svc-card:hover & {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.svc-card__eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(127,252,255,0.9);
+  margin: 0;
+}
+
+.svc-card__title {
+  font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0;
+  text-align: center;
+
+  .svc-card__back & {
+    text-align: left;
+    font-size: 1.15rem;
+  }
+}
+
+.svc-card__desc {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.78);
+  margin: 0 0 6px;
+  max-width: 32ch;
+}
+
+.svc-card__chips {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.svc-chip {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  backdrop-filter: blur(8px);
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: rgba(255,255,255,0.16);
+  }
+}
+
+@media (max-width: 768px) {
+  .svc-card { min-height: 340px; }
+  .svc-card__icon { width: 80px; height: 80px; font-size: 2.8rem; }
+  .svc-card__back { padding: 20px; }
+}
+</style>

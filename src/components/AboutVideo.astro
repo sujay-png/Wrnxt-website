@@ -1,25 +1,18 @@
 ---
+const milestones = [
+  { year: "2017", label: "Cybersecurity Development solutions" },
+  { year: "2019", label: "Global Expansion Managed IT Services" },
+  { year: "2020", label: "Remote Work & Digital Adaptation" },
+  { year: "2021", label: "Transformation & AI Integration" },
+  { year: "2023", label: "Smart solution & IoT Integration" },
+  { year: "2024", label: "Advancing into the Digital Future" },
+  { year: "2025", label: "Next-Gen IT innovation and sustainability focus" },
+];
 ---
 
 <section class="section AboutVideo" data-padding="xl">
   <div class="container">
     <div class="sidebar AboutVideo__sidebar" data-gap="md-2xl">
-      <div class="stack AboutVideo__content" data-gap="lg">
-        <h2 class="heading" data-font-size="4">Hear from our partner agency founders</h2>
-
-        <div class="reactive-divider horizontal" x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })">
-          <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
-          <div class="divider-line" x-ref="dividerLine">
-            <div class="width-display" x-text="formattedWidth" x-cloak>0px</div>
-          </div>
-          <div class="anchor end-anchor"><div class="anchor-circle"></div></div>
-        </div>
-
-        <div class="prose">
-          <p>Real stories from the people building the future of the agency world. We sat down with our partners to discuss how Salo has transformed their day-to-day workflow.</p>
-        </div>
-      </div>
-
       <div class="anchor-card anchor-card--rounded AboutVideo__player" x-data="{ isPlaying: false }">
         <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
           <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
@@ -30,12 +23,10 @@
         </svg>
         <div class="anchor-content">
           <div class="frame AboutVideo__frame" style="--frame-ratio:16/9;">
-            <!-- Interactive Custom Facade matching live salo.uk partner video -->
             <div class="AboutVideo__facade" x-show="!isPlaying" @click="isPlaying = true" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 10; display: flex; flex-direction: column; justify-content: space-between; padding: 1.5rem; box-sizing: border-box; color: #ffffff; user-select: none; overflow: hidden; cursor: pointer;">
               <div class="AboutVideo__backdrop" style="position: absolute; inset: 0; width: 100%; height: 100%; background-image: url('https://media.salo.uk/salo-website-prod/team-2.jpg'); background-size: cover; background-position: center; filter: brightness(0.7) contrast(1.05); z-index: 1;"></div>
               <div class="AboutVideo__overlay" style="position: absolute; inset: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.15) 40%, rgba(0, 0, 0, 0.8) 100%); z-index: 2;"></div>
 
-              <!-- Top Right Salo Watermark -->
               <div class="AboutVideo__brand" style="position: relative; z-index: 3; display: flex; justify-content: flex-end; width: 100%;">
                 <svg viewBox="0 0 104 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="AboutVideo__logoSvg" style="width: 80px; height: 23px; display: block; opacity: 0.9;">
                   <path d="M101.813 9.07487C98.1337 1.20259 88.7695 -2.19519 80.8963 1.48374L80.208 0.00968382C72.3348 3.68862 68.9357 13.0518 72.6151 20.9241C76.2944 28.7964 85.6587 32.1942 93.5319 28.5152L94.2202 29.9884C102.093 26.3095 105.492 16.9463 101.813 9.07398V9.07487ZM90.7839 22.6376C86.1581 24.799 80.6568 22.8017 78.4951 18.1773C76.3335 13.552 78.331 8.05137 82.956 5.88995L83.6443 7.36223C88.2701 5.20081 93.7714 7.19815 95.933 11.8225C98.0947 16.4478 96.0971 21.9485 91.4722 24.1099L90.7839 22.6376Z" fill="white"></path>
@@ -45,7 +36,6 @@
                 </svg>
               </div>
 
-              <!-- Center Interactive Play Button -->
               <button class="AboutVideo__playButton" aria-label="Play video" style="position: relative; z-index: 3; align-self: center; background: none; border: none; padding: 0; cursor: pointer; margin: auto 0;">
                 <span class="AboutVideo__playCircle" style="display: flex; align-items: center; justify-content: center; width: 68px; height: 68px; border-radius: 50%; background-color: #8c38ff; color: #ffffff; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); transition: transform 0.3s ease;">
                   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="margin-left: 3px; display: block;">
@@ -54,7 +44,6 @@
                 </span>
               </button>
 
-              <!-- Bottom Controls / Info Bar -->
               <div class="AboutVideo__footer" style="position: relative; z-index: 3; display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 1rem;">
                 <div class="AboutVideo__speaker" style="display: flex; align-items: center; gap: 0.5rem;">
                   <span class="AboutVideo__playMini" style="display: flex; align-items: center; color: #ffffff;">
@@ -78,7 +67,6 @@
               </div>
             </div>
 
-            <!-- Active Video iFrame -->
             <template x-if="isPlaying">
               <iframe
                 src="https://player.vimeo.com/video/1170350821?autoplay=1&byline=false&portrait=false&title=false&transparent=0"
@@ -92,6 +80,33 @@
           </div>
         </div>
       </div>
+
+      <div class="stack AboutVideo__content" data-gap="lg">
+        <h2 class="heading" data-font-size="4">Hear from our partner agency founders</h2>
+
+        <div class="reactive-divider horizontal" x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })">
+          <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
+          <div class="divider-line" x-ref="dividerLine">
+            <div class="width-display" x-text="formattedWidth" x-cloak>0px</div>
+          </div>
+          <div class="anchor end-anchor"><div class="anchor-circle"></div></div>
+        </div>
+
+        <div class="AboutVideo__timeline">
+          {milestones.map((m) => (
+            <div class="AboutVideo__timelineItem">
+              <div class="AboutVideo__timelineMarker">
+                <span class="AboutVideo__timelineDot"></span>
+                <span class="AboutVideo__timelineTrack"></span>
+              </div>
+              <div class="AboutVideo__timelineBody">
+                <span class="AboutVideo__timelineYear">{m.year}</span>
+                <p class="AboutVideo__timelineLabel">{m.label}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -103,7 +118,8 @@
   }
 
   .AboutVideo__sidebar {
-    --sidebar-width: clamp(22rem, 46%, 42rem);
+    /* smaller reserved width for the text column = more room for video */
+    --sidebar-width: clamp(16rem, 26%, 22rem);
     align-items: center;
 
     @media (max-width: 1023px) {
@@ -113,11 +129,14 @@
 
   .AboutVideo__content {
     flex-basis: var(--sidebar-width);
+    flex-shrink: 0;
   }
 
   .AboutVideo__player {
+    /* grow aggressively to fill remaining space */
     flex-basis: 0;
     flex-grow: 999;
+    min-width: 0;
     cursor: pointer;
 
     iframe {
@@ -275,5 +294,88 @@
 
   .AboutVideo__icon {
     color: rgba(255, 255, 255, 0.8);
+  }
+
+  // ---------- Vertical timeline styling ----------
+  .AboutVideo__timeline {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.75rem;
+  }
+
+  .AboutVideo__timelineItem {
+    position: relative;
+    display: flex;
+    gap: 1.25rem;
+
+    &:last-child .AboutVideo__timelineTrack {
+      display: none;
+    }
+
+    &:hover .AboutVideo__timelineDot {
+      background-color: #d4ff4d;
+      box-shadow: 0 0 0 5px rgba(212, 255, 77, 0.15);
+    }
+
+    &:hover .AboutVideo__timelineBody {
+      border-color: rgba(212, 255, 77, 0.35);
+      transform: translateX(2px);
+    }
+  }
+
+  .AboutVideo__timelineMarker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    padding-top: 0.4rem;
+  }
+
+  .AboutVideo__timelineDot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #2f4bff;
+    box-shadow: 0 0 0 4px rgba(47, 75, 255, 0.15);
+    flex-shrink: 0;
+    transition: background-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .AboutVideo__timelineTrack {
+    width: 2px;
+    flex: 1;
+    min-height: 3rem;
+    margin-top: 0.35rem;
+    background: linear-gradient(180deg, rgba(47, 75, 255, 0.6), rgba(47, 75, 255, 0.15));
+  }
+
+  .AboutVideo__timelineBody {
+    flex: 1;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.25rem;
+    background-color: var(--color-surface, rgba(127, 127, 127, 0.06));
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .AboutVideo__timelineItem:last-child .AboutVideo__timelineBody {
+    margin-bottom: 0;
+  }
+
+  .AboutVideo__timelineYear {
+    display: block;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-text, #ffffff);
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.01em;
+  }
+
+  .AboutVideo__timelineLabel {
+    margin: 0;
+    color: var(--color-muted);
+    line-height: 1.6;
+    font-size: 0.9rem;
   }
 </style>

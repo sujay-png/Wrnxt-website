@@ -1,55 +1,66 @@
- ---
-const stacks = [
+---
+const services = [
   {
-    category: "Frontend",
+    category: "Brand Strategy",
     icon: "◆",
-    tools: ["Next.js", "Astro", "Tailwind CSS", "TypeScript", "UI/UX Design"],
+    tools: ["Positioning", "Messaging", "Visual Identity"],
   },
   {
-    category: "Mobile",
+    category: "Content Marketing",
     icon: "◈",
-    tools: ["Flutter", "React Native", "Swift", "Kotlin", "Expo", "Firebase"],
+    tools: ["Blog", "Video", "Social", "Copywriting"],
   },
   {
-    category: "Backend",
+    category: "Paid Media",
     icon: "◇",
-    tools: ["Node.js", "PostgreSQL", "MongoDB"],
+    tools: ["Google Ads", "Meta Ads", "Programmatic"],
   },
   {
-    category: "Cloud & DevOps",
+    category: "SEO & Organic Growth",
     icon: "◉",
-    tools: ["AWS", "Vercel", "Docker", "GitHub Actions", "Nginx", "Cloudflare"],
+    tools: ["Technical SEO", "Content Optimization", "Link Building"],
+  },
+  {
+    category: "Email & CRM",
+    icon: "◐",
+    tools: ["Lifecycle Campaigns", "Automation", "Segmentation"],
+  },
+  {
+    category: "Analytics & Reporting",
+    icon: "◭",
+    tools: ["Attribution", "Dashboards", "A/B Testing"],
   },
 ];
 ---
- <section class="tech-section">
-  <div class="tech-glow tech-glow--1" aria-hidden="true"></div>
-  <div class="tech-glow tech-glow--2" aria-hidden="true"></div>
 
-  <div class="tech-section__inner">
+<section class="marketing-section">
+  <div class="marketing-glow marketing-glow--1" aria-hidden="true"></div>
+  <div class="marketing-glow marketing-glow--2" aria-hidden="true"></div>
 
-    <div class="tech-section__header">
-      <p class="tech-eyebrow">Our tech stack</p>
-      <h2 class="tech-heading">Built with tools<br>that <span class="highlight">last</span></h2>
-      <p class="tech-body">
-        We don't chase trends. Every tool we use is chosen for reliability,
-        community support, and long-term maintainability.
+  <div class="marketing-section__inner">
+
+    <div class="marketing-section__header">
+      <p class="marketing-eyebrow">Our marketing services</p>
+      <h2 class="marketing-heading">Strategy that<br>drives <span class="highlight">growth</span></h2>
+      <p class="marketing-body">
+        From brand positioning to performance reporting, every service is
+        built to turn attention into measurable results.
       </p>
     </div>
 
-    <div class="tech-grid">
-      {stacks.map((stack) => (
-        <div class="tech-card">
-          <span class="tech-card__border" aria-hidden="true"></span>
+    <div class="marketing-grid">
+      {services.map((service) => (
+        <div class="marketing-card">
+          <span class="marketing-card__border" aria-hidden="true"></span>
 
-          <div class="tech-card__head">
-            <span class="tech-card__icon">{stack.icon}</span>
-            <p class="tech-card__category">{stack.category}</p>
+          <div class="marketing-card__head">
+            <span class="marketing-card__icon">{service.icon}</span>
+            <p class="marketing-card__category">{service.category}</p>
           </div>
 
-          <ul class="tech-card__tools">
-            {stack.tools.map((tool) => (
-              <li class="tech-card__tool">{tool}</li>
+          <ul class="marketing-card__tools">
+            {service.tools.map((tool) => (
+              <li class="marketing-card__tool">{tool}</li>
             ))}
           </ul>
         </div>
@@ -60,14 +71,14 @@ const stacks = [
 </section>
 
 <style lang="scss">
-.tech-section {
+.marketing-section {
   border-top: 1px solid var(--color-border);
   background: var(--color-bg);
   position: relative;
   overflow: hidden;
 }
 
-.tech-glow {
+.marketing-glow {
   position: absolute;
   border-radius: 50%;
   filter: blur(100px);
@@ -75,7 +86,7 @@ const stacks = [
   z-index: 0;
 }
 
-.tech-glow--1 {
+.marketing-glow--1 {
   width: 420px;
   height: 420px;
   top: -140px;
@@ -83,7 +94,7 @@ const stacks = [
   background: radial-gradient(circle, rgba(127, 252, 255, 0.12), transparent 70%);
 }
 
-.tech-glow--2 {
+.marketing-glow--2 {
   width: 380px;
   height: 380px;
   bottom: -160px;
@@ -91,26 +102,24 @@ const stacks = [
   background: radial-gradient(circle, rgba(168, 127, 255, 0.1), transparent 70%);
 }
 
-.tech-section__inner {
+.marketing-section__inner {
   position: relative;
   z-index: 1;
   padding: 100px 80px;
   max-width: 1200px;
   margin: 0 auto;
 
-
-
   @media (max-width: 900px) {
     padding: 60px var(--space-md);
   }
 }
 
-.tech-section__header {
+.marketing-section__header {
   max-width: 480px;
   margin-bottom: 56px;
 }
 
-.tech-eyebrow {
+.marketing-eyebrow {
   font-size: var(--font-size--1);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -128,7 +137,7 @@ const stacks = [
   }
 }
 
-.tech-heading {
+.marketing-heading {
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: var(--font-weight-normal);
   line-height: 1.08;
@@ -144,27 +153,28 @@ const stacks = [
   }
 }
 
-.tech-body {
+.marketing-body {
   font-size: var(--font-size--1);
   line-height: 1.7;
   color: var(--color-foreground-secondary);
   max-width: 42ch;
 }
 
-.tech-grid {
+.marketing-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 14px;
 
   @media (max-width: 900px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 560px) {
     grid-template-columns: 1fr;
   }
 }
-.tech-card {
+
+.marketing-card {
   position: relative;
   padding: 32px 26px;
   border-radius: var(--radius-md);
@@ -172,7 +182,7 @@ const stacks = [
   background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
 }
 
-.tech-card__border {
+.marketing-card__border {
   position: absolute;
   inset: 0;
   border-radius: inherit;
@@ -185,18 +195,18 @@ const stacks = [
   pointer-events: none;
 }
 
-.tech-card:hover .tech-card__border {
+.marketing-card:hover .marketing-card__border {
   opacity: 1;
 }
 
-.tech-card__head {
+.marketing-card__head {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 22px;
 }
 
-.tech-card__icon {
+.marketing-card__icon {
   width: 38px;
   height: 38px;
   flex-shrink: 0;
@@ -210,19 +220,15 @@ const stacks = [
   color: #7ffcff;
 }
 
-.tech-card__category {
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.marketing-card__category {
+  font-size: 13px;
+  letter-spacing: 0.04em;
   font-weight: 600;
-  background: linear-gradient(90deg, #7ffcff, #a87fff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-foreground);
   margin: 0;
 }
 
-.tech-card__tools {
+.marketing-card__tools {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -231,7 +237,7 @@ const stacks = [
   gap: 8px;
 }
 
-.tech-card__tool {
+.marketing-card__tool {
   font-size: 12.5px;
   font-weight: 500;
   color: var(--color-foreground-secondary);
@@ -241,11 +247,11 @@ const stacks = [
   border: 1px solid rgba(255, 255, 255, 0.09);
 }
 
-.tech-card:hover .tech-card__tool {
+.marketing-card:hover .marketing-card__tool {
   color: var(--color-foreground);
 }
 
-.tech-card__tool:hover {
+.marketing-card__tool:hover {
   background: rgba(127, 252, 255, 0.12);
   border-color: rgba(127, 252, 255, 0.3);
 }

@@ -1,17 +1,25 @@
 ---
+
 const clientLogos = [
-  { name: "HSBC", url: "https://media.salo.uk/salo-website-prod/hsbc.svg" },
-  { name: "Lab", url: "https://media.salo.uk/salo-website-prod/lab.svg" },
-  { name: "Octopus Money", url: "https://media.salo.uk/salo-website-prod/octopus-money.svg" },
-  { name: "Picniq", url: "https://media.salo.uk/salo-website-prod/picniq.svg" },
-  { name: "Wilderness", url: "https://media.salo.uk/salo-website-prod/wilderness.svg" },
-  { name: "Threecolts", url: "https://media.salo.uk/salo-website-prod/threecolts.svg" },
-  { name: "Bucherer", url: "https://media.salo.uk/salo-website-prod/bucherer.svg" },
-  { name: "Coda", url: "https://media.salo.uk/salo-website-prod/coda.svg" },
-  { name: "Ratio", url: "https://media.salo.uk/salo-website-prod/ratio.svg" },
-  { name: "Brixton", url: "https://media.salo.uk/salo-website-prod/brixton.svg" }
+  { name: "Doctor", url: "/public/favicon.svg" },
+  { name: "image1", url: "/images/image1.svg" },
+  { name: "Bharth", url: "/images/Bharath.svg" },
+  { name: "image2", url: "/images/image2.svg" },
+  { name: "iraspa", url: "/images/iraspa.svg" },
+  { name: "onemorerep", url: "/images/one_more_rep.jpeg" },
+  { name: "RoyalDecor", url: "/images/Royal_Decor.jpeg" },
+  { name: "Sakrt", url: "/images/Sakrt.svg" },
+  { name: "Sangam", url: "/images/sangam.svg" },
+  { name: "Sanjeevini", url: "/images//Sanjeeveni.svg" },
+  { name: "ShutterStories", url: "/images//shutter_stories.jpeg" },
+  { name: "Vastu", url:"/images//Vastu.svg" },
 ];
+
 ---
+
+
+
+
 
 <section class="section HomeCta" data-padding="xl">
   <div class="stack" data-gap="2xl">
@@ -68,7 +76,7 @@ const clientLogos = [
           </li>
         ))}
       </ul>
-      <ul class="marquee__content" aria-hidden="true">
+      <ul class="marquee__content" aria-hidden="false">
         {clientLogos.map((logo) => (
           <li class="marquee__item">
             <img src={logo.url} alt={`${logo.name} Logo.`} loading="lazy" decoding="async" width="160" height="120" />

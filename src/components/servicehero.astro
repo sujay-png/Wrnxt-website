@@ -1,18 +1,20 @@
 ---
 import type { heroImages as HeroImages } from '../data/services';
 
-interface CTA { label: string; href: string; }
+// interface CTA { label: string; href: string; }
 
 interface Props {
   eyebrow: string;
   title: string;
   desc: string;
-  ctaPrimary: CTA;
-  ctaSecondary?: CTA;
+  // ctaPrimary: CTA;
+  // ctaSecondary?: CTA;
   images: typeof HeroImages;
+  text?: string;
 }
 
-const { eyebrow, title, desc, ctaPrimary, ctaSecondary, images } = Astro.props;
+const { eyebrow, title, desc, images } = Astro.props;
+const{text ="Get Started"} = Astro.props;
 ---
 
 <section class="hero">
@@ -29,7 +31,7 @@ const { eyebrow, title, desc, ctaPrimary, ctaSecondary, images } = Astro.props;
     <p class="hero__body">{desc}</p>
 
     <div class="cta-group">
-      <a href={ctaPrimary.href} class="cta-btn">
+      <!-- <a href={ctaPrimary.href} class="cta-btn">
         {ctaPrimary.label}
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
              fill="none" stroke="currentColor" stroke-width="2"
@@ -47,9 +49,13 @@ const { eyebrow, title, desc, ctaPrimary, ctaSecondary, images } = Astro.props;
             <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
           </svg>
         </a>
-      )}
+      )} -->
+      <!-- <button class="animated-btn" data-animated-button>
+        <span class="btn-text"> {text} </span>
+      </button> -->
     </div>
   </div>
+ 
 
   <aside class="hero__grid" aria-label="Project mockups">
     {images.map((img) => (
@@ -59,6 +65,21 @@ const { eyebrow, title, desc, ctaPrimary, ctaSecondary, images } = Astro.props;
     ))}
   </aside>
 </section>
+
+<script>
+  const buttons =document.querySelectorAll("[data-animated-button]");
+    buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+     
+      button.classList.add('is-clicked');
+      
+      // Remove it after the animation finishes
+      setTimeout(() => {
+        button.classList.remove('is-clicked');
+      }, 200);
+    });
+  });
+</script>
 
 <style lang="scss">
 .hero {
@@ -221,4 +242,62 @@ const { eyebrow, title, desc, ctaPrimary, ctaSecondary, images } = Astro.props;
   .card-3 { grid-column: 1; grid-row: 2; margin: 0; }
   .card-4 { grid-column: 2; grid-row: 2; margin: 0; }
 }
+
+.animated-btn {
+    --btn-bg: #4f46e5;
+    --btn-hover-bg: #4338ca;
+    --btn-text-color: #ffffff;
+    
+    position: relative;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--btn-text-color);
+    background-color: var(--btn-bg);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    
+    /* Hardware acceleration and transition for smooth hover */
+    transform: translateZ(0);
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Hover micro-interaction */
+  .animated-btn:hover {
+    background-color: var(--btn-hover-bg);
+    transform: scale(1.05);
+    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3), 0 4px 6px -4px rgba(79, 70, 229, 0.3);
+  }
+
+  /* Active/Click pop animation via CSS Keyframes */
+  .animated-btn.is-clicked {
+    animation: pop 0.2s ease-out forwards;
+  }
+
+  @keyframes pop {
+    0% {
+      transform: scale(1.05);
+    }
+    50% {
+      transform: scale(0.92);
+    }
+    100% {
+      transform: scale(1.05);
+    }
+  }
+
+  /* Accessibility feature: respects user's system preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .animated-btn {
+      transition: none;
+      animation: none;
+    }
+    .animated-btn:hover {
+      transform: none;
+    }
+  }
 </style>

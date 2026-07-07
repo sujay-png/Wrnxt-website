@@ -3,7 +3,7 @@
 
 <section class="section AboutStory" data-padding="xl">
   <div class="container">
-    <div class="sidebar AboutStory__sidebar" data-side="right" data-gap="md-2xl">
+    <div class="sidebar AboutStory__sidebar" data-side="left" data-gap="md-2xl">
       <div class="anchor-card anchor-card--rounded AboutStory__image">
         <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
           <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
@@ -12,16 +12,27 @@
           <circle cx="19.5" cy="calc(100% - 3.5px)" r="3"></circle>
           <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3"></circle>
         </svg>
+
         <div class="anchor-content">
           <div class="frame" style="--frame-ratio:1080/814;">
-            <img src="https://media.salo.uk/salo-website-prod/Salo Team_Main Image.png" alt="Photo of 7 team members Spring 2026" loading="lazy" decoding="async" width="1080" height="814" />
+            <img
+              src="https://media.salo.uk/salo-website-prod/Salo Team_Main Image.png"
+              alt="WRNXT team"
+              loading="lazy"
+              decoding="async"
+              width="1080"
+              height="814"
+            />
           </div>
         </div>
       </div>
 
       <div class="stack AboutStory__content" data-gap="lg">
-        <span class="heading eyebrow">The Salo story</span>
-        <h2 class="heading" data-font-size="4">From small beginnings on the south coast to international reach</h2>
+        <span class="heading eyebrow">Who We Are</span>
+
+        <h2 class="heading" data-font-size="4">
+          Building technology solutions that help businesses grow
+        </h2>
 
         <div class="reactive-divider horizontal" x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })">
           <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
@@ -31,8 +42,30 @@
           <div class="anchor end-anchor"><div class="anchor-circle"></div></div>
         </div>
 
-        <div class="prose">
-          <p>Salo was founded by award-winning creative Carl in his hometown of Wareham, Dorset. Since then, the business has gone from strength to strength, growing consistently while maintaining a close-knit culture. Our reach has expanded significantly, allowing us to support clients across the globe with complex design requirements.</p>
+        <div class="mission-list">
+          <div class="mission-item">
+            <span>Our Mission</span>
+            <p>
+              To empower businesses with innovative technology solutions and
+              creative services that drive sustainable growth and digital excellence.
+            </p>
+          </div>
+
+          <div class="mission-item">
+            <span>Our Vision</span>
+            <p>
+              To be a trusted leader in integrated IT, media, and marketing
+              services, helping businesses transform through innovation.
+            </p>
+          </div>
+
+          <div class="mission-item">
+            <span>Our Values</span>
+            <p>
+              Integrity, innovation, excellence, and customer success guide every
+              decision we make and every solution we deliver.
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -45,20 +78,53 @@
     background-color: var(--color-bg);
   }
 
-  .AboutStory__sidebar {
+  .AboutStory__sidebar.AboutStory__sidebar {
     --sidebar-width: clamp(22rem, 44%, 45rem);
+    display: grid !important;
+    grid-template-columns: minmax(0, var(--content-min, 55%)) minmax(0, var(--sidebar-width));
     align-items: center;
+    gap: clamp(2rem, 5vw, 4rem);
+    flex-direction: unset;
 
     @media (max-width: 1023px) {
-      flex-direction: column-reverse;
+      grid-template-columns: 1fr;
     }
   }
 
   .AboutStory__image {
-    flex-basis: var(--content-min, 55%);
+    width: 100%;
+    min-width: 0;
   }
 
   .AboutStory__content {
-    flex-basis: var(--sidebar-width);
+    width: 100%;
+    min-width: 0;
+  }
+
+  .mission-list {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .mission-item {
+    padding: 1.2rem 0 1.2rem 1.2rem;
+    border-left: 2px solid var(--color-border);
+  }
+
+  .mission-item span {
+    display: inline-block;
+    margin-bottom: 0.65rem;
+    padding: 0.35rem 0.8rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .mission-item p {
+    margin: 0;
+    color: var(--color-muted);
+    line-height: 1.75;
   }
 </style>

@@ -5,31 +5,33 @@ import Footer from '../../components/Footer.astro';
 import ServiceHero from '../../components/servicehero.astro';
 import ServiceCards from '../../components/servicescard.astro';
 import StatsBar from '../../components/StatsBar.astro';
-import TechStack from '../../components/TechStack.astro';
+import Marketingstack from '../../components/Marketingstack.astro';
 import Testimonials from '../../components/Testimonials.astro';
-import RelatedProjects from '../../components/RelatedProject.astro';
-import { heroImages, services } from '../../data/services';
+import CTABanner from '../../components/CTABanner.astro';
+import { heroImages, services } from '../../data/branding';
+import Websitecard from '../../components/Websitecard.astro';
+import BrandingCard from '../../components/BrandingCards.astro';
+import MarketingApproach from '../../components/Marketingapproch.astro';
 ---
 
 <Layout title="IT Services — WRNXT">
   <Header />
 
   <div class="bg-dots" aria-hidden="true"></div>
-
- <ServiceHero
+<ServiceHero
   eyebrow="Our services"
-  title="Smarter IT.
-Stronger Business."
-  desc="Your on-demand technology department. Clear your IT backlog and keep your systems running with our flexible, scalable support model. No long-term lock-in, only pay for what you need."
-
+  title="Marketing."
+  desc="Strategic marketing solutions to elevate your brand and reach your target audience effectively"
+ 
   images={heroImages}
 />
+ 
 
   <StatsBar />
-  <ServiceCards services={services} />
-  <TechStack />
-  <RelatedProjects />
-  <Testimonials />
+  <BrandingCard services={services} />
+  <Marketingstack />
+  <MarketingApproach />
+  <CTABanner />
   <Footer />
 </Layout>
 
@@ -39,8 +41,11 @@ Stronger Business."
     inset: 0;
     background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
     background-size: 24px 24px;
-    opacity: 0.5;
+    opacity: 0.12;
     pointer-events: none;
     z-index: 0;
   }
 </style>
+
+ <!-- ctaPrimary={{ label: "Packages & pricing", href: "/pricing" }}
+  ctaSecondary={{ label: "How it works", href: "/how-it-works" }} -->

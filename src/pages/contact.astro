@@ -193,7 +193,7 @@ const interests = [
   <Footer />
 </Layout>
 
-<script>
+<script data-astro-rerun>
   // Unlock scroll — the Layout locks it until GSAP animations init,
   // but this page doesn't use the homepage/about animation scripts.
   function unlockScroll() {
@@ -471,9 +471,9 @@ const interests = [
   }
 
   .pill-checkbox:checked + .pill-label {
-    background: var(--color-foreground);
-    color: var(--color-bg, #060606);
-    border-color: var(--color-foreground);
+  background: var(--color-accent, #060606);
+   color: #ff0000;
+   border-color: var(--color-accent, #060606);
   }
 
   .pill-label:hover {
@@ -482,7 +482,7 @@ const interests = [
   }
 
   .pill-checkbox:focus-visible + .pill-label {
-    outline: 2px solid var(--color-foreground);
+    outline: 2px solid var(--color-blue, #3b82f6);
     outline-offset: 2px;
   }
 

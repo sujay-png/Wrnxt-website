@@ -1,0 +1,725 @@
+---
+export interface ProjectCard {
+  variant: "phone-bleed" | "panel" | "phone-frame";
+  id: string;
+  data: Record<string, any>;
+}
+
+const projects: ProjectCard[] = [
+  {
+    variant: "phone-bleed",
+    id: "wilderness",
+    data: {
+      banner: "Not ready to book?",
+      bannerLink: "SIGN UP TO LEARN MORE",
+      badge: "WILDERNESS",
+      cta: "VIEW AVAILABILITY",
+      eyebrow: "BOTSWANA",
+      heading: "Experience safari magic",
+      credit: "trip by @missangievilla & @jeremyaustiin",
+      footTitle: "Discover Earth's ultimate untamed places.",
+      footBody:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+    },
+  },
+  {
+    variant: "panel",
+    id: "roswell-uiux",
+    data: {
+      mark: "R",
+      markStyle: "roswell",
+      eyebrow: "UI / UX",
+      heading: "A bold new identity for a Shopify Platinum Partner",
+      body: "The new website needed to reflect Roswell's bold, confident identity while letting their work take center stage.",
+    },
+  },
+  {
+    variant: "phone-frame",
+    id: "roswell-site",
+    data: {
+      theme: "roswell",
+      vertical: "ROSWELL NYC",
+      coords: "40.7120° N, 74.0086° W",
+    },
+  },
+  {
+    variant: "panel",
+    id: "solent-website",
+    data: {
+      mark: "wave",
+      markStyle: "solent",
+      brand: "Solent Rib Charter",
+      eyebrow: "High-Performing Website",
+      heading: "Modernising a group of sites for a marine services provider",
+      body: "Breaking key pages into modular components allowed us to build a shared design system.",
+    },
+  },
+  {
+    variant: "phone-frame",
+    id: "solent-app",
+    data: {
+      theme: "solent",
+      isApp: true,
+    },
+  },
+];
+---
+
+<section class="related">
+  <div class="related__head">
+    <h2 class="related__title">Related projects</h2>
+    <div class="related__nav">
+      <button class="nav-btn" data-dir="-1" aria-label="Scroll left">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
+          <path d="M17 7H1M1 7L7 1M1 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="nav-btn" data-dir="1" aria-label="Scroll right">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
+          <path d="M1 7H17M17 7L11 1M17 7L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="related__track" id="track">
+    {projects.map((p) => (
+      <article class={`card card--${p.variant}`} data-id={p.id}>
+        {p.variant === "phone-bleed" && (
+          <div class="bleed">
+            <div class="bleed__topbar">
+              <span class="bleed__topbar-text">
+                {p.data.banner} <u>{p.data.bannerLink}</u>
+              </span>
+              <span class="bleed__cta">{p.data.cta}</span>
+            </div>
+            <div class="bleed__badge">
+              <span class="wave-icon" aria-hidden="true">〜</span>{p.data.badge}
+            </div>
+            <div class="bleed__scene" role="img" aria-label="Two people on a wooden safari walkway at sunset"></div>
+            <div class="bleed__overlay">
+              <p class="bleed__eyebrow">{p.data.eyebrow}</p>
+              <h3 class="bleed__heading">{p.data.heading}</h3>
+              <p class="bleed__credit">{p.data.credit}</p>
+            </div>
+            <div class="bleed__foot">
+              <p class="bleed__foot-title">{p.data.footTitle}</p>
+              <p class="bleed__foot-body">{p.data.footBody}</p>
+            </div>
+          </div>
+        )}
+
+        {p.variant === "panel" && (
+          <>
+            <div class={`panel__mark panel__mark--${p.data.markStyle}`}>
+              {p.data.markStyle === "roswell" ? (
+                <span class="mark-r">R</span>
+              ) : (
+                <div class="mark-solent">
+                  <span class="mark-solent__wave">〜〜〜</span>
+                  <span class="mark-solent__name">{p.data.brand}</span>
+                </div>
+              )}
+            </div>
+            <div class="panel__body">
+              <p class="panel__eyebrow">{p.data.eyebrow}</p>
+              <h3 class="panel__heading">{p.data.heading}</h3>
+              <p class="panel__text">{p.data.body}</p>
+            </div>
+            <button class="panel__cta">
+              View Project
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+                <path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </>
+        )}
+
+        {p.variant === "phone-frame" && p.data.theme === "roswell" && (
+          <div class="phone">
+            <div class="phone__statusbar">
+              <span>9:41</span>
+              <span class="phone__notch" aria-hidden="true"></span>
+              <span class="phone__icons">
+                <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="2.5" height="4" rx="0.5" fill="currentColor"/><rect x="4" y="5" width="2.5" height="6" rx="0.5" fill="currentColor"/><rect x="8" y="3" width="2.5" height="8" rx="0.5" fill="currentColor"/><rect x="12" y="0" width="2.5" height="11" rx="0.5" fill="currentColor"/></svg>
+                <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 10.5C7.9 10.5 8.3 10.35 8.6 10.05C8.9 9.75 9 9.4 9 9C9 8.6 8.85 8.25 8.55 7.95C8.25 7.65 7.9 7.5 7.5 7.5C7.1 7.5 6.75 7.65 6.45 7.95C6.15 8.25 6 8.6 6 9C6 9.4 6.15 9.75 6.45 10.05C6.75 10.35 7.1 10.5 7.5 10.5Z" fill="currentColor"/><path d="M4.5 7C5.3 6.2 6.3 5.8 7.5 5.8C8.7 5.8 9.7 6.2 10.5 7" stroke="currentColor" stroke-width="1"/><path d="M2 4.5C3.6 2.9 5.4 2.1 7.5 2.1C9.6 2.1 11.4 2.9 13 4.5" stroke="currentColor" stroke-width="1"/></svg>
+                <svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x="0.5" y="0.5" width="18" height="10" rx="2.5" stroke="currentColor"/><rect x="2" y="2" width="15" height="7" rx="1.2" fill="currentColor"/><rect x="19.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+              </span>
+            </div>
+            <div class="phone__topnav">
+              <span class="mark-r mark-r--small">R</span>
+              <span class="phone__menu">
+                <span></span><span></span><span></span>
+              </span>
+            </div>
+            <div class="phone__hero">
+              <span class="phone__vertical-text">{p.data.vertical}</span>
+              <span class="phone__coords">{p.data.coords}</span>
+              <div class="phone__logo-shape" aria-hidden="true">
+                <svg viewBox="0 0 200 200" width="100%" height="100%">
+                  <path d="M20 20 L20 180 L70 180 L70 120 L100 120 L140 180 L195 180 L145 105 C170 95 185 75 185 50 C185 25 165 20 130 20 Z M70 55 L120 55 C135 55 140 62 140 72 C140 82 135 90 120 90 L70 90 Z" fill="#0d1f1c"/>
+                  <path d="M100 120 L140 180 L195 180 L145 105 Z" fill="#3a7d6e"/>
+                  <rect x="118" y="118" width="55" height="18" fill="#e8c88a" transform="rotate(35 118 118)"/>
+                </svg>
+              </div>
+            </div>
+            <div class="phone__urlbar">
+              <span class="lock" aria-hidden="true">🔒</span> salo.uk
+            </div>
+          </div>
+        )}
+
+        {p.variant === "phone-frame" && p.data.theme === "solent" && (
+          <div class="phone phone--solent">
+            <div class="phone__carrierbar">
+              <span>9:41</span>
+              <span class="carrier">
+                <span class="phone-num">📞 01590 607101</span>
+                <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M2 4.5C3.6 2.9 5.4 2.1 7.5 2.1C9.6 2.1 11.4 2.9 13 4.5" stroke="currentColor" stroke-width="1"/></svg>
+                <svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x="0.5" y="0.5" width="18" height="10" rx="2.5" stroke="currentColor"/><rect x="2" y="2" width="15" height="7" rx="1.2" fill="currentColor"/></svg>
+                <span class="mail">✉</span>
+              </span>
+            </div>
+            <div class="phone__brandbar">
+              <div class="brandbar__name">
+                <span class="wave-icon" aria-hidden="true">〜〜〜</span>
+                <span>Solent Rib<br/>Charter</span>
+              </div>
+              <div class="brandbar__icon" aria-hidden="true">〜</div>
+            </div>
+            <div class="phone__scene">
+              <p class="scene__eyebrow">Welcome to Solent Rib Charter</p>
+              <h4 class="scene__heading">Europe's largest fleet of Ribs</h4>
+              <p class="scene__body">
+                A market leading provider of <u>Rib Hire</u>, <u>Rib Charter</u>,
+                <u>Commercial Rib Charter</u> and <u>Bareboat Rib Hire</u> services.
+              </p>
+              <button class="scene__cta">Get started</button>
+              <div class="scene__dots"><span class="dot dot--active"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="scene__photo" role="img" aria-label="RIB boat crossing open water"></div>
+              <div class="scene__anniversary">
+                <span class="wave-icon" aria-hidden="true">〜〜〜</span>
+                <span>25<sup>th</sup> Anniversary<br/>of Solent Rib Charter</span>
+              </div>
+            </div>
+            <div class="phone__urlbar">
+              <span class="lock" aria-hidden="true">🔒</span> salo.uk
+            </div>
+          </div>
+        )}
+      </article>
+    ))}
+  </div>
+</section>
+
+<script>
+  const track = document.getElementById("track");
+  const buttons = document.querySelectorAll<HTMLButtonElement>(".nav-btn");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (!track) return;
+      const dir = Number(btn.dataset.dir);
+      const cardWidth = track.querySelector(".card")?.clientWidth ?? 320;
+      track.scrollBy({ left: dir * (cardWidth + 24), behavior: "smooth" });
+    });
+  });
+</script>
+
+<style>
+  .related {
+    background: #0d0d0d;
+    color: #f5f5f3;
+    padding: clamp(2.5rem, 5vw, 5rem) clamp(1.25rem, 4vw, 4rem);
+    overflow: hidden;
+  }
+
+  .related__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: clamp(1.75rem, 4vw, 2.75rem);
+  }
+
+  .related__title {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 300;
+    font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: #f2f0ec;
+  }
+
+  .related__nav {
+    display: flex;
+    gap: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  .nav-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: transparent;
+    color: #e9e7e2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .nav-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  .nav-btn:focus-visible {
+    outline: 2px solid #e9e7e2;
+    outline-offset: 2px;
+  }
+
+  .related__track {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+  }
+  .related__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+    width: 335px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ---------- Panel card (text + logo tile) ---------- */
+  .card--panel {
+    background: #17181a;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .panel__mark {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+  }
+  .panel__mark--roswell {
+    background: #202224;
+  }
+  .panel__mark--solent {
+    background: #0e2a2e;
+  }
+  .mark-r {
+    font-family: "Fraunces", serif;
+    font-size: 3.4rem;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1;
+  }
+  .mark-r--small {
+    font-size: 1.3rem;
+  }
+  .mark-solent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    color: #fff;
+    font-weight: 600;
+    line-height: 1.15;
+    font-size: 1.05rem;
+  }
+  .mark-solent__wave {
+    color: #4fc3b0;
+    letter-spacing: 2px;
+    font-size: 1.1rem;
+  }
+
+  .panel__body {
+    flex: 1;
+  }
+  .panel__eyebrow {
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: #9a9a94;
+    margin: 0 0 10px;
+  }
+  .panel__heading {
+    font-size: 1.28rem;
+    line-height: 1.28;
+    font-weight: 600;
+    margin: 0 0 12px;
+    color: #f5f4f0;
+  }
+  .panel__text {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: #a8a7a1;
+    margin: 0;
+  }
+
+  .panel__cta {
+    margin-top: 22px;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #232527;
+    color: #f5f4f0;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 16px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .panel__cta:hover {
+    background: #2d2f31;
+  }
+
+  /* ---------- Phone chrome shared ---------- */
+  .phone {
+    background: #fff;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    color: #111;
+    min-height: 560px;
+    position: relative;
+  }
+  .card--phone-frame {
+    height: 560px;
+  }
+
+  .phone__statusbar,
+  .phone__carrierbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #111;
+  }
+  .phone__icons,
+  .carrier {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #111;
+  }
+  .phone-num {
+    font-size: 0.72rem;
+    margin-right: 4px;
+  }
+
+  .phone__topnav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 20px 14px;
+  }
+  .phone__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .phone__menu span {
+    width: 20px;
+    height: 2px;
+    background: #111;
+    display: block;
+  }
+
+  .phone__hero {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0 0 30px;
+  }
+  .phone__vertical-text {
+    position: absolute;
+    left: 18px;
+    top: 10%;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    font-size: 0.95rem;
+  }
+  .phone__coords {
+    position: absolute;
+    right: 20px;
+    top: 8%;
+    writing-mode: vertical-rl;
+    font-size: 0.6rem;
+    color: #666;
+    letter-spacing: 0.03em;
+  }
+  .phone__logo-shape {
+    width: 78%;
+    max-width: 230px;
+  }
+
+  .phone__urlbar {
+    text-align: center;
+    font-size: 0.72rem;
+    color: #666;
+    padding: 10px 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border-top: 1px solid #eee;
+  }
+  .phone__urlbar .lock {
+    font-size: 0.65rem;
+  }
+
+  /* ---------- Solent phone specifics ---------- */
+  .phone--solent {
+    background: #fff;
+  }
+  .phone__brandbar {
+    background: #0d0d0d;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+  }
+  .brandbar__name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 0.92rem;
+    line-height: 1.15;
+  }
+  .wave-icon {
+    color: #f2c14e;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .brandbar__icon {
+    width: 30px;
+    height: 30px;
+    background: #17181a;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f2c14e;
+  }
+
+  .phone__scene {
+    flex: 1;
+    background: linear-gradient(180deg, #0e2a2e 0%, #123a3f 55%, #0d1f22 100%);
+    color: #fff;
+    padding: 18px 18px 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .scene__eyebrow {
+    color: #f2c14e;
+    font-weight: 700;
+    font-size: 0.78rem;
+    margin: 6px 0 6px;
+  }
+  .scene__heading {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-weight: 700;
+    margin: 0 0 10px;
+  }
+  .scene__body {
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: #d8d8d4;
+    margin: 0 0 14px;
+  }
+  .scene__body u {
+    color: #f2c14e;
+    text-decoration: underline;
+  }
+  .scene__cta {
+    align-self: flex-start;
+    background: #f2c14e;
+    color: #12232a;
+    border: none;
+    border-radius: 6px;
+    padding: 9px 16px;
+    font-weight: 700;
+    font-size: 0.82rem;
+    margin-bottom: 12px;
+    cursor: pointer;
+  }
+  .scene__dots {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.3);
+  }
+  .dot--active {
+    background: #fff;
+    width: 16px;
+    border-radius: 999px;
+  }
+  .scene__photo {
+    flex: 1;
+    min-height: 90px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #2b5f68 0%, #16343a 60%, #0b1c20 100%);
+    margin-bottom: 12px;
+  }
+  .scene__anniversary {
+    position: absolute;
+    bottom: 10px;
+    left: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  /* ---------- Full-bleed phone (Wilderness) ---------- */
+  .card--phone-bleed {
+    height: 560px;
+  }
+  .bleed {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .bleed__scene {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(10, 10, 8, 0.15) 0%,
+        rgba(10, 10, 8, 0.1) 40%,
+        rgba(10, 10, 8, 0.75) 100%
+      ),
+      linear-gradient(160deg, #c9924f 0%, #7c6a3f 35%, #3d4a34 65%, #1c2418 100%);
+  }
+  .bleed__topbar {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    font-size: 0.66rem;
+    background: rgba(0, 0, 0, 0.35);
+  }
+  .bleed__topbar-text u {
+    text-decoration: underline;
+  }
+  .bleed__cta {
+    background: #e2792e;
+    color: #1a1a1a;
+    font-weight: 700;
+    padding: 5px 9px;
+    border-radius: 4px;
+    font-size: 0.62rem;
+    white-space: nowrap;
+  }
+  .bleed__badge {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px 0;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+  .bleed__overlay {
+    position: relative;
+    z-index: 2;
+    margin-top: auto;
+    padding: 0 16px 130px;
+  }
+  .bleed__eyebrow {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: #e7e3d8;
+    margin: 0 0 4px;
+  }
+  .bleed__heading {
+    font-family: "Fraunces", serif;
+    font-weight: 300;
+    font-size: 2rem;
+    margin: 0 0 8px;
+  }
+  .bleed__credit {
+    font-size: 0.68rem;
+    color: #d8d5c9;
+    margin: 0;
+  }
+  .bleed__foot {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #f4f2ec;
+    color: #17181a;
+    padding: 16px 16px 20px;
+    z-index: 2;
+  }
+  .bleed__foot-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 6px;
+  }
+  .bleed__foot-body {
+    font-size: 0.74rem;
+    color: #55564f;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    .card {
+      width: 78vw;
+    }
+    .related__nav {
+      display: none;
+    }
+  }
+</style>

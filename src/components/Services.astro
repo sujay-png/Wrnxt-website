@@ -173,9 +173,7 @@ const quadrants = [
       <!-- Center Logo Watermark -->
       <div class="center">
         <div id="HomeQuadrants__logoMask" class="logoMask"></div>
-        <!-- Continuous idle spin wrapper: keeps an ambient rotation running independently
-             of the scroll-scrubbed +180 flip tween applied to the inner SVG, so the two
-             rotations compose instead of fighting over the same GSAP "rotate" property. -->
+      
         <div class="logoSpin" id="HomeQuadrants__logoSpin">
           <svg class="logo" id="HomeQuadrants__logo" viewBox="0 0 358 334" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path class="logomark-path logomark-path--4" opacity="0.1" d="M108.965 17.6077C195.9 -23.0772 299.303 14.4975 339.931 101.558C380.419 188.316 343.285 291.435 256.993 332.413L249.775 316.941L249.351 316.033L248.445 316.458C161.509 357.143 58.1065 319.568 17.478 232.507C-23.0092 145.749 14.1253 42.6205 100.417 1.64188L107.635 17.1243L108.058 18.0315L108.965 17.6077ZM130.992 64.805C79.1277 89.08 56.7283 150.857 80.9683 202.802C105.068 254.434 166.181 276.905 217.865 253.313L225.088 268.788L225.511 269.696L226.418 269.271C278.283 244.995 300.681 183.219 276.442 131.274C252.342 79.6413 191.228 57.169 139.544 80.762L132.322 65.2874L131.898 64.3802L130.992 64.805Z"></path>
@@ -310,12 +308,17 @@ const quadrants = [
     
     @media (max-width: 767px) {
       --_padding: var(--space-md);
-      min-height: 380px;
+      min-height: auto;
+      padding-bottom: var(--space-lg);
       border-bottom: 1px solid var(--color-border);
       
       &:last-child {
         border-bottom: none;
       }
+    }
+
+    @media (max-width: 380px) {
+      --_padding: var(--space-sm);
     }
     
     .background {
@@ -330,12 +333,17 @@ const quadrants = [
       pointer-events: none;
       z-index: 0;
       transition: opacity 0.5s var(--ease);
+
+      @media (max-width: 767px) {
+        opacity: 0.3;
+      }
     }
     
     .content {
       position: relative;
       z-index: 2;
       max-width: 32rem;
+      width: 100%;
       
       &::before {
         --_overflow: 8%;
@@ -351,6 +359,10 @@ const quadrants = [
         filter: blur(12px);
         z-index: -1;
         opacity: 0;
+
+        @media (max-width: 767px) {
+          content: none;
+        }
       }
     }
     
@@ -363,6 +375,10 @@ const quadrants = [
       
       span {
         display: inline-block;
+      }
+
+      @media (max-width: 767px) {
+        font-size: var(--font-size-1);
       }
     }
     
@@ -379,6 +395,24 @@ const quadrants = [
       
       .btn {
         margin-top: var(--space-2xs);
+      }
+
+      // Hover-to-reveal only makes sense with a pointer. Touch devices have no
+      // hover state, so without this the description + CTA button are never
+      // visible or reachable on mobile even though the card is fully tappable.
+      // Show this content by default below the desktop breakpoint instead.
+      @media (max-width: 767px) {
+        max-height: none;
+        opacity: 1;
+        overflow: visible;
+      }
+    }
+
+    // Ensure the "Explore" pill has a comfortable tap target on touch devices.
+    @media (max-width: 767px) {
+      .btn.size-md {
+        min-height: 44px;
+        padding-block: var(--space-2xs);
       }
     }
     
@@ -403,12 +437,13 @@ const quadrants = [
       @media (max-width: 767px) {
         position: relative;
         width: 100%;
-        height: 200px;
-        top: 0;
-        bottom: 0;
+        height: auto;
+        top: auto;
+        bottom: auto;
         right: 0;
         margin-top: var(--space-sm);
         justify-content: center;
+        overflow: hidden;
       }
     }
     
@@ -431,7 +466,17 @@ const quadrants = [
         height: 100%;
         
         @media (max-width: 767px) {
-          width: 120px;
+          // Only the main image renders on mobile (top/bottom are hidden below),
+          // so size the stack from that image's own aspect ratio rather than a
+          // fixed height — this is what stopped the image being clipped inside
+          // a shorter fixed-height box.
+          width: 110px;
+          height: auto;
+          aspect-ratio: 502 / 1086;
+        }
+
+        @media (max-width: 380px) {
+          width: 92px;
         }
       }
     }

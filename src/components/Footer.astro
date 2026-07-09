@@ -1,9 +1,18 @@
 ---
 const accreditations = [
-  { name: "Agency Hackers", url: "https://salo.uk/_astro/accreditation-agency-hackers.CskRe8_T.png" },
-  { name: "BIMA", url: "https://salo.uk/_astro/accreditation-bima.DOjLsDfZ.png" },
+  {
+    name: "Agency Hackers",
+    url: "https://salo.uk/_astro/accreditation-agency-hackers.CskRe8_T.png",
+  },
+  {
+    name: "BIMA",
+    url: "https://salo.uk/_astro/accreditation-bima.DOjLsDfZ.png",
+  },
   { name: "Net", url: "https://salo.uk/_astro/accreditation-net.De0nr0fC.png" },
-  { name: "Alliance of Independent Agencies", url: "https://salo.uk/_astro/accreditation-aia.B3ALZq9Y.png" }
+  {
+    name: "Alliance of Independent Agencies",
+    url: "https://salo.uk/_astro/accreditation-aia.B3ALZq9Y.png",
+  },
 ];
 ---
 
@@ -13,17 +22,19 @@ const accreditations = [
       <!-- Top Section: Logo & Direct Contacts -->
       <div class="footer__top">
         <div class="start">
-         <a href="/" title="Go home.">
-  <img
-    class="footer__topLogo salo-logo"
-    transition:name="salo-logo"
-    src="/public/images/wrnxt_logo-removebg-preview.png"
-    alt="WRNXT Logo"
-  />
-</a>
-          <span class="eyebrow">Exceptional design, seamless collaboration.</span>
+          <a href="/" title="Go home.">
+            <img
+              class="footer__topLogo salo-logo"
+              transition:name="salo-logo"
+              src="/public/images/wrnxt_logo-removebg-preview.png"
+              alt="WRNXT Logo"
+            />
+          </a>
+          <span class="eyebrow"
+            >Exceptional design, seamless collaboration.</span
+          >
         </div>
-        
+
         <div class="end footer__contact">
           <a href="mailto:md@wrnxt.com">md@wrnxt.com</a>
           <a href="tel:+91 8123455500">+91 8123455500</a>
@@ -32,31 +43,46 @@ const accreditations = [
 
       <!-- Middle Section: Link Lists & Accreditations -->
       <div class="stack footer__middle" data-gap="xl">
-        <div class="cluster" data-gap="lg" data-justify="between" data-align="start">
+        <div
+          class="cluster"
+          data-gap="lg"
+          data-justify="between"
+          data-align="start"
+        >
           <div class="grid start" style="--grid-min:20rem;">
             <div class="column">
               <ul class="stack footer-menu" data-gap="xs">
                 <li class="eyebrow">Our services</li>
                 <li class="footer-menu-item">
-                  <a class="footer-menu-link" href="/services/ui-ux">IT Service</a>
+                  <a class="footer-menu-link" href="/services/ITServices"
+                    >IT Service</a
+                  >
                 </li>
                 <li class="footer-menu-item">
-                  <a class="footer-menu-link" href="/services/websites">Media House</a>
+                  <a class="footer-menu-link" href="/services/website"
+                    >Media House</a
+                  >
                 </li>
                 <li class="footer-menu-item">
-                  <a class="footer-menu-link" href="/services/branding">Markerting</a>
+                  <a class="footer-menu-link" href="/services/branding"
+                    >Markerting</a
+                  >
                 </li>
                 <li class="footer-menu-item">
-                  <a class="footer-menu-link" href="/services/flexi-design">Hardware</a>
+                  <a class="footer-menu-link" href="/services/flexi-design"
+                    >Hardware</a
+                  >
                 </li>
               </ul>
             </div>
-            
+
             <nav class="column">
               <ul class="stack footer-menu" data-gap="xs">
                 <li class="eyebrow">Useful links</li>
                 <li class="footer-menu-item">
-                  <a class="footer-menu-link" href="/projects/">Latest case studies</a>
+                  <a class="footer-menu-link" href="/projects/"
+                    >Latest case studies</a
+                  >
                 </li>
                 <li class="footer-menu-item">
                   <a class="footer-menu-link" href="/contact">Contact us</a>
@@ -68,20 +94,37 @@ const accreditations = [
           <!-- Accreditations Badges -->
           <div class="end">
             <div class="accreditations">
-              {accreditations.map((badge) => (
-                <div class="accreditation">
-                  <img src={badge.url} alt={badge.name} loading="lazy" width="120" height="80" class="accreditation-image" />
-                </div>
-              ))}
+              {
+                accreditations.map((badge) => (
+                  <div class="accreditation">
+                    <img
+                      src={badge.url}
+                      alt={badge.name}
+                      loading="lazy"
+                      width="120"
+                      height="80"
+                      class="accreditation-image"
+                    />
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>
 
         <!-- Copyright Row -->
         <div class="copyright">
-          <div class="cluster" data-gap-x="lg" data-gap-y="sm" data-justify="start" data-align="center">
+          <div
+            class="cluster"
+            data-gap-x="lg"
+            data-gap-y="sm"
+            data-justify="start"
+            data-align="center"
+          >
             <span>© 2026 Wrnxt. All rights reserved.</span>
-            <a href="/environmental-sustainability/">Environmental Sustainability</a>
+            <a href="/environmental-sustainability/"
+              >Environmental Sustainability</a
+            >
             <a href="/privacy">Privacy Policy</a>
             <a href="/ai-policy">AI Policy</a>
           </div>
@@ -89,7 +132,10 @@ const accreditations = [
       </div>
 
       <!-- Section Divider -->
-      <div class="reactive-divider horizontal" x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })">
+      <div
+        class="reactive-divider horizontal"
+        x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })"
+      >
         <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
         <div class="divider-line" x-ref="dividerLine">
           <div class="width-display" x-text="formattedWidth" x-cloak>0px</div>
@@ -100,7 +146,7 @@ const accreditations = [
   </div>
 
   <!-- Bottom Cropped Logo watermark moved outside container so S is not cut off by padding -->
- <!-- <div class="footer__bottom" id="footer-bottom-logo">
+  <!-- <div class="footer__bottom" id="footer-bottom-logo">
   <svg class="footer__bottomLogo salo-logo" viewBox="0 0 800 100" xmlns="http://www.w3.org/2000/svg" aria-label="WRNXT Logo.">
     <text x="0" y="80" font-family="var(--font-family-alt)" font-weight="700" font-size="100" fill="white">WRNXT</text>
   </svg>
@@ -124,15 +170,15 @@ const accreditations = [
     > .container > .stack {
       padding-inline: var(--container-padding, var(--space-md-2xl));
     }
-    
+
     a {
       transition: color 0.3s var(--ease);
-      
+
       &:hover {
         color: var(--color-foreground);
       }
     }
-    
+
     &__top {
       display: flex;
       justify-content: space-between;
@@ -140,21 +186,21 @@ const accreditations = [
       gap: var(--space-lg);
       border-bottom: 1px solid var(--color-border);
       padding-bottom: var(--space-md);
-      
+
       @media (max-width: 1023px) {
         align-items: flex-end;
       }
-      
+
       @media (max-width: 767px) {
         flex-direction: column;
         align-items: flex-start;
       }
-      
+
       .start {
         display: flex;
         align-items: center;
         gap: var(--space-md);
-        
+
         @media (max-width: 1023px) {
           flex-direction: column;
           align-items: flex-start;
@@ -162,14 +208,14 @@ const accreditations = [
         }
       }
     }
-    
-   &__topLogo {
-  height: 70px;
-  width: auto;
-  object-fit: contain;
-  display: block;
-}
-    
+
+    &__topLogo {
+      height: 70px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
     &__contact {
       text-align: right;
       display: flex;
@@ -177,17 +223,17 @@ const accreditations = [
       gap: var(--space-4xs);
       font-family: var(--font-family-alt);
       font-size: var(--font-size-0);
-      
+
       @media (max-width: 767px) {
         text-align: left;
         margin-top: var(--space-xs);
       }
     }
-    
+
     &__middle {
       flex-grow: 1;
       padding-top: var(--space-md);
-      
+
       .start {
         flex-grow: 1;
       }
@@ -196,7 +242,7 @@ const accreditations = [
     .footer-menu {
       list-style: none;
       padding: 0;
-      
+
       .eyebrow {
         font-size: var(--font-size--2);
         text-transform: uppercase;
@@ -211,7 +257,7 @@ const accreditations = [
       position: relative;
       font-family: var(--font-family-body);
       font-size: var(--font-size--1);
-      
+
       &::after {
         content: "";
         position: absolute;
@@ -224,12 +270,12 @@ const accreditations = [
         transform-origin: left;
         transition: transform 0.3s ease;
       }
-      
+
       &:hover::after {
         transform: scaleX(1);
         transform-origin: left;
       }
-      
+
       &:not(:hover)::after {
         transform: scaleX(0);
         transform-origin: right;
@@ -241,20 +287,20 @@ const accreditations = [
       opacity: 0.8;
       border-top: 1px solid var(--color-border);
       padding-top: var(--space-md);
-      
+
       .cluster {
         display: flex !important;
         flex-wrap: wrap !important;
         align-items: center !important;
         gap: 1.5rem !important;
       }
-      
+
       a {
         color: inherit;
         text-decoration: none;
       }
     }
-    
+
     &__bottom {
       overflow: hidden;
       padding-block-start: 4vh;
@@ -265,7 +311,7 @@ const accreditations = [
       align-items: center;
       box-sizing: border-box;
     }
-    
+
     &__bottomLogo {
       width: 50%;
       max-width: 50%;
@@ -275,7 +321,7 @@ const accreditations = [
       display: block;
       will-change: transform;
       opacity: 0.88;
-      
+
       path {
         fill: #ffffff !important;
       }

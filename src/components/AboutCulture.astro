@@ -1,14 +1,14 @@
 ---
 const cultureImages = [
-  { src: "https://media.salo.uk/salo-website-prod/about-culture-team.jpg", alt: "A group of seven colleagues smiling for a photo in front of a decorative wall with bookshelf motifs.", ratio: "932/680", rotate: -4 },
-  { src: "https://media.salo.uk/salo-website-prod/about-culture-archery.jpg", alt: "A person in a red fleece standing in a forest, aiming a recurve bow at two archery targets.", ratio: "444/922", rotate: 5 },
-  { src: "https://media.salo.uk/salo-website-prod/about-culture-agency-grand-prix.jpg", alt: "Four men standing outside in front of a chain-link fence, one wearing a high-visibility event jacket and another in a red flight suit.", ratio: "680/934", rotate: -6 },
-  { src: "https://media.salo.uk/salo-website-prod/about-culture-agp-3.jpg", alt: "Three smiling young men taking a selfie in the stands at a crowded stadium with red seats.", ratio: "932/680", rotate: 4 },
-  { src: "https://media.salo.uk/salo-website-prod/about-culture-car.jpg", alt: "A smiling man in a green shirt stands in front of a green Aston Martin Formula 1 safety car at a trackside display.", ratio: "444/922", rotate: 7 },
-  { src: "https://media.salo.uk/salo-website-prod/about-culture-agp-2.jpg", alt: "Group of people posing for a photo at South Coast Karting under checkered flags.", ratio: "932/680", rotate: -5 },
-  { src: "https://media.salo.uk/salo-website-prod/about-culture-bu.jpg", alt: "A young woman and man smiling in a university cafe setting, both wearing name tags.", ratio: "1/1", rotate: -8 },
-  { src: "https://media.salo.uk/salo-website-prod/about-culture-beach.jpg", alt: "A group of five colleagues posing for a selfie during a scenic ocean sunset.", ratio: "752/558", rotate: 6 },
-  { src: "https://media.salo.uk/salo-website-prod/about-culture-agp.jpg", alt: "Four people smiling for a selfie in front of a green sign, outdoors on a sunny day.", ratio: "1/1", rotate: 3 }
+  { src: "public/images/Grp_image (2).jpeg", alt: "A group of seven colleagues smiling for a photo in front of a decorative wall with bookshelf motifs.", ratio: "932/680", rotate: -4 },
+  { src: "public/images/WhatsApp Image 2026-07-08 at 3.14.36 PM.jpeg", alt: "A person in a red fleece standing in a forest, aiming a recurve bow at two archery targets.", ratio: "1/1", rotate: -8 },
+  { src: "public/images/IMG_1146.jpeg", alt: "Four men standing outside in front of a chain-link fence, one wearing a high-visibility event jacket and another in a red flight suit.", ratio: "680/934", rotate: -6 },
+  { src: "public/images/IMG_1006.jpeg", alt: "Three smiling young men taking a selfie in the stands at a crowded stadium with red seats.", ratio: "932/680", rotate: 4 },
+  { src: "public/images/image3.jpeg", alt: "A smiling man in a green shirt stands in front of a green Aston Martin Formula 1 safety car at a trackside display.", ratio: "444/922", rotate: 7 },
+  { src: "public/images/Grp_image-boys.jpg", alt: "Group of people posing for a photo at South Coast Karting under checkered flags.", ratio: "932/680", rotate: -5 },
+  { src: "public/images/WhatsApp Image 2026-07-08 at 2.45.15 PM.jpeg", alt: "A young woman and man smiling in a university cafe setting, both wearing name tags.", ratio: "1/1", rotate: -8 },
+  { src: "public/images/WhatsApp Image 2026-07-08 at 2.54.04 PM.jpeg", alt: "A group of five colleagues posing for a selfie during a scenic ocean sunset.", ratio: "752/558", rotate: 6 },
+  { src: "public/images/WhatsApp Image 2026-07-08 at 2.54.04 PM (1).jpeg", alt: "Four people smiling for a selfie in front of a green sign, outdoors on a sunny day.", ratio: "1/1", rotate: 3 }
 ];
 ---
 
@@ -57,45 +57,36 @@ const cultureImages = [
     overflow: clip;
   }
 
-  // Production doesn't lay these photos out in a tidy grid below the heading — they're
-  // scattered at independent positions/rotations either side of a centered text block that
-  // stays put (sticky) while the photo "wall" scrolls past behind it. This wrapper just needs
-  // to be tall enough to give that scroll room; the photos and text are both absolutely/sticky
-  // positioned within it.
   .AboutCulture__collage {
     position: relative;
-    // An explicit height (not min-height) — the .container > .AboutCulture__text child below
-    // needs a *definite* height to resolve its own height:100% against; percentages against an
-    // auto/min-height-only parent compute to auto and silently do nothing, which is what broke
-    // this the first time around. Tall enough to give the scattered photos below room to spread
-    // out with a buffer at the very top/bottom and real breathing room between each photo (see
-    // .AboutCulture__item positions, which were measured against this exact height in px).
     height: 280rem;
 
     @media (max-width: 1023px) {
       height: auto;
       display: flex;
       flex-direction: column;
-      gap: var(--space-2xl);
+      gap: var(--space-xl);
+      padding-block: var(--space-lg);
     }
 
-    // The sticky text's "stuck" range is bounded by its own DOM parent's box, not by this
-    // collage — without this, the .container wrapper around the text sizes to just the text's
-    // own height, so the text un-sticks and scrolls away within the first ~10% of the scroll
-    // instead of staying put the whole way down. Stretching the wrapper to match the collage's
-    // full height gives the sticky text the entire scroll range to stay parked in.
+    @media (max-width: 599px) {
+      gap: var(--space-lg);
+    }
+
     > .container {
       height: 100%;
 
       @media (max-width: 1023px) {
         height: auto;
+        // Show the heading/copy ABOVE the photo grid on mobile, even though
+        // it's the second element in the DOM (keeps source order sane for
+        // screen readers while flipping the visual order).
+        order: -1;
       }
     }
   }
 
   .AboutCulture__text {
-    // The text is the static backdrop — it stays put while the photos scroll across and over
-    // it (z-index below .AboutCulture__photos, see below).
     position: sticky;
     top: 28vh;
     z-index: 1;
@@ -111,48 +102,41 @@ const cultureImages = [
     @media (max-width: 1023px) {
       position: static;
       top: auto;
+      pointer-events: auto;
+      max-width: 32rem;
     }
   }
 
   .AboutCulture__photos {
     position: absolute;
     inset: 0;
-    // Photos sit ON TOP of the static text as the page scrolls, not behind it.
     z-index: 2;
 
     @media (max-width: 1023px) {
       position: static;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      grid-auto-rows: 10rem;
+      grid-auto-rows: 9rem;
       gap: var(--space-sm);
       padding-inline: var(--container-padding, var(--space-md-2xl));
+    }
+
+    // Narrow phones: two columns start feeling cramped, especially for
+    // portrait-oriented shots — drop to a single column so each photo
+    // gets full width and a taller, more natural crop.
+    @media (max-width: 599px) {
+      grid-template-columns: 1fr;
+      grid-auto-rows: 11rem;
+      gap: var(--space-sm);
     }
   }
 
   .AboutCulture__item {
     position: absolute;
-    // Sized and positioned in % of the collage's own box (not vw) so a photo's left edge +
-    // width can never exceed the container and get clipped at the viewport edge — every item
-    // below is chosen so left + width stays comfortably under 100%.
     width: 14%;
-    // IMPORTANT: the global `.anchor-card--rounded` utility (used everywhere else on the site
-    // for items whose height is naturally content-driven) sets `height: 100%`. That's harmless
-    // in those other contexts because nothing up their ancestor chain has a definite height to
-    // resolve against, so it computes to auto. Here it isn't harmless: .AboutCulture__photos
-    // now sits inside a collage with an explicit height (see .AboutCulture__collage), which
-    // makes `height: 100%` fully resolve — to the ENTIRE 230rem collage height. Every photo
-    // rendered as a ~150–300px-wide, ~3680px-tall rotated sliver, which is exactly the long thin
-    // diagonal "lines" that showed up instead of properly-proportioned photos. Forcing height
-    // back to auto lets the .frame's aspect-ratio determine the real, proportional height.
     height: auto;
     box-shadow: 0 1.5rem 3rem -1rem rgba(0, 0, 0, 0.45);
     border-radius: 16px;
-    // The resting rotation lives here, driven by the inline --rotate custom property set per
-    // photo in the markup, deliberately kept OUT of GSAP's hands: GSAP's CSSPlugin writes a
-    // full replacement `transform` string for any tween that touches scale/x/y/rotation, which
-    // would silently wipe this out. The scroll-in reveal below only animates opacity/filter so
-    // this rotation is never touched.
     transform: rotate(var(--rotate, 0deg));
 
     @media (max-width: 1023px) {
@@ -166,18 +150,27 @@ const cultureImages = [
       .frame {
         height: 100%;
       }
+
+      // Forcing a fixed grid height means .frame's own aspect-ratio can no
+      // longer drive sizing here — the image needs to cover its box or it
+      // will stretch/distort to fill the forced rectangle.
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
 
-    // Scattered across the full width at varied, semi-random positions — overlapping the
-    // center where the static text sits is intentional (the photos are meant to pass over it)
-    // rather than hugging the left/right extremes. Widths are deliberately narrower for the
-    // tall/portrait-ratio photos (444/922, 680/934) and wider for the short/landscape ones
-    // (932/680 etc.) so every photo ends up in a similar rendered height — and each top% step
-    // leaves real clearance below the previous photo's actual (aspect-ratio-driven) height,
-    // measured against this section's 280rem height, so consecutive photos can't overlap
-    // regardless of rotation. Sized up from an earlier, smaller pass (was 8–18% wide) per
-    // feedback that the photos read too small — the collage height grew along with them so the
-    // larger boxes still get the same clear gaps.
+    // On a single-column phone layout, give portrait shots (444/922,
+    // 680/934) a taller box than the square/landscape ones so they don't
+    // get squashed into the same short rectangle as everything else.
+    @media (max-width: 599px) {
+      &--2,
+      &--3 {
+        grid-row: span 3;
+      }
+    }
+
     &--1 { top: 1%; left: 8%; width: 22%; }
     &--2 { top: 10%; left: 68%; width: 13%; }
     &--3 { top: 23%; left: 34%; width: 16%; }

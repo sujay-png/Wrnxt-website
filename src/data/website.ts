@@ -1,8 +1,8 @@
 export const heroImages = [
-  { src: "https://media.salo.uk/salo-website-prod/Sunseeker mobile mockup 1.jpg",                     alt: "Sunseeker mockup",          card: "card-1" },
-  { src: "https://media.salo.uk/salo-website-prod/Threecolts Tactical Arbitrage Mockup Mobile.jpg",   alt: "Tactical Arbitrage mockup", card: "card-2" },
-  { src: "https://media.salo.uk/salo-website-prod/Amanacard mobile mockup 1.jpg",                     alt: "Amanacard mockup",          card: "card-3" },
-  { src: "https://media.salo.uk/salo-website-prod/Provenant-1.jpg",                                   alt: "Provenant mockup",          card: "card-4" },
+  { src: "/public/images/Mediahouse1.jpeg", alt: "Sunseeker mockup", card: "card-1" },
+  { src: "/public/images/Mediahouse2.jpeg", alt: "Tactical Arbitrage mockup", card: "card-2" },
+  { src: "/public/images/Mediahouse3.jpeg", alt: "Amanacard mockup", card: "card-3" },
+  { src: "/public/images/Mediahouse4.jpeg", alt: "Provenant mockup", card: "card-4" },
 ];
 
 export const services = [

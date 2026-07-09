@@ -11,13 +11,12 @@
           <path class="salo-logo__a" d="M39.1289 7.92716L35.5481 0.25L31.968 7.92805L32.6617 9.41452L29.0861 17.0819L23.1821 29.74H30.343L32.6661 24.7591L36.2417 17.0926L42.1395 29.74H49.2995L49.3013 29.7391L39.1289 7.92716Z" fill="white"></path>
           <path class="salo-logo__s" d="M21.8703 20.415C21.8703 20.4815 21.8703 20.5453 21.8685 20.6101C21.7639 25.6717 17.6277 29.74 12.5416 29.74H0L3.02562 23.2504H5.04891V23.2531H12.7331C13.5164 23.2531 14.2251 22.9356 14.7378 22.423C15.2514 21.9094 15.5689 21.2008 15.5689 20.4176C15.5689 18.8513 14.2987 17.5822 12.7331 17.5822H12.6391C12.6063 17.5813 12.5744 17.5804 12.5416 17.5804H10.2034C8.06388 17.5804 6.10446 16.8185 4.59209 15.5325C2.77193 13.9866 1.59929 11.7028 1.53543 9.1449C1.53543 9.10854 1.53099 8.96042 1.53099 8.9214C1.53099 6.52672 2.50139 4.35909 4.07053 2.79013C5.63966 1.22118 7.80754 0.250887 10.2016 0.25H22.9223L19.894 6.73958H10.2034C10.191 6.73958 10.1785 6.73958 10.1661 6.74047H10.0402C9.43788 6.74047 8.89147 6.98437 8.49675 7.37993C8.10203 7.77461 7.85721 8.32007 7.85721 8.92317C7.85721 10.1285 8.8347 11.105 10.0402 11.105H12.7021C17.7803 11.1901 21.8703 15.317 21.8703 20.415Z" fill="white"></path>
         </svg> -->
-         <span class="salo-logo" transition:name="salo-logo">WRNXT</span>
-         <!-- <img
-    class="salo-logo"
-    transition:name="salo-logo"
-    src="https://wrnxt.com/assets/img/wrnxt%20Logo_1.png"
-    alt="WRNXT Logo"
-  /> -->
+        <img
+  class="salo-logo"
+  transition:name="salo-logo"
+  src="/public/images/wrnxt_logo-removebg-preview.png"
+  alt="WRNXT Logo"
+/>
       </a>
       <span class="eyebrow lg-only">Exceptional design, seamless collaboration.</span>
     </div>
@@ -234,22 +233,12 @@
     }
   }
 
-.salo-logo {
-  font-family: var(--font-family-alt);
-  font-size: var(--font-size-2);
-  font-weight: 700;
-  letter-spacing: var(--letter-spacing-looser, 0.05em);
-  color: white;
-  text-decoration: none;
-  display: inline-block;
-  line-height: 1;
+img.salo-logo {
+  height: 80px; // adjust to taste
+  width: auto;
+  display: block;
+  object-fit: contain;
 }
-  .lg-only {
-    @media (max-width: 1023px) {
-      display: none !important;
-    }
-  }
-
   @media (max-width: 767px) {
     .nav {
       display: none;

@@ -34,6 +34,22 @@
           this.resizeObserver && this.resizeObserver.disconnect();
         },
       }));
+      Alpine.data("buttonHover", () => ({
+        bgX: 50,
+        bgY: 50,
+        isHovering: false,
+        handleMouseMove(event) {
+          const rect = event.currentTarget.getBoundingClientRect();
+          this.bgX = ((event.clientX - rect.left) / rect.width) * 100;
+          this.bgY = ((event.clientY - rect.top) / rect.height) * 100;
+        },
+        handleMouseEnter() {
+          this.isHovering = true;
+        },
+        handleMouseLeave() {
+          this.isHovering = false;
+        },
+      }));
     });
   </script><section
     data-index="0"
@@ -605,11 +621,11 @@
       data-astro-cid-2qdgloxp
     >
       <div class="marquee__track" data-astro-cid-2qdgloxp>
-        <ul data-astro-cid-2qdgloxp>
+         <ul data-astro-cid-2qdgloxp>
           <li data-astro-cid-2qdgloxp>
             <img
-              src="https://media.salo.uk/salo-website-prod/hsbc.svg"
-              alt="HSBC Logo."
+              src="/images/image1.svg"
+              alt="image1 Logo."
               loading="lazy"
               decoding="async"
               fetchpriority="auto"
@@ -619,8 +635,8 @@
             />
           </li><li data-astro-cid-2qdgloxp>
             <img
-              src="https://media.salo.uk/salo-website-prod/lab.svg"
-              alt="Lab Logo."
+              src="/images/Bharath.svg"
+              alt="Bharath Logo."
               loading="lazy"
               decoding="async"
               fetchpriority="auto"
@@ -630,8 +646,8 @@
             />
           </li><li data-astro-cid-2qdgloxp>
             <img
-              src="https://media.salo.uk/salo-website-prod/octopus-money.svg"
-              alt="Octopus Money logo."
+              src="/images/image2.svg"
+              alt="image2 logo."
               loading="lazy"
               decoding="async"
               fetchpriority="auto"
@@ -641,8 +657,8 @@
             />
           </li><li data-astro-cid-2qdgloxp>
             <img
-              src="https://media.salo.uk/salo-website-prod/picniq.svg"
-              alt="Picniq logo."
+              src="/images/iraspa.svg"
+              alt="Iraspa logo."
               loading="lazy"
               decoding="async"
               fetchpriority="auto"
@@ -652,8 +668,8 @@
             />
           </li><li data-astro-cid-2qdgloxp>
             <img
-              src="https://media.salo.uk/salo-website-prod/wilderness.svg"
-              alt="Wilderness logo."
+              src="/images/sakrt.svg"
+              alt="Sakrt logo."
               loading="lazy"
               decoding="async"
               fetchpriority="auto"
@@ -663,8 +679,8 @@
             />
           </li><li data-astro-cid-2qdgloxp>
             <img
-              src="https://media.salo.uk/salo-website-prod/threecolts.svg"
-              alt="Threecolts logo."
+              src="/images/sangam.svg"
+              alt="Sangam logo."
               loading="lazy"
               decoding="async"
               fetchpriority="auto"
@@ -674,7 +690,7 @@
             />
           </li><li data-astro-cid-2qdgloxp>
             <img
-              src="https://media.salo.uk/salo-website-prod/bbd-boom.svg"
+              src="/public/images/Pup_Logo.jpg"
               alt="BBD Boom logo."
               loading="lazy"
               decoding="async"
@@ -685,8 +701,8 @@
             />
           </li><li data-astro-cid-2qdgloxp>
             <img
-              src="https://media.salo.uk/salo-website-prod/bucherer.svg"
-              alt="Bucherer logo."
+              src="/images/sanjeeveni.svg"
+              alt="Sanjeeveni logo."
               loading="lazy"
               decoding="async"
               fetchpriority="auto"
@@ -696,7 +712,7 @@
             />
           </li><li data-astro-cid-2qdgloxp>
             <img
-              src="https://media.salo.uk/salo-website-prod/coda.svg"
+              src="/images/vastu.svg"
               alt="Coda logo."
               loading="lazy"
               decoding="async"
@@ -706,9 +722,9 @@
               height="120"
             />
           </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/ratio.svg"
-              alt="Ratio logo."
+             <img
+              src="/public/images/doctor.svg"
+              alt="Doctor logo."
               loading="lazy"
               decoding="async"
               fetchpriority="auto"
@@ -716,12 +732,10 @@
               width="160"
               height="120"
             />
-          </li>
-        </ul><ul aria-hidden="true" data-astro-cid-2qdgloxp>
-          <li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/hsbc.svg"
-              alt="HSBC Logo."
+            <li data-astro-cid-2qdgloxp>
+             <img
+              src="/public/images/image_logo.svg"
+              alt="Image logo."
               loading="lazy"
               decoding="async"
               fetchpriority="auto"
@@ -729,10 +743,10 @@
               width="160"
               height="120"
             />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/lab.svg"
-              alt="Lab Logo."
+            <li data-astro-cid-2qdgloxp>
+             <img
+              src="/public/images/image_logo1.svg"
+              alt="Image logo 1."
               loading="lazy"
               decoding="async"
               fetchpriority="auto"
@@ -740,10 +754,10 @@
               width="160"
               height="120"
             />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/octopus-money.svg"
-              alt="Octopus Money logo."
+             <li data-astro-cid-2qdgloxp>
+             <img
+              src="/public/images/one_more_rep.svg"
+              alt="Image logo 1."
               loading="lazy"
               decoding="async"
               fetchpriority="auto"
@@ -751,308 +765,7 @@
               width="160"
               height="120"
             />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/picniq.svg"
-              alt="Picniq logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/wilderness.svg"
-              alt="Wilderness logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/threecolts.svg"
-              alt="Threecolts logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/bbd-boom.svg"
-              alt="BBD Boom logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/bucherer.svg"
-              alt="Bucherer logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/coda.svg"
-              alt="Coda logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/ratio.svg"
-              alt="Ratio logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li>
-        </ul><ul aria-hidden="true" data-astro-cid-2qdgloxp>
-          <li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/hsbc.svg"
-              alt="HSBC Logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/lab.svg"
-              alt="Lab Logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/octopus-money.svg"
-              alt="Octopus Money logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/picniq.svg"
-              alt="Picniq logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/wilderness.svg"
-              alt="Wilderness logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/threecolts.svg"
-              alt="Threecolts logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/bbd-boom.svg"
-              alt="BBD Boom logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/bucherer.svg"
-              alt="Bucherer logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/coda.svg"
-              alt="Coda logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/ratio.svg"
-              alt="Ratio logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li>
-        </ul><ul aria-hidden="true" data-astro-cid-2qdgloxp>
-          <li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/hsbc.svg"
-              alt="HSBC Logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/lab.svg"
-              alt="Lab Logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/octopus-money.svg"
-              alt="Octopus Money logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/picniq.svg"
-              alt="Picniq logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/wilderness.svg"
-              alt="Wilderness logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/threecolts.svg"
-              alt="Threecolts logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/bbd-boom.svg"
-              alt="BBD Boom logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/bucherer.svg"
-              alt="Bucherer logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/coda.svg"
-              alt="Coda logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/ratio.svg"
-              alt="Ratio logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li>
+
         </ul>
       </div>
     </div>
@@ -2651,7 +2364,7 @@
             <!-- Primary with glow -->
             <a
               href="/contact"
-              x-data="buttonHover"
+              x-data="{ bgX: 50, bgY: 50, isHovering: false, handleMouseMove(e) { const rect = e.currentTarget.getBoundingClientRect(); this.bgX = ((e.clientX - rect.left) / rect.width) * 100; this.bgY = ((e.clientY - rect.top) / rect.height) * 100; }, handleMouseEnter() { this.isHovering = true }, handleMouseLeave() { this.isHovering = false } }"
               @mousemove="handleMouseMove($event)"
               @mouseenter="handleMouseEnter()"
               @mouseleave="handleMouseLeave()"
@@ -2690,9 +2403,8 @@
                       <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
                     </svg>
                   </span>
-                </span></span
-              ></a
-            >
+                </span>
+              </a>
           </div>
         </div>
       </div>
@@ -2806,7 +2518,7 @@
           </li><li data-astro-cid-2qdgloxp>
             <img
               src="/images/vastu.svg"
-              alt="Vastu logo."
+              alt="vastu"
               loading="lazy"
               decoding="async"
               fetchpriority="auto"
@@ -2815,9 +2527,9 @@
               height="120"
             />
           </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/ratio.svg"
-              alt="Ratio logo."
+             <img
+              src="/public/images/doctor.svg"
+              alt="Doctor logo."
               loading="lazy"
               decoding="async"
               fetchpriority="auto"
@@ -2825,12 +2537,10 @@
               width="160"
               height="120"
             />
-          </li>
-        </ul><ul aria-hidden="true" data-astro-cid-2qdgloxp>
-          <li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/hsbc.svg"
-              alt="HSBC Logo."
+            <li data-astro-cid-2qdgloxp>
+             <img
+              src="/public/images/image_logo.svg"
+              alt="Image logo."
               loading="lazy"
               decoding="async"
               fetchpriority="auto"
@@ -2838,10 +2548,10 @@
               width="160"
               height="120"
             />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src=""
-              alt="Lab Logo."
+            <li data-astro-cid-2qdgloxp>
+             <img
+              src="/public/images/image_logo1.svg"
+              alt="Image logo 1."
               loading="lazy"
               decoding="async"
               fetchpriority="auto"
@@ -2849,10 +2559,10 @@
               width="160"
               height="120"
             />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/octopus-money.svg"
-              alt="Octopus Money logo."
+             <li data-astro-cid-2qdgloxp>
+             <img
+              src="/public/images/one_more_rep.svg"
+              alt="Image logo 1."
               loading="lazy"
               decoding="async"
               fetchpriority="auto"
@@ -2860,309 +2570,7 @@
               width="160"
               height="120"
             />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/picniq.svg"
-              alt="Picniq logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/wilderness.svg"
-              alt="Wilderness logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/threecolts.svg"
-              alt="Threecolts logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/bbd-boom.svg"
-              alt="BBD Boom logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/bucherer.svg"
-              alt="Bucherer logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/coda.svg"
-              alt="Coda logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/ratio.svg"
-              alt="Ratio logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li>
-        </ul><ul aria-hidden="true" data-astro-cid-2qdgloxp>
-          <li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/hsbc.svg"
-              alt="HSBC Logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/lab.svg"
-              alt="Lab Logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/octopus-money.svg"
-              alt="Octopus Money logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/picniq.svg"
-              alt="Picniq logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/wilderness.svg"
-              alt="Wilderness logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/threecolts.svg"
-              alt="Threecolts logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/bbd-boom.svg"
-              alt="BBD Boom logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/bucherer.svg"
-              alt="Bucherer logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/coda.svg"
-              alt="Coda logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/ratio.svg"
-              alt="Ratio logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li>
-        </ul><ul aria-hidden="true" data-astro-cid-2qdgloxp>
-          <li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/hsbc.svg"
-              alt="HSBC Logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/lab.svg"
-              alt="Lab Logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/octopus-money.svg"
-              alt="Octopus Money logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/picniq.svg"
-              alt="Picniq logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/wilderness.svg"
-              alt="Wilderness logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/threecolts.svg"
-              alt="Threecolts logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/bbd-boom.svg"
-              alt="BBD Boom logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/bucherer.svg"
-              alt="Bucherer logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/coda.svg"
-              alt="Coda logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li><li data-astro-cid-2qdgloxp>
-            <img
-              src="https://media.salo.uk/salo-website-prod/ratio.svg"
-              alt="Ratio logo."
-              loading="lazy"
-              decoding="async"
-              fetchpriority="auto"
-              data-astro-cid-2qdgloxp="true"
-              width="160"
-              height="120"
-            />
-          </li>
-        </ul>
+          
       </div>
     </div>
   </section>

@@ -1,12 +1,12 @@
 ---
 const cultureImages = [
-  { src: "public/images/Grp_image (2).jpeg", alt: "A group of seven colleagues smiling for a photo in front of a decorative wall with bookshelf motifs.", ratio: "932/680", rotate: -4 },
+  { src: "public/images/Group mine .jpg.jpeg", alt: "A group of seven colleagues smiling for a photo in front of a decorative wall with bookshelf motifs.", ratio: "1090/680", rotate: -4 },
   { src: "public/images/WhatsApp Image 2026-07-08 at 3.14.36 PM.jpeg", alt: "A person in a red fleece standing in a forest, aiming a recurve bow at two archery targets.", ratio: "1/1", rotate: -8 },
   { src: "public/images/IMG_1146.jpeg", alt: "Four men standing outside in front of a chain-link fence, one wearing a high-visibility event jacket and another in a red flight suit.", ratio: "680/934", rotate: -6 },
   { src: "public/images/IMG_1006.jpeg", alt: "Three smiling young men taking a selfie in the stands at a crowded stadium with red seats.", ratio: "932/680", rotate: 4 },
   { src: "public/images/image3.jpeg", alt: "A smiling man in a green shirt stands in front of a green Aston Martin Formula 1 safety car at a trackside display.", ratio: "444/922", rotate: 7 },
-  { src: "public/images/Grp_image-boys.jpg", alt: "Group of people posing for a photo at South Coast Karting under checkered flags.", ratio: "932/680", rotate: -5 },
-  { src: "public/images/WhatsApp Image 2026-07-08 at 2.45.15 PM.jpeg", alt: "A young woman and man smiling in a university cafe setting, both wearing name tags.", ratio: "1/1", rotate: -8 },
+  { src: "public/images/Group 111.jpg.jpeg", alt: "Group of people posing for a photo at South Coast Karting under checkered flags.", ratio: "1060/680", rotate: -5 },
+  { src: "public/images/Alisha 2.png", alt: "A young woman and man smiling in a university cafe setting, both wearing name tags.", ratio: "1/1", rotate: -8 },
   { src: "public/images/WhatsApp Image 2026-07-08 at 2.54.04 PM.jpeg", alt: "A group of five colleagues posing for a selfie during a scenic ocean sunset.", ratio: "752/558", rotate: 6 },
   { src: "public/images/WhatsApp Image 2026-07-08 at 2.54.04 PM (1).jpeg", alt: "Four people smiling for a selfie in front of a green sign, outdoors on a sunny day.", ratio: "1/1", rotate: 3 }
 ];
@@ -17,7 +17,7 @@ const cultureImages = [
     <div class="AboutCulture__photos">
       {cultureImages.map((img, idx) => (
         <div
-          class={`anchor-card anchor-card--rounded AboutCulture__item AboutCulture__item--${idx + 1}`}
+          class={`anchor-card  anchor-card--rounded AboutCulture__item AboutCulture__item--${idx + 1}`}
           data-rotate={img.rotate}
           style={`--rotate:${img.rotate}deg;`}
         >
@@ -157,7 +157,7 @@ const cultureImages = [
       img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
       }
     }
 

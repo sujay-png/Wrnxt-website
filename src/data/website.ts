@@ -1,7 +1,7 @@
 export const heroImages = [
-  { src: "/public/images/Mediahouse1.jpeg", alt: "Sunseeker mockup", card: "card-1" },
-  { src: "/public/images/Mediahouse2.jpeg", alt: "Tactical Arbitrage mockup", card: "card-2" },
-  { src: "/public/images/Mediahouse3.jpeg", alt: "Amanacard mockup", card: "card-3" },
+  { src: "/public/images/MediaHouse14.jpg", alt: "Sunseeker mockup", card: "card-1" },
+  { src: "/public/images/Mediahouse15.jpg", alt: "Tactical Arbitrage mockup", card: "card-2" },
+  { src: "/public/images/Mediahouse16.jpg", alt: "Amanacard mockup", card: "card-3" },
   { src: "/public/images/Mediahouse4.jpeg", alt: "Provenant mockup", card: "card-4" },
 ];
 

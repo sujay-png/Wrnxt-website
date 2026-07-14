@@ -98,10 +98,10 @@
         <nav aria-label="Mobile" class="stack mobile-nav">
           <span class="eyebrow">Our Services</span>
           <ul class="mobile-nav__list">
-            <li><a class="mobile-nav__link" href="/services/ui-ux">UX/UI & Digital Products</a></li>
-            <li><a class="mobile-nav__link" href="/services/websites">High-Performance Websites</a></li>
-            <li><a class="mobile-nav__link" href="/services/branding">Brand Identity & Positioning</a></li>
-            <li><a class="mobile-nav__link" href="/services/flexi-design">Flexi Design</a></li>
+            <li class="nav-item"><a class="nav-link" href="/projects">Work</a></li>
+          <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
           </ul>
           <span class="eyebrow">Our Work</span>
           <ul class="mobile-nav__list">
@@ -197,9 +197,28 @@
       window.addEventListener("lenis:ready", bindLenisScroll, { once: true });
     }
   }
+  function resetMobileHeader() {
+  const header = document.getElementById("header");
+
+  if (!header) return;
+
+  if (window.matchMedia("(max-width: 767px)").matches) {
+    header.removeAttribute("data-sticky");
+    header.style.transform = "translateY(0)";
+    header.style.opacity = "1";
+    header.style.visibility = "visible";
+  }
+}
+
+resetMobileHeader();
+
+document.addEventListener("astro:page-load", resetMobileHeader);
+document.addEventListener("astro:after-swap", resetMobileHeader);
+window.addEventListener("resize", resetMobileHeader);
 </script>
 
 <style lang="scss">
+  
   header {
     position: absolute;
     top: 0;

@@ -39,98 +39,140 @@ const {
 		<meta name="twitter:title" content="Web and brand design agency • Creative Digital Agency" />
 		<meta name="twitter:description" content={description} />
     
-    <script>
-      // Lock scroll until GSAP is fully initialised. Must be inline so it
-      // runs synchronously before the browser paints.
-      document.documentElement.style.overflow = 'hidden';
-      window.addEventListener('pageshow', function (e) {
-        if (e.persisted) {
-          document.documentElement.style.overflow = 'hidden';
-        }
-      });
-    </script>
+   <script is:inline>
+  const isMobile = window.matchMedia(
+    "(max-width: 768px)"
+  ).matches;
+
+  if (!isMobile) {
+    document.documentElement.style.overflow = "hidden";
+  } else {
+    document.documentElement.style.overflow = "auto";
+  }
+
+  window.addEventListener("pageshow", function (event) {
+    if (event.persisted) {
+      document.documentElement.style.overflow =
+        isMobile ? "auto" : "hidden";
+    }
+  });
+</script>
     <ClientRouter />
 	</head>
 	<body data-color-scheme="dark">
 		<slot />
 
-    <script>
-      import Alpine from 'alpinejs';
-      import Lenis from 'lenis';
-      import { ScrollTrigger } from 'gsap/ScrollTrigger';
-      import gsap from 'gsap';
+  <script>
+  import Alpine from "alpinejs";
+  import Lenis from "lenis";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import gsap from "gsap";
 
-      // Setup Alpine button hover effect once
-      if (!window.__alpineInitialized) {
-        window.__alpineInitialized = true;
-        
-        Alpine.data("buttonHover", () => ({
-          isHovering: false,
-          mouseX: 0,
-          mouseY: 0,
-          bgX: 75,
-          bgY: 75,
-          raf: null,
-          handleMouseMove(e) {
-            if (!this.isHovering) return;
-            const rect = e.currentTarget.getBoundingClientRect();
-            this.mouseX = ((e.clientX - rect.left) / rect.width) * 100;
-            this.mouseY = ((e.clientY - rect.top) / rect.height) * 100;
-            if (this.raf) cancelAnimationFrame(this.raf);
-            this.raf = requestAnimationFrame(() => {
-              this.bgX = this.mouseX;
-              this.bgY = this.mouseY;
-            });
-          },
-          handleMouseEnter() {
-            this.isHovering = true;
-          },
-          handleMouseLeave() {
-            this.isHovering = false;
-          }
-        }));
+  gsap.registerPlugin(ScrollTrigger);
 
-        window.Alpine = Alpine;
-        Alpine.start();
-      }
+  // Alpine
+  if (!window.__alpineInitialized) {
+    window.__alpineInitialized = true;
 
-      // Setup Lenis Smooth Scrolling once
-      if (!window.__lenisInitialized) {
-        window.__lenisInitialized = true;
-        
-        const lenis = new Lenis({
-          duration: 1.2,
-          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    Alpine.data("buttonHover", () => ({
+      isHovering: false,
+      mouseX: 0,
+      mouseY: 0,
+      bgX: 75,
+      bgY: 75,
+      raf: null,
+
+      handleMouseMove(e) {
+        if (!this.isHovering) return;
+
+        const rect = e.currentTarget.getBoundingClientRect();
+
+        this.mouseX =
+          ((e.clientX - rect.left) / rect.width) * 100;
+
+        this.mouseY =
+          ((e.clientY - rect.top) / rect.height) * 100;
+
+        if (this.raf) cancelAnimationFrame(this.raf);
+
+        this.raf = requestAnimationFrame(() => {
+          this.bgX = this.mouseX;
+          this.bgY = this.mouseY;
         });
-        window.__lenis = lenis;
+      },
 
-        // Update ScrollTrigger on Lenis scroll
-        lenis.on('scroll', ScrollTrigger.update);
+      handleMouseEnter() {
+        this.isHovering = true;
+      },
 
-        // Add Lenis to GSAP ticker
-        gsap.ticker.add((time) => {
-          lenis.raf(time * 1000);
-        });
-        gsap.ticker.lagSmoothing(0);
-      }
+      handleMouseLeave() {
+        this.isHovering = false;
+      },
+    }));
 
-      // Re-trigger Alpine discovery and GSAP refresh on View Transition page loads
-      document.addEventListener('astro:after-swap', () => {
-        if (window.__lenis) {
-          window.__lenis.scrollTo(0, { immediate: true });
-        }
+    window.Alpine = Alpine;
+    Alpine.start();
+  }
+
+  // Mobile check
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+  // Enable Lenis only on desktop
+  if (!isMobile && !window.__lenisInitialized) {
+    window.__lenisInitialized = true;
+
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) =>
+        Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    });
+
+    window.__lenis = lenis;
+
+    lenis.on("scroll", ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  // Restore normal mobile scrolling
+  if (isMobile) {
+    document.documentElement.style.overflow = "auto";
+    document.body.style.overflow = "auto";
+    document.documentElement.style.scrollBehavior = "auto";
+  }
+
+  document.addEventListener("astro:after-swap", () => {
+    if (window.__lenis && !isMobile) {
+      window.__lenis.scrollTo(0, {
+        immediate: true,
       });
+    }
+  });
 
-      document.addEventListener('astro:page-load', () => {
-        if (window.Alpine) {
-          window.Alpine.discover();
-        }
-        if (window.__lenis) {
-          window.__lenis.scrollTo(0, { immediate: true });
-        }
-        ScrollTrigger.refresh();
-        window.dispatchEvent(new CustomEvent('lenis:ready'));
+  document.addEventListener("astro:page-load", () => {
+    if (window.Alpine) {
+      window.Alpine.discover();
+    }
+
+    if (window.__lenis && !isMobile) {
+      window.__lenis.scrollTo(0, {
+        immediate: true,
       });
-    </script>
+    }
+
+    document.documentElement.style.overflow = "auto";
+    document.body.style.overflow = "auto";
+
+    ScrollTrigger.refresh();
+
+    window.dispatchEvent(
+      new CustomEvent("lenis:ready")
+    );
+  });
+</script>
 	</body>
 </html>

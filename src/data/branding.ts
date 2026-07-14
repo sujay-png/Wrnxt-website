@@ -1,8 +1,8 @@
 export const heroImages = [
-  { src: "/public/images/Marketing1.png", alt: "Sunseeker mockup", card: "card-1" },
-  { src: "/public/images/Markerting2.jpeg", alt: "Tactical Arbitrage mockup", card: "card-2" },
-  { src: "/public/images/Marketing15.jpg", alt: "Amanacard mockup", card: "card-3" },
-  { src: "/public/images/Marketing17.jpg", alt: "Provenant mockup", card: "card-4" },
+  { src: "/images/Marketing1.png", alt: "Sunseeker mockup", card: "card-1" },
+  { src: "/images/Markerting2.jpeg", alt: "Tactical Arbitrage mockup", card: "card-2" },
+  { src: "/images/Marketing15.jpg", alt: "Amanacard mockup", card: "card-3" },
+  { src: "/images/Marketing17.jpg", alt: "Provenant mockup", card: "card-4" },
 ];
 
 export const services = [

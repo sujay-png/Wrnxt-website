@@ -1,8 +1,8 @@
 export const heroImages = [
-  { src: "/public/images/MediaHouse14.jpg", alt: "Sunseeker mockup", card: "card-1" },
-  { src: "/public/images/WhatsApp Image 2026-07-13 at 11.13.49 AM (1).jpeg", alt: "Tactical Arbitrage mockup", card: "card-2" },
-  { src: "/public/images/Mediahouse16.jpg", alt: "Amanacard mockup", card: "card-3" },
-  { src: "/public/images/MediaHouse12.jpg", alt: "Provenant mockup", card: "card-4" },
+  { src: "/images/MediaHouse14.jpg", alt: "Sunseeker mockup", card: "card-1" },
+  { src: "/images/WhatsApp Image 2026-07-13 at 11.13.49 AM (1).jpeg", alt: "Tactical Arbitrage mockup", card: "card-2" },
+  { src: "/images/Mediahouse16.jpg", alt: "Amanacard mockup", card: "card-3" },
+  { src: "/images/MediaHouse12.jpg", alt: "Provenant mockup", card: "card-4" },
 ];
 
 export const services = [

@@ -5,54 +5,63 @@ const cultureImages = [
     alt: "A group of seven colleagues smiling for a photo in front of a decorative wall with bookshelf motifs.",
     ratio: "1090 / 680",
     rotate: -4,
+    orientation: "landscape",
   },
   {
     src: "/images/WhatsApp Image 2026-07-08 at 3.14.36 PM.jpeg",
     alt: "A person in a red fleece standing in a forest, aiming a recurve bow at two archery targets.",
     ratio: "1 / 1",
     rotate: -8,
+    orientation: "square",
   },
   {
     src: "/images/IMG_1146.jpeg",
-    alt: "Four men standing outside in front of a chain-link fence.",
+    alt: "Four men standing outside in front of a chain-link fence, one wearing a high-visibility event jacket and another in a red flight suit.",
     ratio: "680 / 934",
     rotate: -6,
+    orientation: "portrait",
   },
   {
     src: "/images/IMG_1006.jpeg",
-    alt: "Three smiling young men taking a selfie in a stadium.",
+    alt: "Three smiling young men taking a selfie in the stands at a crowded stadium with red seats.",
     ratio: "932 / 680",
     rotate: 4,
+    orientation: "landscape",
   },
   {
     src: "/images/image3.jpeg",
-    alt: "A smiling man standing in front of a Formula 1 safety car.",
+    alt: "A smiling man in a green shirt stands in front of a green Aston Martin Formula 1 safety car at a trackside display.",
     ratio: "444 / 922",
     rotate: 7,
+    orientation: "portrait",
   },
   {
     src: "/images/Group 111.jpg.jpeg",
-    alt: "Group of people posing for a photo at South Coast Karting.",
+    alt: "Group of people posing for a photo at South Coast Karting under checkered flags.",
     ratio: "1060 / 680",
     rotate: -5,
+    orientation: "landscape",
   },
   {
     src: "/images/Alisha 2.png",
-    alt: "A young woman and man smiling in a university cafe.",
+    alt: "A young woman and man smiling in a university cafe setting, both wearing name tags.",
     ratio: "1 / 1",
     rotate: -8,
+    orientation: "square",
   },
   {
     src: "/images/WhatsApp Image 2026-07-08 at 2.54.04 PM.jpeg",
-    alt: "A group of five colleagues posing for a selfie during sunset.",
+    alt: "A group of five colleagues posing for a selfie during a scenic ocean sunset.",
     ratio: "752 / 558",
     rotate: 6,
+    orientation: "landscape",
   },
   {
     src: "/images/WhatsApp Image 2026-07-08 at 2.54.04 PM (1).jpeg",
-    alt: "Four people smiling for a selfie outdoors.",
+    alt: "Four people smiling for a selfie in front of a green sign, outdoors on a sunny day.",
     ratio: "1 / 1",
     rotate: 3,
+    orientation: "square",
   },
 ];
 ---
@@ -63,8 +72,8 @@ const cultureImages = [
       {
         cultureImages.map((img, idx) => (
           <article
-            class={`anchor-card anchor-card--rounded AboutCulture__item AboutCulture__item--${idx + 1}`}
-            style={`--rotate:${img.rotate}deg; --image-ratio:${img.ratio};`}
+            class={`anchor-card anchor-card--rounded AboutCulture__item AboutCulture__item--${idx + 1} AboutCulture__item--${img.orientation}`}
+            style={`--rotate: ${img.rotate}deg; --frame-ratio: ${img.ratio};`}
           >
             <svg
               class="anchor-border"
@@ -81,6 +90,7 @@ const cultureImages = [
                 rx="16"
                 ry="16"
               />
+
               <circle cx="19.5" cy="3.5" r="3" />
               <circle cx="calc(100% - 19.5px)" cy="3.5" r="3" />
               <circle cx="19.5" cy="calc(100% - 3.5px)" r="3" />
@@ -98,8 +108,6 @@ const cultureImages = [
                   alt={img.alt}
                   loading="lazy"
                   decoding="async"
-                  width="932"
-                  height="680"
                 />
               </div>
             </div>
@@ -135,159 +143,245 @@ const cultureImages = [
 <style lang="scss">
   .AboutCulture {
     position: relative;
-    overflow: clip;
+    width: 100%;
     border-bottom: 1px solid var(--color-border);
     background-color: var(--color-bg);
+    overflow: hidden;
   }
 
-  .AboutCulture__collage {
+  /*
+   * Desktop collage
+   */
+.AboutCulture {
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  overflow: hidden;
+}
+
+.AboutCulture__collage {
+  position: relative;
+  width: 100%;
+
+  /* Use viewport height, not rem */
+  height: 280vh;
+  min-height: 1800px;
+}
+
+.AboutCulture__content {
+  position: relative;
+  z-index: 5;
+  height: 100%;
+  pointer-events: none;
+}
+
+.AboutCulture__text {
+  position: sticky;
+  top: 35vh;
+  z-index: 5;
+
+  width: min(90%, 47rem);
+  margin-inline: auto;
+
+  text-align: center;
+  pointer-events: none;
+
+  h2 {
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  p {
+    margin: 0;
+    text-wrap: pretty;
+  }
+}
+
+.AboutCulture__photos {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.AboutCulture__item {
+  position: absolute;
+  width: 14%;
+  min-width: 9rem;
+  height: auto;
+
+  overflow: hidden;
+  border-radius: 16px;
+
+  transform: rotate(var(--rotate, 0deg));
+  transform-origin: center;
+
+  box-shadow: 0 1.5rem 3rem -1rem rgba(0, 0, 0, 0.45);
+  pointer-events: auto;
+
+  transition:
+    transform 300ms ease,
+    box-shadow 300ms ease;
+
+  &:hover {
+    z-index: 10;
+    transform: rotate(0deg) scale(1.04);
+    box-shadow: 0 2rem 4rem -1rem rgba(0, 0, 0, 0.55);
+  }
+
+  .anchor-content {
     position: relative;
-    min-height: 280rem;
+    width: 100%;
+    height: auto;
+    padding: 7px;
   }
 
-  .AboutCulture__content {
+  .frame {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: var(--frame-ratio);
+    overflow: hidden;
+    border-radius: 11px;
+  }
+
+  .frame img {
+    display: block;
+    width: 100%;
     height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &--1 {
+    top: 2%;
+    left: 8%;
+    width: 22%;
+  }
+
+  &--2 {
+    top: 11%;
+    left: 70%;
+    width: 15%;
+  }
+
+  &--3 {
+    top: 22%;
+    left: 34%;
+    width: 16%;
+  }
+
+  &--4 {
+    top: 32%;
+    left: 57%;
+    width: 24%;
+  }
+
+  &--5 {
+    top: 43%;
+    left: 10%;
+    width: 14%;
+  }
+
+  &--6 {
+    top: 53%;
+    left: 64%;
+    width: 25%;
+  }
+
+  &--7 {
+    top: 64%;
+    left: 38%;
+    width: 17%;
+  }
+
+  &--8 {
+    top: 74%;
+    left: 7%;
+    width: 22%;
+  }
+
+  &--9 {
+    top: 84%;
+    left: 61%;
+    width: 16%;
+  }
+}
+
+  /*
+   * Smaller desktop screens
+   */
+@media (max-width: 1199px) and (min-width: 1024px) {
+  .AboutCulture__collage {
+    height: 230vh;
+    min-height: 1500px;
   }
 
   .AboutCulture__text {
-    position: sticky;
-    top: 28vh;
-    z-index: 1;
-    max-width: 42rem;
-    margin-inline: auto;
-    text-align: center;
-    pointer-events: none;
-
-    .btn,
-    a {
-      pointer-events: auto;
-    }
-
-    h2 {
-      text-wrap: balance;
-    }
-  }
-
-  .AboutCulture__photos {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
+    width: min(90%, 39rem);
   }
 
   .AboutCulture__item {
-    position: absolute;
-    width: 14%;
-    overflow: hidden;
-    border-radius: 16px;
-    transform: rotate(var(--rotate, 0deg));
-    box-shadow: 0 1.5rem 3rem -1rem rgba(0, 0, 0, 0.45);
-
-    .anchor-content {
-      width: 100%;
-      height: 100%;
-    }
-
-    .frame {
-      width: 100%;
-      aspect-ratio: var(--image-ratio);
-      overflow: hidden;
-      border-radius: inherit;
-    }
-
-    img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    &--1 {
-      top: 1%;
-      left: 8%;
-      width: 22%;
-    }
-
-    &--2 {
-      top: 10%;
-      left: 68%;
-      width: 13%;
-    }
-
-    &--3 {
-      top: 23%;
-      left: 34%;
-      width: 16%;
-    }
-
-    &--4 {
-      top: 34%;
-      left: 56%;
-      width: 24%;
-    }
-
-    &--5 {
-      top: 43%;
-      left: 10%;
-      width: 12%;
-    }
-
-    &--6 {
-      top: 55%;
-      left: 64%;
-      width: 25%;
-    }
-
-    &--7 {
-      top: 65%;
-      left: 38%;
-      width: 16%;
-    }
-
-    &--8 {
-      top: 74%;
-      left: 6%;
-      width: 21%;
-    }
-
-    &--9 {
-      top: 83%;
-      left: 60%;
-      width: 14%;
-    }
+    min-width: 8rem;
   }
+}
 
-  /* Tablet */
+  /*
+   * Tablet
+   */
   @media (max-width: 1023px) {
     .AboutCulture {
       overflow: hidden;
     }
 
     .AboutCulture__collage {
-      min-height: 0;
+      height: auto;
       display: flex;
       flex-direction: column;
       gap: clamp(2rem, 6vw, 4rem);
-      padding-block: clamp(3rem, 8vw, 5rem);
+      padding-block:
+        clamp(4rem, 9vw, 7rem)
+        clamp(2.5rem, 7vw, 5rem);
     }
 
     .AboutCulture__content {
       order: -1;
       height: auto;
+      width: 100%;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+        z-index: 5;
     }
 
     .AboutCulture__text {
       position: static;
-      max-width: 38rem;
-      padding-inline: 1rem;
+      width: min(100%, 42rem);
+      margin-inline: auto;
       pointer-events: auto;
+
+      h2 {
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        line-height: 1.08;
+      }
+
+      p {
+        font-size: clamp(0.95rem, 2vw, 1.1rem);
+        line-height: 1.7;
+      }
     }
 
     .AboutCulture__photos {
       position: static;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: clamp(0.9rem, 2vw, 1.5rem);
-      padding-inline: clamp(1rem, 4vw, 2rem);
+      grid-auto-flow: dense;
+      gap: clamp(1rem, 3vw, 1.5rem);
+      width: 100%;
+      padding-inline: clamp(1rem, 4vw, 2.5rem);
+      pointer-events: auto;
+       z-index: 2;
     }
 
     .AboutCulture__item {
@@ -295,97 +389,197 @@ const cultureImages = [
       inset: auto;
       width: 100%;
       min-width: 0;
+      height: auto;
       transform: none;
-      box-shadow: 0 1rem 2rem -1rem rgba(0, 0, 0, 0.4);
+      border-radius: 16px;
+
+      &:hover {
+        transform: translateY(-4px);
+      }
 
       .frame {
         aspect-ratio: 4 / 3;
       }
 
-      &--2 .frame,
-      &--3 .frame,
-      &--5 .frame {
+      &--portrait .frame {
         aspect-ratio: 3 / 4;
       }
 
+      &--square .frame {
+        aspect-ratio: 1 / 1;
+      }
+
+      &--landscape .frame {
+        aspect-ratio: 4 / 3;
+      }
+
+      /*
+       * Make selected landscape photos span both tablet columns.
+       */
       &--1,
+      &--4,
       &--6,
       &--8 {
         grid-column: span 2;
 
         .frame {
-          aspect-ratio: 16 / 9;
+          aspect-ratio: 16 / 8;
         }
       }
     }
   }
 
-  /* Mobile */
-  @media (max-width: 599px) {
-    .AboutCulture__collage {
-      gap: 2rem;
-      padding-block: 3rem;
-    }
+  /*
+   * Mobile
+   */
+/* Keep this at the very bottom of the stylesheet */
+@media (max-width: 599px) {
+  .AboutCulture__collage {
+    height: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding: 4rem 0 2rem;
+  }
 
-    .AboutCulture__text {
+  .AboutCulture__content {
+    order: -1;
+    height: auto;
+    padding-inline: 1.25rem;
+  }
+
+  .AboutCulture__text {
+    position: static;
+    top: auto;
+    width: 100%;
+    max-width: 34rem;
+    margin-inline: auto;
+  }
+
+  .AboutCulture__photos {
+    position: static;
+    inset: auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    gap: 1.25rem;
+    padding-inline: 1rem;
+  }
+
+  /* Override every desktop item position and width */
+  .AboutCulture__item,
+  .AboutCulture__item--1,
+  .AboutCulture__item--2,
+  .AboutCulture__item--3,
+  .AboutCulture__item--4,
+  .AboutCulture__item--5,
+  .AboutCulture__item--6,
+  .AboutCulture__item--7,
+  .AboutCulture__item--8,
+  .AboutCulture__item--9 {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+
+    margin: 0 !important;
+    transform: none !important;
+    grid-column: auto !important;
+    grid-row: auto !important;
+
+    overflow: hidden;
+    border-radius: 14px;
+  }
+
+  .AboutCulture__item .anchor-border {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .AboutCulture__item .anchor-content {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 7px;
+  }
+
+  .AboutCulture__item .frame,
+  .AboutCulture__item--portrait .frame,
+  .AboutCulture__item--square .frame,
+  .AboutCulture__item--landscape .frame,
+  .AboutCulture__item--1 .frame,
+  .AboutCulture__item--2 .frame,
+  .AboutCulture__item--3 .frame,
+  .AboutCulture__item--4 .frame,
+  .AboutCulture__item--5 .frame,
+  .AboutCulture__item--6 .frame,
+  .AboutCulture__item--7 .frame,
+  .AboutCulture__item--8 .frame,
+  .AboutCulture__item--9 .frame {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .AboutCulture__item img {
+    position: static !important;
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: center;
+  }
+}
+  /*
+   * Very small phones
+   */
+  @media (max-width: 380px) {
+    .AboutCulture__content {
       padding-inline: 1rem;
-
-      h2 {
-        font-size: clamp(2rem, 9vw, 3rem);
-        line-height: 1.05;
-      }
-
-      .prose {
-        font-size: 0.95rem;
-        line-height: 1.7;
-      }
     }
 
     .AboutCulture__photos {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      padding-inline: 1rem;
+      padding-inline: 0.75rem;
     }
 
-    .AboutCulture__item,
-    .AboutCulture__item--1,
-    .AboutCulture__item--6,
-    .AboutCulture__item--8 {
-      grid-column: auto;
-    }
-
-    .AboutCulture__item {
-      .frame {
-        aspect-ratio: 4 / 3;
-      }
-
-      &--2 .frame,
-      &--3 .frame,
-      &--5 .frame {
-        aspect-ratio: 3 / 4;
-      }
-
-      &--1 .frame,
-      &--4 .frame,
-      &--6 .frame,
-      &--8 .frame {
-        aspect-ratio: 16 / 10;
-      }
+    .AboutCulture__text h2 {
+      font-size: 1.9rem;
     }
   }
 
-  /* Very small mobile */
-  @media (max-width: 380px) {
-    .AboutCulture__photos {
-      padding-inline: 0.75rem;
-    }
-
-    .AboutCulture__text {
-      padding-inline: 0.75rem;
-    }
-
+  /*
+   * Accessibility
+   */
+  @media (prefers-reduced-motion: reduce) {
     .AboutCulture__item {
-      border-radius: 12px;
+      transition: none;
+
+      &:hover {
+        transform: none;
+      }
     }
   }
 </style>

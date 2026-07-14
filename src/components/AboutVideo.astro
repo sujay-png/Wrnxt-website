@@ -1,381 +1,697 @@
 ---
-const milestones = [
-  { year: "2017", label: "Cybersecurity Development solutions" },
-  { year: "2019", label: "Global Expansion Managed IT Services" },
-  { year: "2020", label: "Remote Work & Digital Adaptation" },
-  { year: "2021", label: "Transformation & AI Integration" },
-  { year: "2023", label: "Smart solution & IoT Integration" },
-  { year: "2024", label: "Advancing into the Digital Future" },
-  { year: "2025", label: "Next-Gen IT innovation and sustainability focus" },
-];
+const videoId = "0Vfzh3w0Gug";
+const thumbnail = "/images/Group mine .jpg.jpeg";
 ---
 
 <section class="section AboutVideo" data-padding="xl">
   <div class="container">
-    <div class="sidebar AboutVideo__sidebar" data-gap="md-2xl">
-      <div class="anchor-card anchor-card--rounded AboutVideo__player" x-data="{ isPlaying: false }">
-        <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
-          <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
+    <div class="AboutVideo__layout">
+      <div
+        class="anchor-card anchor-card--rounded AboutVideo__player"
+        data-video-player
+        data-video-id={videoId}
+      >
+        <!-- Decorative border -->
+        <svg
+          class="anchor-border"
+          width="100%"
+          height="100%"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <rect
+            x="3.5"
+            y="3.5"
+            width="calc(100% - 7px)"
+            height="calc(100% - 7px)"
+            rx="16"
+            ry="16"
+          ></rect>
+
           <circle cx="19.5" cy="3.5" r="3"></circle>
-          <circle cx="calc(100% - 19.5px)" cy="3.5" r="3"></circle>
-          <circle cx="19.5" cy="calc(100% - 3.5px)" r="3"></circle>
-          <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3"></circle>
+
+          <circle
+            cx="calc(100% - 19.5px)"
+            cy="3.5"
+            r="3"
+          ></circle>
+
+          <circle
+            cx="19.5"
+            cy="calc(100% - 3.5px)"
+            r="3"
+          ></circle>
+
+          <circle
+            cx="calc(100% - 19.5px)"
+            cy="calc(100% - 3.5px)"
+            r="3"
+          ></circle>
         </svg>
-        <div class="anchor-content">
-          <div class="frame AboutVideo__frame" style="--frame-ratio:16/9;">
-            <div class="AboutVideo__facade" x-show="!isPlaying" @click="isPlaying = true" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 10; display: flex; flex-direction: column; justify-content: space-between; padding: 1.5rem; box-sizing: border-box; color: #ffffff; user-select: none; overflow: hidden; cursor: pointer;">
-              <div class="AboutVideo__backdrop" style="position: absolute; inset: 0; width: 100%; height: 100%; background-image: url('public/images/Group mine .jpg.jpeg'); background-size: cover; background-position: center; filter: brightness(0.7) contrast(1.05); z-index: 1;"></div>
-              <div class="AboutVideo__overlay" style="position: absolute; inset: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.15) 40%, rgba(0, 0, 0, 0.8) 100%); z-index: 2;"></div>
 
-              <div class="AboutVideo__brand" style="position: relative; z-index: 3; display: flex; justify-content: flex-end; width: 100%;">
-                <svg viewBox="0 0 104 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="AboutVideo__logoSvg" style="width: 80px; height: 23px; display: block; opacity: 0.9;">
-                  <path d="M101.813 9.07487C98.1337 1.20259 88.7695 -2.19519 80.8963 1.48374L80.208 0.00968382C72.3348 3.68862 68.9357 13.0518 72.6151 20.9241C76.2944 28.7964 85.6587 32.1942 93.5319 28.5152L94.2202 29.9884C102.093 26.3095 105.492 16.9463 101.813 9.07398V9.07487ZM90.7839 22.6376C86.1581 24.799 80.6568 22.8017 78.4951 18.1773C76.3335 13.552 78.331 8.05137 82.956 5.88995L83.6443 7.36223C88.2701 5.20081 93.7714 7.19815 95.933 11.8225C98.0947 16.4478 96.0971 21.9485 91.4722 24.1099L90.7839 22.6376Z" fill="white"></path>
-                  <path d="M71.9499 29.7429L58.1993 29.7438H54.8934V29.7429H54.0897L53.1859 27.8041L51.709 24.6369V0.251953H58.1993V23.2542H68.9242L71.5161 28.8134L71.9499 29.7429Z" fill="white"></path>
-                  <path d="M39.1289 7.92716L35.5481 0.25L31.968 7.92805L32.6617 9.41452L29.0861 17.0819L23.1821 29.74H30.343L32.6661 24.7591L36.2417 17.0926L42.1395 29.74H49.2995L49.3013 29.7391L39.1289 7.92716Z" fill="white"></path>
-                  <path d="M21.8703 20.415C21.8703 20.4815 21.8703 20.5453 21.8685 20.6101C21.7639 25.6717 17.6277 29.74 12.5416 29.74H0L3.02562 23.2504H5.04891V23.2531H12.7331C13.5164 23.2531 14.2251 22.9356 14.7378 22.423C15.2514 21.9094 15.5689 21.2008 15.5689 20.4176C15.5689 18.8513 14.2987 17.5822 12.7331 17.5822H12.6391C12.6063 17.5813 12.5744 17.5804 12.5416 17.5804H10.2034C8.06388 17.5804 6.10446 16.8185 4.59209 15.5325C2.77193 13.9866 1.59929 11.7028 1.53543 9.1449C1.53543 9.10854 1.53099 8.96042 1.53099 8.9214C1.53099 6.52672 2.50139 4.35909 4.07053 2.79013C5.63966 1.22118 7.80754 0.250887 10.2016 0.25H22.9223L19.894 6.73958H10.2034C10.191 6.73958 10.1785 6.73958 10.1661 6.74047H10.0402C9.43788 6.74047 8.89147 6.98437 8.49675 7.37993C8.10203 7.77461 7.85721 8.32007 7.85721 8.92317C7.85721 10.1285 8.8347 11.105 10.0402 11.105H12.7021C17.7803 11.1901 21.8703 15.317 21.8703 20.415Z" fill="white"></path>
+        <div class="anchor-content AboutVideo__anchorContent">
+          <div class="AboutVideo__frame">
+            <!-- Video cover -->
+            <button
+              type="button"
+              class="AboutVideo__facade"
+              data-video-play
+              aria-label="Play video"
+            >
+              <span
+                class="AboutVideo__backdrop"
+                style={`background-image: url("${thumbnail}");`}
+                aria-hidden="true"
+              ></span>
+
+              <span
+                class="AboutVideo__overlay"
+                aria-hidden="true"
+              ></span>
+
+              <!-- Logo -->
+              <span class="AboutVideo__brand">
+                <svg
+                  viewBox="0 0 104 30"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="AboutVideo__logoSvg"
+                  aria-label="Company logo"
+                >
+                  <path
+                    d="M101.813 9.07487C98.1337 1.20259 88.7695 -2.19519 80.8963 1.48374L80.208 0.00968382C72.3348 3.68862 68.9357 13.0518 72.6151 20.9241C76.2944 28.7964 85.6587 32.1942 93.5319 28.5152L94.2202 29.9884C102.093 26.3095 105.492 16.9463 101.813 9.07398V9.07487ZM90.7839 22.6376C86.1581 24.799 80.6568 22.8017 78.4951 18.1773C76.3335 13.552 78.331 8.05137 82.956 5.88995L83.6443 7.36223C88.2701 5.20081 93.7714 7.19815 95.933 11.8225C98.0947 16.4478 96.0971 21.9485 91.4722 24.1099L90.7839 22.6376Z"
+                    fill="white"
+                  ></path>
+
+                  <path
+                    d="M71.9499 29.7429L58.1993 29.7438H54.8934V29.7429H54.0897L53.1859 27.8041L51.709 24.6369V0.251953H58.1993V23.2542H68.9242L71.5161 28.8134L71.9499 29.7429Z"
+                    fill="white"
+                  ></path>
+
+                  <path
+                    d="M39.1289 7.92716L35.5481 0.25L31.968 7.92805L32.6617 9.41452L29.0861 17.0819L23.1821 29.74H30.343L32.6661 24.7591L36.2417 17.0926L42.1395 29.74H49.2995L49.3013 29.7391L39.1289 7.92716Z"
+                    fill="white"
+                  ></path>
+
+                  <path
+                    d="M21.8703 20.415C21.8703 20.4815 21.8703 20.5453 21.8685 20.6101C21.7639 25.6717 17.6277 29.74 12.5416 29.74H0L3.02562 23.2504H5.04891V23.2531H12.7331C13.5164 23.2531 14.2251 22.9356 14.7378 22.423C15.2514 21.9094 15.5689 21.2008 15.5689 20.4176C15.5689 18.8513 14.2987 17.5822 12.7331 17.5822H12.6391C12.6063 17.5813 12.5744 17.5804 12.5416 17.5804H10.2034C8.06388 17.5804 6.10446 16.8185 4.59209 15.5325C2.77193 13.9866 1.59929 11.7028 1.53543 9.1449C1.53543 9.10854 1.53099 8.96042 1.53099 8.9214C1.53099 6.52672 2.50139 4.35909 4.07053 2.79013C5.63966 1.22118 7.80754 0.250887 10.2016 0.25H22.9223L19.894 6.73958H10.2034C10.191 6.73958 10.1785 6.73958 10.1661 6.74047H10.0402C9.43788 6.74047 8.89147 6.98437 8.49675 7.37993C8.10203 7.77461 7.85721 8.32007 7.85721 8.92317C7.85721 10.1285 8.8347 11.105 10.0402 11.105H12.7021C17.7803 11.1901 21.8703 15.317 21.8703 20.415Z"
+                    fill="white"
+                  ></path>
                 </svg>
-              </div>
+              </span>
 
-              <button class="AboutVideo__playButton" aria-label="Play video" style="position: relative; z-index: 3; align-self: center; background: none; border: none; padding: 0; cursor: pointer; margin: auto 0;">
-                <span class="AboutVideo__playCircle" style="display: flex; align-items: center; justify-content: center; width: 68px; height: 68px; border-radius: 50%; background-color: #8c38ff; color: #ffffff; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); transition: transform 0.3s ease;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="margin-left: 3px; display: block;">
-                    <path d="M8 5v14l11-7z"/>
+              <!-- Main play button -->
+              <span class="AboutVideo__playArea">
+                <span class="AboutVideo__playCircle">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="30"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M8 5v14l11-7z"></path>
                   </svg>
                 </span>
-              </button>
+              </span>
 
-              <div class="AboutVideo__footer" style="position: relative; z-index: 3; display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 1rem;">
-                <div class="AboutVideo__speaker" style="display: flex; align-items: center; gap: 0.5rem;">
-                  <span class="AboutVideo__playMini" style="display: flex; align-items: center; color: #ffffff;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display: block;">
-                      <path d="M8 5v14l11-7z"/>
+              <!-- Bottom information -->
+              <span class="AboutVideo__footer">
+                <span class="AboutVideo__speaker">
+                  <span
+                    class="AboutVideo__playMini"
+                    aria-hidden="true"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M8 5v14l11-7z"></path>
                     </svg>
                   </span>
-                  <span class="AboutVideo__dot" style="width: 6px; height: 6px; border-radius: 50%; background-color: #8c38ff; display: inline-block;"></span>
-                  <div class="AboutVideo__speakerText" style="display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.35rem;">
-                    <strong class="AboutVideo__speakerName" style="font-size: 0.875rem; font-weight: 500; color: #ffffff;">Nihar Kulkarni</strong>
-                    <span class="AboutVideo__speakerRole" style="font-size: 0.75rem; color: rgba(255, 255, 255, 0.7);">Managing Director of Roswell NYC</span>
-                  </div>
-                </div>
-                <div class="AboutVideo__controls" style="display: flex; align-items: center; gap: 0.5rem;">
-                  <span class="AboutVideo__time" style="font-size: 0.75rem; font-family: monospace; color: rgba(255, 255, 255, 0.9); background: rgba(0, 0, 0, 0.5); padding: 2px 8px; border-radius: 12px;">03:28</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: rgba(255, 255, 255, 0.8); display: block;">
-                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+
+                  <span
+                    class="AboutVideo__dot"
+                    aria-hidden="true"
+                  ></span>
+
+                  <span class="AboutVideo__speakerText">
+                    <strong class="AboutVideo__speakerName">
+                      Nihar Kulkarni
+                    </strong>
+
+                    <span class="AboutVideo__speakerRole">
+                      Managing Director of Roswell NYC
+                    </span>
+                  </span>
+                </span>
+
+                <span class="AboutVideo__controls">
+                  <span class="AboutVideo__time">
+                    03:28
+                  </span>
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="17"
+                    height="17"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5">
+                    </polygon>
+
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07">
+                    </path>
                   </svg>
-                </div>
-              </div>
-            </div>
+                </span>
+              </span>
+            </button>
 
-            <template x-if="isPlaying">
-             <iframe
-  src="https://www.youtube.com/embed/0Vfzh3w0Gug?si=9cMtjFw_I9Wg99GS"
-  loading="eager"
-  allow="autoplay; fullscreen; picture-in-picture"
-  allowfullscreen
-  referrerpolicy="strict-origin-when-cross-origin"
-  title="Hear from our partner agency founders"
-></iframe>
-            </template>
+            <!-- YouTube iframe is added here after clicking -->
+            <div
+              class="AboutVideo__iframeWrapper"
+              data-video-container
+            ></div>
           </div>
-        </div>
-      </div>
-
-      <!-- <div class="stack AboutVideo__content" data-gap="lg">
-        <h2 class="heading" data-font-size="4">Hear from our partner agency founders</h2>
-
-        <div class="reactive-divider horizontal" x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })">
-          <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
-          <div class="divider-line" x-ref="dividerLine">
-            <div class="width-display" x-text="formattedWidth" x-cloak>0px</div>
-          </div>
-          <div class="anchor end-anchor"><div class="anchor-circle"></div></div>
-        </div>
-
-        <div class="AboutVideo__timeline">
-          {milestones.map((m) => (
-            <div class="AboutVideo__timelineItem">
-              <div class="AboutVideo__timelineMarker">
-                <span class="AboutVideo__timelineDot"></span>
-                <span class="AboutVideo__timelineTrack"></span>
-              </div>
-              <div class="AboutVideo__timelineBody">
-                <span class="AboutVideo__timelineYear">{m.year}</span>
-                <p class="AboutVideo__timelineLabel">{m.label}</p>
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
 </section>
+
+<script>
+  function initialiseVideoPlayers() {
+    const videoPlayers = document.querySelectorAll("[data-video-player]");
+
+    videoPlayers.forEach((player) => {
+      if (!(player instanceof HTMLElement)) return;
+
+      // Prevent duplicate listeners during Astro navigation.
+      if (player.dataset.initialised === "true") return;
+
+      const playButton = player.querySelector("[data-video-play]");
+      const videoContainer = player.querySelector("[data-video-container]");
+      const videoId = player.dataset.videoId;
+
+      if (
+        !(playButton instanceof HTMLButtonElement) ||
+        !(videoContainer instanceof HTMLElement) ||
+        !videoId
+      ) {
+        return;
+      }
+
+      player.dataset.initialised = "true";
+
+      playButton.addEventListener("click", () => {
+        if (videoContainer.querySelector("iframe")) return;
+
+        const iframe = document.createElement("iframe");
+
+        iframe.className = "AboutVideo__iframe";
+        iframe.src =
+          `https://www.youtube.com/embed/${videoId}` +
+          "?autoplay=1" +
+          "&playsinline=1" +
+          "&rel=0" +
+          "&modestbranding=1";
+
+        iframe.title = "Hear from our partner agency founders";
+        iframe.loading = "eager";
+        iframe.allow =
+          "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.setAttribute("allowfullscreen", "");
+
+        videoContainer.appendChild(iframe);
+
+        playButton.classList.add("is-hidden");
+        player.classList.add("is-playing");
+      });
+    });
+  }
+
+  initialiseVideoPlayers();
+
+  // Supports Astro page transitions.
+  document.addEventListener(
+    "astro:page-load",
+    initialiseVideoPlayers
+  );
+</script>
 
 <style lang="scss">
   .AboutVideo {
+    position: relative;
+    width: 100%;
     border-bottom: 1px solid var(--color-border);
     background-color: var(--color-bg);
+    overflow: hidden;
   }
 
-  .AboutVideo__sidebar {
-    /* smaller reserved width for the text column = more room for video */
-    --sidebar-width: clamp(16rem, 26%, 22rem);
-    align-items: center;
-
-    @media (max-width: 1023px) {
-      flex-direction: column;
-    }
-  }
-
-  .AboutVideo__content {
-    flex-basis: var(--sidebar-width);
-    flex-shrink: 0;
+  .AboutVideo__layout {
+    width: 100%;
   }
 
   .AboutVideo__player {
-    /* grow aggressively to fill remaining space */
-    flex-basis: 0;
-    flex-grow: 999;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
     min-width: 0;
+    height: auto;
+    overflow: hidden;
+    border-radius: 16px;
     cursor: pointer;
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
   }
 
+  /*
+   * Ensure the decorative border stays over the video.
+   */
+  .AboutVideo__player > .anchor-border {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .AboutVideo__anchorContent {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 7px;
+  }
+
+  /*
+   * A fixed aspect ratio ensures that the video always has height,
+   * including on mobile devices.
+   */
   .AboutVideo__frame {
     position: relative;
-    background: #0f0f12;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 11px;
+    background-color: #0f0f12;
+    isolation: isolate;
   }
 
+  /*
+   * Cover shown before video playback.
+   */
   .AboutVideo__facade {
     position: absolute;
     inset: 0;
     z-index: 10;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: var(--space-lg);
-    color: #ffffff;
-    user-select: none;
-    overflow: hidden;
 
-    &:hover .AboutVideo__playCircle {
-      transform: scale(1.1);
-      box-shadow: 0 0 32px rgba(140, 56, 255, 0.6);
-    }
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    padding: clamp(1rem, 2.5vw, 1.5rem);
+
+    overflow: hidden;
+    border: 0;
+    background: transparent;
+    color: #ffffff;
+
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
+    user-select: none;
+
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+      opacity 250ms ease,
+      visibility 250ms ease;
+  }
+
+  .AboutVideo__facade.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   .AboutVideo__backdrop {
     position: absolute;
     inset: 0;
+    z-index: -2;
+
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: center 30%;
+
     filter: brightness(0.72) contrast(1.05);
     transform: scale(1.02);
-    transition: transform 0.6s ease;
+
+    transition: transform 600ms ease;
   }
 
   .AboutVideo__facade:hover .AboutVideo__backdrop {
-    transform: scale(1.05);
+    transform: scale(1.06);
   }
 
   .AboutVideo__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.75) 100%);
+    z-index: -1;
+
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.42) 0%,
+        rgba(0, 0, 0, 0.08) 45%,
+        rgba(0, 0, 0, 0.82) 100%
+      );
   }
 
   .AboutVideo__brand {
     position: relative;
-    z-index: 2;
+    z-index: 3;
+
     display: flex;
     justify-content: flex-end;
+
+    width: 100%;
   }
 
   .AboutVideo__logoSvg {
+    display: block;
     width: 80px;
     height: auto;
     opacity: 0.9;
   }
 
-  .AboutVideo__playButton {
+  .AboutVideo__playArea {
     position: relative;
-    z-index: 2;
-    align-self: center;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
+    z-index: 3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 1;
+    width: 100%;
   }
 
   .AboutVideo__playCircle {
     display: flex;
     align-items: center;
     justify-content: center;
+
     width: 68px;
     height: 68px;
+
     border-radius: 50%;
     background-color: #8c38ff;
     color: #ffffff;
+
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+
+    transition:
+      transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 300ms ease;
 
     svg {
+      display: block;
       margin-left: 3px;
     }
   }
 
+  .AboutVideo__facade:hover .AboutVideo__playCircle {
+    transform: scale(1.1);
+    box-shadow: 0 0 32px rgba(140, 56, 255, 0.65);
+  }
+
   .AboutVideo__footer {
     position: relative;
-    z-index: 2;
+    z-index: 3;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--space-md);
+
+    width: 100%;
+    gap: 1rem;
   }
 
   .AboutVideo__speaker {
     display: flex;
     align-items: center;
-    gap: var(--space-2xs);
+    gap: 0.5rem;
+
+    min-width: 0;
   }
 
   .AboutVideo__playMini {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    flex-shrink: 0;
     color: #ffffff;
-    opacity: 0.9;
   }
 
   .AboutVideo__dot {
+    display: inline-block;
+    flex-shrink: 0;
+
     width: 6px;
     height: 6px;
+
     border-radius: 50%;
     background-color: #8c38ff;
-    margin-right: 4px;
   }
 
   .AboutVideo__speakerText {
     display: flex;
     align-items: baseline;
     flex-wrap: wrap;
-    gap: var(--space-3xs);
+
+    min-width: 0;
+    gap: 0.35rem;
   }
 
   .AboutVideo__speakerName {
-    font-size: var(--text-sm);
+    color: #ffffff;
+    font-size: 0.875rem;
     font-weight: 500;
   }
 
   .AboutVideo__speakerRole {
-    font-size: var(--text-xs);
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.75rem;
   }
 
   .AboutVideo__controls {
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
+    flex-shrink: 0;
+    gap: 0.5rem;
+
+    color: rgba(255, 255, 255, 0.85);
   }
 
   .AboutVideo__time {
-    font-size: var(--text-xs);
-    font-family: monospace;
-    color: rgba(255, 255, 255, 0.85);
-    background: rgba(0, 0, 0, 0.45);
     padding: 2px 8px;
-    border-radius: 12px;
+
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.5);
+
+    color: rgba(255, 255, 255, 0.92);
+    font-family: monospace;
+    font-size: 0.75rem;
   }
 
-  .AboutVideo__icon {
-    color: rgba(255, 255, 255, 0.8);
+  /*
+   * Iframe wrapper fills the entire 16:9 frame.
+   */
+  .AboutVideo__iframeWrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+
+    width: 100%;
+    height: 100%;
   }
 
-  // ---------- Vertical timeline styling ----------
-  .AboutVideo__timeline {
-    display: flex;
-    flex-direction: column;
-    margin-top: 0.75rem;
+  /*
+   * :global is needed because the iframe is created through JavaScript.
+   */
+  .AboutVideo__iframeWrapper :global(.AboutVideo__iframe) {
+    position: absolute;
+    inset: 0;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+    background-color: #000;
   }
 
-  .AboutVideo__timelineItem {
-    position: relative;
-    display: flex;
-    gap: 1.25rem;
+  /*
+   * Tablet
+   */
+  @media (max-width: 1023px) {
+    .AboutVideo .container {
+      width: 100%;
+    }
 
-    &:last-child .AboutVideo__timelineTrack {
+    .AboutVideo__layout {
+      display: block;
+      width: 100%;
+    }
+
+    .AboutVideo__player {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      flex: none;
+    }
+
+    .AboutVideo__frame {
+      width: 100%;
+      min-height: 240px;
+      aspect-ratio: 16 / 9;
+    }
+  }
+
+  /*
+   * Mobile
+   */
+  @media (max-width: 599px) {
+    .AboutVideo {
+      padding-block: 2.5rem;
+    }
+
+    .AboutVideo .container {
+      width: 100%;
+      max-width: 100%;
+      padding-inline: 1rem;
+    }
+
+    .AboutVideo__player {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      margin: 0;
+      border-radius: 14px;
+    }
+
+    .AboutVideo__anchorContent {
+      width: 100%;
+      padding: 5px;
+    }
+
+    .AboutVideo__frame {
+      width: 100%;
+      min-height: 190px;
+      aspect-ratio: 16 / 9;
+      border-radius: 10px;
+    }
+
+    .AboutVideo__facade {
+      padding: 0.85rem;
+    }
+
+    .AboutVideo__logoSvg {
+      width: 58px;
+    }
+
+    .AboutVideo__playCircle {
+      width: 52px;
+      height: 52px;
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    .AboutVideo__footer {
+      gap: 0.5rem;
+    }
+
+    .AboutVideo__speaker {
+      gap: 0.35rem;
+    }
+
+    .AboutVideo__speakerRole {
       display: none;
     }
 
-    &:hover .AboutVideo__timelineDot {
-      background-color: #d4ff4d;
-      box-shadow: 0 0 0 5px rgba(212, 255, 77, 0.15);
+    .AboutVideo__speakerName {
+      max-width: 9rem;
+      overflow: hidden;
+
+      font-size: 0.75rem;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
-    &:hover .AboutVideo__timelineBody {
-      border-color: rgba(212, 255, 77, 0.35);
-      transform: translateX(2px);
+    .AboutVideo__time {
+      padding: 2px 6px;
+      font-size: 0.65rem;
+    }
+
+    .AboutVideo__controls svg {
+      width: 14px;
+      height: 14px;
     }
   }
 
-  .AboutVideo__timelineMarker {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-shrink: 0;
-    padding-top: 0.4rem;
+  /*
+   * Very small phones
+   */
+  @media (max-width: 380px) {
+    .AboutVideo .container {
+      padding-inline: 0.75rem;
+    }
+
+    .AboutVideo__frame {
+      min-height: 170px;
+    }
+
+    .AboutVideo__speakerName {
+      max-width: 7rem;
+    }
   }
 
-  .AboutVideo__timelineDot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: #2f4bff;
-    box-shadow: 0 0 0 4px rgba(47, 75, 255, 0.15);
-    flex-shrink: 0;
-    transition: background-color 0.25s ease, box-shadow 0.25s ease;
-  }
-
-  .AboutVideo__timelineTrack {
-    width: 2px;
-    flex: 1;
-    min-height: 3rem;
-    margin-top: 0.35rem;
-    background: linear-gradient(180deg, rgba(47, 75, 255, 0.6), rgba(47, 75, 255, 0.15));
-  }
-
-  .AboutVideo__timelineBody {
-    flex: 1;
-    padding: 1rem 1.25rem;
-    margin-bottom: 1.25rem;
-    background-color: var(--color-surface, rgba(127, 127, 127, 0.06));
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    transition: border-color 0.25s ease, transform 0.25s ease;
-  }
-
-  .AboutVideo__timelineItem:last-child .AboutVideo__timelineBody {
-    margin-bottom: 0;
-  }
-
-  .AboutVideo__timelineYear {
-    display: block;
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--color-text, #ffffff);
-    margin-bottom: 0.4rem;
-    letter-spacing: -0.01em;
-  }
-
-  .AboutVideo__timelineLabel {
-    margin: 0;
-    color: var(--color-muted);
-    line-height: 1.6;
-    font-size: 0.9rem;
+  @media (prefers-reduced-motion: reduce) {
+    .AboutVideo__backdrop,
+    .AboutVideo__playCircle,
+    .AboutVideo__facade {
+      transition: none;
+    }
   }
 </style>

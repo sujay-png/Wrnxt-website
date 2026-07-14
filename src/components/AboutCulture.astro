@@ -6,6 +6,7 @@ const cultureImages = [
     ratio: "1090 / 680",
     rotate: -4,
     orientation: "landscape",
+    speed: 0.15,
   },
   {
     src: "/images/WhatsApp Image 2026-07-08 at 3.14.36 PM.jpeg",
@@ -13,6 +14,7 @@ const cultureImages = [
     ratio: "1 / 1",
     rotate: -8,
     orientation: "square",
+    speed: -0.25,
   },
   {
     src: "/images/IMG_1146.jpeg",
@@ -20,6 +22,7 @@ const cultureImages = [
     ratio: "680 / 934",
     rotate: -6,
     orientation: "portrait",
+    speed: 0.3,
   },
   {
     src: "/images/IMG_1006.jpeg",
@@ -27,6 +30,7 @@ const cultureImages = [
     ratio: "932 / 680",
     rotate: 4,
     orientation: "landscape",
+    speed: -0.2,
   },
   {
     src: "/images/image3.jpeg",
@@ -34,6 +38,7 @@ const cultureImages = [
     ratio: "444 / 922",
     rotate: 7,
     orientation: "portrait",
+    speed: 0.2,
   },
   {
     src: "/images/Group 111.jpg.jpeg",
@@ -41,6 +46,7 @@ const cultureImages = [
     ratio: "1060 / 680",
     rotate: -5,
     orientation: "landscape",
+    speed: -0.15,
   },
   {
     src: "/images/Alisha 2.png",
@@ -48,6 +54,7 @@ const cultureImages = [
     ratio: "1 / 1",
     rotate: -8,
     orientation: "square",
+    speed: 0.25,
   },
   {
     src: "/images/WhatsApp Image 2026-07-08 at 2.54.04 PM.jpeg",
@@ -55,6 +62,7 @@ const cultureImages = [
     ratio: "752 / 558",
     rotate: 6,
     orientation: "landscape",
+    speed: -0.3,
   },
   {
     src: "/images/WhatsApp Image 2026-07-08 at 2.54.04 PM (1).jpeg",
@@ -62,6 +70,7 @@ const cultureImages = [
     ratio: "1 / 1",
     rotate: 3,
     orientation: "square",
+    speed: 0.18,
   },
 ];
 ---
@@ -74,6 +83,7 @@ const cultureImages = [
           <article
             class={`anchor-card anchor-card--rounded AboutCulture__item AboutCulture__item--${idx + 1} AboutCulture__item--${img.orientation}`}
             style={`--rotate: ${img.rotate}deg; --frame-ratio: ${img.ratio};`}
+            data-speed={img.speed}
           >
             <svg
               class="anchor-border"
@@ -90,15 +100,10 @@ const cultureImages = [
                 rx="16"
                 ry="16"
               />
-
               <circle cx="19.5" cy="3.5" r="3" />
               <circle cx="calc(100% - 19.5px)" cy="3.5" r="3" />
               <circle cx="19.5" cy="calc(100% - 3.5px)" r="3" />
-              <circle
-                cx="calc(100% - 19.5px)"
-                cy="calc(100% - 3.5px)"
-                r="3"
-              />
+              <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3" />
             </svg>
 
             <div class="anchor-content">
@@ -117,11 +122,7 @@ const cultureImages = [
     </div>
 
     <div class="container AboutCulture__content" data-size="prose">
-      <div
-        class="stack AboutCulture__text"
-        data-gap="lg"
-        data-align="center"
-      >
+      <div class="stack AboutCulture__text" data-gap="lg" data-align="center">
         <span class="heading eyebrow">Our culture</span>
 
         <h2 class="heading" data-font-size="4">
@@ -146,205 +147,135 @@ const cultureImages = [
     width: 100%;
     border-bottom: 1px solid var(--color-border);
     background-color: var(--color-bg);
-    overflow: hidden;
+    /* NOTE: no overflow:hidden here — it would break the sticky heading */
   }
 
-  /*
-   * Desktop collage
-   */
-.AboutCulture {
-  position: relative;
-  width: 100%;
-  border-bottom: 1px solid var(--color-border);
-  background-color: var(--color-bg);
-  overflow: hidden;
-}
-
-.AboutCulture__collage {
-  position: relative;
-  width: 100%;
-
-  /* Use viewport height, not rem */
-  height: 280vh;
-  min-height: 1800px;
-}
-
-.AboutCulture__content {
-  position: relative;
-  z-index: 5;
-  height: 100%;
-  pointer-events: none;
-}
-
-.AboutCulture__text {
-  position: sticky;
-  top: 35vh;
-  z-index: 5;
-
-  width: min(90%, 47rem);
-  margin-inline: auto;
-
-  text-align: center;
-  pointer-events: none;
-
-  h2 {
-    margin: 0;
-    text-wrap: balance;
-  }
-
-  p {
-    margin: 0;
-    text-wrap: pretty;
-  }
-}
-
-.AboutCulture__photos {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.AboutCulture__item {
-  position: absolute;
-  width: 14%;
-  min-width: 9rem;
-  height: auto;
-
-  overflow: hidden;
-  border-radius: 16px;
-
-  transform: rotate(var(--rotate, 0deg));
-  transform-origin: center;
-
-  box-shadow: 0 1.5rem 3rem -1rem rgba(0, 0, 0, 0.45);
-  pointer-events: auto;
-
-  transition:
-    transform 300ms ease,
-    box-shadow 300ms ease;
-
-  &:hover {
-    z-index: 10;
-    transform: rotate(0deg) scale(1.04);
-    box-shadow: 0 2rem 4rem -1rem rgba(0, 0, 0, 0.55);
-  }
-
-  .anchor-content {
-    position: relative;
-    width: 100%;
-    height: auto;
-    padding: 7px;
-  }
-
-  .frame {
-    position: relative;
-    width: 100%;
-    height: auto;
-    aspect-ratio: var(--frame-ratio);
-    overflow: hidden;
-    border-radius: 11px;
-  }
-
-  .frame img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  &--1 {
-    top: 2%;
-    left: 8%;
-    width: 22%;
-  }
-
-  &--2 {
-    top: 11%;
-    left: 70%;
-    width: 15%;
-  }
-
-  &--3 {
-    top: 22%;
-    left: 34%;
-    width: 16%;
-  }
-
-  &--4 {
-    top: 32%;
-    left: 57%;
-    width: 24%;
-  }
-
-  &--5 {
-    top: 43%;
-    left: 10%;
-    width: 14%;
-  }
-
-  &--6 {
-    top: 53%;
-    left: 64%;
-    width: 25%;
-  }
-
-  &--7 {
-    top: 64%;
-    left: 38%;
-    width: 17%;
-  }
-
-  &--8 {
-    top: 74%;
-    left: 7%;
-    width: 22%;
-  }
-
-  &--9 {
-    top: 84%;
-    left: 61%;
-    width: 16%;
-  }
-}
-
-  /*
-   * Smaller desktop screens
-   */
-@media (max-width: 1199px) and (min-width: 1024px) {
   .AboutCulture__collage {
-    height: 230vh;
-    min-height: 1500px;
+    position: relative;
+    width: 100%;
+    height: 280vh;
+    min-height: 1800px;
+  }
+
+  .AboutCulture__content {
+    position: relative;
+    z-index: 5;
+    height: 100%;
+    pointer-events: none;
   }
 
   .AboutCulture__text {
-    width: min(90%, 39rem);
+    position: sticky;
+    top: 35vh;
+    z-index: 5;
+
+    width: min(90%, 47rem);
+    margin-inline: auto;
+
+    text-align: center;
+    pointer-events: none;
+
+    h2 {
+      margin: 0;
+      text-wrap: balance;
+    }
+
+    p {
+      margin: 0;
+      text-wrap: pretty;
+    }
+  }
+
+  .AboutCulture__photos {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* clip rotated photos here, not on the section */
+    pointer-events: none;
   }
 
   .AboutCulture__item {
-    min-width: 8rem;
-  }
-}
+    position: absolute;
+    width: 14%;
+    min-width: 9rem;
+    height: auto;
 
-  /*
-   * Tablet
-   */
-  @media (max-width: 1023px) {
-    .AboutCulture {
-      overflow: hidden;
+    overflow: hidden;
+    border-radius: 16px;
+
+    /* base rotation; JS adds translateY on top of this via --parallax-y */
+    transform: rotate(var(--rotate, 0deg)) translateY(var(--parallax-y, 0px));
+    transform-origin: center;
+    will-change: transform;
+
+    box-shadow: 0 1.5rem 3rem -1rem rgba(0, 0, 0, 0.45);
+    pointer-events: auto;
+
+    transition:
+      box-shadow 300ms ease;
+
+    &:hover {
+      z-index: 10;
+      box-shadow: 0 2rem 4rem -1rem rgba(0, 0, 0, 0.55);
     }
 
+    .anchor-content {
+      position: relative;
+      width: 100%;
+      height: auto;
+      padding: 7px;
+    }
+
+    .frame {
+      position: relative;
+      width: 100%;
+      height: auto;
+      aspect-ratio: var(--frame-ratio);
+      overflow: hidden;
+      border-radius: 11px;
+    }
+
+    .frame img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    &--1 { top: 2%; left: 8%; width: 22%; }
+    &--2 { top: 11%; left: 70%; width: 15%; }
+    &--3 { top: 22%; left: 34%; width: 16%; }
+    &--4 { top: 32%; left: 57%; width: 24%; }
+    &--5 { top: 43%; left: 10%; width: 14%; }
+    &--6 { top: 53%; left: 64%; width: 25%; }
+    &--7 { top: 64%; left: 38%; width: 17%; }
+    &--8 { top: 74%; left: 7%; width: 22%; }
+    &--9 { top: 84%; left: 61%; width: 16%; }
+  }
+
+  @media (max-width: 1199px) and (min-width: 1024px) {
+    .AboutCulture__collage {
+      height: 230vh;
+      min-height: 1500px;
+    }
+    .AboutCulture__text {
+      width: min(90%, 39rem);
+    }
+    .AboutCulture__item {
+      min-width: 8rem;
+    }
+  }
+
+  @media (max-width: 1023px) {
     .AboutCulture__collage {
       height: auto;
       display: flex;
       flex-direction: column;
       gap: clamp(2rem, 6vw, 4rem);
-      padding-block:
-        clamp(4rem, 9vw, 7rem)
-        clamp(2.5rem, 7vw, 5rem);
+      padding-block: clamp(4rem, 9vw, 7rem) clamp(2.5rem, 7vw, 5rem);
     }
 
     .AboutCulture__content {
@@ -352,11 +283,12 @@ const cultureImages = [
       height: auto;
       width: 100%;
       padding-inline: clamp(1.25rem, 5vw, 3rem);
-        z-index: 5;
+      z-index: 5;
     }
 
     .AboutCulture__text {
-      position: static;
+      position: sticky;
+      top: clamp(1rem, 4vw, 2rem);
       width: min(100%, 42rem);
       margin-inline: auto;
       pointer-events: auto;
@@ -365,7 +297,6 @@ const cultureImages = [
         font-size: clamp(2rem, 6vw, 3.5rem);
         line-height: 1.08;
       }
-
       p {
         font-size: clamp(0.95rem, 2vw, 1.1rem);
         line-height: 1.7;
@@ -381,7 +312,8 @@ const cultureImages = [
       width: 100%;
       padding-inline: clamp(1rem, 4vw, 2.5rem);
       pointer-events: auto;
-       z-index: 2;
+      overflow: visible;
+      z-index: 2;
     }
 
     .AboutCulture__item {
@@ -390,196 +322,213 @@ const cultureImages = [
       width: 100%;
       min-width: 0;
       height: auto;
-      transform: none;
+      transform: none !important;
       border-radius: 16px;
 
       &:hover {
-        transform: translateY(-4px);
+        transform: translateY(-4px) !important;
       }
 
       .frame {
         aspect-ratio: 4 / 3;
       }
+      &--portrait .frame { aspect-ratio: 3 / 4; }
+      &--square .frame { aspect-ratio: 1 / 1; }
+      &--landscape .frame { aspect-ratio: 4 / 3; }
 
-      &--portrait .frame {
-        aspect-ratio: 3 / 4;
-      }
-
-      &--square .frame {
-        aspect-ratio: 1 / 1;
-      }
-
-      &--landscape .frame {
-        aspect-ratio: 4 / 3;
-      }
-
-      /*
-       * Make selected landscape photos span both tablet columns.
-       */
-      &--1,
-      &--4,
-      &--6,
-      &--8 {
+      &--1, &--4, &--6, &--8 {
         grid-column: span 2;
-
-        .frame {
-          aspect-ratio: 16 / 8;
-        }
+        .frame { aspect-ratio: 16 / 8; }
       }
     }
   }
 
-  /*
-   * Mobile
-   */
-/* Keep this at the very bottom of the stylesheet */
-@media (max-width: 599px) {
-  .AboutCulture__collage {
-    height: auto;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-    padding: 4rem 0 2rem;
-  }
+  @media (max-width: 599px) {
+    .AboutCulture__collage {
+      height: auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      padding: 4rem 0 2rem;
+    }
 
-  .AboutCulture__content {
-    order: -1;
-    height: auto;
-    padding-inline: 1.25rem;
-  }
-
-  .AboutCulture__text {
-    position: static;
-    top: auto;
-    width: 100%;
-    max-width: 34rem;
-    margin-inline: auto;
-  }
-
-  .AboutCulture__photos {
-    position: static;
-    inset: auto;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-    gap: 1.25rem;
-    padding-inline: 1rem;
-  }
-
-  /* Override every desktop item position and width */
-  .AboutCulture__item,
-  .AboutCulture__item--1,
-  .AboutCulture__item--2,
-  .AboutCulture__item--3,
-  .AboutCulture__item--4,
-  .AboutCulture__item--5,
-  .AboutCulture__item--6,
-  .AboutCulture__item--7,
-  .AboutCulture__item--8,
-  .AboutCulture__item--9 {
-    position: relative !important;
-    top: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    left: auto !important;
-
-    display: block;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    height: auto !important;
-    min-height: 0 !important;
-
-    margin: 0 !important;
-    transform: none !important;
-    grid-column: auto !important;
-    grid-row: auto !important;
-
-    overflow: hidden;
-    border-radius: 14px;
-  }
-
-  .AboutCulture__item .anchor-border {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-
-  .AboutCulture__item .anchor-content {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: auto !important;
-    min-height: 0 !important;
-    padding: 7px;
-  }
-
-  .AboutCulture__item .frame,
-  .AboutCulture__item--portrait .frame,
-  .AboutCulture__item--square .frame,
-  .AboutCulture__item--landscape .frame,
-  .AboutCulture__item--1 .frame,
-  .AboutCulture__item--2 .frame,
-  .AboutCulture__item--3 .frame,
-  .AboutCulture__item--4 .frame,
-  .AboutCulture__item--5 .frame,
-  .AboutCulture__item--6 .frame,
-  .AboutCulture__item--7 .frame,
-  .AboutCulture__item--8 .frame,
-  .AboutCulture__item--9 .frame {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: auto !important;
-    min-height: 0 !important;
-    aspect-ratio: auto !important;
-    overflow: hidden;
-    border-radius: 10px;
-  }
-
-  .AboutCulture__item img {
-    position: static !important;
-    display: block;
-    width: 100% !important;
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
-    object-fit: contain !important;
-    object-position: center;
-  }
-}
-  /*
-   * Very small phones
-   */
-  @media (max-width: 380px) {
     .AboutCulture__content {
-      padding-inline: 1rem;
+      order: -1;
+      height: auto;
+      padding-inline: 1.25rem;
+    }
+
+    .AboutCulture__text {
+      position: sticky;
+      top: 1rem;
+      width: 100%;
+      max-width: 34rem;
+      margin-inline: auto;
     }
 
     .AboutCulture__photos {
-      padding-inline: 0.75rem;
+      position: static;
+      inset: auto;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: auto;
+      gap: 1.25rem;
+      padding-inline: 1rem;
+      overflow: visible;
     }
 
-    .AboutCulture__text h2 {
-      font-size: 1.9rem;
+    .AboutCulture__item,
+    .AboutCulture__item--1,
+    .AboutCulture__item--2,
+    .AboutCulture__item--3,
+    .AboutCulture__item--4,
+    .AboutCulture__item--5,
+    .AboutCulture__item--6,
+    .AboutCulture__item--7,
+    .AboutCulture__item--8,
+    .AboutCulture__item--9 {
+      position: relative !important;
+      top: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+      left: auto !important;
+
+      display: block;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      height: auto !important;
+      min-height: 0 !important;
+
+      margin: 0 !important;
+      transform: none !important;
+      grid-column: auto !important;
+      grid-row: auto !important;
+
+      overflow: hidden;
+      border-radius: 14px;
+    }
+
+    .AboutCulture__item .anchor-border {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .AboutCulture__item .anchor-content {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 7px;
+    }
+
+    .AboutCulture__item .frame {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: auto !important;
+      min-height: 0 !important;
+      aspect-ratio: auto !important;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .AboutCulture__item img {
+      position: static !important;
+      display: block;
+      width: 100% !important;
+      height: auto !important;
+      min-height: 0 !important;
+      max-height: none !important;
+      object-fit: contain !important;
+      object-position: center;
     }
   }
 
-  /*
-   * Accessibility
-   */
+  @media (max-width: 380px) {
+    .AboutCulture__content { padding-inline: 1rem; }
+    .AboutCulture__photos { padding-inline: 0.75rem; }
+    .AboutCulture__text h2 { font-size: 1.9rem; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .AboutCulture__item {
       transition: none;
-
-      &:hover {
-        transform: none;
-      }
     }
   }
 </style>
+
+<script>
+  // Per-image scroll parallax, matching the drifting-photo effect on salo.uk.
+  // Each .AboutCulture__item moves up/down by its own speed as the section scrolls.
+  function initCultureParallax() {
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReduced) return;
+
+    const section = document.querySelector(".AboutCulture");
+    if (!section) return;
+
+    // Only run the parallax on the desktop layout (matches the CSS breakpoint
+    // where photos are absolutely positioned, not stacked in a grid/column).
+    const mql = window.matchMedia("(min-width: 1024px)");
+
+    const items = Array.from(
+      section.querySelectorAll(".AboutCulture__item")
+    ).map((el) => ({
+      el,
+      speed: parseFloat(el.dataset.speed || "0"),
+    }));
+
+    let ticking = false;
+
+    function update() {
+      ticking = false;
+      if (!mql.matches) {
+        // Reset transforms when we drop into the tablet/mobile layout.
+        items.forEach(({ el }) => el.style.removeProperty("--parallax-y"));
+        return;
+      }
+
+      const rect = section.getBoundingClientRect();
+      const viewportH = window.innerHeight;
+
+      // Progress of the section through the viewport: 0 when section top
+      // hits the bottom of the viewport, 1 when section bottom hits the top.
+      const total = rect.height + viewportH;
+      const scrolled = viewportH - rect.top;
+      const progress = Math.min(1, Math.max(0, scrolled / total));
+
+      // Translate range in px for a "full speed" (speed = 1) image.
+      const range = rect.height * 0.4;
+
+      items.forEach(({ el, speed }) => {
+        const y = (progress - 0.5) * range * speed;
+        el.style.setProperty("--parallax-y", `${y}px`);
+      });
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    mql.addEventListener("change", onScroll);
+    update();
+  }
+
+  initCultureParallax();
+  document.addEventListener("astro:page-load", initCultureParallax);
+</script>

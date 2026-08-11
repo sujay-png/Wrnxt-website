@@ -154,29 +154,36 @@ const team = [
 <script>
   import Alpine from 'alpinejs';
 
+  declare global {
+    interface Window {
+      __teamSpotlightAlpineRegistered: boolean;
+    }
+  }
+
   if (!window.__teamSpotlightAlpineRegistered) {
     window.__teamSpotlightAlpineRegistered = true;
 
     document.addEventListener('alpine:init', () => {
-      Alpine.data('teamSpotlight', (team) => ({
+      Alpine.data('teamSpotlight', (team: any[]) => ({
         team,
         active: 0,
         switching: false,
         get current() {
-          return this.team[this.active];
+          return (this as any).team[(this as any).active];
         },
-        select(idx) {
-          if (idx === this.active) return;
+        select(idx: number) {
+          const self = this as any;
+          if (idx === self.active) return;
           // A plain CSS-transitioned class (toggled via the `switching` flag below, see the
           // .AboutTeamGrid__spotlight.is-switching rule) instead of a GSAP tween here — GSAP's
           // onComplete callback on this opacity/filter combo wasn't reliably firing, which left
           // the active-state update (previously tied to onComplete) never running. Updating
           // `active` on a plain setTimeout instead guarantees the swap always happens even if
           // the cosmetic fade is interrupted.
-          this.switching = true;
+          self.switching = true;
           setTimeout(() => {
-            this.active = idx;
-            this.switching = false;
+            self.active = idx;
+            self.switching = false;
           }, 220);
 
           // Keep the spotlight panel comfortably in view when picking someone from further

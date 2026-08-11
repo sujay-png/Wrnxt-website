@@ -307,8 +307,8 @@ const projects = [
 <script>
   import Alpine from 'alpinejs';
 
-  if (!window.__showcaseAlpineRegistered) {
-    window.__showcaseAlpineRegistered = true;
+  if (!(window as any).__showcaseAlpineRegistered) {
+    (window as any).__showcaseAlpineRegistered = true;
     
     // Custom cursor hover/move logic for desktop showcase
     document.addEventListener("alpine:init", () => {
@@ -320,7 +320,7 @@ const projects = [
           
           if (!wrapper || !cursor) return;
           
-          const onMouseMove = (e) => {
+          const onMouseMove = (e: MouseEvent) => {
             const rect = wrapper.getBoundingClientRect();
             // Check if mouse is inside bounding box
             if (

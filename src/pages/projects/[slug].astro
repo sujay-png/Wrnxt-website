@@ -52,7 +52,7 @@ export async function getStaticPaths() {
 
 const { project, nextProject } = Astro.props;
 const { slug } = Astro.params;
-const projectBody = projectsData[slug] || { prose_html: "<p>Case study content loading...</p>" };
+const projectBody = projectsData[slug as keyof typeof projectsData] || { prose_html: "<p>Case study content loading...</p>" };
 ---
 
 <Layout title={`${project.title} | Projects | Salo`} description={project.title}>

@@ -135,13 +135,18 @@
 </header>
 
 <script>
-  if (!window.__headerScrollBound) {
+  if (!(window as any).__headerScrollBound) {
     let currentSticky = "default";
     let isAnimationDisabled = false;
     let headerEl = document.getElementById("header");
     let headerHeight = headerEl?.offsetHeight ?? 0;
 
-    const setHeaderSticky = function (stickyState, instant) {
+    /**
+     * @param {string} stickyState
+     * @param {boolean} [instant]
+     */
+    const setHeaderSticky = function (stickyState: string, instant?: boolean) {
+      if (!headerEl) return;
       if (currentSticky !== stickyState) {
         currentSticky = stickyState;
         if (!instant) {
@@ -162,7 +167,8 @@
       }
     };
 
-    const handleScroll = function ({ scroll, direction }) {
+    const handleScroll = function ({ scroll, direction }: { scroll: number, direction: number }) {
+      if (!headerEl) return;
       if (!isAnimationDisabled) {
         isAnimationDisabled = true;
         headerEl.style.animation = "none";
@@ -179,10 +185,10 @@
     };
 
     const bindLenisScroll = function () {
-      window.__lenis?.on("scroll", handleScroll);
+      (window as any).__lenis?.on("scroll", handleScroll);
     };
 
-    window.__headerScrollBound = true;
+    (window as any).__headerScrollBound = true;
     
     document.addEventListener("astro:page-load", () => {
       headerEl = document.getElementById("header");
@@ -191,7 +197,7 @@
       isAnimationDisabled = false;
     });
 
-    if (window.__lenis) {
+    if ((window as any).__lenis) {
       bindLenisScroll();
     } else {
       window.addEventListener("lenis:ready", bindLenisScroll, { once: true });

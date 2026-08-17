@@ -1,6 +1,7 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import "../styles/globals.scss";
+import "lenis/dist/lenis.css";
 
 interface Props {
 	title?: string;
@@ -69,6 +70,15 @@ const {
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   import gsap from "gsap";
 
+  declare global {
+    interface Window {
+      __alpineInitialized?: boolean;
+      __lenisInitialized?: boolean;
+      __lenis?: any;
+      Alpine?: any;
+    }
+  }
+
   gsap.registerPlugin(ScrollTrigger);
 
   // Alpine
@@ -81,12 +91,13 @@ const {
       mouseY: 0,
       bgX: 75,
       bgY: 75,
-      raf: null,
+      raf: null as number | null,
 
-      handleMouseMove(e) {
+      handleMouseMove(e: MouseEvent) {
         if (!this.isHovering) return;
 
-        const rect = e.currentTarget.getBoundingClientRect();
+        const target = e.currentTarget as HTMLElement;
+        const rect = target.getBoundingClientRect();
 
         this.mouseX =
           ((e.clientX - rect.left) / rect.width) * 100;

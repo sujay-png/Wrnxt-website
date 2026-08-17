@@ -193,28 +193,26 @@ export function initAnimations() {
   const logoTransitionStart = heroHeight / heroTimelineDistance;
   const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
 
-  if (isDesktop) {
-    heroTimeline.to(rings, { rotate: 0, duration: HERO_LOGO_FADE_DURATION, ease: 'power1.out', onUpdate: queueDraw }, 0);
-    rings.forEach((ring, index) => {
-      heroTimeline.fromTo(
-        ring,
-        { scale: initialRings[index].scale },
-        {
-          scale: HERO_SCALE_TARGET,
-          // Measuring the live site's --logo-width at matched scroll positions shows the ring shrinks
-          // at a constant rate relative to scroll, not eased — power2.inOut made it lag at first then
-          // overshoot smaller through the middle of the scroll range. Linear matches the real curve.
-          ease: 'none',
-          duration: heroHeight / heroTimelineDistance,
-          onUpdate: () => {
-            syncLogoDimensions();
-            queueDraw();
-          },
+  heroTimeline.to(rings, { rotate: 0, duration: HERO_LOGO_FADE_DURATION, ease: 'power1.out', onUpdate: queueDraw }, 0);
+  rings.forEach((ring, index) => {
+    heroTimeline.fromTo(
+      ring,
+      { scale: initialRings[index].scale },
+      {
+        scale: HERO_SCALE_TARGET,
+        // Measuring the live site's --logo-width at matched scroll positions shows the ring shrinks
+        // at a constant rate relative to scroll, not eased — power2.inOut made it lag at first then
+        // overshoot smaller through the middle of the scroll range. Linear matches the real curve.
+        ease: 'none',
+        duration: heroHeight / heroTimelineDistance,
+        onUpdate: () => {
+          syncLogoDimensions();
+          queueDraw();
         },
-        0
-      );
-    });
-  }
+      },
+      0
+    );
+  });
 
   [1, 2, 3].forEach((index) => {
     heroTimeline.fromTo(
@@ -393,43 +391,45 @@ function setupQuadrants(cleanupTasks, transitionDistance) {
     window.removeEventListener('grid-not-ready', markGridNotReady);
   });
 
-  document.querySelectorAll('.quadrant').forEach((quadrant) => {
-    const hiddenContent = quadrant.querySelector('.hidden-content');
-    const background = quadrant.querySelector('.background');
-    const paragraph = hiddenContent?.querySelector('p');
-    const actions = hiddenContent?.querySelector('.actions');
-    const images = quadrant.querySelectorAll('.quadrant__image');
+  if (isTabletUp) {
+    document.querySelectorAll('.quadrant').forEach((quadrant) => {
+      const hiddenContent = quadrant.querySelector('.hidden-content');
+      const background = quadrant.querySelector('.background');
+      const paragraph = hiddenContent?.querySelector('p');
+      const actions = hiddenContent?.querySelector('.actions');
+      const images = quadrant.querySelectorAll('.quadrant__image');
 
-    gsap.set(background, { opacity: 0 });
-    gsap.set(hiddenContent, { height: 0 });
-    gsap.set(paragraph, { opacity: 0, y: 20 });
-    gsap.set(actions, { opacity: 0, y: 15 });
-    gsap.set(images, { opacity: 0, scale: 0.9 });
+      gsap.set(background, { opacity: 0 });
+      gsap.set(hiddenContent, { height: 0 });
+      gsap.set(paragraph, { opacity: 0, y: 20 });
+      gsap.set(actions, { opacity: 0, y: 15 });
+      gsap.set(images, { opacity: 0, scale: 0.9 });
 
-    const timeline = gsap.timeline({ paused: true });
-    hoverTimelines.push(timeline);
-    timeline
-      .to(background, { opacity: 0.6, duration: 0.8, ease: 'power2.out' }, 0)
-      .to(hiddenContent, { height: 'auto', duration: 0.75, ease: 'power2.out' }, 0)
-      .to(paragraph, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0.2)
-      .to(actions, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, 0.4)
-      .to(images, { opacity: 1, scale: 1, duration: 0.75, ease: 'power2.inOut' }, 0);
+      const timeline = gsap.timeline({ paused: true });
+      hoverTimelines.push(timeline);
+      timeline
+        .to(background, { opacity: 0.6, duration: 0.8, ease: 'power2.out' }, 0)
+        .to(hiddenContent, { height: 'auto', duration: 0.75, ease: 'power2.out' }, 0)
+        .to(paragraph, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0.2)
+        .to(actions, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, 0.4)
+        .to(images, { opacity: 1, scale: 1, duration: 0.75, ease: 'power2.inOut' }, 0);
 
-    const onEnter = () => {
-      if (gridReady) playOnly(timeline);
-    };
-    const onLeave = () => {
-      if (gridReady) timeline.timeScale(1.5).reverse();
-    };
+      const onEnter = () => {
+        if (gridReady) playOnly(timeline);
+      };
+      const onLeave = () => {
+        if (gridReady) timeline.timeScale(1.5).reverse();
+      };
 
-    quadrant.addEventListener('mouseenter', onEnter);
-    quadrant.addEventListener('mouseleave', onLeave);
-    cleanupTasks.push(() => {
-      quadrant.removeEventListener('mouseenter', onEnter);
-      quadrant.removeEventListener('mouseleave', onLeave);
-      timeline.kill();
+      quadrant.addEventListener('mouseenter', onEnter);
+      quadrant.addEventListener('mouseleave', onLeave);
+      cleanupTasks.push(() => {
+        quadrant.removeEventListener('mouseenter', onEnter);
+        quadrant.removeEventListener('mouseleave', onLeave);
+        timeline.kill();
+      });
     });
-  });
+  }
 
   if (isTabletUp) {
     const dividerTimeline = gsap.timeline({
@@ -540,7 +540,7 @@ function setupPartnerAndWheel(cleanupTasks, rings, canvasState, queueDraw, syncL
   // into view, then grows to full size and shifts up by half a viewport height right as the Wheel
   // section's pin engages — which is what puts it cropped near the top of the screen instead of
   // dead-centre — and shrinks/fades back out again before the pin releases.
-  if (partnerSection && initialRings) {
+  if (partnerSection && initialRings && isDesktopViewport) {
     const onRingUpdate = () => {
       syncLogoDimensions();
       queueDraw();

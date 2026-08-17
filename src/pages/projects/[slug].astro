@@ -64,13 +64,12 @@ const projectBody = projectsData[slug] || { prose_html: "<p>Case study content l
       <div class="container" data-size="wide">
         <div class="stack" data-gap="lg">
           <div class="stack" data-gap="sm">
-            <div class="cluster" data-gap="md" data-align="center">
-              <span class="Tag" style={`--tag-color: ${project.tagColor}`}>{project.category}</span>
-            </div>
-            
             <h1 class="heading" data-color="foreground" data-font-size="5" data-trim="normal" data-weight="regular">
               {project.title}
             </h1>
+            <div class="cluster" data-gap="md" data-align="center">
+              <span class="Tag" style={`--tag-color: ${project.tagColor}`}>{project.category}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -87,8 +86,8 @@ const projectBody = projectsData[slug] || { prose_html: "<p>Case study content l
         <div class="stack" data-gap="lg">
           <h2 class="heading" data-font-size="3" data-weight="regular">Next project</h2>
           
-          <article class="related-card">
-            <a href={`/projects/${nextProject.slug}`} class="related-link gradient-border" style="display: block; padding: var(--space-lg); border-radius: 16px; text-decoration: none; color: inherit;">
+          <article class="related-card ShowcaseCard">
+            <a href={`/projects/${nextProject.slug}`} class="related-link" style="display: block; text-decoration: none; color: inherit;">
               <div class="stack content" data-gap="sm">
                 <span class="Tag" style={`--tag-color: ${nextProject.tagColor}`}>{nextProject.category}</span>
                 <h3 class="heading" data-font-size="2">{nextProject.title}</h3>
@@ -105,3 +104,111 @@ const projectBody = projectsData[slug] || { prose_html: "<p>Case study content l
 
   <Footer />
 </Layout>
+
+<style lang="scss" is:global>
+  .page--project-post {
+    .BlogPostHeader {
+      padding-top: calc(var(--header-height) + var(--space-md));
+      
+      @media (max-width: 767px) {
+        padding-top: calc(var(--header-height) + var(--space-lg));
+      }
+    }
+
+    .project-sections-wrapper {
+      .MediaBlock {
+        padding-block: var(--space-md);
+        
+        .frame {
+          border-radius: var(--radius-md);
+          overflow: hidden;
+          background-color: var(--color-bg-alt);
+        }
+      }
+
+      .TextBlock {
+        padding-block: var(--space-md);
+
+        h2, h3 {
+          margin-bottom: var(--space-xs);
+        }
+        
+        p {
+          color: var(--color-foreground-secondary);
+        }
+      }
+
+      .lexical-stats, .lexical-callout {
+        background: var(--color-bg-alt);
+        border-radius: var(--radius-md);
+        margin-block: var(--space-md);
+
+        .inner {
+          padding: var(--space-md);
+        }
+      }
+
+      .lexical-stats {
+        .inner {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-md);
+        }
+
+        &__item {
+          padding: 0;
+          gap: 4px;
+        }
+
+        &__value {
+          font-weight: 500;
+        }
+      }
+
+      .lexical-testimonial {
+        background: var(--color-bg-alt);
+        border-radius: var(--radius-md);
+        padding: var(--space-lg);
+        margin-block: var(--space-xl);
+
+        p {
+          font-style: italic;
+          font-size: var(--font-size-1);
+          color: var(--color-foreground);
+        }
+
+        &__attribution {
+          margin-top: var(--space-md);
+          cite {
+            font-size: var(--font-size--1);
+          }
+        }
+      }
+
+      .LexicalTeamBlock {
+        margin-block: var(--space-xl);
+
+        .Avatar {
+          width: 3rem;
+          height: 3rem;
+          border-radius: 50%;
+          overflow: hidden;
+        }
+
+        p {
+          color: var(--color-foreground);
+          font-weight: 500;
+        }
+      }
+    }
+
+    .NextProjectSection {
+      .ShowcaseCard {
+        background: var(--color-bg-alt);
+        border-radius: var(--radius-md);
+        border: 1px solid var(--color-border);
+        padding: var(--space-lg);
+      }
+    }
+  }
+</style>

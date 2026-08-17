@@ -80,25 +80,29 @@ const projects: ProjectCard[] = [
     {projects.map((p) => (
       <li class={`card card--${p.variant}`} data-id={p.id}>
         {p.variant === "content" && (
-          <>
-            <a href={p.data.href} class="card__link" target="_blank" rel="noopener">
-              <div class="card__image">
-                <img src={p.data.image} alt={p.data.imageAlt} loading="lazy" decoding="async" width="640" height="480" />
+          <div class="ShowcaseCard stack" data-gap="md">
+            <a href={p.data.href} class="image" target="_blank" rel="noopener" style="display:block; text-decoration:none; color:inherit;">
+              <div class="frame" style="--frame-ratio: 4/3;">
+                <img src={p.data.image} alt={p.data.imageAlt} style="border-radius: calc(var(--radius-md) - 2px);" loading="lazy" decoding="async" />
               </div>
-              <div class="card__logo-tile">
-                <img src={p.data.logo} alt={p.data.logoAlt} loading="lazy" decoding="async" width="120" height="90" />
-              </div>
-              <span class="card__tag">{p.data.tag}</span>
-              <h3 class="card__heading">{p.data.heading}</h3>
-              <p class="card__body">{p.data.body}</p>
-              <span class="card__cta">
-                View Project
-                <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
-                  <path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
             </a>
-          </>
+            
+            <div class="stack content" data-gap="sm">
+              {p.data.logo && (
+                <div class="card__logo-tile">
+                  <img src={p.data.logo} alt={p.data.logoAlt} loading="lazy" decoding="async" width="120" height="90" />
+                </div>
+              )}
+              <span class="Tag" style={`--tag-color: var(--color-purple)`}>{p.data.tag}</span>
+              <h3 class="heading" data-font-size="1"><a href={p.data.href} target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">{p.data.heading}</a></h3>
+              <div class="prose card__body_text">
+                <p>{p.data.body}</p>
+              </div>
+              <a href={p.data.href} target="_blank" rel="noopener" class="btn size-md secondary" style="align-self: flex-start; margin-top: var(--space-xs);">
+                <span class="btn-content">View Project <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></span>
+              </a>
+            </div>
+          </div>
         )}
 
         {p.variant === "image" && (
@@ -239,33 +243,45 @@ const projects: ProjectCard[] = [
 
   /* ---------- Content card (image + logo tile + copy) ---------- */
   .card--content {
-    background: #17181a;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: transparent;
+    border: none;
   }
 
-  .card__link {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  .ShowcaseCard {
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
     height: 100%;
-    padding: 20px;
-    text-decoration: none;
-    color: inherit;
   }
 
-  .card__image {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    border-radius: 12px;
-    overflow: hidden;
+  .card__logo-tile {
+    width: 96px;
+    height: 72px;
+    border-radius: 8px;
     background: #202224;
-    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin-bottom: var(--space-xs);
   }
-  .card__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  .card__logo-tile img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .card__body_text p {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--color-foreground-secondary);
+    margin: 0;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .card__logo-tile {
@@ -312,6 +328,10 @@ const projects: ProjectCard[] = [
     color: #a8a7a1;
     margin: 0;
     flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .card__cta {
@@ -334,7 +354,8 @@ const projects: ProjectCard[] = [
 
   /* ---------- Image-only card (phone-style frame) ---------- */
   .card--image {
-    height: 560px;
+    height: 100%;
+    min-height: 480px;
     background: #17181a;
     border: 1px solid rgba(255, 255, 255, 0.06);
   }
@@ -387,7 +408,44 @@ const projects: ProjectCard[] = [
       height: 480px;
     }
     .related__nav {
-      display: none;
+      /* Show nav on mobile as requested */
+      display: flex;
     }
   }
 </style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const track = document.getElementById('track') as HTMLElement;
+    const nav = document.querySelector('[data-reel-nav]') as HTMLElement;
+    if (!track || !nav) return;
+
+    const prevBtn = nav.querySelector('[data-dir="-1"]') as HTMLElement | null;
+    const nextBtn = nav.querySelector('[data-dir="1"]') as HTMLElement | null;
+    const progressFill = document.getElementById('progressFill');
+
+    function updateProgress() {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      const progress = maxScroll > 0 ? (track.scrollLeft / maxScroll) * 100 : 0;
+      if (progressFill) progressFill.style.width = `${progress}%`;
+      
+      if (prevBtn) prevBtn.style.opacity = track.scrollLeft <= 5 ? "0.5" : "1";
+      if (nextBtn) nextBtn.style.opacity = track.scrollLeft >= maxScroll - 5 ? "0.5" : "1";
+    }
+
+    track.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        track.scrollBy({ left: -track.clientWidth * 0.8, behavior: 'smooth' });
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        track.scrollBy({ left: track.clientWidth * 0.8, behavior: 'smooth' });
+      });
+    }
+  });
+</script>

@@ -78,6 +78,10 @@ import Footer from '../components/Footer.astro';
     overflow: hidden;
     visibility: hidden;
 
+    @media (max-width: 1023px) {
+      z-index: -1;
+    }
+
     .cover-center {
       display: flex;
       align-items: center;

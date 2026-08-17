@@ -5,7 +5,7 @@ import Footer from "../components/Footer.astro";
 import CTA from "../components/CTA.astro";
 ---
 
-<Layout title="Projects | Salo">
+<Layout title="Projects | Akshara Digital">
   <Header />
 
   <main>
@@ -20,7 +20,7 @@ import CTA from "../components/CTA.astro";
             <div
               class="cluster carousel-header"
               data-align="center"
-              data-gap="sm"
+              data-gap="lg"
               data-justify="between"
             >
               <h2
@@ -116,12 +116,12 @@ import CTA from "../components/CTA.astro";
             </div>
           </div>
 
-          <ul class="reel carousel" data-gap="xl-4xl" id="carousel-0">
+          <ul class="reel carousel" data-gap="xl" id="carousel-0">
             <!-- Slide 1: Wilderness -->
             <li
               class="cluster item"
               data-align="start"
-              data-gap="2xl"
+              data-gap="3xl"
               data-justify="start"
               data-nowrap=""
             >
@@ -267,7 +267,7 @@ import CTA from "../components/CTA.astro";
             <li
               class="cluster item"
               data-align="start"
-              data-gap="2xl"
+              data-gap="3xl"
               data-justify="start"
               data-nowrap=""
             >
@@ -323,7 +323,7 @@ import CTA from "../components/CTA.astro";
             <li
               class="cluster item"
               data-align="start"
-              data-gap="2xl"
+              data-gap="3xl"
               data-justify="start"
               data-nowrap=""
             >
@@ -376,7 +376,7 @@ import CTA from "../components/CTA.astro";
             <li
               class="cluster item"
               data-align="start"
-              data-gap="2xl"
+              data-gap="3xl"
               data-justify="start"
               data-nowrap=""
             >
@@ -432,7 +432,7 @@ import CTA from "../components/CTA.astro";
             <li
               class="cluster item"
               data-align="start"
-              data-gap="2xl"
+              data-gap="3xl"
               data-justify="start"
               data-nowrap=""
             >
@@ -592,18 +592,18 @@ import CTA from "../components/CTA.astro";
 
 <script>
   function p() {
-    document.querySelectorAll("[data-reel-nav]").forEach((e) => {
+    document.querySelectorAll<HTMLElement>("[data-reel-nav]").forEach((e) => {
       if (e.dataset.reelNavBound) return;
       e.dataset.reelNavBound = "1";
       const c = e.dataset.reelId;
       if (!c) return;
       const t = document.getElementById(c);
-      const n = e.querySelector("[data-reel-prev]");
-      const o = e.querySelector("[data-reel-next]");
+      const n = e.querySelector<HTMLButtonElement>("[data-reel-prev]");
+      const o = e.querySelector<HTMLButtonElement>("[data-reel-next]");
       if (!t || !n || !o) return;
 
       const d = () => {
-        const s = t.firstElementChild;
+        const s = t.firstElementChild as HTMLElement;
         return s
           ? s.offsetWidth + (parseFloat(getComputedStyle(t).gap) || 0)
           : t.clientWidth;
@@ -614,13 +614,13 @@ import CTA from "../components/CTA.astro";
         o.disabled = t.scrollLeft >= t.scrollWidth - t.clientWidth - 1;
         const s = t.scrollWidth - t.clientWidth;
         const a = s > 0 ? (t.scrollLeft / s) * 100 : 0;
-        if (e._x_dataStack) {
-          e._x_dataStack[0].progress = Math.min(100, Math.max(0, a));
+        if ((e as any)._x_dataStack) {
+          (e as any)._x_dataStack[0].progress = Math.min(100, Math.max(0, a));
         }
       };
 
-      let r;
-      const m = (s) => {
+      let r: number | undefined;
+      const m = (s: number) => {
         const a = t.scrollLeft;
         const S = t.scrollWidth - t.clientWidth;
         const f = Math.min(Math.max(s, 0), S) - a;
@@ -628,8 +628,8 @@ import CTA from "../components/CTA.astro";
         if (r !== undefined) cancelAnimationFrame(r);
         t.classList.add("is-animating");
         const g = 250;
-        let l;
-        const u = (h) => {
+        let l: number | undefined;
+        const u = (h: number) => {
           if (l === undefined) l = h;
           const L = Math.min((h - l) / g, 1);
           const v = 1 - Math.pow(1 - L, 1.5);
@@ -698,11 +698,11 @@ import CTA from "../components/CTA.astro";
   }
 
   .carousel-header {
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-2xl);
   }
 
   .carousel-header .heading {
-    font-family: "Fraunces", Georgia, serif;
+    font-family: var(--font-family-heading);
     font-weight: 300;
     letter-spacing: -0.01em;
   }
@@ -779,6 +779,7 @@ import CTA from "../components/CTA.astro";
     );
     display: flex;
     flex-wrap: nowrap;
+    gap: var(--space-3xl);
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
@@ -788,6 +789,10 @@ import CTA from "../components/CTA.astro";
     -ms-overflow-style: none;
     padding-inline: var(--_offset);
     scroll-padding-inline-start: var(--_offset);
+
+    @media (max-width: 767px) {
+      gap: var(--space-lg);
+    }
 
     &::-webkit-scrollbar {
       display: none;
@@ -813,13 +818,7 @@ import CTA from "../components/CTA.astro";
     }
 
     .logoCard {
-      background: #202224;
-      border-radius: 0.5em;
-      padding: var(--space-sm, 0.75rem);
-
-      @media (max-width: 519px) {
-        margin-top: calc(-40px - var(--space-md));
-      }
+      margin-bottom: var(--space-sm);
     }
 
     .content {
@@ -862,15 +861,18 @@ import CTA from "../components/CTA.astro";
 
     .mobile-image {
       display: none;
-      margin-inline: calc(var(--space-md) * -1);
-      width: calc(100% + var(--space-md) * 2);
-      margin-block-start: calc(var(--space-md) * -1);
+      margin-inline: calc(var(--space-xl) * -1);
+      width: calc(100% + var(--space-xl) * 2);
+      margin-block-start: calc(var(--space-xl) * -1);
       border-bottom: 1px solid var(--color-border);
       border-radius: 1.25em 1.25em 0 0;
       overflow: hidden;
 
       @media (max-width: 519px) {
         display: block;
+        margin-inline: calc(var(--space-md) * -1);
+        width: calc(100% + var(--space-md) * 2);
+        margin-block-start: calc(var(--space-md) * -1);
       }
     }
 

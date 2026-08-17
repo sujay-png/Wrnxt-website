@@ -814,6 +814,8 @@ ul, ol {
   &[data-gap="lg"] { gap: var(--space-lg); }
   &[data-gap="xl"] { gap: var(--space-xl); }
   &[data-gap="2xl"] { gap: var(--space-2xl); }
+  &[data-gap="3xl"] { gap: var(--space-3xl); }
+  &[data-gap="4xl"] { gap: var(--space-4xl); }
   
   &[data-justify="start"] { justify-content: flex-start; }
   &[data-justify="end"] { justify-content: flex-end; }

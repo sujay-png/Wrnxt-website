@@ -14,29 +14,34 @@ const projects: ProjectCard[] = [
       logo: "/images/Electrocore_systems.jpg",
       logoAlt: "Electro Core Systems logo.",
       image: "/images/hardware23.jpg",
-      imageAlt: "Electro Core Systems mobile homepage.",
+      imageAlt: "Seamless Integration graphic.",
       tag: "Empowering Communication. Connecting the Future",
-      heading:
-        "At Electro Core Systems, we believe communication is more than just connection — it's the pulse of every successful organization.",
+      heading: "At Electro Core Systems, we believe communication is more than just connection",
       body: "We specialize in IP and VoIP-based communication solutions that simplify how people and devices interact. Our offerings range from IP telephony and unified communication systems to networking, video surveillance, and smart automation — creating an end-to-end connected experience for every user.",
     },
   },
   {
-    variant: "image",
-    id: "wilderness",
+    variant: "content",
+    id: "desk-essentials",
     data: {
-      href: "https://electrocoresystems.in/",
+      href: "#",
       image: "/images/hardware21.jpg",
-      imageAlt: "Wilderness safari website design.",
+      imageAlt: "Desk essentials kit.",
+      tag: "Corporate Gifting",
+      heading: "Building a Branded Desk Essentials Kit for Employees",
+      body: "Every company wants new hires to feel welcomed and every employee to feel remembered — but a single email or a one-time gift card rarely does that job well. A branded desk essentials kit solves this differently: it puts your brand into daily use, not just a passing moment.",
     },
   },
   {
-    variant: "image",
-    id: "roswell",
+    variant: "content",
+    id: "premium-diaries",
     data: {
-      href: "https://electrocoresystems.in/",
+      href: "#",
       image: "/images/hardware22.jpg",
-      imageAlt: "Mockup of Roswell website homepage design.",
+      imageAlt: "Premium diaries.",
+      tag: "Featured Products",
+      heading: "Featured Premium Diaries",
+      body: "A diary is the one gift that stays on your client's desk every single day of the year. Ours go further — fully customisable with your logo, colours, slogan, or imagery, each one becomes a branded keepsake worth holding onto. Choose your cover, personalise the pages, and let us craft a diary that truly reflects who you are.",
     },
   },
   {
@@ -47,7 +52,7 @@ const projects: ProjectCard[] = [
       logo: "/images/Pup_Logo.jpg",
       logoAlt: "PUP Exports logo.",
       image: "/images/hardware23.jpg",
-      imageAlt: "PUP Exports mobile homepage.",
+      imageAlt: "Seamless Integration graphic.",
       tag: "PUP Exports Pvt Ltd",
       heading: "Let's Create Something Worth Keeping",
       body: "Whether you're looking for beautifully crafted customised diaries for your next corporate campaign, a curated set of leather gifts for a client event, or a fully bespoke range of vegan leather gifts that carry your brand with quiet confidence, we're ready to help.",
@@ -81,24 +86,24 @@ const projects: ProjectCard[] = [
       <li class={`card card--${p.variant}`} data-id={p.id}>
         {p.variant === "content" && (
           <div class="ShowcaseCard stack" data-gap="md">
-            <a href={p.data.href} class="image" target="_blank" rel="noopener" style="display:block; text-decoration:none; color:inherit;">
-              <div class="frame" style="--frame-ratio: 4/3;">
-                <img src={p.data.image} alt={p.data.imageAlt} style="border-radius: calc(var(--radius-md) - 2px);" loading="lazy" decoding="async" />
+            <a href={p.data.href} class="image" style="display:block; text-decoration:none; color:inherit;">
+              <div class="frame" style="--frame-ratio: 3/2;">
+                <img src={p.data.image} alt={p.data.imageAlt} style="border-radius: calc(var(--radius-md) - 2px); object-fit: cover; object-position: top;" loading="lazy" decoding="async" />
               </div>
             </a>
             
-            <div class="stack content" data-gap="sm">
-              {p.data.logo && (
-                <div class="card__logo-tile">
+            <div class="stack content" data-gap="sm" style="flex-grow: 1;">
+              <div class="card__logo-tile" style={!p.data.logo ? "visibility: hidden;" : ""}>
+                {p.data.logo && (
                   <img src={p.data.logo} alt={p.data.logoAlt} loading="lazy" decoding="async" width="120" height="90" />
-                </div>
-              )}
+                )}
+              </div>
               <span class="Tag" style={`--tag-color: var(--color-purple)`}>{p.data.tag}</span>
-              <h3 class="heading" data-font-size="1"><a href={p.data.href} target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">{p.data.heading}</a></h3>
+              <h3 class="heading" data-font-size="1"><a href={p.data.href} style="text-decoration:none; color:inherit;">{p.data.heading}</a></h3>
               <div class="prose card__body_text">
                 <p>{p.data.body}</p>
               </div>
-              <a href={p.data.href} target="_blank" rel="noopener" class="btn size-md secondary" style="align-self: flex-start; margin-top: var(--space-xs);">
+              <a href={p.data.href} class="btn size-md secondary" style="align-self: flex-start; margin-top: auto; margin-bottom: 0;">
                 <span class="btn-content">View Project <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></span>
               </a>
             </div>
@@ -165,7 +170,7 @@ const projects: ProjectCard[] = [
   }
 
   .related__title {
-    font-family: "Fraunces", Georgia, serif;
+    font-family: var(--font-family-heading);
     font-weight: 300;
     font-size: clamp(1.9rem, 3.4vw, 2.9rem);
     letter-spacing: -0.01em;

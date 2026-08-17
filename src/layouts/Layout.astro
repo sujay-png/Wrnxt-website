@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { 
-  title = "Web and brand design agency • Creative Digital Agency • Salo",
+  title = "Web and brand design agency • Creative Digital Agency • Akshara Digital",
   description = "Affordable & Quality IT Solutions Guaranteed. We provide logical & beautiful design capabilities with value by seamlessly integrating as your creative team."
 } = Astro.props;
 ---
@@ -24,7 +24,7 @@ const {
 		<link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
 		<link rel="shortcut icon" href="/favicon/favicon.ico" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-		<meta name="apple-mobile-web-app-title" content="Salo Creative" />
+		<meta name="apple-mobile-web-app-title" content="Akshara Digital Creative" />
 		<meta name="generator" content={Astro.generator} />
 		
 		<title>{title}</title>
@@ -62,6 +62,8 @@ const {
     <ClientRouter />
 	</head>
 	<body data-color-scheme="dark">
+		<div id="mobile-menu-portal" transition:persist="mobile-menu-portal"></div>
+		
 		<slot />
 
   <script>
@@ -180,6 +182,17 @@ const {
     document.body.style.overflow = "auto";
 
     ScrollTrigger.refresh();
+
+    // Fix for mobile: recalculate ScrollTrigger when images load and change body height
+    const ro = new ResizeObserver(() => {
+      ScrollTrigger.refresh();
+    });
+    ro.observe(document.body);
+
+    // Clean up observer on page transition
+    document.addEventListener("astro:before-preparation", () => {
+      ro.disconnect();
+    }, { once: true });
 
     window.dispatchEvent(
       new CustomEvent("lenis:ready")

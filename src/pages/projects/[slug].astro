@@ -16,7 +16,7 @@ export async function getStaticPaths() {
       tagColor: "var(--color-purple)"
     },
     {
-      slug: "BBD-Boom",
+      slug: "bbd-boom",
       title: "Fully integrated design support for a high-volume Hubspot agency",
       client: "BBD Boom",
       logo: "https://media.salo.uk/salo-website-prod/bbd-boom.svg",
@@ -55,7 +55,7 @@ const { slug } = Astro.params;
 const projectBody = projectsData[slug as keyof typeof projectsData] || { prose_html: "<p>Case study content loading...</p>" };
 ---
 
-<Layout title={`${project.title} | Projects | Salo`} description={project.title}>
+<Layout title={`${project.title} | Projects | Akshara Digital`} description={project.title}>
   <Header />
 
   <main class="page--project-post">

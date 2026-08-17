@@ -1,16 +1,8 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import CTA from '../components/CTA.astro';
-import Footer from '../components/Footer.astro';
-
-const teamMembers = [
-  { name: "Lauren Baker", image: "https://media.salo.uk/salo-website-prod/Lauren.jpg" },
-  { name: "James Brady", image: "https://media.salo.uk/salo-website-prod/James.jpg" },
-  { name: "Kurt Stubbings", image: "https://media.salo.uk/salo-website-prod/Kurt-1.jpg" },
-  { name: "Sophie Pongpiriyaporn", image: "https://media.salo.uk/salo-website-prod/Sophie.jpg" },
-  { name: "Sarah Levett", image: "https://media.salo.uk/salo-website-prod/Sarah.jpg" }
-];
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import CTA from "../components/CTA.astro";
+import Footer from "../components/Footer.astro";
 
 const interests = [
   { value: "website", label: "Website" },
@@ -18,96 +10,90 @@ const interests = [
   { value: "flexible-design-support", label: "Flexible Design Support" },
   { value: "branding-visual-identity", label: "Branding & Visual Identity" },
   { value: "ux-ui", label: "UX/UI" },
-  { value: "not-sure", label: "Not sure" }
+  { value: "not-sure", label: "Not sure" },
 ];
 ---
 
-<Layout title="Contact Salo | Book Your Design Team On-Demand • Salo" description="Ready to elevate your brand or Shopify store? Contact Salo today. Get a fixed-price proposal or book flexible design hours directly with our creatives.">
+<Layout
+  title="Contact Akshara Digital | Book Your Design Team On-Demand • Akshara Digital"
+  description="Ready to elevate your brand or Shopify store? Contact Akshara Digital today. Get a fixed-price proposal or book flexible design hours directly with our creatives."
+>
   <Header />
 
   <main class="page--contact">
     <!-- Contact Form Section -->
     <section class="section ContactFormBlock" data-padding="lg">
       <div class="container">
-        <div class="contact-grid">
-          <!-- Left Column -->
-          <div class="stack left-col" data-gap="xl">
-            <div class="stack" data-gap="md">
-              <span class="eyebrow">Contact us</span>
-              <h1 class="heading" data-font-size="4" data-weight="400">Ready to level-up<br/>your creative?</h1>
-              
-              <div class="reactive-divider horizontal" x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })">
-                <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
-                <div class="divider-line" x-ref="dividerLine">
-                  <div class="width-display" x-text="formattedWidth" x-cloak>0px</div>
-                </div>
-                <div class="anchor end-anchor"><div class="anchor-circle"></div></div>
-              </div>
+        <div class="contact-header stack" data-gap="sm">
+          <span class="eyebrow" style="color: var(--color-purple, #8b5cf6);">CONTACT US</span>
+          <h1 class="heading" data-font-size="5" data-weight="600">
+            Let's build something <br/>
+            <span class="gradient-text">together</span>
+          </h1>
+          <p class="prose" style="color: var(--color-foreground-secondary); max-width: 400px; margin: 0 auto;">
+            Have a project in mind or just want to say hi?<br>
+            We'd love to hear from you.
+          </p>
+        </div>
 
-              <div class="prose">
-                <p>Book a quick intro call with our team and let's chat about how design can help bring your ideas to life.</p>
-              </div>
-              
-              <div class="cluster actions" data-gap="sm" data-justify="start" data-align="center">
-                <a href="https://cal.com/carlcahill/chat" target="_blank" class="btn size-md primary" x-data="buttonHover" @mousemove="handleMouseMove($event)" @mouseenter="handleMouseEnter()" @mouseleave="handleMouseLeave()">
-                  <span class="btn-content">
-                    <span class="btn-bg" :style="{ top: bgY + '%', left: bgX + '%', opacity: isHovering ? 1 : 0, '--_scale': isHovering ? 1 : 0.75 }"></span>
-                    <span>
-                      Schedule a call
-                      <span class="icon" aria-hidden="true" role="img">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-                      </span>
-                    </span>
-                  </span>
-                </a>
+        <div class="contact-top-bar gradient-border">
+          <div class="inner">
+            <div class="info-item">
+              <div class="icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+              <div class="stack" data-gap="none">
+                <span class="info-label">Email us</span>
+                <span class="info-val">md@aksharadigital.com</span>
               </div>
             </div>
-
-            <!-- Contact Info -->
-            <div class="contact-info">
-              <div class="cluster" data-gap="2xl" data-justify="start" data-align="start">
-                <div class="contact-group">
-                  <span class="contact-label">General enquiries</span>
-                  <a href="mailto:md@wrnxt.com" class="contact-value">md@wrnxt.com</a>
-                  <a href="tel:+91 8123455500" class="contact-value">+91 8123455500</a>
-                </div>
-                <div class="contact-group">
-                  <span class="contact-label">Stay connected</span>
-                  <a href="https://www.linkedin.com/in/adiputhraya/" class="contact-value" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                </div>
+            <div class="info-divider"></div>
+            <div class="info-item">
+              <div class="icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+              <div class="stack" data-gap="none">
+                <span class="info-label">Call us</span>
+                <span class="info-val">+91 8123455500</span>
+              </div>
+            </div>
+            <div class="info-divider"></div>
+            <div class="info-item">
+              <div class="icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <div class="stack" data-gap="none">
+                <span class="info-label">Response time</span>
+                <span class="info-val">Within 24 hours</span>
+              </div>
+            </div>
+            <div class="info-divider"></div>
+            <div class="info-item">
+              <div class="icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div class="stack" data-gap="none">
+                <span class="info-label">Where we are</span>
+                <span class="info-val">India</span>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- Right Column: Contact Form -->
+        <div class="contact-main-grid">
+          <!-- Left Column (Form) -->
           <div x-data="contactForm()" class="gradient-border form-card">
             <div class="stack inner" data-gap="lg">
               <!-- Form Header -->
-              <div class="cluster" data-gap="md" data-justify="between" data-align="center">
-                <h2 class="heading form-heading" data-font-size="2">Talk to the team</h2>
-                
-                <!-- Avatar Stack -->
-                <div class="AvatarWidget gradient-border">
-                  <div class="avatar-inner">
-                    <div class="AvatarStack">
-                      {teamMembers.map((member, i) => (
-                        <div class="Avatar" style={`z-index: ${teamMembers.length - i}`}>
-                          <img src={member.image} alt={member.name} loading="lazy" decoding="async" width="32" height="32" />
-                        </div>
-                      ))}
-                      <div class="Avatar Avatar--add" style={`z-index: 0`}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div class="stack" data-gap="sm">
+                <h2 class="heading form-heading" data-font-size="2">
+                  Send us a message
+                </h2>
+                <p class="prose" style="color: var(--color-foreground-secondary); font-size: 0.9rem;">
+                  Fill out the form below and we'll get back to you within 24 hours.
+                </p>
               </div>
 
               <!-- Success Message -->
               <div class="form-success" aria-live="polite" x-show="success" x-transition style="display:none">
                 <div class="stack" data-gap="sm" style="text-align:center; padding: var(--space-xl) 0;">
-                  <p class="heading" data-font-size="2">Thank you!</p>
-                  <p class="prose" style="color:var(--color-foreground-secondary)">We'll be in touch soon.</p>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#a3d200" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto; display: block; margin-bottom: 1rem;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <p class="heading" data-font-size="2" style="color: #a3d200;">Form Submitted!</p>
+                  <p class="prose" style="color:var(--color-foreground-secondary)">
+                    We'll be in touch soon.
+                  </p>
                 </div>
               </div>
 
@@ -119,35 +105,68 @@ const interests = [
                   <input id="contact-company" name="company" type="text" autocomplete="off" tabindex="-1" />
                 </div>
 
-                <!-- Name -->
-                <div class="form-field">
-                  <label class="form-label" for="contact-name">Name</label>
-                  <input id="contact-name" type="text" class="form-input" autocomplete="name" required aria-required="true" name="name" />
-                </div>
-
-                <!-- Email -->
-                <div class="form-field">
-                  <label class="form-label" for="contact-email">Email</label>
-                  <input id="contact-email" type="email" class="form-input" autocomplete="email" required aria-required="true" name="email" />
+                <div class="form-row">
+                  <!-- Name -->
+                  <div class="form-field">
+                    <label class="form-label" for="contact-name">Full name</label>
+                    <input
+                      id="contact-name"
+                      type="text"
+                      class="form-input"
+                      placeholder="Your full name"
+                      autocomplete="name"
+                      required
+                      aria-required="true"
+                      name="name"
+                    />
+                  </div>
+                  <!-- Email -->
+                  <div class="form-field">
+                    <label class="form-label" for="contact-email">Email address</label>
+                    <input
+                      id="contact-email"
+                      type="email"
+                      class="form-input"
+                      placeholder="you@example.com"
+                      autocomplete="email"
+                      required
+                      aria-required="true"
+                      name="email"
+                    />
+                  </div>
                 </div>
 
                 <!-- Interests (Pill Tags) -->
                 <fieldset class="interests-fieldset">
-                  <legend class="form-label">I'm interested in:</legend>
+                  <legend class="form-label">I'm interested in</legend>
                   <div class="interests-pills">
-                    {interests.map((interest) => (
-                      <label class="pill">
-                        <input type="checkbox" name="interests" value={interest.value} class="pill-checkbox" />
-                        <span class="pill-label">{interest.label}</span>
-                      </label>
-                    ))}
+                    {
+                      interests.map((interest) => (
+                        <label class="pill">
+                          <input type="checkbox" name="interests" value={interest.value} class="pill-checkbox" />
+                          <span class="pill-label">{interest.label}</span>
+                        </label>
+                      ))
+                    }
                   </div>
                 </fieldset>
 
                 <!-- Message -->
                 <div class="form-field">
                   <label class="form-label" for="contact-message">Message</label>
-                  <textarea id="contact-message" class="form-input form-textarea" rows="4" placeholder="Type your message here" autocomplete="off" required aria-required="true" name="message"></textarea>
+                  <textarea
+                    id="contact-message"
+                    class="form-input form-textarea"
+                    rows="4"
+                    placeholder="Tell us about your project..."
+                    autocomplete="off"
+                    required
+                    aria-required="true"
+                    name="message"
+                    x-ref="messageInput"
+                    @input="messageLength = $refs.messageInput.value.length"
+                  ></textarea>
+                  <div class="char-counter" x-text="`${messageLength} / 1000`">0 / 1000</div>
                 </div>
 
                 <!-- Privacy Consent -->
@@ -155,10 +174,10 @@ const interests = [
                   <label class="consent-wrapper">
                     <input type="checkbox" class="consent-checkbox" name="privacy" value="privacy" required />
                     <span class="consent-check">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
                     </span>
                     <span class="consent-text">
-                      I understand that Salo will securely hold my data in accordance with their <a href="/privacy" class="consent-link">privacy policy</a>.
+                      I understand that Akshara Digital will securely hold my data in accordance with their <span style="color: var(--color-purple, #8b5cf6);">privacy policy.</span>
                     </span>
                   </label>
                 </div>
@@ -167,13 +186,12 @@ const interests = [
                 <p class="form-error" x-show="error" x-text="error" aria-live="polite" style="display:none"></p>
 
                 <!-- Submit -->
-                <button type="submit" class="btn size-md primary submit-btn" x-data="buttonHover" @mousemove="handleMouseMove($event)" @mouseenter="handleMouseEnter()" @mouseleave="handleMouseLeave()" :disabled="loading">
+                <button type="submit" class="btn size-md submit-btn purple-gradient-btn" :disabled="loading">
                   <span class="btn-content">
-                    <span class="btn-bg" :style="{ top: bgY + '%', left: bgX + '%', opacity: isHovering ? 1 : 0, '--_scale': isHovering ? 1 : 0.75 }"></span>
                     <span>
-                      Submit
+                      Send message
                       <span class="icon" aria-hidden="true" role="img">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                       </span>
                     </span>
                   </span>
@@ -181,38 +199,82 @@ const interests = [
               </form>
             </div>
           </div>
+
+          <!-- Right Column (Info) -->
+          <div class="gradient-border info-card">
+            <div class="stack inner" data-gap="lg">
+              <div class="icon-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>
+              </div>
+              <div class="stack" data-gap="sm">
+                <h3 class="heading" data-font-size="2">Let's talk</h3>
+                <p class="prose" style="color: var(--color-foreground-secondary); font-size: 0.95rem; line-height: 1.6;">
+                  We're here to help you bring your ideas to life. Drop us a message and let's create something great together.
+                </p>
+              </div>
+              
+              <div class="card-divider"></div>
+              
+              <ul class="features-list stack" data-gap="md">
+                <li>
+                  <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></div>
+                  <div class="feature-text">
+                    <strong>Quick response</strong>
+                    <span>Within 24 hours</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></div>
+                  <div class="feature-text">
+                    <strong>Expert team</strong>
+                    <span>We're here to help</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="check-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></div>
+                  <div class="feature-text">
+                    <strong>Custom solutions</strong>
+                    <span>Tailored to your needs</span>
+                  </div>
+                </li>
+              </ul>
+              
+              <!-- Wavy background graphic -->
+              <div class="waves-bg"></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-
-    <!-- NO Recent Projects section (as requested by user) -->
-
-    <CTA />
   </main>
 
   <Footer />
 </Layout>
 
-<script data-astro-rerun>
+<script is:inline>
   // Unlock scroll — the Layout locks it until GSAP animations init,
   // but this page doesn't use the homepage/about animation scripts.
   function unlockScroll() {
-    document.documentElement.style.overflow = '';
+    document.documentElement.style.overflow = "";
   }
-  document.addEventListener('astro:page-load', unlockScroll);
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  document.addEventListener("astro:page-load", unlockScroll);
+  if (
+    document.readyState === "complete" ||
+    document.readyState === "interactive"
+  ) {
     unlockScroll();
   } else {
-    document.addEventListener('DOMContentLoaded', unlockScroll);
+    document.addEventListener("DOMContentLoaded", unlockScroll);
   }
 
-  // Contact Form Alpine.js component
-  window.contactForm = function () {
-    return {
+  // Register Contact Form Alpine.js component safely for View Transitions
+  const registerContactForm = () => {
+      window.Alpine.data('contactForm', () => ({
       loading: false,
-      error: '',
+      error: "",
       success: false,
       formStartedAt: 0,
+      messageLength: 0,
       isValidEmail(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
       },
@@ -221,13 +283,13 @@ const interests = [
       },
       async handleSubmit(e) {
         const form = e.target;
-        const emailInput = form.elements.namedItem('email');
-        const emailValue = emailInput?.value?.trim() || '';
+        const emailInput = form.elements.namedItem("email");
+        const emailValue = emailInput?.value?.trim() || "";
 
-        this.error = '';
+        this.error = "";
 
         if (!this.isValidEmail(emailValue)) {
-          this.error = 'Please enter a valid email address.';
+          this.error = "Please enter a valid email address.";
           emailInput?.focus();
           return;
         }
@@ -235,17 +297,33 @@ const interests = [
         this.loading = true;
 
         try {
-          await new Promise(resolve => setTimeout(resolve, 1500));
-          this.success = true;
+          const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            data.interests = formData.getAll('interests');
+            
+            const res = await fetch('/api/contact', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data)
+            });
+            
+            if (!res.ok) throw new Error('Failed to send message');
+            this.success = true;
         } catch (err) {
-          console.error('[ContactForm]', err);
-          this.error = 'Something went wrong. Please try again.';
+          console.error("[ContactForm]", err);
+          this.error = "Something went wrong. Please try again.";
         } finally {
           this.loading = false;
         }
-      }
+      },
+    }));
     };
-  };
+
+    if (window.Alpine) {
+      registerContactForm();
+    } else {
+      document.addEventListener('alpine:init', registerContactForm);
+    }
 </script>
 
 <style lang="scss">
@@ -256,43 +334,99 @@ const interests = [
 
   .ContactFormBlock {
     padding-top: calc(var(--space-3xl) + 5rem);
+    padding-bottom: var(--space-3xl);
     background-color: var(--color-bg);
   }
 
-  // ── Grid Layout ──
-  .contact-grid {
+  // ── Layout & Typography ──
+  .contact-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-purple, #8b5cf6) 0%, #d8b4fe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  // ── Top Info Bar ──
+  .contact-top-bar {
+    border-radius: var(--radius-lg, 1rem);
+    margin-bottom: var(--space-2xl);
+    padding: 2px !important;
+
+    .inner {
+      background: var(--color-bg-alt, #151515);
+      border-radius: calc(var(--radius-lg, 1rem) - 2px);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-md) var(--space-xl);
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-sm) 0;
+    }
+
+    .icon-wrap {
+      color: var(--color-purple, #8b5cf6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .info-label {
+      font-size: var(--font-size--1);
+      font-weight: 600;
+      color: var(--color-foreground);
+    }
+
+    .info-val {
+      font-size: var(--font-size--1);
+      color: var(--color-foreground-secondary);
+    }
+
+    .info-divider {
+      width: 1px;
+      height: 40px;
+      background: var(--color-border);
+      
+      @media (max-width: 900px) {
+        display: none;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .info-item {
+        width: 100%;
+        border-bottom: 1px solid var(--color-border);
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  // ── Main Grid ──
+  .contact-main-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-2xl);
+    grid-template-columns: 1.5fr 1fr;
+    gap: var(--space-xl);
     align-items: start;
 
     @media (max-width: 900px) {
       grid-template-columns: 1fr;
     }
-  }
-
-  .left-col {
-    padding-top: var(--space-sm);
-  }
-
-  // ── Contact Info ──
-  .contact-info {
-    margin-top: var(--space-sm);
-  }
-
-  .contact-group {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3xs);
-  }
-
-  .contact-label {
-    font-family: var(--font-family-alt);
-    font-size: var(--font-size--2);
-    color: var(--color-foreground-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-bottom: var(--space-3xs);
   }
 
   .contact-value {
@@ -309,63 +443,19 @@ const interests = [
 
   // ── Form Card ──
   .form-card {
-    padding: var(--space-xl);
+    width: 100%;
     border-radius: var(--radius-md, 1rem);
-    background: var(--color-bg-alt, #151515);
+    /* Increase border thickness to 2px as requested */
+    padding: 2px !important;
 
-    @media (max-width: 600px) {
-      padding: var(--space-lg);
-    }
-  }
-
-  .form-heading {
-    white-space: nowrap;
-  }
-
-  // ── Avatar Stack ──
-  .AvatarWidget {
-    border-radius: 9999px;
-    padding: 3px;
-    flex-shrink: 0;
-  }
-
-  .avatar-inner {
-    display: flex;
-    align-items: center;
-    padding: 2px;
-  }
-
-  .AvatarStack {
-    --avatar-size: 1.75rem;
-    display: flex;
-    align-items: center;
-  }
-
-  .Avatar {
-    width: var(--avatar-size);
-    height: var(--avatar-size);
-    border-radius: 9999px;
-    overflow: hidden;
-    flex-shrink: 0;
-    border: 2px solid var(--color-bg-alt, #151515);
-
-    &:not(:first-child) {
-      margin-left: -6px;
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    &--add {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--color-bg, #101010);
-      color: var(--color-foreground-secondary);
+    .inner {
+      border-radius: calc(var(--radius-md, 1rem) - 2px);
+      padding: var(--space-xl);
+      background: var(--color-bg-alt, #151515);
+      
+      @media (max-width: 600px) {
+        padding: var(--space-lg);
+      }
     }
   }
 
@@ -387,10 +477,29 @@ const interests = [
     border: 0;
   }
 
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
   .form-field {
     display: flex;
     flex-direction: column;
     gap: var(--space-3xs);
+    position: relative;
+  }
+
+  .char-counter {
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    font-size: 0.75rem;
+    color: var(--color-foreground-secondary);
   }
 
   .form-label {
@@ -471,9 +580,9 @@ const interests = [
   }
 
   .pill-checkbox:checked + .pill-label {
-  background: var(--color-accent, #060606);
-   color: #ff0000;
-   border-color: var(--color-accent, #060606);
+    background: var(--color-accent, #060606);
+    color: #ff0000;
+    border-color: var(--color-accent, #060606);
   }
 
   .pill-label:hover {
@@ -522,9 +631,9 @@ const interests = [
   }
 
   .consent-checkbox:checked ~ .consent-check {
-    background: var(--color-foreground);
-    border-color: var(--color-foreground);
-    color: var(--color-bg, #060606);
+    background: var(--color-purple, #8b5cf6);
+    border-color: var(--color-purple, #8b5cf6);
+    color: #ffffff;
   }
 
   .consent-checkbox:focus-visible ~ .consent-check {
@@ -549,6 +658,89 @@ const interests = [
     }
   }
 
+  // ── Info Card (Right Column) ──
+  .info-card {
+    border-radius: var(--radius-md, 1rem);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    /* Increase border thickness to 2px */
+    padding: 2px !important;
+
+    .inner {
+      border-radius: calc(var(--radius-md, 1rem) - 2px);
+      padding: var(--space-xl);
+      background: var(--color-bg-alt, #151515);
+      height: 100%;
+      position: relative;
+    }
+  }
+
+  .icon-circle {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--color-purple, #8b5cf6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-divider {
+    height: 1px;
+    width: 100%;
+    background: var(--color-border);
+    margin: var(--space-sm) 0;
+  }
+
+  .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+    
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+    
+    .check-icon {
+      color: var(--color-purple, #8b5cf6);
+      margin-top: 2px;
+    }
+
+    .feature-text {
+      display: flex;
+      flex-direction: column;
+      
+      strong {
+        font-size: var(--font-size--1);
+        font-weight: 500;
+        color: var(--color-foreground);
+      }
+      span {
+        font-size: var(--font-size--1);
+        color: var(--color-foreground-secondary);
+      }
+    }
+  }
+
+  .waves-bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='none' stroke='rgba(139, 92, 246, 0.3)' stroke-width='2' d='M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,144C672,149,768,203,864,224C960,245,1056,235,1152,197.3C1248,160,1344,96,1392,64L1440,32'/%3E%3Cpath fill='none' stroke='rgba(139, 92, 246, 0.15)' stroke-width='2' d='M0,256L48,229.3C96,203,192,149,288,154.7C384,160,480,224,576,218.7C672,213,768,139,864,128C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: bottom;
+    z-index: 1;
+    pointer-events: none;
+  }
+
   // ── Form Status ──
   .form-error {
     color: var(--color-red, #f24822);
@@ -556,12 +748,21 @@ const interests = [
     font-family: var(--font-family-alt);
   }
 
-  .submit-btn {
-    width: 100%;
-    align-self: stretch;
-    justify-content: center;
-    margin-top: var(--space-xs);
+  .purple-gradient-btn {
+    align-self: flex-start;
+    background: linear-gradient(135deg, var(--color-purple, #8b5cf6) 0%, #6d28d9 100%);
+    border: none;
+    color: #fff;
+    margin-top: var(--space-sm);
+    
+    .btn-content {
+      color: #fff !important;
+    }
 
+    &:hover {
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+    }
+    
     &:disabled {
       opacity: 0.6;
       pointer-events: none;

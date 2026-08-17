@@ -316,16 +316,12 @@ function setupQuadrants(cleanupTasks, transitionDistance) {
   const section = document.querySelector('.HomeQuadrants');
   if (!section) return;
 
-  const isTabletUp = window.matchMedia('(min-width: 768px)').matches;
-  const hoverTimelines = [];
+  const mm = gsap.matchMedia();
   let gridReady = section.getAttribute('data-ready') === 'true';
 
   gsap.set('#HomeQuadrants__logo, #HomeQuadrants__logoMask', { opacity: 0 });
 
-  // Ambient idle spin: a continuous, time-based rotation on the wrapper around the
-  // logo, independent of scroll. This runs on its own GSAP "rotate" channel so it
-  // composes with (rather than fights) the scroll-scrubbed +180 flip tween applied
-  // to the inner SVG further down in this file.
+  // Ambient idle spin
   const logoSpinEl = document.getElementById('HomeQuadrants__logoSpin');
   if (logoSpinEl) {
     const logoIdleSpin = gsap.to(logoSpinEl, {
@@ -337,7 +333,9 @@ function setupQuadrants(cleanupTasks, transitionDistance) {
     cleanupTasks.push(() => logoIdleSpin.kill());
   }
 
-  if (isTabletUp) {
+  mm.add("(min-width: 768px)", () => {
+    const hoverTimelines = [];
+    
     gsap.set('.HomeQuadrants .reactive-divider', { opacity: 0 });
     gsap.set(['.HomeQuadrants .divider__left', '.HomeQuadrants .divider__right'], { width: 0 });
     gsap.set(['.HomeQuadrants .divider__top', '.HomeQuadrants .divider__bottom'], { height: 0 });
@@ -354,44 +352,37 @@ function setupQuadrants(cleanupTasks, transitionDistance) {
       onEnter: () => window.dispatchEvent(new CustomEvent('grid-ready')),
       onLeaveBack: () => window.dispatchEvent(new CustomEvent('grid-not-ready')),
     });
-    cleanupTasks.push(() => pinTrigger.kill());
-  }
 
-  function playOnly(targetTimeline) {
-    hoverTimelines.forEach((timeline) => {
-      if (timeline !== targetTimeline && timeline.progress() > 0) {
-        timeline.timeScale(2.2).reverse();
-      }
-    });
-    targetTimeline.timeScale(1).play();
-  }
-
-  function markGridReady() {
-    gridReady = true;
-    section.setAttribute('data-ready', 'true');
-    const hovered = document.querySelector('.quadrant:hover');
-    if (hovered) {
-      const index = Array.from(document.querySelectorAll('.quadrant')).indexOf(hovered);
-      if (hoverTimelines[index]) playOnly(hoverTimelines[index]);
+    function playOnly(targetTimeline) {
+      hoverTimelines.forEach((timeline) => {
+        if (timeline !== targetTimeline && timeline.progress() > 0) {
+          timeline.timeScale(2.2).reverse();
+        }
+      });
+      targetTimeline.timeScale(1).play();
     }
-  }
 
-  function markGridNotReady() {
-    gridReady = false;
-    section.setAttribute('data-ready', 'false');
-    hoverTimelines.forEach((timeline) => {
-      if (timeline.progress() > 0) timeline.timeScale(2).reverse();
-    });
-  }
+    function markGridReady() {
+      gridReady = true;
+      section.setAttribute('data-ready', 'true');
+      const hovered = document.querySelector('.quadrant:hover');
+      if (hovered) {
+        const index = Array.from(document.querySelectorAll('.quadrant')).indexOf(hovered);
+        if (hoverTimelines[index]) playOnly(hoverTimelines[index]);
+      }
+    }
 
-  window.addEventListener('grid-ready', markGridReady);
-  window.addEventListener('grid-not-ready', markGridNotReady);
-  cleanupTasks.push(() => {
-    window.removeEventListener('grid-ready', markGridReady);
-    window.removeEventListener('grid-not-ready', markGridNotReady);
-  });
+    function markGridNotReady() {
+      gridReady = false;
+      section.setAttribute('data-ready', 'false');
+      hoverTimelines.forEach((timeline) => {
+        if (timeline.progress() > 0) timeline.timeScale(2).reverse();
+      });
+    }
 
-  if (isTabletUp) {
+    window.addEventListener('grid-ready', markGridReady);
+    window.addEventListener('grid-not-ready', markGridNotReady);
+
     document.querySelectorAll('.quadrant').forEach((quadrant) => {
       const hiddenContent = quadrant.querySelector('.hidden-content');
       const background = quadrant.querySelector('.background');
@@ -423,15 +414,8 @@ function setupQuadrants(cleanupTasks, transitionDistance) {
 
       quadrant.addEventListener('mouseenter', onEnter);
       quadrant.addEventListener('mouseleave', onLeave);
-      cleanupTasks.push(() => {
-        quadrant.removeEventListener('mouseenter', onEnter);
-        quadrant.removeEventListener('mouseleave', onLeave);
-        timeline.kill();
-      });
     });
-  }
 
-  if (isTabletUp) {
     const dividerTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: '.HomeQuadrants',
@@ -449,11 +433,18 @@ function setupQuadrants(cleanupTasks, transitionDistance) {
       .to(['.HomeQuadrants .divider__top', '.HomeQuadrants .divider__bottom'], { opacity: 1, duration: 0.75, ease: 'power3.out' }, 0.8)
       .to('.quadrant__heading', { opacity: 1, filter: 'blur(0px)', duration: 0.5, ease: 'power1.out', stagger: 0.4 }, 0.25);
 
-    cleanupTasks.push(() => {
-      dividerTimeline.scrollTrigger?.kill();
-      dividerTimeline.kill();
-    });
-  }
+    // Return a cleanup function for the event listeners and GSAP context automatically cleans up timelines/ScrollTriggers
+    return () => {
+      window.removeEventListener('grid-ready', markGridReady);
+      window.removeEventListener('grid-not-ready', markGridNotReady);
+      // Event listeners on DOM elements don't strictly need manual cleanup if the elements persist, 
+      // but hover events will be safely ignored since the timelines are killed by GSAP mm.
+    };
+  });
+
+  cleanupTasks.push(() => {
+    mm.revert();
+  });
 }
 
 function setupShowcase(cleanupTasks) {

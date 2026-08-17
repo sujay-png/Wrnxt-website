@@ -5,7 +5,7 @@
   <div class="container">
     <div class="cluster start" data-gap="sm" data-justify="start" data-align="center">
       <a href="/" title="Go to homepage" class="header-logo-link">
-        <!-- <svg class="akshara-logo" transition:name="akshara-logo" viewBox="0 0 104 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Salo Logo.">
+        <!-- <svg class="akshara-logo" transition:name="akshara-logo" viewBox="0 0 104 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Akshara Digital Logo.">
           <path class="akshara-logo__0" d="M101.813 9.07487C98.1337 1.20259 88.7695 -2.19519 80.8963 1.48374L80.208 0.00968382C72.3348 3.68862 68.9357 13.0518 72.6151 20.9241C76.2944 28.7964 85.6587 32.1942 93.5319 28.5152L94.2202 29.9884C102.093 26.3095 105.492 16.9463 101.813 9.07398V9.07487ZM90.7839 22.6376C86.1581 24.799 80.6568 22.8017 78.4951 18.1773C76.3335 13.552 78.331 8.05137 82.956 5.88995L83.6443 7.36223C88.2701 5.20081 93.7714 7.19815 95.933 11.8225C98.0947 16.4478 96.0971 21.9485 91.4722 24.1099L90.7839 22.6376Z" fill="white"></path>
           <path class="akshara-logo__l" d="M71.9499 29.7429L58.1993 29.7438H54.8934V29.7429H54.0897L53.1859 27.8041L51.709 24.6369V0.251953H58.1993V23.2542H68.9242L71.5161 28.8134L71.9499 29.7429Z" fill="white"></path>
           <path class="akshara-logo__a" d="M39.1289 7.92716L35.5481 0.25L31.968 7.92805L32.6617 9.41452L29.0861 17.0819L23.1821 29.74H30.343L32.6661 24.7591L36.2417 17.0926L42.1395 29.74H49.2995L49.3013 29.7391L39.1289 7.92716Z" fill="white"></path>
@@ -15,7 +15,7 @@
   class="akshara-logo"
   transition:name="akshara-logo"
   src="/images/akshara-digital-logo.png"
-  alt="WRNXT Logo"
+  alt="Akshara Digital Logo"
 />
       </a>
       <span class="eyebrow lg-only">Affordable & Quality IT Solutions Guaranteed</span>
@@ -79,11 +79,12 @@
   </div>
 
   <!-- Teleported Mobile Menu -->
-  <template x-teleport="body">
+  
+    <template x-teleport="#mobile-menu-portal">
     <div id="mobile-menu" class="mobile-menu" data-lenis-prevent x-show="mobileOpen" x-transition:enter="overlay-enter" x-transition:enter-start="overlay-enter-start" x-transition:enter-end="overlay-enter-end" x-transition:leave="overlay-leave" x-transition:leave-start="overlay-leave-start" x-transition:leave-end="overlay-leave-end" x-cloak>
       <div class="stack mobile-menu__inner" data-gap="xl" data-color-scheme="dark" @click.away="mobileOpen = false" x-transition:enter="panel-enter" x-transition:enter-start="panel-enter-start" x-transition:enter-end="panel-enter-end" x-transition:leave="panel-leave" x-transition:leave-start="panel-leave-start" x-transition:leave-end="panel-leave-end">
         <div class="cluster mobile-menu__header" data-gap="sm" data-justify="between" data-align="center">
-          <img class="akshara-logo" src="/images/akshara-digital-logo.png" alt="WRNXT Logo">
+          <img class="akshara-logo" src="/images/akshara-digital-logo.png" alt="Akshara Digital Logo">
           <button aria-label="Close menu" type="button" @click="mobileOpen = false" class="btn size-md ghost icon-only">
             <span class="btn-content">
               <span class="icon" aria-hidden="true" role="img">
@@ -96,29 +97,19 @@
           </button>
         </div>
         <nav aria-label="Mobile" class="stack mobile-nav">
-          <span class="eyebrow">Our Services</span>
           <ul class="mobile-nav__list">
-            <li class="nav-item"><a class="nav-link" href="/projects">Work</a></li>
-          <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
-          </ul>
-          <span class="eyebrow">Our Work</span>
-          <ul class="mobile-nav__list">
-            <li><a class="mobile-nav__link" href="/projects">Latest case studies</a></li>
-          </ul>
-          <span class="eyebrow">Studio</span>
-          <ul class="mobile-nav__list">
-            <li><a class="mobile-nav__link" href="/about">About us</a></li>
-            <li><a class="mobile-nav__link" href="/blog">Blog</a></li>
+            <li class="nav-item"><a class="nav-link" href="/projects" @click="mobileOpen = false">Work</a></li>
+            <li class="nav-item"><a class="nav-link" href="/services" @click="mobileOpen = false">Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="/about" @click="mobileOpen = false">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="/blog" @click="mobileOpen = false">Blog</a></li>
           </ul>
         </nav>
         <div class="mobile-actions">
-          <a href="/contact" class="btn size-md primary mobile-actions__button block-all" x-data="buttonHover" @mousemove="handleMouseMove($event)" @mouseenter="handleMouseEnter()" @mouseleave="handleMouseLeave()">
+          <a href="/contact" @click="mobileOpen = false" class="btn size-md primary mobile-actions__button block-all" x-data="buttonHover" @mousemove="handleMouseMove($event)" @mouseenter="handleMouseEnter()" @mouseleave="handleMouseLeave()">
             <span class="btn-content">
               <span class="btn-bg" :style="{ top: bgY + '%', left: bgX + '%', opacity: isHovering ? 1 : 0, '--_scale': isHovering ? 1 : 0.75 }"></span>
               <span>
-                Start a project
+                Contact us
                 <span class="icon" aria-hidden="true" role="img">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
                     <path d="M5 12h14"></path>
@@ -131,7 +122,7 @@
         </div>
       </div>
     </div>
-  </template>
+    </template>
 </header>
 
 <script>

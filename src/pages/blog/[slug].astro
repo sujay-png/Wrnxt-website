@@ -1,169 +1,196 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import CTA from '../../components/CTA.astro';
-import postsData from '../../data/posts.json';
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import CTA from "../../components/CTA.astro";
+import postsData from "../../data/posts.json";
 
 export async function getStaticPaths() {
   const blogPosts = [
     {
       title: "Sarah Levett named in the BIMA 100 Class of 2026",
       slug: "Sarah-Levett-BIMA-100",
-      subtitle: "Salo Managing Director named in the BIMA 100 Class of 2026, recognised in the CEOs & Leaders category for businesses under £5m turnover.",
-      excerpt: "The CEOs & Leaders -5m category recognises people running smaller, independent businesses who are doing something genuinely interesting, not just commercially, but in the way they think about their teams, their clients, and the wider industry. Those numbers and that culture are exactly why Sarah belongs on this list.",
-      image: "https://media.salo.uk/salo-website-prod/Sarah-Levett-Bima-100-profile.jpg",
-      author: "By Carl Cahill",
+      subtitle:
+        "Akshara Digital Managing Director named in the BIMA 100 Class of 2026, recognised in the CEOs & Leaders category for businesses under £5m turnover.",
+      excerpt:
+        "The CEOs & Leaders -5m category recognises people running smaller, independent businesses who are doing something genuinely interesting, not just commercially, but in the way they think about their teams, their clients, and the wider industry. Those numbers and that culture are exactly why Sarah belongs on this list.",
+      image:
+        "https://media.salo.uk/salo-website-prod/Sarah-Levett-Bima-100-profile.jpg",
+      author: "By Adil",
       date: "21 May 2026",
       tags: [],
       framePos: "center 15%",
-      ratio: "4/3"
+      ratio: "4/3",
     },
     {
       title: "We're partnering with The Agency Adventure",
       slug: "partnering-with-the-agency-adventure",
-      subtitle: "Salo announced as official Design Partner",
-      excerpt: "\"We are working with agencies that really value brand and design, so it was important that we invested in how we show up, too. Salo understands agencies in a very real way, how they operate, how they scale, and where design fits into that.”",
-      image: "https://media.salo.uk/salo-website-prod/Salo%20x%20Agency%20Adventure.jpg",
+      subtitle: "Akshara Digital announced as official Design Partner",
+      excerpt:
+        '"We are working with agencies that really value brand and design, so it was important that we invested in how we show up, too. Akshara Digital understands agencies in a very real way, how they operate, how they scale, and where design fits into that.”',
+      image:
+        "https://media.salo.uk/salo-website-prod/Akshara Digital%20x%20Agency%20Adventure.jpg",
       author: "By Sarah Levett",
       date: "12 May 2026",
       tags: ["Branding", "Visual Identity", "Web/Email Graphics"],
-      ratio: "16/9"
+      ratio: "16/9",
     },
     {
-      title: "Staff Augmentation - The latest buzz-phrase or the solution to navigating uncertainty?",
+      title:
+        "Staff Augmentation - The latest buzz-phrase or the solution to navigating uncertainty?",
       slug: "staff-augmentation",
       subtitle: "",
-      excerpt: "We know it's a genuinely difficult climate right now. Many of you in tech and creative businesses are managing significant budget pressures whilst...",
-      image: "https://media.salo.uk/salo-website-prod/Working%20shot%202%20small.jpeg",
+      excerpt:
+        "We know it's a genuinely difficult climate right now. Many of you in tech and creative businesses are managing significant budget pressures whilst...",
+      image:
+        "https://media.salo.uk/salo-website-prod/Working%20shot%202%20small.jpeg",
       author: "By Sarah Levett",
       date: "5 May 2026",
       tags: [],
-      ratio: "16/9"
+      ratio: "16/9",
     },
     {
       title: "SXSW 2026: What actually matters right now",
       slug: "sxsw-2026-what-actually-matters-right-now",
-      subtitle: "A week at SXSW revealed that AI is accelerating everything, but creativity, confidence and clear strategy are what actually separate the teams moving forward from those just making noise.",
-      excerpt: "Back from SXSW in Austin, a few themes stood out. AI is everywhere, but as access expands, output starts to converge and “good enough” becomes the default. The real opportunity lies in direction, judgement and experience. At the same time, teams are experimenting fast but struggling with confidence, while agencies shift from execution to guidance. Among all the hype, one thing was clear: strategy, creativity and relationships matter more than ever.",
+      subtitle:
+        "A week at SXSW revealed that AI is accelerating everything, but creativity, confidence and clear strategy are what actually separate the teams moving forward from those just making noise.",
+      excerpt:
+        "Back from SXSW in Austin, a few themes stood out. AI is everywhere, but as access expands, output starts to converge and “good enough” becomes the default. The real opportunity lies in direction, judgement and experience. At the same time, teams are experimenting fast but struggling with confidence, while agencies shift from execution to guidance. Among all the hype, one thing was clear: strategy, creativity and relationships matter more than ever.",
       image: "https://media.salo.uk/salo-website-prod/SXSW.jpg",
-      author: "By Carl Cahill",
+      author: "By Adil",
       date: "28 Apr 2026",
       tags: [],
-      ratio: "16/9"
+      ratio: "16/9",
     },
     {
       title: "Reinventing forms with a travel AI agent",
       slug: "reinventing-forms-with-a-travel-ai-agent",
       subtitle: "",
-      excerpt: "Forms have long been a staple of digital experiences, but let’s be honest they’re often boring. Whether it’s a product configurator, a sign-up flow, or a service wizard, filling out forms can quickly become a chore.",
-      image: "https://media.salo.uk/salo-website-prod/salo-creative-ai-agents-travelpal.jpeg",
-      author: "By Carl Cahill",
+      excerpt:
+        "Forms have long been a staple of digital experiences, but let’s be honest they’re often boring. Whether it’s a product configurator, a sign-up flow, or a service wizard, filling out forms can quickly become a chore.",
+      image:
+        "https://media.salo.uk/salo-website-prod/Akshara Digital-creative-ai-agents-travelpal.jpeg",
+      author: "By Adil",
       date: "22 Apr 2025",
       tags: ["UI / UX"],
-      ratio: "16/9"
+      ratio: "16/9",
     },
     {
       title: "10 reasons to partner with a design agency",
       slug: "10-reasons-to-partner-with-a-design-agency",
       subtitle: "",
-      excerpt: "In the fast-paced world of digital design, agencies often find themselves torn between hiring in-house designer resource or collaborating with external design experts. While both options have their perks, partnering up with external designers—like our team at Salo Creative—brings some pretty sweet benefits.",
-      image: "https://media.salo.uk/salo-website-prod/salo-team.jpeg",
+      excerpt:
+        "In the fast-paced world of digital design, agencies often find themselves torn between hiring in-house designer resource or collaborating with external design experts. While both options have their perks, partnering up with external designers—like our team at Akshara Digital Creative—brings some pretty sweet benefits.",
+      image:
+        "https://media.salo.uk/salo-website-prod/Akshara Digital-team.jpeg",
       author: "By Sarah Levett",
       date: "22 Oct 2024",
       tags: [],
-      ratio: "16/9"
+      ratio: "16/9",
     },
     {
       title: "Why summer is the perfect time to get your brand in order",
       slug: "why-summer-is-the-perfect-time-to-get-your-brand-in-order",
       subtitle: "",
-      excerpt: "Whichever high street you walk down in the UK in August, it’s impossible to miss the back-to-school season marketing. Many colleagues are enjoying their summer holidays or taking longer weekends to bask in the summer sun before the back-to-school, back-to-work season starts. Once summer wraps up, businesses have an opportunity to refresh and prepare for the busier months ahead.",
-      image: "https://media.salo.uk/salo-website-prod/salo-brand-toolkit-cover.png",
+      excerpt:
+        "Whichever high street you walk down in the UK in August, it’s impossible to miss the back-to-school season marketing. Many colleagues are enjoying their summer holidays or taking longer weekends to bask in the summer sun before the back-to-school, back-to-work season starts. Once summer wraps up, businesses have an opportunity to refresh and prepare for the busier months ahead.",
+      image:
+        "https://media.salo.uk/salo-website-prod/Akshara Digital-brand-toolkit-cover.png",
       author: "By Sarah Levett",
       date: "13 May 2024",
       tags: ["Branding"],
-      ratio: "16/9"
+      ratio: "16/9",
     },
     {
-      title: "Saving brand managers’ sanity with a single-webpage brand toolkit",
+      title:
+        "Saving brand managers’ sanity with a single-webpage brand toolkit",
       slug: "blog-brand-toolkits",
       subtitle: "",
-      excerpt: "When I worked as an in-house marketer, I spent an inordinate proportion of my time sharing brand assets with colleagues in various departments across the business. The development team needed logos for our platform, sales needed fonts and presentation templates, admin needed company descriptions for trade shows and events…",
-      image: "https://media.salo.uk/salo-website-prod/brand-toolkit-header-image-ratio-salo-creative.png",
+      excerpt:
+        "When I worked as an in-house marketer, I spent an inordinate proportion of my time sharing brand assets with colleagues in various departments across the business. The development team needed logos for our platform, sales needed fonts and presentation templates, admin needed company descriptions for trade shows and events…",
+      image:
+        "https://media.salo.uk/salo-website-prod/brand-toolkit-header-image-ratio-Akshara Digital-creative.png",
       author: "By Sarah Levett",
       date: "12 May 2024",
       tags: ["Branding"],
-      ratio: "16/9"
+      ratio: "16/9",
     },
     {
       title: "5 Figma Features I couldn’t live without",
       slug: "5-figma-features-i-couldnt-live-without",
       subtitle: "",
-      excerpt: "It’s no secret that Figma is an incredibly powerful design software. Even though we use it each and every day, there are new features being added constantly so we are always adapting the way we work to stay up to date. But what are the features I couldn’t live without? Well, in reality, the list is far too long to go through each and every one. So here’s my top five.",
+      excerpt:
+        "It’s no secret that Figma is an incredibly powerful design software. Even though we use it each and every day, there are new features being added constantly so we are always adapting the way we work to stay up to date. But what are the features I couldn’t live without? Well, in reality, the list is far too long to go through each and every one. So here’s my top five.",
       image: "https://media.salo.uk/salo-website-prod/Figma-Application.jpg",
       author: "By Josh Trim",
       date: "29 Jan 2024",
       tags: ["UI / UX", "Design System"],
-      ratio: "16/9"
+      ratio: "16/9",
     },
     {
       title: "Designing an optimal booking process for travel",
       slug: "designing-an-optimal-booking-process-for-travel",
       subtitle: "",
-      excerpt: "Creating an intuitive and efficient booking process is crucial for a travel website to enhance user experience and increase conversions. A well-designed booking system should seamlessly integrate features like availability calendars, search listings, flights, upsells, and pricing. Let’s explore the best design practices to achieve this.",
-      image: "https://media.salo.uk/salo-website-prod/Booking-cover-salo-creative-bookingflows.png",
-      author: "By Carl Cahill",
+      excerpt:
+        "Creating an intuitive and efficient booking process is crucial for a travel website to enhance user experience and increase conversions. A well-designed booking system should seamlessly integrate features like availability calendars, search listings, flights, upsells, and pricing. Let’s explore the best design practices to achieve this.",
+      image:
+        "https://media.salo.uk/salo-website-prod/Booking-cover-Akshara Digital-creative-bookingflows.png",
+      author: "By Adil",
       date: "14 Jan 2024",
       tags: ["UI / UX"],
-      ratio: "16/9"
+      ratio: "16/9",
     },
     {
       title: "UX Design vs SEO",
       slug: "ux-design-vs-seo",
       subtitle: "",
-      excerpt: "UX Design and SEO are two important aspects of website development and digital marketing. Although they have different goals, both UX design and SEO are crucial for the success of a website.",
-      image: "https://media.salo.uk/salo-website-prod/michael-jasmund-t-WxNy6CMyU-unsplash-1024x768.jpg",
-      author: "By Carl Cahill",
+      excerpt:
+        "UX Design and SEO are two important aspects of website development and digital marketing. Although they have different goals, both UX design and SEO are crucial for the success of a website.",
+      image:
+        "https://media.salo.uk/salo-website-prod/michael-jasmund-t-WxNy6CMyU-unsplash-1024x768.jpg",
+      author: "By Adil",
       date: "23 Jan 2023",
       tags: ["High-Performing Website"],
-      ratio: "16/9"
+      ratio: "16/9",
     },
     {
       title: "Designing for e-commerce stores",
       slug: "designing-for-e-commerce-stores",
       subtitle: "",
-      excerpt: "Here’s a few ideas to make sure the your store performs better and has every chance for conversion.",
+      excerpt:
+        "Here’s a few ideas to make sure the your store performs better and has every chance for conversion.",
       image: "https://media.salo.uk/salo-website-prod/Ratio-1920x1080.jpg",
-      author: "By Carl Cahill",
+      author: "By Adil",
       date: "18 Jan 2023",
       tags: ["High-Performing Website"],
-      ratio: "16/9"
+      ratio: "16/9",
     },
     {
       title: "How AI could affect Digital Design",
       slug: "how-ai-could-affect-digital-design",
       subtitle: "",
-      excerpt: "Artificial intelligence (AI) has the potential to revolutionise the field of digital design, making the design process faster, more efficient, and more accurate.",
-      image: "https://media.salo.uk/salo-website-prod/salocreative_a_futuristic_robot_sat_at_an_easel_painting_a_land_aa8437fd-1d32-499d-81a3-a00eb87a839a.png",
-      author: "By Carl Cahill",
+      excerpt:
+        "Artificial intelligence (AI) has the potential to revolutionise the field of digital design, making the design process faster, more efficient, and more accurate.",
+      image:
+        "https://media.salo.uk/salo-website-prod/salocreative_a_futuristic_robot_sat_at_an_easel_painting_a_land_aa8437fd-1d32-499d-81a3-a00eb87a839a.png",
+      author: "By Adil",
       date: "17 Jan 2023",
       tags: [],
-      ratio: "16/9"
-    }
+      ratio: "16/9",
+    },
   ];
 
   return blogPosts.map((post, idx) => {
     // Select the next 2 posts as related ones
     const related1 = blogPosts[(idx + 1) % blogPosts.length];
     const related2 = blogPosts[(idx + 2) % blogPosts.length];
-    
+
     return {
       params: { slug: post.slug },
-      props: { 
-        post, 
-        related: [related1, related2] 
-      }
+      props: {
+        post,
+        related: [related1, related2],
+      },
     };
   });
 }
@@ -173,7 +200,10 @@ const { slug } = Astro.params;
 const postBody = postsData[slug] || { prose_html: "<p>Content loading...</p>" };
 ---
 
-<Layout title={`${post.title} | Blog | Salo`} description={post.subtitle || post.excerpt}>
+<Layout
+  title={`${post.title} | Blog | Akshara Digital`}
+  description={post.subtitle || post.excerpt}
+>
   <Header />
 
   <main class="page--blog-post">
@@ -182,31 +212,38 @@ const postBody = postsData[slug] || { prose_html: "<p>Content loading...</p>" };
       <div class="container" data-size="wide">
         <div class="stack" data-gap="lg">
           <div class="stack" data-gap="sm">
-            <h1 class="heading" data-color="foreground" data-font-size="5" data-trim="normal" data-weight="regular">
+            <h1
+              class="heading"
+              data-color="foreground"
+              data-font-size="5"
+              data-trim="normal"
+              data-weight="regular"
+            >
               {post.title}
             </h1>
-            
-            {post.subtitle && (
-              <p class="subtitle">{post.subtitle}</p>
-            )}
-            
+
+            {post.subtitle && <p class="subtitle">{post.subtitle}</p>}
+
             <div class="meta">
               <span class="author">{post.author}</span>
               <span aria-hidden="true" class="separator">&middot;</span>
               <time>{post.date}</time>
             </div>
           </div>
-          
-          <div class="frame featured-image" style={`--frame-ratio:${post.ratio || '16/9'}; --frame-pos:${post.framePos || 'center'};`}>
-            <img 
-              src={post.image} 
-              alt={post.title} 
-              transition:name={`blog-img-${post.slug}`} 
-              decoding="async" 
-              fetchpriority="high" 
-              loading="eager" 
-              width="1200" 
-              height="900" 
+
+          <div
+            class="frame featured-image"
+            style={`--frame-ratio:${post.ratio || "16/9"}; --frame-pos:${post.framePos || "center"};`}
+          >
+            <img
+              src={post.image}
+              alt={post.title}
+              transition:name={`blog-img-${post.slug}`}
+              decoding="async"
+              fetchpriority="high"
+              loading="eager"
+              width="1200"
+              height="900"
             />
           </div>
         </div>
@@ -226,53 +263,99 @@ const postBody = postsData[slug] || { prose_html: "<p>Content loading...</p>" };
     <section class="section RelatedPostsSection" data-padding="lg">
       <div class="container" data-size="wide">
         <div class="stack" data-gap="lg">
-          <h2 class="heading" data-font-size="3" data-weight="regular">Related posts</h2>
-          
+          <h2 class="heading" data-font-size="3" data-weight="regular">
+            Related posts
+          </h2>
+
           <div class="related-grid">
-            {related.map((rel) => (
-              <article class="related-card">
-                <a href={`/blog/${rel.slug}`} class="related-link">
-                  <div class="anchor-card anchor-card--rounded image">
-                    <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
-                      <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
-                      <circle cx="19.5" cy="3.5" r="3"></circle>
-                      <circle cx="calc(100% - 19.5px)" cy="3.5" r="3"></circle>
-                      <circle cx="19.5" cy="calc(100% - 3.5px)" r="3"></circle>
-                      <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3"></circle>
-                      <circle cx="3.5" cy="19.5" r="3"></circle>
-                      <circle cx="3.5" cy="calc(100% - 19.5px)" r="3"></circle>
-                      <circle cx="calc(100% - 3.5px)" cy="19.5" r="3"></circle>
-                      <circle cx="calc(100% - 3.5px)" cy="calc(100% - 19.5px)" r="3"></circle>
-                    </svg>
-                    <div class="anchor-content">
-                      <div class="frame" style="--frame-ratio:4/3; --frame-pos:center;">
-                        <img src={rel.image} alt={rel.title} transition:name={`blog-img-${rel.slug}`} loading="lazy" decoding="async" />
+            {
+              related.map((rel) => (
+                <article class="related-card">
+                  <a href={`/blog/${rel.slug}`} class="related-link">
+                    <div class="anchor-card anchor-card--rounded image">
+                      <svg
+                        class="anchor-border"
+                        width="100%"
+                        height="100%"
+                        preserveAspectRatio="none"
+                      >
+                        <rect
+                          x="3.5"
+                          y="3.5"
+                          width="calc(100% - 7px)"
+                          height="calc(100% - 7px)"
+                          rx="16"
+                          ry="16"
+                        />
+                        <circle cx="19.5" cy="3.5" r="3" />
+                        <circle cx="calc(100% - 19.5px)" cy="3.5" r="3" />
+                        <circle cx="19.5" cy="calc(100% - 3.5px)" r="3" />
+                        <circle
+                          cx="calc(100% - 19.5px)"
+                          cy="calc(100% - 3.5px)"
+                          r="3"
+                        />
+                        <circle cx="3.5" cy="19.5" r="3" />
+                        <circle cx="3.5" cy="calc(100% - 19.5px)" r="3" />
+                        <circle cx="calc(100% - 3.5px)" cy="19.5" r="3" />
+                        <circle
+                          cx="calc(100% - 3.5px)"
+                          cy="calc(100% - 19.5px)"
+                          r="3"
+                        />
+                      </svg>
+                      <div class="anchor-content">
+                        <div
+                          class="frame"
+                          style="--frame-ratio:4/3; --frame-pos:center;"
+                        >
+                          <img
+                            src={rel.image}
+                            alt={rel.title}
+                            transition:name={`blog-img-${rel.slug}`}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  
-                  <div class="stack content" data-gap="2xs">
-                    {rel.tags && rel.tags.length > 0 && (
-                      <div class="related-tags">
-                        {rel.tags.map((tag) => {
-                          const tagColor = tag === 'UI / UX' || tag === 'Design System' ? 'var(--color-blue, #0d99ff)' :
-                                           tag === 'Branding' || tag === 'Visual Identity' ? 'var(--color-pink, #ff24bd)' :
-                                           tag === 'High-Performing Website' ? 'var(--color-green, #b9ff36)' :
-                                           tag === 'Web/Email Graphics' ? 'var(--color-yellow, #ffcd29)' :
-                                           'var(--color-foreground-secondary)';
-                          return (
-                            <span class="Tag" style={`--tag-color: ${tagColor}`}>{tag}</span>
-                          );
-                        })}
-                      </div>
-                    )}
-                    
-                    <h3 class="heading" data-font-size="1">{rel.title}</h3>
-                    <span class="read-more-link">Read more &rarr;</span>
-                  </div>
-                </a>
-              </article>
-            ))}
+
+                    <div class="stack content" data-gap="2xs">
+                      {rel.tags && rel.tags.length > 0 && (
+                        <div class="related-tags">
+                          {rel.tags.map((tag) => {
+                            const tagColor =
+                              tag === "UI / UX" || tag === "Design System"
+                                ? "var(--color-blue, #0d99ff)"
+                                : tag === "Branding" ||
+                                    tag === "Visual Identity"
+                                  ? "var(--color-pink, #ff24bd)"
+                                  : tag === "High-Performing Website"
+                                    ? "var(--color-green, #b9ff36)"
+                                    : tag === "Web/Email Graphics"
+                                      ? "var(--color-yellow, #ffcd29)"
+                                      : "var(--color-foreground-secondary)";
+                            return (
+                              <span
+                                class="Tag"
+                                style={`--tag-color: ${tagColor}`}
+                              >
+                                {tag}
+                              </span>
+                            );
+                          })}
+                        </div>
+                      )}
+
+                      <h3 class="heading" data-font-size="1">
+                        {rel.title}
+                      </h3>
+                      <span class="read-more-link">Read more &rarr;</span>
+                    </div>
+                  </a>
+                </article>
+              ))
+            }
           </div>
         </div>
       </div>
@@ -286,13 +369,15 @@ const postBody = postsData[slug] || { prose_html: "<p>Content loading...</p>" };
 
 <script>
   function unlockScroll() {
-    document.documentElement.style.overflow = '';
+    document.documentElement.style.overflow = "";
   }
-  document.addEventListener('astro:page-load', unlockScroll);
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  document.addEventListener("astro:page-load", unlockScroll);
+  if (
+    document.readyState === "complete" ||
+    document.readyState === "interactive"
+  ) {
     unlockScroll();
   } else {
-    document.addEventListener('DOMContentLoaded', unlockScroll);
+    document.addEventListener("DOMContentLoaded", unlockScroll);
   }
 </script>
-

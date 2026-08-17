@@ -1,14 +1,25 @@
 ---
 const galleryColumns = [
   [
-    { src: "public/images/image1.jpeg", alt: "The team at indoor skydiving.", tag: null, },
-    { src: "public/images/Grp_image-boys.jpg", alt: "Agency Grand Prix.", tag: null }
+    {
+      src: "public/images/image1.jpeg",
+      alt: "The team at indoor skydiving.",
+      tag: null,
+    },
+    {
+      src: "public/images/Grp_image-boys.jpg",
+      alt: "Agency Grand Prix.",
+      tag: null,
+    },
   ],
   [
-    { src: "public/images/image3.jpeg", alt: "Carl on a racing simulator.", tag: null },
+    {
+      src: "public/images/image3.jpeg",
+      alt: "Adi on a racing simulator.",
+      tag: null,
+    },
     { src: "public/images/image4.jpg", alt: "Agency Grand Prix.", tag: null },
-  
-  ]
+  ],
 ];
 ---
 
@@ -17,9 +28,14 @@ const galleryColumns = [
   <div class="container">
     <div class="stack AboutHero__intro" data-gap="lg" data-align="start">
       <span class="heading eyebrow">About us</span>
-      <h1 class="heading" data-font-size="4" data-weight="regular">Transforming Businesses Through Innovation</h1>
+      <h1 class="heading" data-font-size="4" data-weight="regular">
+        Transforming Businesses Through Innovation
+      </h1>
 
-      <div class="reactive-divider horizontal" x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })">
+      <div
+        class="reactive-divider horizontal"
+        x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })"
+      >
         <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
         <div class="divider-line" x-ref="dividerLine">
           <div class="width-display" x-text="formattedWidth" x-cloak>0px</div>
@@ -28,19 +44,41 @@ const galleryColumns = [
       </div>
 
       <div class="prose">
-        <p>WRNXT is more than just an IT company—we’re your strategic partner in digital transformation. We bring together cutting-edge technology, creative excellence, and marketing expertise to deliver solutions that matter.
-
-Our integrated approach spans IT development, media production, digital marketing, and hardware installations, allowing us to provide seamless end-to-end solutions that address every aspect of your business needs.
-
-With a passionate team of 50+ professionals and a proven track record of 500+ successful projects, we’ve earned the trust of businesses across industries. We don’t just deliver services—we build lasting partnerships.</p>
+        <p>
+          Akshara Digital is more than just an IT company—we’re your strategic
+          partner in digital transformation. We bring together cutting-edge
+          technology, creative excellence, and marketing expertise to deliver
+          solutions that matter. Our integrated approach spans IT development,
+          media production, digital marketing, and hardware installations,
+          allowing us to provide seamless end-to-end solutions that address
+          every aspect of your business needs. With a passionate team of 50+
+          professionals and a proven track record of 500+ successful projects,
+          we’ve earned the trust of businesses across industries. We don’t just
+          deliver services—we build lasting partnerships.
+        </p>
       </div>
 
-      <div class="cluster actions" data-gap="sm" data-justify="start" data-align="center">
+      <div
+        class="cluster actions"
+        data-gap="sm"
+        data-justify="start"
+        data-align="center"
+      >
         <a href="#team" class="btn size-md secondary">
           <span class="btn-content">
             Meet the team
             <span class="icon" aria-hidden="true" role="img">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
                 <path d="M5 12h14"></path>
                 <path d="m12 5 7 7-7 7"></path>
               </svg>
@@ -55,37 +93,67 @@ With a passionate team of 50+ professionals and a proven track record of 500+ su
        not by the number/size of photos. Photos bleed to the section card's top/bottom/right
        edges and are clipped by overflow:clip + border-radius on .AboutHero. -->
   <div class="AboutHero__gallery">
-    {galleryColumns.map((column, colIdx) => (
-      <div class={`AboutHero__galleryCol AboutHero__galleryCol--${colIdx + 1}`}>
-        {column.map((img) => (
-          <div class="anchor-card anchor-card--rounded AboutHero__galleryItem">
-            <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
-              <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
-              <circle cx="19.5" cy="3.5" r="3"></circle>
-              <circle cx="calc(100% - 19.5px)" cy="3.5" r="3"></circle>
-              <circle cx="19.5" cy="calc(100% - 3.5px)" r="3"></circle>
-              <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3"></circle>
-            </svg>
-            <div class="anchor-content">
-              <div class="frame" style="--frame-ratio:3/4;">
-                <img src={img.src} alt={img.alt} loading="lazy" decoding="async" width="420" height="560" />
+    {
+      galleryColumns.map((column, colIdx) => (
+        <div
+          class={`AboutHero__galleryCol AboutHero__galleryCol--${colIdx + 1}`}
+        >
+          {column.map((img) => (
+            <div class="anchor-card anchor-card--rounded AboutHero__galleryItem">
+              <svg
+                class="anchor-border"
+                width="100%"
+                height="100%"
+                preserveAspectRatio="none"
+              >
+                <rect
+                  x="3.5"
+                  y="3.5"
+                  width="calc(100% - 7px)"
+                  height="calc(100% - 7px)"
+                  rx="16"
+                  ry="16"
+                />
+                <circle cx="19.5" cy="3.5" r="3" />
+                <circle cx="calc(100% - 19.5px)" cy="3.5" r="3" />
+                <circle cx="19.5" cy="calc(100% - 3.5px)" r="3" />
+                <circle
+                  cx="calc(100% - 19.5px)"
+                  cy="calc(100% - 3.5px)"
+                  r="3"
+                />
+              </svg>
+              <div class="anchor-content">
+                <div class="frame" style="--frame-ratio:3/4;">
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    loading="lazy"
+                    decoding="async"
+                    width="420"
+                    height="560"
+                  />
+                </div>
               </div>
+              {img.tag && (
+                <div class="AboutHero__photoTag">
+                  <span
+                    class="AboutHero__photoTagAvatar"
+                    style={`background-image:url(${img.src})`}
+                  />
+                  <span class="AboutHero__photoTagName">{img.tag}</span>
+                </div>
+              )}
             </div>
-            {img.tag && (
-              <div class="AboutHero__photoTag">
-                <span class="AboutHero__photoTagAvatar" style={`background-image:url(${img.src})`}></span>
-                <span class="AboutHero__photoTagName">{img.tag}</span>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-    ))}
+          ))}
+        </div>
+      ))
+    }
   </div>
 </section>
 
 <script>
-  import Alpine from 'alpinejs';
+  import Alpine from "alpinejs";
 
   if (!window.__dividerAlpineRegistered) {
     window.__dividerAlpineRegistered = true;
@@ -114,7 +182,8 @@ With a passionate team of 50+ professionals and a proven track record of 500+ su
           }
         },
         updateDimension(rect) {
-          this.dimension = this.orientation === "horizontal" ? rect.width : rect.height;
+          this.dimension =
+            this.orientation === "horizontal" ? rect.width : rect.height;
         },
         get formattedWidth() {
           return `${Math.round(this.dimension)}${unit}`;
@@ -123,7 +192,7 @@ With a passionate team of 50+ professionals and a proven track record of 500+ su
           if (this.resizeObserver) {
             this.resizeObserver.disconnect();
           }
-        }
+        },
       }));
     });
   }
@@ -250,11 +319,7 @@ With a passionate team of 50+ professionals and a proven track record of 500+ su
     align-items: center;
     gap: var(--space-3xs);
 
-    padding:
-      var(--space-4xs)
-      var(--space-2xs)
-      var(--space-4xs)
-      var(--space-4xs);
+    padding: var(--space-4xs) var(--space-2xs) var(--space-4xs) var(--space-4xs);
 
     border-radius: var(--radius-full);
 

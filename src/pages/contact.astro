@@ -4,6 +4,8 @@ import Header from "../components/Header.astro";
 import CTA from "../components/CTA.astro";
 import Footer from "../components/Footer.astro";
 
+const web3formsKey = import.meta.env.WEB3FORMS_API_KEY || "7a280d2f-7346-43f6-96b3-63289677a0a0";
+
 const interests = [
   { value: "website", label: "Website" },
   { value: "digital-product", label: "Digital Product" },
@@ -251,7 +253,7 @@ const interests = [
   <Footer />
 </Layout>
 
-<script is:inline>
+<script is:inline define:vars={{ web3formsKey }}>
   // Unlock scroll — the Layout locks it until GSAP animations init,
   // but this page doesn't use the homepage/about animation scripts.
   function unlockScroll() {
@@ -264,7 +266,7 @@ const interests = [
   ) {
     unlockScroll();
   } else {
-    document.addEventListener("DOMContentLoaded", unlockScroll);
+    document.addEventListener('astro:page-load', unlockScroll);
   }
 
   // Register Contact Form Alpine.js component safely for View Transitions
@@ -297,13 +299,15 @@ const interests = [
         this.loading = true;
 
         try {
-          const formData = new FormData(form);
+            const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
             data.interests = formData.getAll('interests');
+            data.access_key = web3formsKey;
+            data.subject = 'New Contact from Wrnxt Website';
             
-            const res = await fetch('/api/contact', {
+            const res = await fetch('https://api.web3forms.com/submit', {
               method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
+              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
               body: JSON.stringify(data)
             });
             
@@ -319,11 +323,7 @@ const interests = [
     }));
     };
 
-    if (window.Alpine) {
-      registerContactForm();
-    } else {
-      document.addEventListener('alpine:init', registerContactForm);
-    }
+    document.addEventListener('astro:page-load', () => { if (window.Alpine) { registerContactForm(); } else { document.addEventListener('alpine:init', registerContactForm); } });
 </script>
 
 <style lang="scss">

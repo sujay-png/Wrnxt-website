@@ -151,7 +151,7 @@ import Footer from '../components/Footer.astro';
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
     initServicesPageAnimations();
   } else {
-    document.addEventListener('DOMContentLoaded', initServicesPageAnimations);
+    document.addEventListener('astro:page-load', initServicesPageAnimations);
   }
 
   // Scroll Unlocker
@@ -164,7 +164,7 @@ import Footer from '../components/Footer.astro';
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
     unlockScroll();
   } else {
-    document.addEventListener('DOMContentLoaded', unlockScroll);
+    document.addEventListener('astro:page-load', unlockScroll);
   }
 </script>
 

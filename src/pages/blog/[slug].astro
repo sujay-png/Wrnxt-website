@@ -378,6 +378,6 @@ const postBody = postsData[slug] || { prose_html: "<p>Content loading...</p>" };
   ) {
     unlockScroll();
   } else {
-    document.addEventListener("DOMContentLoaded", unlockScroll);
+    document.addEventListener('astro:page-load', unlockScroll);
   }
 </script>

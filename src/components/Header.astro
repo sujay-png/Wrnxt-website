@@ -1,5 +1,11 @@
 ---
 import Button from './ui/Button.astro';
+
+const currentPath = Astro.url.pathname;
+const isActive = (path) => {
+  if (path === '/') return currentPath === '/';
+  return currentPath.startsWith(path);
+};
 ---
 
 <header id="header" transition:persist="header" x-data="{ mobileOpen: false }" x-init="$watch('mobileOpen', (open) => { open ? window.__lenis?.stop() : window.__lenis?.start() })" @keydown.escape.window="mobileOpen = false" class="section">
@@ -25,10 +31,10 @@ import Button from './ui/Button.astro';
     <div class="cluster end" data-gap="xl" data-justify="end" data-align="center">
       <nav class="nav">
         <ul class="cluster nav-list" data-gap="lg" data-justify="start" data-align="center">
-          <li class="nav-item"><a class="nav-link" href="/projects">Work</a></li>
-          <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+          <li class="nav-item"><a class:list={['nav-link', { active: isActive('/projects') }]} href="/projects">Work</a></li>
+          <li class="nav-item"><a class:list={['nav-link', { active: isActive('/services') }]} href="/services">Services</a></li>
+          <li class="nav-item"><a class:list={['nav-link', { active: isActive('/about') }]} href="/about">About</a></li>
+          <li class="nav-item"><a class:list={['nav-link', { active: isActive('/blog') }]} href="/blog">Blog</a></li>
         </ul>
       </nav>
       
@@ -72,10 +78,10 @@ import Button from './ui/Button.astro';
         
         <nav aria-label="Mobile" class="mobile-nav">
           <ul class="mobile-nav__list">
-            <li><a class="mobile-nav__link" href="/projects" @click="mobileOpen = false">Work</a></li>
-            <li><a class="mobile-nav__link" href="/services" @click="mobileOpen = false">Services</a></li>
-            <li><a class="mobile-nav__link" href="/about" @click="mobileOpen = false">About</a></li>
-            <li><a class="mobile-nav__link" href="/blog" @click="mobileOpen = false">Blog</a></li>
+            <li><a class:list={['mobile-nav__link', { active: isActive('/projects') }]} href="/projects" @click="mobileOpen = false">Work</a></li>
+            <li><a class:list={['mobile-nav__link', { active: isActive('/services') }]} href="/services" @click="mobileOpen = false">Services</a></li>
+            <li><a class:list={['mobile-nav__link', { active: isActive('/about') }]} href="/about" @click="mobileOpen = false">About</a></li>
+            <li><a class:list={['mobile-nav__link', { active: isActive('/blog') }]} href="/blog" @click="mobileOpen = false">Blog</a></li>
           </ul>
         </nav>
         
@@ -182,6 +188,31 @@ resetMobileHeader();
 document.addEventListener("astro:page-load", resetMobileHeader);
 document.addEventListener("astro:after-swap", resetMobileHeader);
 window.addEventListener("resize", resetMobileHeader);
+
+// Update active links on client-side navigation (since header is persisted)
+document.addEventListener("astro:page-load", () => {
+  const currentPath = window.location.pathname;
+  
+  // Update desktop nav links
+  document.querySelectorAll('.nav-link').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && (href === '/' ? currentPath === '/' : currentPath.startsWith(href))) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+
+  // Update mobile nav links
+  document.querySelectorAll('.mobile-nav__link').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && (href === '/' ? currentPath === '/' : currentPath.startsWith(href))) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+});
 </script>
 
 <style lang="scss">
@@ -262,14 +293,18 @@ img.akshara-logo {
       transition: transform 0.3s ease;
     }
     
-    &:hover::after {
+    &:hover::after, &.active::after {
       transform: scaleX(1);
       transform-origin: left;
     }
     
-    &:not(:hover)::after {
+    &:not(:hover):not(.active)::after {
       transform: scaleX(0);
       transform-origin: right;
+    }
+    
+    &.active {
+      color: var(--color-purple);
     }
   }
 
@@ -382,8 +417,8 @@ img.akshara-logo {
       font-weight: 500;
       transition: color 0.3s var(--ease);
       
-      &:hover, &:focus-visible {
-        color: var(--color-pink);
+      &:hover, &:focus-visible, &.active {
+        color: var(--color-purple);
       }
     }
   }

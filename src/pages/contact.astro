@@ -76,7 +76,7 @@ const interests = [
 
         <div class="contact-main-grid">
           <!-- Left Column (Form) -->
-          <div x-data="contactForm()" class="gradient-border form-card">
+          <div class="gradient-border form-card">
             <div class="stack inner" data-gap="lg">
               <!-- Form Header -->
               <div class="stack" data-gap="sm">
@@ -89,18 +89,21 @@ const interests = [
               </div>
 
               <!-- Success Message -->
-              <div class="form-success" aria-live="polite" x-show="success" x-transition style="display:none">
+              <div id="form-success-msg" class="form-success" aria-live="polite" style="display:none">
                 <div class="stack" data-gap="sm" style="text-align:center; padding: var(--space-xl) 0;">
                   <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#a3d200" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto; display: block; margin-bottom: 1rem;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                    <p class="heading" data-font-size="2" style="color: #a3d200;">Form Submitted!</p>
+                  <p class="heading" data-font-size="2" style="color: #a3d200;">Form Submitted!</p>
                   <p class="prose" style="color:var(--color-foreground-secondary)">
                     We'll be in touch soon.
                   </p>
+                  <button id="reset-form-btn" type="button" class="btn size-md secondary" style="margin: var(--space-lg) auto 0;">
+                    <span class="btn-content">Send another message</span>
+                  </button>
                 </div>
               </div>
 
               <!-- Contact Form -->
-              <form class="contact-form" x-show="!success" @submit.prevent="handleSubmit" novalidate>
+              <form id="contact-form" class="contact-form" novalidate>
                 <!-- Honeypot -->
                 <div class="form-honeypot" aria-hidden="true">
                   <label for="contact-company">Company</label>
@@ -185,14 +188,14 @@ const interests = [
                 </div>
 
                 <!-- Error -->
-                <p class="form-error" x-show="error" x-text="error" aria-live="polite" style="display:none"></p>
+                <p id="form-error-msg" class="form-error" aria-live="polite" style="display:none"></p>
 
                 <!-- Submit -->
-                <button type="submit" class="btn size-md submit-btn purple-gradient-btn" :disabled="loading">
+                <button id="submit-btn" type="submit" class="btn size-md submit-btn purple-gradient-btn">
                   <span class="btn-content">
-                    <span>
-                      Send message
-                      <span class="icon" aria-hidden="true" role="img">
+                    <span style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                      <span id="submit-text">Send message</span>
+                      <span id="submit-icon" class="icon" aria-hidden="true" role="img">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                       </span>
                     </span>
@@ -269,61 +272,80 @@ const interests = [
     document.addEventListener('astro:page-load', unlockScroll);
   }
 
-  // Register Contact Form Alpine.js component safely for View Transitions
-  const registerContactForm = () => {
-      window.Alpine.data('contactForm', () => ({
-      loading: false,
-      error: "",
-      success: false,
-      formStartedAt: 0,
-      messageLength: 0,
-      isValidEmail(email) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      },
-      init() {
-        this.formStartedAt = Date.now();
-      },
-      async handleSubmit(e) {
-        const form = e.target;
-        const emailInput = form.elements.namedItem("email");
-        const emailValue = emailInput?.value?.trim() || "";
+  // Contact Form Vanilla JS Logic
+  const initContactForm = () => {
+    const form = document.getElementById('contact-form');
+    const successMsg = document.getElementById('form-success-msg');
+    const errorMsg = document.getElementById('form-error-msg');
+    const submitBtn = document.getElementById('submit-btn');
+    const submitText = document.getElementById('submit-text');
+    const submitIcon = document.getElementById('submit-icon');
+    const resetBtn = document.getElementById('reset-form-btn');
 
-        this.error = "";
+    if (!form) return; // Not on contact page
 
-        if (!this.isValidEmail(emailValue)) {
-          this.error = "Please enter a valid email address.";
-          emailInput?.focus();
-          return;
-        }
+    const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-        this.loading = true;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const emailInput = form.elements.namedItem("email");
+      const emailValue = emailInput?.value?.trim() || "";
 
-        try {
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-            data.interests = formData.getAll('interests');
-            data.access_key = web3formsKey;
-            data.subject = 'New Contact from Wrnxt Website';
-            
-            const res = await fetch('https://api.web3forms.com/submit', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-              body: JSON.stringify(data)
-            });
-            
-            if (!res.ok) throw new Error('Failed to send message');
-            this.success = true;
-        } catch (err) {
-          console.error("[ContactForm]", err);
-          this.error = "Something went wrong. Please try again.";
-        } finally {
-          this.loading = false;
-        }
-      },
-    }));
-    };
+      errorMsg.style.display = "none";
+      errorMsg.textContent = "";
 
-    document.addEventListener('astro:page-load', () => { if (window.Alpine) { registerContactForm(); } else { document.addEventListener('alpine:init', registerContactForm); } });
+      if (!isValidEmail(emailValue)) {
+        errorMsg.textContent = "Please enter a valid email address.";
+        errorMsg.style.display = "block";
+        emailInput?.focus();
+        return;
+      }
+
+      // Loading state
+      submitBtn.disabled = true;
+      submitText.textContent = "Sending...";
+      submitIcon.style.display = "none";
+
+      try {
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        data.interests = formData.getAll('interests');
+        data.access_key = web3formsKey;
+        data.subject = 'New Contact from Wrnxt Website';
+        
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        
+        if (!res.ok) throw new Error('Failed to send message');
+        
+        // Success state
+        form.style.display = "none";
+        successMsg.style.display = "block";
+      } catch (err) {
+        console.error("[ContactForm]", err);
+        errorMsg.textContent = "Something went wrong. Please try again.";
+        errorMsg.style.display = "block";
+      } finally {
+        submitBtn.disabled = false;
+        submitText.textContent = "Send message";
+        submitIcon.style.display = "inline-flex";
+      }
+    });
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        form.reset();
+        successMsg.style.display = "none";
+        form.style.display = "block";
+      });
+    }
+  };
+
+  document.addEventListener('astro:page-load', initContactForm);
 </script>
 
 <style lang="scss">

@@ -1,4 +1,5 @@
 ---
+import Button from './ui/Button.astro';
 const galleryColumns = [
   [
     {
@@ -64,9 +65,8 @@ const galleryColumns = [
         data-justify="start"
         data-align="center"
       >
-        <a href="#team" class="btn size-md secondary">
-          <span class="btn-content">
-            Meet the team
+        <Button href="#team" variant="secondary">
+Meet the team
             <span class="icon" aria-hidden="true" role="img">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -83,8 +83,7 @@ const galleryColumns = [
                 <path d="m12 5 7 7-7 7"></path>
               </svg>
             </span>
-          </span>
-        </a>
+</Button>
       </div>
     </div>
   </div>

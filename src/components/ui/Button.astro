@@ -1,0 +1,54 @@
+---
+export interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'ghost' | string;
+  size?: 'sm' | 'md' | 'lg' | string;
+  class?: string;
+  type?: 'button' | 'submit' | 'reset';
+  iconOnly?: boolean;
+  block?: boolean;
+  [key: string]: any;
+}
+
+const { 
+  href, 
+  variant = 'primary', 
+  size = 'md', 
+  class: className = '', 
+  type = 'button',
+  iconOnly = false,
+  block = false,
+  ...rest 
+} = Astro.props;
+
+const Element = href ? 'a' : 'button';
+
+const baseClasses = ['btn', `size-${size}`, variant, className];
+if (iconOnly) baseClasses.push('icon-only');
+if (block) baseClasses.push('block-all');
+
+const finalClass = baseClasses.filter(Boolean).join(' ').trim();
+
+const isPrimary = variant === 'primary';
+
+const alpineProps = isPrimary ? {
+  'x-data': "buttonHover",
+  '@mousemove': "handleMouseMove($event)",
+  '@mouseenter': "handleMouseEnter()",
+  '@mouseleave': "handleMouseLeave()"
+} : {};
+---
+<Element 
+  href={href} 
+  type={href ? undefined : type}
+  class={finalClass}
+  {...alpineProps}
+  {...rest}
+>
+  <span class="btn-content">
+    {isPrimary && (
+      <span class="btn-bg" :style="{ top: bgY + '%', left: bgX + '%', opacity: isHovering ? 1 : 0, '--_scale': isHovering ? 1 : 0.75 }"></span>
+    )}
+    <slot />
+  </span>
+</Element>

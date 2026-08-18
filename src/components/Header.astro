@@ -1,4 +1,5 @@
 ---
+import Button from './ui/Button.astro';
 ---
 
 <header id="header" transition:persist="header" x-data="{ mobileOpen: false }" x-init="$watch('mobileOpen', (open) => { open ? window.__lenis?.stop() : window.__lenis?.start() })" @keydown.escape.window="mobileOpen = false" class="section">
@@ -32,97 +33,66 @@
       </nav>
       
       <div class="cluster actions" data-gap="sm" data-justify="start" data-align="center">
-        <a href="/services/flexi-design" class="btn size-md secondary">
-          <span class="btn-content">
-            For agencies
+        <Button href="/services/flexi-design" variant="secondary">
+          For agencies
+          <span class="icon" aria-hidden="true" role="img">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </span>
+        </Button>
+        
+        <Button href="/contact" variant="primary">
+          Contact us
+          <span class="icon" aria-hidden="true" role="img">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </span>
+        </Button>
+      </div>
+
+      <Button type="button" @click="mobileOpen = !mobileOpen" :aria-expanded="mobileOpen" aria-controls="mobile-menu" class="menu-toggle" variant="ghost" iconOnly>
+        <span class="icon animated-hamburger" aria-hidden="true" role="img" :class="{'is-active': mobileOpen}">
+          <span class="hamburger-line line-top"></span>
+          <span class="hamburger-line line-middle"></span>
+          <span class="hamburger-line line-bottom"></span>
+        </span>
+      </Button>
+    </div>
+  </div>
+
+  <!-- Teleported Mobile Menu -->
+  
+  <template x-teleport="#mobile-menu-portal">
+    <div id="mobile-menu" class="mobile-menu" data-lenis-prevent x-show="mobileOpen" x-transition:enter="overlay-enter" x-transition:enter-start="overlay-enter-start" x-transition:enter-end="overlay-enter-end" x-transition:leave="overlay-leave" x-transition:leave-start="overlay-leave-start" x-transition:leave-end="overlay-leave-end" x-cloak>
+      <div class="mobile-menu__inner" @click.away="mobileOpen = false" x-transition:enter="panel-enter" x-transition:enter-start="panel-enter-start" x-transition:enter-end="panel-enter-end" x-transition:leave="panel-leave" x-transition:leave-start="panel-leave-start" x-transition:leave-end="panel-leave-end">
+        
+        <nav aria-label="Mobile" class="mobile-nav">
+          <ul class="mobile-nav__list">
+            <li><a class="mobile-nav__link" href="/projects" @click="mobileOpen = false">Work</a></li>
+            <li><a class="mobile-nav__link" href="/services" @click="mobileOpen = false">Services</a></li>
+            <li><a class="mobile-nav__link" href="/about" @click="mobileOpen = false">About</a></li>
+            <li><a class="mobile-nav__link" href="/blog" @click="mobileOpen = false">Blog</a></li>
+          </ul>
+        </nav>
+        
+        <div class="mobile-actions">
+          <Button href="/contact" @click="mobileOpen = false" class="mobile-actions__button" variant="primary" block>
+            Contact us
             <span class="icon" aria-hidden="true" role="img">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
                 <path d="M5 12h14"></path>
                 <path d="m12 5 7 7-7 7"></path>
               </svg>
             </span>
-          </span>
-        </a>
-        
-        <a href="/contact" class="btn size-md primary" x-data="buttonHover" @mousemove="handleMouseMove($event)" @mouseenter="handleMouseEnter()" @mouseleave="handleMouseLeave()">
-          <span class="btn-content">
-            <span class="btn-bg" :style="{ top: bgY + '%', left: bgX + '%', opacity: isHovering ? 1 : 0, '--_scale': isHovering ? 1 : 0.75 }"></span>
-            <span>
-              Contact us
-              <span class="icon" aria-hidden="true" role="img">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
-                </svg>
-              </span>
-            </span>
-          </span>
-        </a>
-      </div>
-
-      <button type="button" @click="mobileOpen = !mobileOpen" :aria-expanded="mobileOpen" aria-controls="mobile-menu" class="btn size-md ghost menu-toggle icon-only">
-        <span class="btn-content">
-          <span class="icon" aria-hidden="true" role="img">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x-show="!mobileOpen" class="lucide lucide-menu icon">
-              <path d="M4 5h16"></path>
-              <path d="M4 12h16"></path>
-              <path d="M4 19h16"></path>
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x-show="mobileOpen" x-cloak="true" class="lucide lucide-x icon">
-              <path d="M18 6 6 18"></path>
-              <path d="m6 6 12 12"></path>
-            </svg>
-          </span>
-        </span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Teleported Mobile Menu -->
-  
-    <template x-teleport="#mobile-menu-portal">
-    <div id="mobile-menu" class="mobile-menu" data-lenis-prevent x-show="mobileOpen" x-transition:enter="overlay-enter" x-transition:enter-start="overlay-enter-start" x-transition:enter-end="overlay-enter-end" x-transition:leave="overlay-leave" x-transition:leave-start="overlay-leave-start" x-transition:leave-end="overlay-leave-end" x-cloak>
-      <div class="stack mobile-menu__inner" data-gap="xl" data-color-scheme="dark" @click.away="mobileOpen = false" x-transition:enter="panel-enter" x-transition:enter-start="panel-enter-start" x-transition:enter-end="panel-enter-end" x-transition:leave="panel-leave" x-transition:leave-start="panel-leave-start" x-transition:leave-end="panel-leave-end">
-        <div class="cluster mobile-menu__header" data-gap="sm" data-justify="between" data-align="center">
-          <img class="akshara-logo" src="/images/akshara-digital-logo.png" alt="Akshara Digital Logo">
-          <button aria-label="Close menu" type="button" @click="mobileOpen = false" class="btn size-md ghost icon-only">
-            <span class="btn-content">
-              <span class="icon" aria-hidden="true" role="img">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x icon">
-                  <path d="M18 6 6 18"></path>
-                  <path d="m6 6 12 12"></path>
-                </svg>
-              </span>
-            </span>
-          </button>
-        </div>
-        <nav aria-label="Mobile" class="stack mobile-nav">
-          <ul class="mobile-nav__list">
-            <li class="nav-item"><a class="nav-link" href="/projects" @click="mobileOpen = false">Work</a></li>
-            <li class="nav-item"><a class="nav-link" href="/services" @click="mobileOpen = false">Services</a></li>
-            <li class="nav-item"><a class="nav-link" href="/about" @click="mobileOpen = false">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="/blog" @click="mobileOpen = false">Blog</a></li>
-          </ul>
-        </nav>
-        <div class="mobile-actions">
-          <a href="/contact" @click="mobileOpen = false" class="btn size-md primary mobile-actions__button block-all" x-data="buttonHover" @mousemove="handleMouseMove($event)" @mouseenter="handleMouseEnter()" @mouseleave="handleMouseLeave()">
-            <span class="btn-content">
-              <span class="btn-bg" :style="{ top: bgY + '%', left: bgX + '%', opacity: isHovering ? 1 : 0, '--_scale': isHovering ? 1 : 0.75 }"></span>
-              <span>
-                Contact us
-                <span class="icon" aria-hidden="true" role="img">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
-                    <path d="M5 12h14"></path>
-                    <path d="m12 5 7 7-7 7"></path>
-                  </svg>
-                </span>
-              </span>
-            </span>
-          </a>
+          </Button>
         </div>
       </div>
     </div>
-    </template>
+  </template>
 </header>
 
 <script>
@@ -256,7 +226,7 @@ img.akshara-logo {
   object-fit: contain;
 
   @media (max-width: 767px) {
-    height: 48px;
+    height: 60px;
   }
 }
   @media (max-width: 767px) {
@@ -305,58 +275,99 @@ img.akshara-logo {
 
   .menu-toggle {
     z-index: 9999;
+    background: transparent !important;
+    border: none !important;
+    
+    &:hover, &:focus {
+      background: transparent !important;
+    }
     
     @media (min-width: 768px) {
       display: none !important;
     }
   }
 
+  .animated-hamburger {
+    width: 32px;
+    height: 32px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .hamburger-line {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background-color: currentColor;
+    border-radius: 2px;
+    position: absolute;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .line-top {
+    transform: translateY(-8px);
+  }
+  
+  .line-bottom {
+    transform: translateY(8px);
+  }
+  
+  .animated-hamburger.is-active .line-top {
+    transform: translateY(0) rotate(45deg);
+  }
+  
+  .animated-hamburger.is-active .line-middle {
+    opacity: 0;
+  }
+  
+  .animated-hamburger.is-active .line-bottom {
+    transform: translateY(0) rotate(-45deg);
+  }
+
   .mobile-menu {
     position: fixed;
-    inset: 0;
-    z-index: 200;
-    display: grid;
-    overflow-y: auto;
-    overflow-x: hidden;
-    background: rgba(16, 16, 16, 0.9);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 90;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 100px 1rem 1rem 1rem;
     
     @media (min-width: 768px) {
       display: none;
     }
     
     &__inner {
-      inline-size: 100%;
-      padding: var(--space-md) var(--space-md) var(--space-xl);
-      border-radius: var(--radius-sm);
-    }
-    
-    &__header {
-      padding-bottom: var(--space-md);
-      border-bottom: 1px solid var(--color-border);
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md, 16px);
+      padding: 1.5rem;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
     }
   }
 
   .mobile-nav {
-    flex-grow: 1;
-    margin-block: var(--space-lg);
-    
-    .eyebrow {
-      font-size: var(--font-size--2);
-      text-transform: uppercase;
-      letter-spacing: var(--letter-spacing-looser);
-      color: var(--color-foreground-secondary);
-      margin-top: var(--space-md);
-      margin-bottom: var(--space-xs);
-      display: block;
-    }
-    
     &__list {
-      display: grid;
-      gap: var(--space-4xs);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
       list-style-type: none;
       padding: 0;
+      margin: 0;
       
       li {
         display: block;
@@ -367,23 +378,21 @@ img.akshara-logo {
       display: block;
       color: inherit;
       text-decoration: none;
-      font-size: var(--font-size-1);
-      padding-block: var(--space-3xs);
+      font-size: var(--font-size-1, 1.1rem);
+      font-weight: 500;
       transition: color 0.3s var(--ease);
       
-      &:is(:hover, :focus-visible) {
+      &:hover, &:focus-visible {
         color: var(--color-pink);
       }
     }
   }
 
   .mobile-actions {
-    position: sticky;
-    bottom: 0;
-    display: grid;
-    gap: var(--space-sm);
-    padding-block: var(--space-md);
-    background: linear-gradient(to bottom, transparent, var(--color-bg) 30%);
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
     
     &__button {
       inline-size: 100%;
@@ -398,18 +407,20 @@ img.akshara-logo {
   .overlay-enter-start, .overlay-leave-end {
     opacity: 0;
     backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
   }
   .overlay-enter-end, .overlay-leave-start {
     opacity: 1;
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
 
   .panel-enter, .panel-leave {
-    transition: opacity 0.22s ease, transform 0.22s ease;
+    transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .panel-enter-start, .panel-leave-end {
     opacity: 0;
-    transform: translateY(14px) scale(0.98);
+    transform: translateY(-10px) scale(0.98);
   }
   .panel-enter-end, .panel-leave-start {
     opacity: 1;

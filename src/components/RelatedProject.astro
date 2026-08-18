@@ -1,4 +1,5 @@
 ---
+import Button from './ui/Button.astro';
 export interface ProjectCard {
   variant: "content" | "image";
   id: string;
@@ -103,9 +104,9 @@ const projects: ProjectCard[] = [
               <div class="prose card__body_text">
                 <p>{p.data.body}</p>
               </div>
-              <a href={p.data.href} class="btn size-md secondary" style="align-self: flex-start; margin-top: auto; margin-bottom: 0;">
-                <span class="btn-content">View Project <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></span>
-              </a>
+              <Button href={p.data.href} variant="secondary" style="align-self: flex-start; margin-top: auto; margin-bottom: 0;">
+View Project <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+</Button>
             </div>
           </div>
         )}

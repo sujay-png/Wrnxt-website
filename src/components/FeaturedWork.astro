@@ -1,4 +1,5 @@
 ---
+import Button from './ui/Button.astro';
 const projects = [
   {
     name: "Empowering Communication. Connecting the Future",
@@ -138,7 +139,9 @@ const projects = [
                 <div class="prose">
                   <p>We redesigned user journeys across the site to make them smoother and more intuitive.</p>
                 </div>
-                <a href="http://udbhavdevelopers.com/" class="btn size-md secondary"><span class="btn-content">View Project <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></span></a>
+                <Button href="http://udbhavdevelopers.com/" variant="secondary">
+View Project <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+</Button>
               </div>
             </div>
           </div>
@@ -157,7 +160,9 @@ const projects = [
               <div class="prose">
                 <p>Breaking key pages into modular components allowed us to build a shared design system.</p>
               </div>
-              <a href="http://udbhavdevelopers.com/" class="btn size-md secondary"><span class="btn-content">View Project <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></span></a>
+              <Button href="http://udbhavdevelopers.com/" variant="secondary">
+View Project <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+</Button>
             </div>
             
             <img src="/annotation-line.svg" width="214" height="202" alt="" class="arrow" />
@@ -188,7 +193,9 @@ const projects = [
                 <div class="prose">
                   <p>The new website needed to reflect Roswell’s bold, confident identity while letting their work take center stage.</p>
                 </div>
-                <a href="http://udbhavdevelopers.com/" class="btn size-md secondary"><span class="btn-content">View Project <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></span></a>
+                <Button href="http://udbhavdevelopers.com/" variant="secondary">
+View Project <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+</Button>
               </div>
               <img src="/annotation-line.svg" width="214" height="202" alt="" class="arrow" />
             </div>
@@ -217,7 +224,9 @@ const projects = [
           <div class="stack introText" data-align="center">
             <span class="heading eyebrow">Showcase</span>
             <h3 class="heading" data-font-size="5">Want to see more?</h3>
-            <a href="/projects" class="btn size-md secondary"><span class="btn-content">View all case studies <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></span></a>
+            <Button href="/projects" variant="secondary">
+View all case studies <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+</Button>
           </div>
           
           <a href="https://pupexports.com/" class="anchor-card anchor-card--rounded imageCard imageCard--mobile introImage--bottom" style="display:block; text-decoration:none; color:inherit;">
@@ -290,9 +299,9 @@ const projects = [
                 <div class="prose">
                   <p>{proj.desc}</p>
                 </div>
-                <a href={`/projects/${proj.slug}`} class="btn size-md secondary" style="align-self: flex-start; margin-top: var(--space-xs);">
-                  <span class="btn-content">View Project <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></span>
-                </a>
+                <Button href={`/projects/${proj.slug}`} variant="secondary" style="align-self: flex-start; margin-top: var(--space-xs);">
+View Project <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+</Button>
               </div>
             </div>
           ))}

@@ -166,7 +166,15 @@ const {
 
   document.addEventListener("astro:page-load", () => {
     if (window.Alpine) {
-      window.Alpine.discover();
+      try {
+        if (typeof window.Alpine.discover === 'function') {
+          window.Alpine.discover();
+        } else if (typeof window.Alpine.initTree === 'function') {
+          window.Alpine.initTree(document.body);
+        }
+      } catch (e) {
+        console.warn("Alpine re-init error:", e);
+      }
     }
 
     if (window.__lenis && !isMobile) {

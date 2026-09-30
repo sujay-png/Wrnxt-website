@@ -121,6 +121,69 @@ const {
       },
     }));
 
+    // Page-specific components are registered here rather than in their own component scripts:
+    // alpine:init only fires once, and after a ClientRouter navigation a component's script runs
+    // after Alpine has already initialised the new markup, leaving these x-data names undefined.
+    Alpine.data("reactiveDivider", ({ orientation, unit }: { orientation: string; unit: string }) => ({
+      dimension: 0,
+      orientation: orientation,
+      resizeObserver: null as ResizeObserver | null,
+      init() {
+        this.measure();
+        this.resizeObserver = new ResizeObserver((entries) => {
+          for (const entry of entries) {
+            this.updateDimension(entry.contentRect);
+          }
+        });
+        if ((this as any).$refs.dividerLine) {
+          this.resizeObserver.observe((this as any).$refs.dividerLine);
+        }
+      },
+      measure() {
+        if ((this as any).$refs.dividerLine) {
+          this.updateDimension((this as any).$refs.dividerLine.getBoundingClientRect());
+        }
+      },
+      updateDimension(rect: DOMRectReadOnly) {
+        this.dimension =
+          this.orientation === "horizontal" ? rect.width : rect.height;
+      },
+      get formattedWidth() {
+        return `${Math.round(this.dimension)}${unit}`;
+      },
+      destroy() {
+        this.resizeObserver?.disconnect();
+      },
+    }));
+
+    Alpine.data("teamSpotlight", (team: any[]) => ({
+      team,
+      active: 0,
+      switching: false,
+      get current() {
+        return this.team[this.active];
+      },
+      select(idx: number) {
+        if (idx === this.active) return;
+        // A plain CSS-transitioned class (toggled via `switching`, see the
+        // .AboutTeamGrid__spotlight.is-switching rule in AboutTeam.astro) instead of a GSAP tween —
+        // GSAP's onComplete on this opacity/filter combo wasn't reliably firing, which left the
+        // active-state update never running. A plain setTimeout guarantees the swap always happens.
+        this.switching = true;
+        setTimeout(() => {
+          this.active = idx;
+          this.switching = false;
+        }, 220);
+
+        // Keep the spotlight panel in view when picking someone further down the grid on smaller
+        // viewports where the two columns stack.
+        const panel = document.querySelector('.AboutTeamGrid__spotlight');
+        if (panel && window.matchMedia('(max-width: 1023px)').matches) {
+          panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      },
+    }));
+
     window.Alpine = Alpine;
     Alpine.start();
   }

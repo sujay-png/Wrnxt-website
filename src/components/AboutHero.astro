@@ -152,52 +152,6 @@ Meet the team
   </div>
 </section>
 
-<script>
-  import Alpine from "alpinejs";
-
-  if (!window.__dividerAlpineRegistered) {
-    window.__dividerAlpineRegistered = true;
-
-    document.addEventListener("alpine:init", () => {
-      Alpine.data("reactiveDivider", ({ orientation, unit }) => ({
-        dimension: 0,
-        orientation: orientation,
-        resizeObserver: null,
-        init() {
-          this.measure();
-          this.resizeObserver = new ResizeObserver((entries) => {
-            for (const entry of entries) {
-              const rect = entry.contentRect;
-              this.updateDimension(rect);
-            }
-          });
-          if (this.$refs.dividerLine) {
-            this.resizeObserver.observe(this.$refs.dividerLine);
-          }
-        },
-        measure() {
-          if (this.$refs.dividerLine) {
-            const rect = this.$refs.dividerLine.getBoundingClientRect();
-            this.updateDimension(rect);
-          }
-        },
-        updateDimension(rect) {
-          this.dimension =
-            this.orientation === "horizontal" ? rect.width : rect.height;
-        },
-        get formattedWidth() {
-          return `${Math.round(this.dimension)}${unit}`;
-        },
-        destroy() {
-          if (this.resizeObserver) {
-            this.resizeObserver.disconnect();
-          }
-        },
-      }));
-    });
-  }
-</script>
-
 <style lang="scss">
   .AboutHero {
     position: relative;

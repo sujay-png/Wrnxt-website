@@ -26,23 +26,25 @@ import Footer from '../components/Footer.astro';
 <script>
   import { initAboutAnimations } from '../scripts/about-animations.js';
 
-  let initialised = false;
-
+  // Astro's ClientRouter keeps document-level listeners alive across navigations, so this
+  // handler also fires on every other page — only run when the About page is actually mounted,
+  // and only once per mounted page (initial load can trigger both paths below).
   function runInit() {
-    if (initialised) return;
-    initialised = true;
+    const page = document.querySelector<HTMLElement>('.page--about');
+    if (!page || page.dataset.animInit) return;
+    page.dataset.animInit = 'true';
     requestAnimationFrame(() => initAboutAnimations());
   }
 
-  document.addEventListener('astro:page-load', () => {
-    initialised = false;
-    runInit();
+  document.addEventListener('astro:page-load', runInit);
+
+  // Tear down this page's ScrollTriggers before navigating away so they don't leak into the next page.
+  document.addEventListener('astro:before-swap', () => {
+    (window as any).__saloAboutCleanup?.();
   });
 
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
     runInit();
-  } else {
-    document.addEventListener('astro:page-load', runInit);
   }
 </script>
 

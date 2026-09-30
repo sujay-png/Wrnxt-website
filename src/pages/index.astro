@@ -34,12 +34,14 @@ import Footer from '../components/Footer.astro';
 <script>
   import { initAnimations } from '../scripts/animations.js';
 
-  // Run initialisation immediately and hook into page transitions
-  let initialised = false;
-
+  // Astro's ClientRouter keeps document-level listeners alive across navigations, so this
+  // handler also fires on every other page. Only run when the homepage hero is mounted —
+  // otherwise initAnimations()' cleanup would kill every ScrollTrigger on the page we just
+  // navigated to (e.g. leaving the About page's reveals stuck at opacity 0).
   function runInit() {
-    if (initialised) return;
-    initialised = true;
+    const hero = document.querySelector<HTMLElement>('.HomeHero');
+    if (!hero || hero.dataset.animInit) return;
+    hero.dataset.animInit = 'true';
     // Wait for web fonts to finish swapping in before measuring any layout (heroHeight etc).
     // Without this, initAnimations() can run while text is still rendered in a fallback font,
     // producing a heroHeight measurement up to ~17% off from the final settled layout — which
@@ -47,20 +49,20 @@ import Footer from '../components/Footer.astro';
     // when the logo handoff happens, divider reveal timing, all of it).
     const ready = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
     ready.then(() => {
+      if (!hero.isConnected) return;
       requestAnimationFrame(() => initAnimations());
     });
   }
 
-  // Support both standard loads and Astro view transitions
-  document.addEventListener('astro:page-load', () => {
-    initialised = false;
-    runInit();
+  document.addEventListener('astro:page-load', runInit);
+
+  // Tear down the homepage animations before navigating away so they don't leak into the next page.
+  document.addEventListener('astro:before-swap', () => {
+    (window as any).__saloAnimationCleanup?.();
   });
 
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
     runInit();
-  } else {
-    document.addEventListener('astro:page-load', runInit);
   }
 </script>
 

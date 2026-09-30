@@ -1,14 +1,15 @@
 ---
 import Button from './ui/Button.astro';
-const teamAvatars = [
-   { name: "image1", url: "/images/image1.svg" },
-  { name: "Bharth", url: "/images/Bharath.svg" },
-  { name: "image2", url: "/images/image2.svg" },
-  { name: "iraspa", url: "/images/iraspa.svg" },
+const clientLogos = [
+  { name: "Bharath", url: "/images/Bharath.svg" },
+  { name: "Iraspa", url: "/images/iraspa.svg" },
   { name: "Sakrt", url: "/images/Sakrt.svg" },
   { name: "Sangam", url: "/images/sangam.svg" },
   { name: "Sanjeevini", url: "/images/Sanjeeveni.svg" },
   { name: "Vastu", url: "/images/Vastu.svg" },
+  { name: "One More Rep", url: "/images/one_more_rep.svg" },
+  { name: "Royal Decore", url: "/images/Royal_decore.svg" },
+  { name: "Stories", url: "/images/stories.svg" },
 ];
 ---
 
@@ -68,30 +69,20 @@ Partner with us
     
     <div class="HomeWheel__contentWrapper">
       <div class="stack HomeWheel__contentBlock" data-gap="md" data-align="center" data-justify="center" data-block="1">
-        <div class="AvatarWidget gradient-border">
-          <div class="inner">
-            <div class="AvatarStack" style="--avatar-size:2rem; --avatar-overlap:4px;">
-              {teamAvatars.map((member, idx) => (
-                <div class="Avatar gradient-border" style={`z-index:${idx}`}>
-                  <div class="frame inner" style="--frame-ratio:1/1;">
-                    <img src={member.url} alt={member.name} loading="lazy" width="64" height="64" />
-                  </div>
-                </div>
-              ))}
-              <div class="Avatar add gradient-border" style="z-index:8">
-                <div class="center inner" data-align="center" data-justify="center">
-                  <span class="icon" style="--icon-size:1em;" aria-hidden="true" role="img">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
-                      <path d="M5 12h14"></path>
-                      <path d="M12 5v14"></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
+        <div class="HomeWheel__logoMarquee">
+          <div class="marquee" data-marquee-speed="28">
+            <div class="marquee__track">
+              <ul class="marquee__content">
+                {clientLogos.map((logo) => (
+                  <li class="marquee__item">
+                    <img src={logo.url} alt={`${logo.name} logo`} loading="lazy" decoding="async" width="280" height="120" />
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
-        
+
         <h3 class="heading" data-font-size="4">Direct access to expert talent</h3>
         <div class="prose prose--md">
           <p>You don't deal with account managers; you speak directly to the creatives solving your problem. With every project guided by senior leadership, you get the firepower of a full agency team without the administrative bloat.</p>
@@ -265,6 +256,31 @@ Our process
         pointer-events: auto;
         will-change: transform;
       }
+    }
+  }
+
+  .HomeWheel__logoMarquee {
+    position: relative;
+    z-index: 6;
+    width: 100vw;
+    max-width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    overflow: hidden;
+    pointer-events: none;
+
+    .marquee {
+      --width: clamp(10rem, 22vw, 16rem);
+      --gap: clamp(2rem, 4vw, 4rem);
+      padding-block: var(--space-sm);
+    }
+
+    .marquee__content .marquee__item img {
+      width: 100%;
+      height: clamp(5.5rem, 12vw, 8.5rem);
+      object-fit: contain;
+      object-position: center;
+      opacity: 1;
+      filter: none;
     }
   }
 

@@ -127,7 +127,8 @@ Meet the team
                   <img
                     src={img.src}
                     alt={img.alt}
-                    loading="lazy"
+                    loading={colIdx === 0 ? "eager" : "lazy"}
+                    fetchpriority={colIdx === 0 ? "high" : "auto"}
                     decoding="async"
                     width="420"
                     height="560"

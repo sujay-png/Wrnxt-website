@@ -1,15 +1,5 @@
 ---
 import Button from './ui/Button.astro';
-// const clientLogos = [
-//   // { name: "image1", url: "/images/image1.svg" },
-//   // { name: "Bharth", url: "/images/Bharath.svg" },
-//   // { name: "image2", url: "/images/image2.svg" },
-//   // { name: "iraspa", url: "/images/iraspa.svg" },
-//   // { name: "Sakrt", url: "/images/sakrt.svg" },
-//   // { name: "Sangam", url: "/images/sangam.svg" },
-//   // { name: "Sanjeevini", url: "/images/sanjeeveni.svg" },
-//   // { name: "Vastu", url: "/images/vastu.svg" },
-// ];
 ---
 
 <!--
@@ -231,45 +221,7 @@ import Button from './ui/Button.astro';
       </div>
     </div>
 
-    <div
-      class="HomeHero__bottom"
-      id="hero-marquee"
-      data-reveal="blur"
-      data-reveal-delay="2"
-    >
-      <div class="marquee" data-marquee-speed="24">
-        <div class="marquee__track">
-          <!-- <ul class="marquee__content">
-            {clientLogos.map((logo) => (
-              <li class="marquee__item">
-                <img src={logo.url} alt={`${logo.name} Logo.`} loading="lazy" decoding="async" width="160" height="120" />
-              </li>
-            ))}
-          </ul>
-          <ul class="marquee__content" aria-hidden="true">
-            {clientLogos.map((logo) => (
-              <li class="marquee__item">
-                <img src={logo.url} alt={`${logo.name} Logo.`} loading="lazy" decoding="async" width="160" height="120" />
-              </li>
-            ))}
-          </ul>
-          <ul class="marquee__content" aria-hidden="true">
-            {clientLogos.map((logo) => (
-              <li class="marquee__item">
-                <img src={logo.url} alt={`${logo.name} Logo.`} loading="lazy" decoding="async" width="160" height="120" />
-              </li>
-            ))}
-          </ul>
-          <ul class="marquee__content" aria-hidden="true">
-            {clientLogos.map((logo) => (
-              <li class="marquee__item">
-                <img src={logo.url} alt={`${logo.name} Logo.`} loading="lazy" decoding="async" width="160" height="120" />
-              </li>
-            ))}
-          </ul> -->
-        </div>
-      </div>
-    </div>
+    <div></div>
   </div>
 </section>
 
@@ -363,57 +315,5 @@ import Button from './ui/Button.astro';
       z-index: 2;
     }
 
-    &__bottom {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      display: flex;
-      align-items: flex-end;
-      width: 100vw;
-      overflow: hidden;
-    }
-
-    .marquee {
-      padding-block: var(--space-lg);
-
-      li {
-        position: relative;
-
-        & > * {
-          position: relative;
-        }
-
-        &::before {
-          --_offset: -10%;
-          content: "";
-          position: absolute;
-          inset-block-start: calc(var(--_offset) * -1);
-          inset-inline-start: calc(var(--_offset) * -1);
-          inset-inline-end: calc(var(--_offset) * -1);
-          inset-block-end: calc(var(--_offset) * -1);
-          background: radial-gradient(
-            circle,
-            var(--color-bg) 50%,
-            transparent 100%
-          );
-          border-radius: var(--radius-full);
-          z-index: 0;
-        }
-      }
-
-      &__track {
-        gap: var(--space-2xl);
-      }
-
-      &__item img {
-        position: relative;
-        z-index: 1;
-        transition: opacity 0.3s var(--ease);
-
-        &:hover {
-          opacity: 1;
-        }
-      }
-    }
   }
 </style>

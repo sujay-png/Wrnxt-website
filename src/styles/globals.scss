@@ -974,7 +974,7 @@ ul, ol {
     background: var(--button-primary-bg);
     color: var(--button-primary-label);
     border: 1px solid var(--button-primary-border);
-    box-shadow: 0 2px 12px rgba(158, 54, 255, 0.08);
+    box-shadow: 0 2px 12px rgba(156, 8, 39, 0.08);
     
     .btn-content {
       position: relative;
@@ -993,7 +993,7 @@ ul, ol {
       left: 50%;
       width: 150%;
       height: 150%;
-      background: radial-gradient(circle, rgba(158, 54, 255, 0.3) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(156, 8, 39, 0.4) 0%, transparent 70%);
       transform: translate(-50%, -50%) scale(var(--_scale, 0.75));
       pointer-events: none;
       transition: transform 0.25s var(--ease-out-quad), opacity 0.25s var(--ease-out-quad);
@@ -1002,7 +1002,7 @@ ul, ol {
     
     &:hover {
       border-color: var(--button-primary-hover-border);
-      box-shadow: 0 4px 20px rgba(158, 54, 255, 0.15);
+      box-shadow: 0 4px 20px rgba(156, 8, 39, 0.2);
     }
   }
   

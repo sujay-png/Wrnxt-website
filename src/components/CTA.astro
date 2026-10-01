@@ -1,16 +1,6 @@
 ---
 import Button from './ui/Button.astro';
 
-// const clientLogos = [
-//   { name: "image1", url: "/images/image1.svg" },
-//   { name: "Bharth", url: "/images/Bharath.svg" },
-//   { name: "image2", url: "/images/image2.svg" },
-//   { name: "iraspa", url: "/images/iraspa.svg" },
-//   { name: "Sakrt", url: "/images/sakrt.svg" },
-//   { name: "Sangam", url: "/images/sangam.svg" },
-//   { name: "Sanjeevini", url: "/images/sanjeeveni.svg" },
-//   { name: "Vastu", url: "/images/vastu.svg" },
-// ];
 
 ---
 
@@ -19,7 +9,7 @@ import Button from './ui/Button.astro';
     <div class="container" data-size="prose">
       <div class="stack text-center" data-justify="center" data-gap="lg">
         <span class="heading eyebrow">Got a project in mind?</span>
-        <h2 class="heading" data-font-size="5">Give your team the firepower it deserves</h2>
+        <h2 class="heading" data-font-size="5" style="max-width: 25ch; margin: 0 auto;">Your strategic partner in digital transformation.</h2>
 
         <div class="reactive-divider horizontal" x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })">
           <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
@@ -30,8 +20,8 @@ import Button from './ui/Button.astro';
         </div>
 
         <div class="stack" data-gap="lg">
-          <div class="prose">
-            <p>Don't let limited resources or expertise hold you back. Level up your creative with design support that feels in-house, not outsourced. Get direct access to designers ready to bring your ideas to life.</p>
+          <div class="prose" style="max-width: 65ch; margin: 0 auto;">
+            <p>Akshara Digital brings together cutting-edge technology, creative excellence, and marketing expertise to deliver solutions that matter. With a passionate team of 50+ professionals and 500+ successful projects, we provide seamless end-to-end solutions for all your business needs. We don't just deliver services—we build lasting partnerships.</p>
           </div>
 
           <div class="cluster actions" data-gap="sm" data-justify="center" data-align="center">
@@ -53,27 +43,7 @@ import Button from './ui/Button.astro';
   </div>
 </section>
 
-<!-- Bottom Marquee Section -->
-<!-- <section class="section bottom-marquee-section" data-pt="none" data-pb="2xl-4xl">
-  <div class="marquee" data-marquee-speed="24">
-    <div class="marquee__track">
-     <ul class="marquee__content">
-        {clientLogos.map((logo) => (
-          <li class="marquee__item">
-            <img src={logo.url} alt={`${logo.name} Logo.`} loading="lazy" decoding="async" width="160" height="120" />
-          </li>
-        ))}
-      </ul>
-      <ul class="marquee__content" aria-hidden="true">
-        {clientLogos.map((logo) => (
-          <li class="marquee__item">
-            <img src={logo.url} alt={`${logo.name} Logo.`} loading="lazy" decoding="async" width="160" height="120" />
-          </li>
-        ))}
-      </ul> -->
-    <!-- </div>
-  </div>
-</section> --> 
+
 
 <style lang="scss">
   .HomeCta {

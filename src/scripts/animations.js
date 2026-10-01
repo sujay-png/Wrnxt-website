@@ -32,7 +32,7 @@ export function initAnimations() {
   if (!ctx) return;
 
   const path = new Path2D(LOGO_PATH_DATA);
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const dpr = 1; // Forced to 1 to fix severe scroll lag on high-DPI screens
   const rings = [
     { scale: 1, rotate: 0, opacity: 1 },
     { scale: 1.05, rotate: 3, opacity: 0.3 },

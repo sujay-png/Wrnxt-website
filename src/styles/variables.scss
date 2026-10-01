@@ -249,12 +249,12 @@ $font-family-alt: "Space Grotesk", $font-family-body;
   --color-on-accent: var(--color-neutral-950);
   --color-on-accent-hover: var(--color-neutral-950);
   
-  --button-primary-bg: radial-gradient(circle, #5c11c5, #41186b, #160e1f);
+  --button-primary-bg: radial-gradient(circle, #9c0827, #6b0318, #2b0008);
   --button-primary-label: var(--color-white);
-  --button-primary-border: rgba(158, 54, 255, 0.5);
-  --button-primary-hover-bg: radial-gradient(circle, #5c11c5, #41186b, #160e1f);
+  --button-primary-border: rgba(156, 8, 39, 0.5);
+  --button-primary-hover-bg: radial-gradient(circle, #9c0827, #6b0318, #2b0008);
   --button-primary-hover-label: var(--color-white);
-  --button-primary-hover-border: rgba(158, 54, 255, 0.9);
+  --button-primary-hover-border: rgba(156, 8, 39, 0.9);
   
   --button-secondary-bg: var(--color-neutral-900);
   --button-secondary-label: var(--color-neutral-50);

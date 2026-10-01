@@ -18,7 +18,7 @@ const accreditations = [
 
 <footer class="section footer" data-pt="lg">
   <div class="container" data-size="full">
-    <div class="stack" data-gap="3xl">
+    <div class="stack footer__main-stack" data-gap="3xl">
       <!-- Top Section: Logo & Direct Contacts -->
       <div class="footer__top">
         <div class="start">
@@ -48,7 +48,7 @@ const accreditations = [
           data-justify="between"
           data-align="start"
         >
-          <div class="grid start" style="--grid-min:20rem;">
+          <div class="grid start" data-gap="xl" style="--grid-min:15rem;">
             <div class="column">
               <ul class="stack footer-menu" data-gap="xs">
                 <li class="eyebrow">Our services</li>
@@ -89,10 +89,41 @@ const accreditations = [
                 </li>
               </ul>
             </nav>
+
+            <address class="column" style="font-style: normal;">
+              <ul class="stack footer-menu" data-gap="xs">
+                <li class="eyebrow">Address</li>
+                <li class="footer-menu-item" style="font-size: var(--font-size--1); line-height: 1.7; opacity: 0.9;">
+                  First Floor, 2-32/20(A),<br/>
+                  Ganesh Nagar Rd, Jeppinamogaru,<br/>
+                  Mangaluru, Karnataka 575007
+                </li>
+              </ul>
+            </address>
           </div>
 
-          <!-- Accreditations Badges Removed -->
-        </div>
+          <div class="end" style="width: 100%; max-width: 400px;">
+            <div class="anchor-card anchor-card--rounded">
+              <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
+                <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16"></rect>
+                <circle cx="19.5" cy="3.5" r="3"></circle>
+                <circle cx="calc(100% - 19.5px)" cy="3.5" r="3"></circle>
+                <circle cx="19.5" cy="calc(100% - 3.5px)" r="3"></circle>
+                <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3"></circle>
+              </svg>
+              <div class="anchor-content" style="padding: 6px; border-radius: 16px; height: 250px;">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.8782942634734!2d74.8678111!3d12.8511365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35b29e497a84d%3A0x548ffac43130be9f!2sAkshara%20Digital%20India%20Private%20Limited!5e0!3m2!1sen!2sin!4v1790838525192!5m2!1sen!2sin" 
+                  width="100%" 
+                  height="100%" 
+                  style="border:0; border-radius: 12px; filter: invert(90%) hue-rotate(180deg);" 
+                  allowfullscreen="" 
+                  loading="lazy" 
+                  referrerpolicy="strict-origin-when-cross-origin">
+                </iframe>
+              </div>
+            </div>
+          </div>        </div>
 
         <!-- Copyright Row -->
         <div class="copyright">
@@ -111,18 +142,17 @@ const accreditations = [
             <a href="/ai-policy">AI Policy</a>
           </div>
         </div>
-      </div>
-
-      <!-- Section Divider -->
-      <div
-        class="reactive-divider horizontal"
-        x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })"
-      >
-        <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
-        <div class="divider-line" x-ref="dividerLine">
-          <div class="width-display" x-text="formattedWidth" x-cloak>0px</div>
+        <!-- Section Divider -->
+        <div
+          class="reactive-divider horizontal"
+          x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })"
+        >
+          <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
+          <div class="divider-line" x-ref="dividerLine">
+            <div class="width-display">ESTD 2022</div>
+          </div>
+          <div class="anchor end-anchor"><div class="anchor-circle"></div></div>
         </div>
-        <div class="anchor end-anchor"><div class="anchor-circle"></div></div>
       </div>
     </div>
   </div>
@@ -151,6 +181,12 @@ const accreditations = [
     */
     > .container > .stack {
       padding-inline: var(--container-padding, var(--space-md-2xl));
+    }
+
+    &__main-stack {
+      @media (max-width: 767px) {
+        gap: var(--space-xl) !important;
+      }
     }
 
     a {
@@ -192,7 +228,7 @@ const accreditations = [
     }
 
     &__topLogo {
-      height: 70px;
+      height: 120px;
       width: auto;
       object-fit: contain;
       display: block;
@@ -227,6 +263,7 @@ const accreditations = [
 
       .eyebrow {
         font-size: var(--font-size--2);
+        font-weight: bold;
         text-transform: uppercase;
         letter-spacing: var(--letter-spacing-looser);
         margin-bottom: var(--space-sm);
@@ -234,7 +271,7 @@ const accreditations = [
     }
 
     .footer-menu-link {
-      padding-block: var(--space-xs);
+      padding-block: 4px; // Reduced from var(--space-xs) to tighten vertical gap
       display: inline-block;
       position: relative;
       font-family: var(--font-family-body);

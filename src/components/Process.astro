@@ -1,16 +1,6 @@
 ---
 import Button from './ui/Button.astro';
-const clientLogos = [
-  { name: "Bharath", url: "/images/Bharath.svg" },
-  { name: "Iraspa", url: "/images/iraspa.svg" },
-  { name: "Sakrt", url: "/images/Sakrt.svg" },
-  { name: "Sangam", url: "/images/sangam.svg" },
-  { name: "Sanjeevini", url: "/images/Sanjeeveni.svg" },
-  { name: "Vastu", url: "/images/Vastu.svg" },
-  { name: "One More Rep", url: "/images/one_more_rep.svg" },
-  { name: "Royal Decore", url: "/images/Royal_decore.svg" },
-  { name: "Stories", url: "/images/stories.svg" },
-];
+
 ---
 
 <section class="section HomePartner" data-padding="xl">
@@ -69,20 +59,6 @@ Partner with us
     
     <div class="HomeWheel__contentWrapper">
       <div class="stack HomeWheel__contentBlock" data-gap="md" data-align="center" data-justify="center" data-block="1">
-        <div class="HomeWheel__logoMarquee">
-          <div class="marquee" data-marquee-speed="28">
-            <div class="marquee__track">
-              <ul class="marquee__content">
-                {clientLogos.map((logo) => (
-                  <li class="marquee__item">
-                    <img src={logo.url} alt={`${logo.name} logo`} loading="lazy" decoding="async" width="280" height="120" />
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-
         <h3 class="heading" data-font-size="4">Direct access to expert talent</h3>
         <div class="prose prose--md">
           <p>You don't deal with account managers; you speak directly to the creatives solving your problem. With every project guided by senior leadership, you get the firepower of a full agency team without the administrative bloat.</p>
@@ -256,31 +232,6 @@ Our process
         pointer-events: auto;
         will-change: transform;
       }
-    }
-  }
-
-  .HomeWheel__logoMarquee {
-    position: relative;
-    z-index: 6;
-    width: 100vw;
-    max-width: 100vw;
-    margin-inline: calc(50% - 50vw);
-    overflow: hidden;
-    pointer-events: none;
-
-    .marquee {
-      --width: clamp(10rem, 22vw, 16rem);
-      --gap: clamp(2rem, 4vw, 4rem);
-      padding-block: var(--space-sm);
-    }
-
-    .marquee__content .marquee__item img {
-      width: 100%;
-      height: clamp(5.5rem, 12vw, 8.5rem);
-      object-fit: contain;
-      object-position: center;
-      opacity: 1;
-      filter: none;
     }
   }
 

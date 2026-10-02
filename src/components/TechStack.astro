@@ -62,6 +62,7 @@ const stacks = [
 <style lang="scss">
 .tech-section {
   border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   background: var(--color-bg);
   position: relative;
   overflow: hidden;
@@ -80,7 +81,7 @@ const stacks = [
   height: 420px;
   top: -140px;
   left: -80px;
-  background: radial-gradient(circle, rgba(127, 252, 255, 0.12), transparent 70%);
+  background: radial-gradient(circle, rgba(156, 8, 39, 0.12), transparent 70%);
 }
 
 .tech-glow--2 {
@@ -88,7 +89,7 @@ const stacks = [
   height: 380px;
   bottom: -160px;
   right: -60px;
-  background: radial-gradient(circle, rgba(168, 127, 255, 0.1), transparent 70%);
+  background: radial-gradient(circle, rgba(107, 3, 24, 0.1), transparent 70%);
 }
 
 .tech-section__inner {
@@ -124,7 +125,7 @@ const stacks = [
     content: '';
     width: 24px;
     height: 1px;
-    background: linear-gradient(90deg, #7ffcff, rgba(168, 127, 255, 0.3));
+    background: linear-gradient(90deg, #9c0827, rgba(156, 8, 39, 0.3));
   }
 }
 
@@ -137,7 +138,7 @@ const stacks = [
   margin-bottom: 16px;
 
   .highlight {
-    background: linear-gradient(120deg, #7ffcff, #a87fff 60%, #7ffcff);
+    background: linear-gradient(120deg, #e0163f, #9c0827 60%, #e0163f);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -166,59 +167,74 @@ const stacks = [
 }
 .tech-card {
   position: relative;
-  padding: 32px 26px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+  padding: 36px 32px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.015);
+  transition: all 0.4s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.tech-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(156, 8, 39, 0), transparent);
+  transition: all 0.4s ease;
+}
+
+.tech-card:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(156, 8, 39, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.6);
+}
+
+.tech-card:hover::before {
+  background: linear-gradient(90deg, transparent, rgba(224, 22, 63, 0.8), transparent);
 }
 
 .tech-card__border {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: conic-gradient(from 0deg, #7ffcff, #a87fff, #7ffcff, #a87fff, #7ffcff);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.tech-card:hover .tech-card__border {
-  opacity: 1;
+  display: none;
 }
 
 .tech-card__head {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 22px;
+  gap: 14px;
+  margin-bottom: 28px;
 }
 
 .tech-card__icon {
-  width: 38px;
-  height: 38px;
+  width: 34px;
+  height: 34px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  font-size: 15px;
-  background: linear-gradient(160deg, rgba(127, 252, 255, 0.14), rgba(168, 127, 255, 0.08));
-  border: 1px solid rgba(127, 252, 255, 0.2);
-  color: #7ffcff;
+  border-radius: 8px;
+  font-size: 14px;
+  background: rgba(156, 8, 39, 0.08);
+  color: #e0163f;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.tech-card:hover .tech-card__icon {
+  background: rgba(156, 8, 39, 0.15);
+  color: #ff2a55;
 }
 
 .tech-card__category {
-  font-size: 11px;
-  letter-spacing: 0.08em;
+  font-size: 13px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  font-weight: 600;
-  background: linear-gradient(90deg, #7ffcff, #a87fff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
   margin: 0;
 }
 
@@ -228,25 +244,29 @@ const stacks = [
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
 }
 
 .tech-card__tool {
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 500;
-  color: var(--color-foreground-secondary);
-  padding: 7px 13px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: rgba(255, 255, 255, 0.5);
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: all 0.3s ease;
 }
 
 .tech-card:hover .tech-card__tool {
-  color: var(--color-foreground);
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .tech-card__tool:hover {
-  background: rgba(127, 252, 255, 0.12);
-  border-color: rgba(127, 252, 255, 0.3);
+  background: rgba(156, 8, 39, 0.15) !important;
+  border-color: rgba(156, 8, 39, 0.4) !important;
+  color: #fff !important;
 }
 </style>

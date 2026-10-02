@@ -1,0 +1,139 @@
+---
+import Button from '../ui/Button.astro';
+---
+
+<section class="section ITServicesContent" data-padding="xl">
+  <div class="container" data-size="lg">
+    <!-- Intro text -->
+    <div class="stack" data-gap="xl" style="margin-bottom: var(--space-2xl);">
+      <p class="eyebrow">What we do</p>
+      <h2 class="heading" data-font-size="5">We build IT solutions that solve real business problems.</h2>
+      <p class="prose prose--lg" style="max-width: 80ch;">
+        Whether you need a customer-facing app, an internal system, or a complete website rebuild, we bring the same discipline to every project: careful planning, clean execution, and support that doesn't disappear after launch. You get technology that drives growth, not technology you have to manage around.
+      </p>
+    </div>
+
+    <!-- The 3 Cards -->
+    <div class="cards-grid">
+      <!-- Web App Development -->
+      <article class="service-detail-card">
+        <h3 class="heading" data-font-size="3">Web App Development</h3>
+        <p class="prose">We build web applications that simplify how your customers interact with your business — scalable, secure, and designed to perform across every device.</p>
+        <ul class="bullets stack" data-gap="xs">
+          <li>Custom web application development</li>
+          <li>Enterprise and cloud-based solutions</li>
+          <li>CRM and business process tools</li>
+          <li>E-commerce, B2B, and B2C platforms</li>
+          <li>Payment gateway and third-party integrations</li>
+          <li>Ongoing maintenance and support</li>
+        </ul>
+      </article>
+      
+      <!-- Mobile App Development -->
+      <article class="service-detail-card">
+        <h3 class="heading" data-font-size="3">Mobile App Development</h3>
+        <p class="prose">We design and build mobile apps that turn downloads into daily users — fast, secure, and built to keep your customers coming back.</p>
+        <ul class="bullets stack" data-gap="xs">
+          <li>iOS and Android app development</li>
+          <li>UX-first interface design</li>
+          <li>Secure, encrypted architecture</li>
+          <li>API and backend integration</li>
+          <li>Thorough pre-launch testing</li>
+          <li>App Store and Google Play publishing</li>
+        </ul>
+      </article>
+
+      <!-- Website Development -->
+      <article class="service-detail-card">
+        <h3 class="heading" data-font-size="3">Website Development</h3>
+        <p class="prose">We build websites that do more than look good — they load fast, rank well, and turn visitors into customers.</p>
+        <ul class="bullets stack" data-gap="xs">
+          <li>Custom website design and development</li>
+          <li>Responsive, mobile-optimised builds</li>
+          <li>SEO-ready architecture</li>
+          <li>CMS integration for easy content updates</li>
+          <li>E-commerce-ready websites</li>
+          <li>Targeted Landing page with performance tracking</li>
+          <li>Website maintenance and support</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section WhoNeeds" data-padding="xl" style="background-color: var(--color-surface); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+  <div class="container" data-size="lg">
+    <div class="stack" data-gap="lg">
+      <h2 class="heading" data-font-size="5">Who Needs IT Services</h2>
+      <p class="prose prose--lg">Any business that depends on technology to reach customers, manage operations, or stay competitive needs the right IT partner behind it. That includes:</p>
+      
+      <ul class="bullets stack" data-gap="sm">
+        <li>Startups needing to launch fast without compromising on quality</li>
+        <li>E-commerce businesses that depend on uptime, speed, and seamless checkout</li>
+        <li>Service-based businesses that need booking systems, client portals, or internal tools</li>
+        <li>Enterprises managing complex, high-traffic platforms across multiple teams</li>
+        <li>Educational institutions delivering content and services to a mobile-first audience</li>
+        <li>Healthcare providers needing secure, reliable patient-facing systems</li>
+        <li>Any growing business whose current website or app can no longer keep up with demand</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-xl);
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .service-detail-card {
+    background: linear-gradient(160deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      border-color: rgba(156,8,39,0.5);
+    }
+    
+    h3 {
+      color: var(--color-foreground);
+    }
+    
+    .prose {
+      color: var(--color-foreground-secondary);
+      line-height: 1.6;
+    }
+  }
+
+  .bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      position: relative;
+      padding-left: 1.5rem;
+      color: var(--color-foreground-secondary);
+      line-height: 1.5;
+      
+      &::before {
+        content: '→';
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: var(--color-burgundy);
+      }
+    }
+  }
+</style>

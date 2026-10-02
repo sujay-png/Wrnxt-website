@@ -1,0 +1,50 @@
+---
+import Button from '../ui/Button.astro';
+---
+
+<section class="section ITServicesCta" data-padding="xl">
+  <div class="stack" data-gap="2xl">
+    <div class="container" data-size="prose">
+      <div class="stack text-center" data-justify="center" data-gap="lg">
+        <h2 class="heading" data-font-size="5" style="max-width: 25ch; margin: 0 auto;">Let's Build Your Next IT Solution</h2>
+
+        <div class="reactive-divider horizontal" x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })">
+          <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
+          <div class="divider-line" x-ref="dividerLine">
+            <div class="width-display" x-text="formattedWidth" x-cloak>0px</div>
+          </div>
+          <div class="anchor end-anchor"><div class="anchor-circle"></div></div>
+        </div>
+
+        <div class="stack" data-gap="lg">
+          <div class="prose" style="max-width: 65ch; margin: 0 auto;">
+            <p>Tell us what you're trying to solve, and we'll show you exactly how we'd approach it — no generic pitch, just a plan built around your business.</p>
+          </div>
+
+          <div class="cluster actions" data-gap="sm" data-justify="center" data-align="center">
+            <Button href="/contact" variant="primary">
+              Get a Free Consultation
+              <span class="icon" aria-hidden="true" role="img">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </span>
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .ITServicesCta {
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-bg);
+
+    .text-center {
+      text-align: center;
+    }
+  }
+</style>

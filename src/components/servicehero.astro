@@ -1,5 +1,6 @@
 ---
 import type { heroImages as HeroImages } from '../data/services';
+import Button from './ui/Button.astro';
 
 // interface CTA { label: string; href: string; }
 
@@ -31,38 +32,32 @@ const{text ="Get Started"} = Astro.props;
     <p class="hero__body">{desc}</p>
 
     <div class="cta-group">
-      <!-- <a href={ctaPrimary.href} class="cta-btn">
-        {ctaPrimary.label}
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-             fill="none" stroke="currentColor" stroke-width="2"
-             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-        </svg>
-      </a>
-
-      {ctaSecondary && (
-        <a href={ctaSecondary.href} class="cta-btn">
-          {ctaSecondary.label}
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-               fill="none" stroke="currentColor" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+      <Button variant="secondary" href="/contact">
+        Talk to Our IT Team
+        <span class="icon" aria-hidden="true" role="img" style="margin-left: 8px; display: inline-flex; align-items: center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
           </svg>
-        </a>
-      )} -->
-      <!-- <button class="animated-btn" data-animated-button>
-        <span class="btn-text"> {text} </span>
-      </button> -->
+        </span>
+      </Button>
     </div>
   </div>
  
 
-  <aside class="hero__grid" aria-label="Project mockups">
-    {images.map((img) => (
-      <div class={`mockup ${img.card}`}>
-        <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+  <aside class="hero__image" aria-label="IT Services Image">
+    <div class="anchor-card anchor-card--rounded" style="width: 100%; height: 100%; min-height: 400px; position: relative;">
+      <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none" style="position: absolute; top: 0; left: 0; z-index: 1;">
+        <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"></rect>
+        <circle cx="19.5" cy="3.5" r="3" fill="var(--color-bg)" stroke="rgba(255,255,255,0.5)" stroke-width="1"></circle>
+        <circle cx="calc(100% - 19.5px)" cy="3.5" r="3" fill="var(--color-bg)" stroke="rgba(255,255,255,0.5)" stroke-width="1"></circle>
+        <circle cx="19.5" cy="calc(100% - 3.5px)" r="3" fill="var(--color-bg)" stroke="rgba(255,255,255,0.5)" stroke-width="1"></circle>
+        <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3" fill="var(--color-bg)" stroke="rgba(255,255,255,0.5)" stroke-width="1"></circle>
+      </svg>
+      <div class="anchor-content" style="padding: 12px; border-radius: 16px; height: 100%; display: flex; position: relative; z-index: 2;">
+        <img src="/images/it-services.png" alt="IT Services Concept" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" loading="lazy" decoding="async" />
       </div>
-    ))}
+    </div>
   </aside>
 </section>
 
@@ -104,6 +99,8 @@ const{text ="Get Started"} = Astro.props;
   gap: var(--space-md);
   max-width: 580px;
   padding-right: var(--space-xl);
+  margin: 0 auto;
+  justify-content: center;
 
   @media (max-width: 900px) {
     max-width: 100%;
@@ -188,59 +185,20 @@ const{text ="Get Started"} = Astro.props;
   }
 }
 
-/* ── Mockup grid (unchanged) ── */
-.hero__grid {
+/* ── Hero Image ── */
+.hero__image {
   height: 70vh;
   max-height: 520px;
-  width: 80%;
+  width: 90%;
   margin-left: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(3, 1fr);
-  gap: 10px;
-  border-left: 1px solid rgba(255,255,255,0.1);
-  padding-left: 32px;
 
   @media (max-width: 900px) {
-    height: 320px;
-    max-height: 320px;
+    height: 400px;
+    max-height: 400px;
     width: 100%;
     margin-left: 0;
-    border-left: none;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-left: 0;
     padding-top: 24px;
-    grid-template-rows: repeat(2, 1fr);
   }
-}
-
-.mockup {
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: var(--color-bg);
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.5s ease;
-  }
-
-  &:hover img { transform: scale(1.04); }
-}
-
-.card-1 { grid-column: 1; grid-row: 1; }
-.card-2 { grid-column: 2; grid-row: 1 / span 2; margin-top: -40px; }
-.card-3 { grid-column: 1; grid-row: 2 / span 2; margin-bottom: -20px; }
-.card-4 { grid-column: 2; grid-row: 3; }
-
-@media (max-width: 900px) {
-  .card-1 { grid-column: 1; grid-row: 1; margin: 0; }
-  .card-2 { grid-column: 2; grid-row: 1; margin: 0; }
-  .card-3 { grid-column: 1; grid-row: 2; margin: 0; }
-  .card-4 { grid-column: 2; grid-row: 2; margin: 0; }
 }
 
 .animated-btn {

@@ -3,8 +3,15 @@ import Button from './ui/Button.astro';
 const quadrants = [
   {
     title: "IT Services",
+    headline: "Build the Technology Your Business Runs On",
+    desc: "We design and build web apps, mobile apps, and websites that work as hard as you do — fast, secure, and built to grow with your business.",
+    items: [
+      "Web app development",
+      "Mobile app development",
+      "Website development"
+    ],
+    buttonText: "Explore IT Services",
     href: "/services/it-services",
-    desc: "Cutting-edge technology solutions to drive your digital transformation and business growth",
     images: {
       top: "/images/ITService13.jpg",
       main: "/images/ITService14.jpg",
@@ -12,29 +19,50 @@ const quadrants = [
     }
   },
   {
-    title: "Marketing",
-    href: "/services/marketing",
-    desc: "We run social media ads, Google ads, and SEO campaigns that put your business in front of the right people and turn that attention into customers.",
+    title: "Media House",
+    headline: "Create Content That Gets Seen and Remembered",
+    desc: "We produce graphics, video, and content that make your brand impossible to scroll past — built for the platforms your customers actually use.",
+    items: [
+      "Graphic design & visual effects",
+      "Photography & video production",
+      "Content writing & promotional video"
+    ],
+    buttonText: "Explore Media House",
+    href: "/services/media-house",
     images: {
-      top: "/images/WhatsApp Image 2026-07-13 at 11.13.49 AM (1).jpeg",
+      top: "/images/WhatsApp Image 2026-07-13 at 11.13.48 AM (2).jpeg",
       main: "/images/MediaHouse18.jpeg",
       bottom: "/images/WhatsApp Image 2026-07-13 at 11.13.49 AM.jpeg"
     }
   },
   {
-    title: "Media House",
-    href: "/services/media-house",
-    desc: "End-to-end creative production across graphic design, photography, video, and content.",
+    title: "Marketing",
+    headline: "Get Found by the Customers Already Searching for You",
+    desc: "We run social ads, Google ads, and SEO campaigns that put your business in front of the right people — and turn that attention into revenue.",
+    items: [
+      "Social media ads",
+      "Google ads",
+      "Search engine optimisation"
+    ],
+    buttonText: "Explore Marketing",
+    href: "/services/marketing",
     images: {
-       top: "/images/WhatsApp Image 2026-07-13 at 11.13.48 AM (2).jpeg",
-      main: "/images/Marketing20.jpeg",
+      top: "/images/Marketing20.jpeg",
+      main: "/images/marketing-hero-img.png",
       bottom: "/images/Marketing21.jpeg"
     }
   },
   {
-    title: "Hardware Solutions",
+    title: "Hardware",
+    headline: "Keep Your Business Running Without Interruption",
+    desc: "We set up and manage the servers, networks, and security systems your business depends on — so downtime doesn't cost you customers.",
+    items: [
+      "Server & network setup",
+      "CCTV & security systems",
+      "IT infrastructure management"
+    ],
+    buttonText: "Explore Hardware",
     href: "/services/hardware-solutions",
-    desc: "Reliable servers, networks, security systems, and infrastructure support for your business.",
     images: {
       top: "/images/Hardware32.jpeg",
       main: "/images/Hardware29.jpeg",
@@ -65,19 +93,28 @@ const quadrants = [
             <span>{quad.title}</span>
           </h3>
           <div class="stack hidden-content" data-gap="sm">
-            <div class="prose prose--md">
-              <p>{quad.desc}</p>
+            <div class="prose prose--md quadrant__details">
+              <h4 class="quadrant__headline">{quad.headline}</h4>
+              <p class="quadrant__desc">{quad.desc}</p>
+              <ul class="quadrant__list">
+                {quad.items.map((item) => (
+                  <li>
+                    <span class="quadrant__bullet" aria-hidden="true">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
             <div class="cluster actions" data-gap="sm" data-justify="start" data-align="center">
               <Button variant="secondary">
-Explore
-                  <span class="icon" aria-hidden="true" role="img">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
-                      <path d="M5 12h14"></path>
-                      <path d="m12 5 7 7-7 7"></path>
-                    </svg>
-</Button>
-              </span>
+                {quad.buttonText}
+                <span class="icon" aria-hidden="true" role="img">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </span>
+              </Button>
             </div>
           </div>
         </div>
@@ -389,13 +426,62 @@ Explore
       overflow: hidden;
       transition: max-height 0.4s var(--ease-out-cubic), opacity 0.3s var(--ease-out-cubic);
       
-      p {
+      .quadrant__headline {
+        font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+        font-weight: 600;
+        line-height: 1.35;
+        color: var(--color-foreground);
+        margin: 0.25rem 0 0.45rem 0;
+        letter-spacing: -0.01em;
+      }
+
+      .quadrant__desc {
         font-size: var(--font-size--1);
+        line-height: 1.55;
         color: var(--color-foreground-secondary);
+        margin: 0 0 0.55rem 0;
+      }
+
+      .quadrant__list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 0.65rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+
+        li {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: var(--font-size--1);
+          color: var(--color-foreground-secondary);
+          line-height: 1.4;
+        }
+      }
+
+      .quadrant__bullet {
+        color: var(--color-burgundy);
+        font-size: 1.15rem;
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+        flex-shrink: 0;
       }
       
       .btn {
         margin-top: var(--space-2xs);
+
+        .icon {
+          display: inline-flex;
+          align-items: center;
+          margin-left: 8px;
+          transition: transform 0.2s var(--ease);
+        }
+
+        &:hover .icon {
+          transform: translateX(4px);
+        }
       }
 
       // Hover-to-reveal only makes sense with a pointer. Touch devices have no
@@ -541,7 +627,7 @@ Explore
         }
         
         .hidden-content {
-          max-height: 15rem;
+          max-height: 32rem;
           opacity: 1;
         }
         

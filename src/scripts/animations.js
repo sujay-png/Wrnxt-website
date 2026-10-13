@@ -386,13 +386,13 @@ function setupQuadrants(cleanupTasks, transitionDistance) {
     document.querySelectorAll('.quadrant').forEach((quadrant) => {
       const hiddenContent = quadrant.querySelector('.hidden-content');
       const background = quadrant.querySelector('.background');
-      const paragraph = hiddenContent?.querySelector('p');
+      const details = hiddenContent?.querySelector('.prose') || hiddenContent?.querySelector('p');
       const actions = hiddenContent?.querySelector('.actions');
       const images = quadrant.querySelectorAll('.quadrant__image');
 
       gsap.set(background, { opacity: 0 });
       gsap.set(hiddenContent, { height: 0 });
-      gsap.set(paragraph, { opacity: 0, y: 20 });
+      gsap.set(details, { opacity: 0, y: 20 });
       gsap.set(actions, { opacity: 0, y: 15 });
       gsap.set(images, { opacity: 0, scale: 0.9 });
 
@@ -401,7 +401,7 @@ function setupQuadrants(cleanupTasks, transitionDistance) {
       timeline
         .to(background, { opacity: 0.6, duration: 0.8, ease: 'power2.out' }, 0)
         .to(hiddenContent, { height: 'auto', duration: 0.75, ease: 'power2.out' }, 0)
-        .to(paragraph, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0.2)
+        .to(details, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0.2)
         .to(actions, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, 0.4)
         .to(images, { opacity: 1, scale: 1, duration: 0.75, ease: 'power2.inOut' }, 0);
 

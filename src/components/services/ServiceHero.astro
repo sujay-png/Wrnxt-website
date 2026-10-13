@@ -1,6 +1,6 @@
 ---
-import type { heroImages as HeroImages } from '../data/services';
-import Button from './ui/Button.astro';
+import type { heroImages as HeroImages } from '../../data/itServices';
+import Button from '../ui/Button.astro';
 
 // interface CTA { label: string; href: string; }
 
@@ -10,12 +10,25 @@ interface Props {
   desc: string;
   // ctaPrimary: CTA;
   // ctaSecondary?: CTA;
-  images: typeof HeroImages;
+  images?: typeof HeroImages;
   text?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  imageSrc?: string;
+  imageAlt?: string;
 }
 
-const { eyebrow, title, desc, images } = Astro.props;
-const{text ="Get Started"} = Astro.props;
+const { 
+  eyebrow, 
+  title, 
+  desc, 
+  images, 
+  ctaText = "Talk to Our IT Team", 
+  ctaHref = "/contact",
+  imageSrc = "/images/it-services.png",
+  imageAlt = "Services Concept" 
+} = Astro.props;
+const { text = "Get Started" } = Astro.props;
 ---
 
 <section class="hero">
@@ -32,8 +45,8 @@ const{text ="Get Started"} = Astro.props;
     <p class="hero__body">{desc}</p>
 
     <div class="cta-group">
-      <Button variant="secondary" href="/contact">
-        Talk to Our IT Team
+      <Button variant="secondary" href={ctaHref}>
+        {ctaText}
         <span class="icon" aria-hidden="true" role="img" style="margin-left: 8px; display: inline-flex; align-items: center;">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
             <path d="M5 12h14"></path>
@@ -45,7 +58,7 @@ const{text ="Get Started"} = Astro.props;
   </div>
  
 
-  <aside class="hero__image" aria-label="IT Services Image">
+  <aside class="hero__image" aria-label={imageAlt}>
     <div class="anchor-card anchor-card--rounded" style="width: 100%; height: 100%; min-height: 400px; position: relative;">
       <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none" style="position: absolute; top: 0; left: 0; z-index: 1;">
         <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"></rect>
@@ -55,7 +68,7 @@ const{text ="Get Started"} = Astro.props;
         <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3" fill="var(--color-bg)" stroke="rgba(255,255,255,0.5)" stroke-width="1"></circle>
       </svg>
       <div class="anchor-content" style="padding: 12px; border-radius: 16px; height: 100%; display: flex; position: relative; z-index: 2;">
-        <img src="/images/it-services.png" alt="IT Services Concept" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" loading="lazy" decoding="async" />
+        <img src={imageSrc} alt={imageAlt} style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;" loading="lazy" decoding="async" />
       </div>
     </div>
   </aside>

@@ -1,0 +1,24 @@
+---
+import Button from '../ui/Button.astro';
+
+interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+---
+<section class="section service-cta" data-padding="xl">
+  <div class="container" data-size="prose">
+    <div class="stack service-cta__content" data-gap="lg">
+      <h2 class="heading" data-font-size="5">{title}</h2>
+      <div class="reactive-divider horizontal" aria-hidden="true"><div class="divider-line"></div></div>
+      <p class="prose">{description}</p>
+      <Button href="/contact" variant="primary">Get a Free Consultation <span aria-hidden="true">&rarr;</span></Button>
+    </div>
+  </div>
+</section>
+<style>
+  .service-cta { border-block: 1px solid var(--color-border); background: var(--color-surface); }
+  .service-cta__content { align-items: center; text-align: center; }
+  .service-cta__content h2, .service-cta__content p { margin: 0; }
+  .service-cta__content p { max-width: 65ch; }
+  .service-cta__content .reactive-divider { width: min(100%, 28rem); height: 1px; background: var(--color-border); }
+  .service-cta__content .btn { align-self: center; }
+</style>

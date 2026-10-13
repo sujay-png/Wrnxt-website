@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../layout/Header.astro';
+import Footer from '../layout/Footer.astro';
+import ServiceHero from './ServiceHero.astro';
+import StatsBar from './StatsBar.astro';
+import ServiceCTA from './ServiceCTA.astro';
+import type { ServicePageData } from '../../types/services';
+interface Props { service: ServicePageData; }
+const { service } = Astro.props;
+---
+<Layout title={`${service.title} — Akshara Digital`} description={service.description}>
+  <Header />
+  <div class="bg-dots" aria-hidden="true"></div>
+  <ServiceHero eyebrow="Our services" title={service.headline} desc={service.description} ctaText={`Talk to Our ${service.title === 'Media House' ? 'Media' : service.title === 'Hardware Solutions' ? 'Hardware' : service.title} Team`} ctaHref="/contact" imageSrc={service.image} imageAlt={service.imageAlt} />
+  <StatsBar />
+  <section class="section service-intro" data-padding="xl"><div class="container" data-size="lg">
+    <span class="service-kicker">A partner for sustainable growth</span>
+    <div class="intro-copy">{service.intro.map((paragraph) => <p>{paragraph}</p>)}</div>
+  </div></section>
+  <section class="section service-offerings" data-padding="xl"><div class="container" data-size="lg">
+    <header class="section-heading"><span class="service-kicker">What we do</span><h2 class="heading" data-font-size="5">Our {service.title} Services</h2></header>
+    <div class="offer-grid">{service.sections.map((section, index) => <article class="offer-card">
+      <span class="offer-index">{String(index + 1).padStart(2, '0')}</span><h3 class="heading" data-font-size="2">{section.title}</h3><p>{section.description}</p>
+      <ul>{section.items.map((item) => <li>{item}</li>)}</ul>
+    </article>)}</div>
+  </div></section>
+  <section class="section service-audience" data-padding="xl"><div class="container" data-size="lg">
+    <div><span class="service-kicker">Who we help</span><h2 class="heading" data-font-size="5">Who Needs {service.title}</h2></div>
+    <ul class="audience-list">{service.audience.map((item) => <li>{item}</li>)}</ul>
+  </div></section>
+  <ServiceCTA title={service.ctaTitle} description={service.ctaDescription} />
+  <Footer />
+</Layout>
+<style>
+  .bg-dots { position: fixed; inset: 0; background-image: radial-gradient(var(--color-border) 1px, transparent 1px); background-size: 24px 24px; opacity: .12; pointer-events: none; z-index: 0; }
+  .service-intro, .service-offerings, .service-audience { position: relative; z-index: 1; }
+  .service-intro { background: var(--color-surface); border-block: 1px solid var(--color-border); }
+  .service-kicker { color: var(--color-burgundy); font-size: .78rem; font-weight: 650; letter-spacing: .16em; text-transform: uppercase; }
+  .intro-copy { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.5rem 3rem; margin-top: 1.25rem; }
+  .intro-copy p, .offer-card p { color: var(--color-foreground-secondary); line-height: 1.75; margin: 0; }
+  .section-heading { margin-bottom: var(--space-xl); }
+  .section-heading h2 { margin: .6rem 0 0; }
+  .offer-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; }
+  .offer-card { padding: clamp(1.3rem,2.5vw,2rem); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-bg-alt); }
+  .offer-index { color: var(--color-burgundy); font-size: .8rem; letter-spacing: .12em; }
+  .offer-card h3 { margin: 1rem 0 .65rem; }
+  .offer-card ul, .audience-list { list-style: none; padding: 0; margin: 1.2rem 0 0; display: grid; gap: .7rem; }
+  .offer-card li, .audience-list li { color: var(--color-foreground-secondary); line-height: 1.5; padding-left: 1.2rem; position: relative; }
+  .offer-card li::before, .audience-list li::before { content: '→'; position: absolute; left: 0; color: var(--color-burgundy); }
+  .service-audience { background: var(--color-surface); border-block: 1px solid var(--color-border); }
+  .service-audience h2 { margin: .6rem 0 0; }
+  .audience-list { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem 2rem; }
+  @media(max-width: 800px) { .offer-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+  @media(max-width: 600px) { .offer-grid, .intro-copy, .audience-list { grid-template-columns: 1fr; } }
+</style>

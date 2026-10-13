@@ -22,40 +22,29 @@ const stacks = [
   },
 ];
 ---
- <section class="tech-section">
-  <div class="tech-glow tech-glow--1" aria-hidden="true"></div>
-  <div class="tech-glow tech-glow--2" aria-hidden="true"></div>
-
+<section class="tech-section" aria-labelledby="technology-heading">
   <div class="tech-section__inner">
-
-    <div class="tech-section__header">
-      <p class="tech-eyebrow">Our tech stack</p>
-      <h2 class="tech-heading">Built with tools<br>that <span class="highlight">last</span></h2>
+    <header class="tech-intro">
+      <div>
+        <p class="tech-eyebrow">Technology</p>
+        <h2 id="technology-heading" class="tech-heading">The right tool<br />for the work.</h2>
+      </div>
       <p class="tech-body">
-        We don't chase trends. Every tool we use is chosen for reliability,
-        community support, and long-term maintainability.
+        We choose established technology that keeps products dependable, maintainable, and ready to grow with your business.
       </p>
-    </div>
+    </header>
 
-    <div class="tech-grid">
-      {stacks.map((stack) => (
-        <div class="tech-card">
-          <span class="tech-card__border" aria-hidden="true"></span>
-
-          <div class="tech-card__head">
-            <span class="tech-card__icon">{stack.icon}</span>
-            <p class="tech-card__category">{stack.category}</p>
-          </div>
-
-          <ul class="tech-card__tools">
-            {stack.tools.map((tool) => (
-              <li class="tech-card__tool">{tool}</li>
-            ))}
+    <ol class="tech-ledger">
+      {stacks.map((stack, index) => (
+        <li class="tech-ledger__row">
+          <span class="tech-ledger__number">{String(index + 1).padStart(2, '0')}</span>
+          <h3>{stack.category}</h3>
+          <ul class="tech-ledger__tools" aria-label={`${stack.category} tools`}>
+            {stack.tools.map((tool) => <li>{tool}</li>)}
           </ul>
-        </div>
+        </li>
       ))}
-    </div>
-
+    </ol>
   </div>
 </section>
 
@@ -268,5 +257,116 @@ const stacks = [
   background: rgba(156, 8, 39, 0.15) !important;
   border-color: rgba(156, 8, 39, 0.4) !important;
   color: #fff !important;
+}
+
+/* The technology section is intentionally restrained: it reads as a capability list,
+   rather than a collection of dashboard cards. */
+.tech-section {
+  background: linear-gradient(110deg, #111 0%, #0d0d0d 58%, #120d0f 100%);
+}
+
+.tech-section__inner {
+  max-width: 1120px;
+  padding: clamp(4.5rem, 9vw, 8rem) clamp(1.25rem, 5vw, 5rem);
+}
+
+.tech-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
+  gap: clamp(2rem, 8vw, 8rem);
+  align-items: end;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.tech-eyebrow {
+  display: block;
+  margin: 0 0 1.25rem;
+  color: var(--color-burgundy);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+}
+
+.tech-eyebrow::before { display: none; }
+
+.tech-heading {
+  max-width: 12ch;
+  margin: 0;
+  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  font-weight: 400;
+  line-height: .98;
+}
+
+.tech-body {
+  max-width: 38ch;
+  margin: 0 0 .35rem;
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.65;
+}
+
+.tech-ledger {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.tech-ledger__row {
+  display: grid;
+  grid-template-columns: 4rem minmax(9rem, .7fr) minmax(0, 1.7fr);
+  gap: 1.5rem;
+  align-items: baseline;
+  padding: clamp(1.5rem, 3vw, 2.25rem) 0;
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color .2s ease, padding-inline .2s ease;
+}
+
+.tech-ledger__row:hover {
+  background: rgba(156, 8, 39, .06);
+  padding-inline: 1rem;
+}
+
+.tech-ledger__number {
+  color: var(--color-burgundy);
+  font-family: var(--font-family-alt);
+  font-size: .78rem;
+  letter-spacing: .08em;
+}
+
+.tech-ledger h3 {
+  margin: 0;
+  color: var(--color-foreground);
+  font-family: var(--font-family-heading);
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  font-weight: 400;
+}
+
+.tech-ledger__tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem 1.2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tech-ledger__tools li {
+  color: var(--color-foreground-secondary);
+  font-size: .95rem;
+  line-height: 1.5;
+}
+
+.tech-ledger__tools li:not(:last-child)::after {
+  content: '·';
+  position: relative;
+  left: .65rem;
+  color: var(--color-burgundy);
+}
+
+@media (max-width: 700px) {
+  .tech-intro { grid-template-columns: 1fr; gap: 1.25rem; }
+  .tech-ledger__row { grid-template-columns: 2.5rem 1fr; gap: .5rem 1rem; }
+  .tech-ledger__tools { grid-column: 2; margin-top: .5rem; }
+  .tech-ledger__row:hover { padding-inline: .5rem; }
 }
 </style>

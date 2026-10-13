@@ -1,15 +1,14 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-import ServiceHero from "../../components/servicehero.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import ServiceHero from "../../components/services/ServiceHero.astro";
 import ITServicesContent from "../../components/services/ITServicesContent.astro";
-import StatsBar from "../../components/StatsBar.astro";
-import TechStack from "../../components/TechStack.astro";
-import Testimonials from "../../components/Testimonials.astro";
-import RelatedProjects from "../../components/RelatedProject.astro";
-import ITServicesCTA from "../../components/services/ITServicesCTA.astro";
-import { heroImages } from "../../data/services";
+import StatsBar from "../../components/services/StatsBar.astro";
+import TechStack from "../../components/services/TechStack.astro";
+import RelatedProjects from "../../components/services/RelatedProject.astro";
+import ServiceCTA from "../../components/services/ServiceCTA.astro";
+import { heroImages } from "../../data/itServices";
 ---
 
 <Layout title="IT Services — Akshara Digital">
@@ -29,8 +28,7 @@ import { heroImages } from "../../data/services";
   <ITServicesContent />
   <TechStack />
   <RelatedProjects />
-  <ITServicesCTA />
-  <!-- <Testimonials /> -->
+  <ServiceCTA title="Let's Build Your Next IT Solution" description="Tell us what you're trying to solve, and we'll show you exactly how we'd approach it — no generic pitch, just a plan built around your business." />
   <Footer />
 </Layout>
 
@@ -40,7 +38,7 @@ import { heroImages } from "../../data/services";
     inset: 0;
     background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
     background-size: 24px 24px;
-    opacity: 0.5;
+    opacity: 0.12;
     pointer-events: none;
     z-index: 0;
   }

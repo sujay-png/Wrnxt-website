@@ -1,5 +1,30 @@
 ---
-import Button from '../ui/Button.astro';
+const offerings = [
+  {
+    title: 'Web applications',
+    summary: 'Purpose-built systems that simplify operations and create better customer experiences.',
+    services: ['Custom web applications', 'Enterprise and cloud solutions', 'CRM and workflow tools', 'E-commerce, B2B, and B2C platforms', 'Payments and third-party integrations', 'Ongoing support'],
+  },
+  {
+    title: 'Mobile applications',
+    summary: 'Reliable mobile experiences designed to earn a place in your customers’ everyday routines.',
+    services: ['iOS and Android development', 'UX-led interface design', 'Secure application architecture', 'API and backend integration', 'Pre-launch testing', 'App Store and Google Play publishing'],
+  },
+  {
+    title: 'Websites',
+    summary: 'Fast, search-ready websites that make a clear case for your business and convert attention into action.',
+    services: ['Custom design and development', 'Responsive, mobile-first builds', 'SEO-ready architecture', 'CMS integration', 'E-commerce websites', 'Landing pages and analytics', 'Maintenance and support'],
+  },
+] as const;
+
+const audiences = [
+  'Startups turning a well-defined idea into a dependable product.',
+  'E-commerce businesses that rely on a seamless buying experience.',
+  'Service businesses that need booking, client, or internal systems.',
+  'Established teams managing complex products across departments.',
+  'Educational institutions delivering services to a mobile-first audience.',
+  'Healthcare providers needing secure, reliable patient-facing systems.',
+] as const;
 ---
 
 <section class="section ITServicesContent" data-padding="xl">
@@ -10,6 +35,9 @@ import Button from '../ui/Button.astro';
       <h2 class="heading" data-font-size="5">We build IT solutions that solve real business problems.</h2>
       <p class="prose prose--lg" style="max-width: 80ch;">
         Whether you need a customer-facing app, an internal system, or a complete website rebuild, we bring the same discipline to every project: careful planning, clean execution, and support that doesn't disappear after launch. You get technology that drives growth, not technology you have to manage around.
+      </p>
+      <p class="prose prose--lg" style="max-width: 80ch;">
+        Every business runs on technology now. The only question is whether yours is working for you or against you. A slow website costs you customers. A clunky internal tool wastes your team's time. A mobile app nobody opens is a sunk investment, not an asset.
       </p>
     </div>
 

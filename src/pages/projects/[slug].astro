@@ -8,12 +8,89 @@ import projectsData from '../../data/projects.json';
 export async function getStaticPaths() {
   const projectsList = [
     {
+      slug: "abbeygate-england",
+      title: "Your Brand, Our Craftsmanship — Bespoke Corporate Gifting",
+      client: "Abbeygate England / PUP Exports",
+      logo: "/images/Pup_Logo.jpg",
+      category: "Corporate Gifting & Bespoke Leather",
+      tagColor: "var(--color-purple, #a855f7)",
+      liveUrl: "https://pupexports.com/",
+      mobileImage:"/images/abbegate-mobileview.png",
+      laptopImage: "/images/abbeygate-hero.png"
+    },
+    {
+      slug: "electro-core-systems",
+      title: "Empowering Communication. Connecting the Future.",
+      client: "Electro Core Systems",
+      logo: "/images/Electrocore_systems.jpg",
+      category: "High-Performing Website & IoT",
+      tagColor: "var(--color-blue, #0d99ff)",
+      liveUrl: "https://electrocoresystems.in/about-us/",
+      mobileImage: "/images/electro-sys-mobile.png",
+      laptopImage: "/images/electrocore.png"
+    },
+    {
+      slug: "udbhav-developers",
+      title: "Exclusive Club House Generations & Premium Living",
+      client: "Udbhav Developers",
+      logo: "/images/udbhav.jpeg",
+      category: "Architectural & Real Estate Excellence",
+      tagColor: "var(--color-yellow, #ffcd29)",
+      liveUrl: "http://udbhavdevelopers.com/",
+      mobileImage: "/images/udbhavdevp-mobileview.png",
+      laptopImage: "/images/udbhavdevp-webview.png"
+    },
+    {
+      slug: "the-laptop-bazar",
+      title: "Next-Gen Tech Hardware & E-Commerce Platform",
+      client: "The Laptop Bazar",
+      category: "E-Commerce & Hardware Solutions",
+      tagColor: "var(--color-yellow, #ffcd29)",
+      liveUrl: "https://thelaptopbazar.com/",
+      mobileImage: "/images/Electralap.jpeg",
+      laptopImage: "/images/laptopbazzar.jpeg"
+    },
+    {
+      slug: "roswell",
+      title: "A Bold New Identity for a Shopify Partner",
+      client: "Roswell NYC",
+      logo: "https://media.salo.uk/salo-website-prod/roswell.svg",
+      category: "UI / UX Design & Ecommerce",
+      tagColor: "var(--color-green, #b9ff36)",
+      liveUrl: "https://roswellnyc.com/",
+      mobileImage: "/images/sanjmobile.png",
+      laptopImage: "/images/sanjgreen.png"
+    },
+    {
+      slug: "venture-chess-academy",
+      title: "Mastering the Board — Strategic Coaching Hub",
+      client: "Venture Chess Academy",
+      category: "Web Platform & Sports Portal",
+      tagColor: "var(--color-blue, #0d99ff)",
+      liveUrl: "http://venturechessacademy.com/",
+      mobileImage: "/images/venturechess-mobileview.png",
+      laptopImage: "/images/venturechessacademy.png"
+    },
+    {
+      slug: "one-more-rep-gym",
+      title: "High-Impact Fitness & Training Community Experience",
+      client: "One More Rep Gym",
+      logo: "/images/one_more_rep.svg",
+      category: "Branding & Web Presence",
+      tagColor: "var(--color-pink, #ff24bd)",
+      liveUrl: "http://onemorerepgym.in/",
+      mobileImage: "/images/onemorerep-mobile.png",
+      laptopImage: "/images/onemorerep.png"
+    },
+    {
       slug: "wilderness",
       title: "Optimising conversion without compromising luxury",
       client: "Wilderness Safaris",
       logo: "https://media.salo.uk/salo-website-prod/wilderness.svg",
       category: "High-Performing Website",
-      tagColor: "var(--color-purple)"
+      tagColor: "var(--color-purple)",
+      mobileImage: "https://media.salo.uk/salo-website-prod/Wilderness-1.jpg",
+      laptopImage: "https://media.salo.uk/salo-website-prod/wilderness-2.jpg"
     },
     {
       slug: "bbd-boom",
@@ -21,15 +98,9 @@ export async function getStaticPaths() {
       client: "BBD Boom",
       logo: "https://media.salo.uk/salo-website-prod/bbd-boom.svg",
       category: "High-Performing Website",
-      tagColor: "var(--color-purple)"
-    },
-    {
-      slug: "roswell",
-      title: "A bold new identity for a Shopify Platinum Partner",
-      client: "Roswell NYC",
-      logo: "https://media.salo.uk/salo-website-prod/roswell.svg",
-      category: "UI / UX",
-      tagColor: "var(--color-green)"
+      tagColor: "var(--color-purple)",
+      mobileImage: "https://media.salo.uk/salo-website-prod/BBD Comp 2-1.png",
+      laptopImage: "https://media.salo.uk/salo-website-prod/BBD Comp 1-1.png"
     },
     {
       slug: "solent-rib-charter",
@@ -37,7 +108,9 @@ export async function getStaticPaths() {
       client: "Solent Rib Charter",
       logo: "https://media.salo.uk/salo-website-prod/src.svg",
       category: "High-Performing Website",
-      tagColor: "var(--color-purple)"
+      tagColor: "var(--color-purple)",
+      mobileImage: "https://media.salo.uk/salo-website-prod/SRC Comp 2.jpg",
+      laptopImage: "https://media.salo.uk/salo-website-prod/SRC Comp 1.jpg"
     }
   ];
 
@@ -53,6 +126,17 @@ export async function getStaticPaths() {
 const { project, nextProject } = Astro.props;
 const { slug } = Astro.params;
 const projectBody = projectsData[slug as keyof typeof projectsData] || { prose_html: "<p>Case study content loading...</p>" };
+
+// Strip redundant first static hero and retain only the main section up to Results (removing all content below Results except CTA)
+let sanitizedProseHtml = projectBody.prose_html.replace(
+  /^\s*<section class="section MediaBlock"[^>]*>[\s\S]*?<\/section>\s*/i,
+  ''
+);
+
+const mainSectionMatch = sanitizedProseHtml.match(/^\s*<section class="section TextBlock[^>]*>[\s\S]*?<\/section>/i);
+if (mainSectionMatch) {
+  sanitizedProseHtml = mainSectionMatch[0];
+}
 ---
 
 <Layout title={`${project.title} | Projects | Akshara Digital`} description={project.title}>
@@ -69,35 +153,90 @@ const projectBody = projectsData[slug as keyof typeof projectsData] || { prose_h
             </h1>
             <div class="cluster" data-gap="md" data-align="center">
               <span class="Tag" style={`--tag-color: ${project.tagColor}`}>{project.category}</span>
+              {project.liveUrl && (
+                <a 
+                  href={project.liveUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="live-site-pill"
+                >
+                  Visit Live Site &nearr;
+                </a>
+              )}
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Main Scraped Case Study Sections -->
-    <div class="project-sections-wrapper">
-      <Fragment set:html={projectBody.prose_html} />
-    </div>
-
-    <!-- Next Project Navigation -->
-    <section class="section NextProjectSection" data-padding="lg">
+    <!-- Mobile & Laptop Device Showcase Row -->
+    <section class="section DeviceShowcaseSection" data-width="wide">
       <div class="container" data-size="wide">
-        <div class="stack" data-gap="lg">
-          <h2 class="heading" data-font-size="3" data-weight="regular">Next project</h2>
+        <div class="devices-stage">
           
-          <article class="related-card ShowcaseCard">
-            <a href={`/projects/${nextProject.slug}`} class="related-link" style="display: block; text-decoration: none; color: inherit;">
-              <div class="stack content" data-gap="sm">
-                <span class="Tag" style={`--tag-color: ${nextProject.tagColor}`}>{nextProject.category}</span>
-                <h3 class="heading" data-font-size="2">{nextProject.title}</h3>
-                <span class="read-more-link" style="color: var(--color-pink); font-size: var(--font-size-1);">View Case Study &rarr;</span>
+          <!-- Mobile Device Mockup (1st Image / Mobile View) -->
+          <div class="device-mobile-wrapper">
+            <div class="phone-frame">
+              <div class="phone-speaker"></div>
+              <div class="phone-screen">
+                <img 
+                  src={project.mobileImage || "/images/sanjmobile.png"} 
+                  alt={`${project.title} mobile showcase`}
+                  class="phone-screen-img"
+                  loading="eager"
+                  decoding="async"
+                />
               </div>
-            </a>
-          </article>
+              <div class="phone-glare"></div>
+            </div>
+          </div>
+
+          <!-- Laptop Device Mockup (2nd Image / Laptop View) -->
+          <div class="device-laptop-wrapper">
+            <div class="laptop-frame">
+              
+              <!-- Screen Display -->
+              <div class="laptop-screen-bezel">
+                <div class="laptop-webcam"></div>
+                <div class="laptop-screen-display">
+                  <img 
+                    src={project.laptopImage || "/images/sanjgreen.png"} 
+                    alt={`${project.title} laptop showcase`}
+                    class="laptop-screen-img"
+                    loading="eager"
+                    decoding="async"
+                  />
+                  <div class="laptop-glare"></div>
+                </div>
+              </div>
+
+              <!-- Base Chassis with Visible Angled Keyboard -->
+              <div class="laptop-base-chassis">
+                <div class="laptop-notch"></div>
+                <div class="laptop-surface">
+                  <div class="laptop-keyboard">
+                    <div class="key-row key-row-function"></div>
+                    <div class="key-row key-row-main"></div>
+                    <div class="key-row key-row-main"></div>
+                    <div class="key-row key-row-main"></div>
+                    <div class="key-row key-row-space"></div>
+                  </div>
+                  <div class="laptop-trackpad"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
+
+    <!-- Main Scraped Case Study Sections -->
+    <div class="project-sections-wrapper">
+      <Fragment set:html={sanitizedProseHtml} />
+    </div>
+
 
     <CTA />
   </main>
@@ -113,6 +252,282 @@ const projectBody = projectsData[slug as keyof typeof projectsData] || { prose_h
       @media (max-width: 767px) {
         padding-top: calc(var(--header-height) + var(--space-lg));
       }
+
+      .live-site-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 14px;
+        font-size: var(--font-size--1);
+        color: var(--color-foreground);
+        text-decoration: none;
+        border: 1px solid var(--color-border);
+        border-radius: 9999px;
+        background: rgba(255, 255, 255, 0.05);
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.15);
+          border-color: var(--color-foreground);
+          transform: translateY(-1px);
+        }
+      }
+    }
+
+    .DeviceShowcaseSection {
+      padding-block: var(--space-md) var(--space-xl);
+
+      .devices-stage {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: center;
+        gap: clamp(1.25rem, 3.5vw, 3rem);
+        padding: clamp(1.75rem, 3.5vw, 3.5rem) clamp(1.25rem, 3vw, 2.75rem);
+        background: radial-gradient(ellipse 80% 60% at 50% 15%, rgba(255, 255, 255, 0.05) 0%, rgba(12, 13, 16, 0.95) 100%), #0c0d10;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: clamp(1rem, 2vw, 1.75rem);
+        box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+
+        @media (max-width: 768px) {
+          flex-direction: column;
+          align-items: center;
+          gap: 2.5rem;
+          padding: 1.5rem 1rem;
+        }
+      }
+
+      /* Mobile Device Frame */
+      .device-mobile-wrapper {
+        flex-shrink: 0;
+        width: clamp(160px, 18vw, 230px);
+        position: relative;
+        z-index: 2;
+        margin-bottom: 6px;
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: translateY(-4px);
+        }
+
+        .phone-frame {
+          position: relative;
+          width: 100%;
+          background: #000000;
+          border-radius: clamp(24px, 3vw, 36px);
+          border: clamp(6px, 0.8vw, 8px) solid #1e2026;
+          box-shadow: 
+            0 25px 50px -10px rgba(0, 0, 0, 0.8),
+            0 0 0 1px rgba(255, 255, 255, 0.12),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+
+          .phone-speaker {
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: clamp(34px, 4.5vw, 48px);
+            height: 7px;
+            background: #0a0b0d;
+            border-radius: 20px;
+            z-index: 10;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 4px;
+
+            &::after {
+              content: '';
+              width: 3px;
+              height: 3px;
+              border-radius: 50%;
+              background: #1a1c23;
+              box-shadow: inset 0 0 1px #0d99ff;
+            }
+          }
+
+          .phone-screen {
+            width: 100%;
+            aspect-ratio: 9 / 17.1;
+            overflow: hidden;
+            background: #0a0b0d;
+            border-radius: clamp(16px, 2.2vw, 26px);
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+
+            .phone-screen-img {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+              object-position: top center;
+              display: block;
+            }
+          }
+
+          .phone-glare {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(125deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 40%, transparent 60%);
+            pointer-events: none;
+            border-radius: inherit;
+            z-index: 8;
+          }
+        }
+      }
+
+      /* Laptop Device Frame */
+      .device-laptop-wrapper {
+        flex: 1;
+        max-width: 760px;
+        min-width: 0;
+        position: relative;
+        z-index: 1;
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: translateY(-4px);
+        }
+
+        .laptop-frame {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+
+          .laptop-screen-bezel {
+            width: 92%;
+            background: #0e0f12;
+            border-radius: 12px 12px 0 0;
+            border: clamp(6px, 1vw, 12px) solid #18191e;
+            border-bottom: clamp(8px, 1.2vw, 14px) solid #18191e;
+            box-shadow: 
+              0 -10px 30px rgba(0, 0, 0, 0.5),
+              inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+
+            .laptop-webcam {
+              position: absolute;
+              top: -6px;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 5px;
+              height: 5px;
+              border-radius: 50%;
+              background: #090a0c;
+              box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 0 2px #0d99ff;
+              z-index: 5;
+            }
+
+            .laptop-screen-display {
+              position: relative;
+              width: 100%;
+              background: #0a0b0d;
+              overflow: hidden;
+              display: block;
+
+              .laptop-screen-img {
+                width: 100%;
+                height: auto;
+                max-height: 520px;
+                object-fit: contain;
+                display: block;
+              }
+
+              .laptop-glare {
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(115deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 45%, transparent 60%);
+                pointer-events: none;
+              }
+            }
+          }
+
+          .laptop-base-chassis {
+            width: 100%;
+            background: linear-gradient(180deg, #24262d 0%, #17181e 60%, #101115 100%);
+            border-radius: 0 0 clamp(10px, 1.4vw, 16px) clamp(10px, 1.4vw, 16px);
+            box-shadow: 
+              0 25px 50px -10px rgba(0, 0, 0, 0.85),
+              inset 0 1px 0 rgba(255, 255, 255, 0.2),
+              inset 0 -1px 0 rgba(0, 0, 0, 0.8);
+            position: relative;
+            padding: clamp(6px, 0.9vw, 10px) clamp(16px, 2.5vw, 30px) clamp(10px, 1.3vw, 16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: none;
+            perspective: 600px;
+
+            .laptop-notch {
+              width: clamp(38px, 6vw, 56px);
+              height: 4px;
+              background: #0f1013;
+              border-radius: 0 0 4px 4px;
+              margin: -6px auto 6px;
+              box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.8);
+            }
+
+            .laptop-surface {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: clamp(4px, 0.7vw, 8px);
+              transform: rotateX(18deg);
+              transform-origin: top center;
+
+              .laptop-keyboard {
+                width: 78%;
+                background: #0c0d10;
+                border-radius: 4px;
+                padding: 4px 6px;
+                display: flex;
+                flex-direction: column;
+                gap: 2.5px;
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.9), 0 1px 0 rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.04);
+
+                .key-row {
+                  width: 100%;
+                  height: clamp(3px, 0.45vw, 5px);
+                  background: linear-gradient(90deg, 
+                    #1c1d23 0%, #252830 20%, #1c1d23 40%, 
+                    #252830 60%, #1c1d23 80%, #252830 100%
+                  );
+                  border-radius: 2px;
+                  opacity: 0.85;
+
+                  &.key-row-function {
+                    height: clamp(2px, 0.3vw, 3px);
+                    opacity: 0.6;
+                  }
+
+                  &.key-row-space {
+                    width: 48%;
+                    margin: 0 auto;
+                  }
+                }
+              }
+
+              .laptop-trackpad {
+                width: clamp(65px, 12vw, 120px);
+                height: clamp(14px, 2.2vw, 26px);
+                background: rgba(255, 255, 255, 0.02);
+                border: 1px solid rgba(255, 255, 255, 0.09);
+                border-radius: 3px;
+                box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5);
+              }
+            }
+          }
+        }
+      }
     }
 
     .project-sections-wrapper {
@@ -123,18 +538,126 @@ const projectBody = projectsData[slug as keyof typeof projectsData] || { prose_h
           border-radius: var(--radius-md);
           overflow: hidden;
           background-color: var(--color-bg-alt);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+          }
         }
       }
 
       .TextBlock {
         padding-block: var(--space-md);
+        width: 100%;
 
-        h2, h3 {
+        .container {
+          max-width: var(--container-max-width, 110rem);
+          width: 100%;
+          padding-inline: var(--container-padding, var(--space-md-2xl));
+        }
+
+        .stack {
+          width: 100%;
+          max-width: 100%;
+        }
+
+        .prose {
+          max-width: 100% !important;
+          width: 100%;
+        }
+
+        h2 {
+          font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+          font-weight: 700;
+          color: var(--color-foreground);
+          margin-top: var(--space-xl);
+          margin-bottom: var(--space-sm);
+          letter-spacing: -0.015em;
+
+          &:first-child {
+            margin-top: 0;
+          }
+        }
+
+        h3 {
           margin-bottom: var(--space-xs);
         }
         
         p {
           color: var(--color-foreground-secondary);
+          line-height: 1.8;
+          font-size: clamp(1.05rem, 1.2vw, 1.15rem);
+          max-width: 100%;
+          margin-bottom: 1.25rem;
+
+          &:last-of-type {
+            margin-bottom: 0;
+          }
+        }
+
+        .features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: var(--space-md);
+          width: 100%;
+          margin-top: var(--space-md);
+          margin-bottom: var(--space-xl);
+        }
+
+        .feature-card {
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: var(--radius-md);
+          padding: 1.5rem 1.35rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+          transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+
+          &:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.22);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+          }
+
+          .feature-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--color-pink, #ff24bd);
+            margin-bottom: 0.25rem;
+            flex-shrink: 0;
+
+            svg {
+              width: 22px;
+              height: 22px;
+            }
+          }
+
+          h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--color-foreground);
+            margin: 0;
+            line-height: 1.35;
+            letter-spacing: -0.01em;
+          }
+
+          p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--color-foreground-secondary);
+            margin: 0;
+          }
         }
       }
 
@@ -144,24 +667,31 @@ const projectBody = projectsData[slug as keyof typeof projectsData] || { prose_h
         margin-block: var(--space-md);
 
         .inner {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: var(--space-md);
           padding: var(--space-md);
         }
       }
 
       .lexical-stats {
-        .inner {
+        &__item {
           display: flex;
           flex-direction: column;
-          gap: var(--space-md);
-        }
-
-        &__item {
+          gap: 6px;
           padding: 0;
-          gap: 4px;
         }
 
         &__value {
-          font-weight: 500;
+          font-size: clamp(1.75rem, 3vw, 2.5rem);
+          font-weight: 700;
+          color: var(--color-foreground);
+          line-height: 1.1;
+        }
+
+        &__label {
+          font-size: var(--font-size--1);
+          color: var(--color-foreground-secondary);
         }
       }
 

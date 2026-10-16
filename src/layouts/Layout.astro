@@ -185,6 +185,20 @@ const {
       },
     }));
 
+    Alpine.data("projectsHeroSlider", (totalCount = 7) => ({
+      active: 0,
+      total: totalCount,
+      next() {
+        this.active = (this.active + 1) % this.total;
+      },
+      prev() {
+        this.active = (this.active - 1 + this.total) % this.total;
+      },
+      goTo(idx: number) {
+        this.active = idx;
+      }
+    }));
+
     window.Alpine = Alpine;
     Alpine.start();
   }

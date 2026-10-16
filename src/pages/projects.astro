@@ -1,585 +1,324 @@
 ---
-import Button from '../components/ui/Button.astro';
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
 import CTA from "../components/CTA.astro";
+
+interface Project {
+  id: string;
+  client: string;
+  eyebrow: string;
+  title: string;
+  category: string;
+  tagColor?: string;
+  desc: string;
+  primaryBtnText: string;
+ 
+  image: string;
+  imageAlt: string;
+  logo?: string;
+  href: string;
+  isExternal?: boolean;
+  liveUrl?: string;
+}
+
+const projects: Project[] = [
+  {
+    id: "abbeygate-england",
+    client: "Abbeygate England / PUP Exports",
+    eyebrow: "Notebooks",
+    title: "Your Brand, Our Craftsmanship",
+    category: "Corporate Gifting & Bespoke Leather",
+    tagColor: "var(--color-purple, #a855f7)",
+    desc: "Elevate your corporate gifting and bespoke merchandise with our expertly customised leather goods, executive notebooks, diaries, and branded accessories.",
+    primaryBtnText: "View Case Study",
+   
+    image: "/images/abbeygate-hero.png",
+    imageAlt: "Abbeygate England bespoke diaries and notebooks flat-lay",
+    logo: "/images/Pup_Logo.jpg",
+    href: "/projects/abbeygate-england",
+    isExternal: false,
+    liveUrl: "https://pupexports.com/",
+  },
+  {
+    id: "electro-core-systems",
+    client: "Electro Core Systems",
+    eyebrow: "Computer Networks & Security Solutions",
+    title: "Empowering Communication. Connecting the Future.",
+    category: "High-Performing Website & IoT",
+    tagColor: "var(--color-blue, #0d99ff)",
+    desc: "At Electro Core Systems, we believe communication is more than just connection — it’s the pulse of every successful organization. Specialized IP telephony, structured networking, and smart enterprise security.",
+    primaryBtnText: "View Case Study",
+  
+    image: "/images/electrocore-hero.png",
+    imageAlt: "Electro Core Systems Computer Networks and Security Solutions Showcase",
+    logo: "/images/Electrocore_systems.jpg",
+    href: "/projects/electro-core-systems",
+    isExternal: false,
+    liveUrl: "https://electrocoresystems.in/about-us/",
+  },
+  {
+    id: "udbhav-developers",
+    client: "Udbhav Developers",
+    eyebrow: "Exclusive Club House Generations",
+    title: "Exclusive Club House Generations.",
+    category: "Architectural & Real Estate Excellence",
+    tagColor: "var(--color-yellow, #ffcd29)",
+    desc: "At Udbhav Developers, we believe living spaces are more than just homes — they are the canvas of your aspirations. Crafting iconic clubhouse communities, premium lifestyle spaces, and architectural excellence.",
+    primaryBtnText: "View Case Study",
+  
+    image: "/images/udbhav-hero.png",
+    imageAlt: "Udbhav Developers Exclusive Club House Generations Showcase",
+    logo: "/images/udbhav.jpeg",
+    href: "/projects/udbhav-developers",
+    isExternal: false,
+    liveUrl: "http://udbhavdevelopers.com/",
+  },
+  {
+    id: "the-laptop-bazar",
+    client: "The Laptop Bazar",
+    eyebrow: "Tech Hardware & Retail",
+    title: "Next-Gen Hardware & E-Commerce Platform",
+    category: "E-Commerce & Hardware Solutions",
+    tagColor: "var(--color-yellow, #ffcd29)",
+    desc: "A comprehensive digital marketplace and hardware service hub delivering premium laptops, refurbished enterprise tech, and certified accessories with seamless shopping journeys.",
+    primaryBtnText: "View Case Study",
+  
+    image: "/images/laptopbazzar.jpeg",
+    imageAlt: "The Laptop Bazar digital showcase",
+    href: "/projects/the-laptop-bazar",
+    isExternal: false,
+    liveUrl: "https://thelaptopbazar.com/",
+  },
+  {
+    id: "roswell",
+    client: "Roswell NYC",
+    eyebrow: "UI / UX & Shopify Plus",
+    title: "A Bold New Identity for a Shopify Partner",
+    category: "UI / UX Design & Ecommerce",
+    tagColor: "var(--color-green, #b9ff36)",
+    desc: "The new website needed to reflect Roswell’s bold, confident identity while letting their work take center stage. Built with smooth interactions and bespoke showcase components.",
+    primaryBtnText: "View Case Study",
+   
+    image: "/images/sanjgreen.png",
+    imageAlt: "Roswell website homepage design mockup",
+    logo: "https://media.salo.uk/salo-website-prod/roswell.svg",
+    href: "/projects/roswell",
+    isExternal: false,
+    liveUrl: "https://roswellnyc.com/",
+  },
+  {
+    id: "venture-chess-academy",
+    client: "Venture Chess Academy",
+    eyebrow: "EdTech & Interactive Web",
+    title: "Mastering the Board — Strategic Coaching Hub",
+    category: "Web Platform & Sports Portal",
+    tagColor: "var(--color-blue, #0d99ff)",
+    desc: "An engaging digital learning platform for chess enthusiasts and competitive players, offering interactive course management, student rating systems, and live tournament registrations.",
+    primaryBtnText: "View Case Study",
+    
+    image: "/images/venturechessacademy.png",
+    imageAlt: "Venture Chess Academy platform mockup",
+    href: "/projects/venture-chess-academy",
+    isExternal: false,
+    liveUrl: "http://venturechessacademy.com/",
+  },
+  {
+    id: "one-more-rep-gym",
+    client: "One More Rep Gym",
+    eyebrow: "Fitness & Community",
+    title: "High-Impact Fitness & Training Community",
+    category: "Branding & Web Presence",
+    tagColor: "var(--color-pink, #ff24bd)",
+    desc: "A high-energy, modern digital experience designed to inspire prospective athletes, showcase state-of-the-art gym facilities, publish live class schedules, and drive conversions effortlessly.",
+    primaryBtnText: "View Case Study",
+   
+    image: "/images/onemorerep.png",
+    imageAlt: "One More Rep Gym website showcase",
+    logo: "/images/one_more_rep.svg",
+    href: "/projects/one-more-rep-gym",
+    isExternal: false,
+    liveUrl: "http://onemorerepgym.in/",
+  },
+];
 ---
 
-<Layout title="Projects | Akshara Digital">
+<Layout title="Projects • Akshara Digital" description="Explore our portfolio of high-performing websites, digital platforms, and brand experiences crafted with precision.">
   <Header />
 
-  <main>
-    <div data-block-type="projectCarousel" data-first="true">
-      <section
-        class="section ProjectCarouselBlock"
-        data-index="0"
-        data-padding="xl"
-      >
-        <div class="stack" data-gap="xl">
-          <div class="container">
-            <div
-              class="cluster carousel-header"
-              data-align="center"
-              data-gap="lg"
-              data-justify="between"
+  <main 
+    class="page--projects" 
+    x-data={`{
+      active: 0,
+      total: ${projects.length},
+      next() {
+        this.active = (this.active + 1) % this.total;
+      },
+      prev() {
+        this.active = (this.active - 1 + this.total) % this.total;
+      },
+      goTo(idx) {
+        this.active = idx;
+      }
+    }`}
+    @keydown.window.arrow-right="next()"
+    @keydown.window.arrow-left="prev()"
+  >
+    
+    <!-- Hero Showcase Slider Section (Matching Abbeygate England Luxury Design) -->
+    <section class="section ProjectsSliderSection">
+      <div class="container">
+        
+        <!-- The Slider Card Frame -->
+        <div class="hero-showcase-card">
+          
+          {projects.map((proj, idx) => (
+            <div 
+              class="hero-slide"
+              x-show={`active === ${idx}`}
+              x-cloak={idx !== 0 ? "" : undefined}
+              style={idx !== 0 ? "display: none;" : ""}
+              x-transition:enter="slide-enter"
+              x-transition:enter-start="slide-enter-start"
+              x-transition:enter-end="slide-enter-end"
+              x-transition:leave="slide-leave"
+              x-transition:leave-start="slide-leave-start"
+              x-transition:leave-end="slide-leave-end"
             >
-              <h2
-                class="heading"
-                data-color="foreground"
-                data-font-size="4"
-                data-trim="normal"
-                data-weight="regular"
-              >
-                Projects
-              </h2>
-              <div
-                class="cluster reel-nav carousel-nav"
-                data-align="center"
-                data-gap="lg"
-                data-justify="start"
-                data-reel-id="carousel-0"
-                data-reel-nav="true"
-                x-data="{ progress: 0 }"
-              >
-                <button
-                  aria-label="Previous project"
-                  class="btn size-md ghost icon-only"
-                  data-reel-prev="true"
-                  type="button"
-                >
-                  <span class="btn-content">
-                    <span
-                      aria-hidden="true"
-                      class="icon"
-                      role="img"
-                      style="--icon-size:1em;"
+              <div class="hero-slide-grid">
+                
+                <!-- Left Column: Content -->
+                <div class="hero-slide-content">
+                  <div class="eyebrow-text">{proj.eyebrow}</div>
+                  
+                  <h1 class="hero-slide-title">
+                    {proj.title}
+                  </h1>
+                  
+                  <p class="hero-slide-desc">
+                    {proj.desc}
+                  </p>
+                  
+                  <div class="hero-slide-buttons">
+                    <a
+                      href={proj.href}
+                      class="btn-solid"
                     >
-                      <svg
-                        aria-hidden="true"
-                        class="lucide lucide-arrow-left"
-                        fill="none"
-                        height="24"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                        width="24"
-                        xmlns="http://www.w3.org/2000/svg"
+                      {proj.primaryBtnText}
+                    </a>
+                    
+                    {proj.liveUrl && (
+                      <a
+                        href={proj.liveUrl}
+                        class="btn-outline"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
-                        <path d="m12 19-7-7 7-7"></path>
-                        <path d="M19 12H5"></path>
-                      </svg>
-                    </span>
-                  </span>
-                </button>
-                <div class="progress-bar">
-                  <div
-                    class="progress-fill"
-                    x-bind:style="`width: ${progress}%`"
-                  >
+                        Visit Live Site &nearr;
+                      </a>
+                    )}
                   </div>
                 </div>
-                <button
-                  aria-label="Next project"
-                  class="btn size-md ghost icon-only"
-                  data-reel-next="true"
-                  type="button"
-                >
-                  <span class="btn-content">
-                    <span
-                      aria-hidden="true"
-                      class="icon"
-                      role="img"
-                      style="--icon-size:1em;"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        class="lucide lucide-arrow-right"
-                        fill="none"
-                        height="24"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        viewBox="0 0 24 24"
-                        width="24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M5 12h14"></path>
-                        <path d="m12 5 7 7-7 7"></path>
-                      </svg>
-                    </span>
-                  </span>
-                </button>
+
+                <!-- Right Column: Full Wide Image -->
+                <div class="hero-slide-image-wrapper">
+                  <a
+                    href={proj.href}
+                    class="image-link"
+                    aria-label={`View ${proj.title}`}
+                  >
+                    <img
+                      src={proj.image}
+                      alt={proj.imageAlt}
+                      class="hero-slide-img"
+                      loading="eager"
+                      decoding="async"
+                    />
+                  </a>
+                </div>
+
               </div>
+            </div>
+          ))}
+
+          <!-- Bottom Right Slider Navigation Controls -->
+          <div class="slider-controls">
+            <!-- Dots Indicator -->
+            <div class="slider-dots">
+              {projects.map((_, dotIdx) => (
+                <button
+                  type="button"
+                  class="slider-dot"
+                  :class={`{ 'active': active === ${dotIdx} }`}
+                  @click={`goTo(${dotIdx})`}
+                  aria-label={`Go to slide ${dotIdx + 1}`}
+                ></button>
+              ))}
+            </div>
+
+            <!-- Arrow Buttons -->
+            <div class="slider-arrows">
+              <button
+                type="button"
+                class="arrow-btn"
+                @click="prev()"
+                aria-label="Previous project"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m15 18-6-6 6-6"/>
+                </svg>
+              </button>
+
+              <button
+                type="button"
+                class="arrow-btn"
+                @click="next()"
+                aria-label="Next project"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m9 18 6-6-6-6"/>
+                </svg>
+              </button>
             </div>
           </div>
 
-          <ul class="reel carousel" data-gap="xl" id="carousel-0">
-            <!-- Slide 1: Wilderness -->
-            <li
-              class="cluster item"
-              data-align="start"
-              data-gap="3xl"
-              data-justify="start"
-              data-nowrap=""
-            >
-              <a
-                class="gradient-border content"
-                href="https://electrocoresystems.in/about-us/"
-              >
-                <div class="stack inner" data-align="start">
-                  <div
-                    class="frame mobile-image"
-                    style="--frame-ratio:4/3;--frame-pos:center;"
-                  >
-                    <img
-                      alt="Simpson Travel Website design."
-                      decoding="async"
-                      fetchpriority="auto"
-                      height="1629"
-                      loading="lazy"
-                      src="/images/Electrocore_systems.jpg"
-                      width="2160"
-                    />
-                  </div>
-                  <div class="anchor-card anchor-card--simple logoCard">
-                    <div class="anchor-content">
-                      <div data-color-scheme="dark">
-                        <img
-                          alt="Wilderness logo."
-                          class="logo"
-                          decoding="async"
-                          fetchpriority="auto"
-                          height="120"
-                          loading="lazy"
-                          src="https://media.salo.uk/salo-website-prod/wilderness.svg"
-                          width="160"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="cluster categories"
-                    data-align="center"
-                    data-gap-x="md"
-                    data-justify="start"
-                  >
-                    <span class="Tag" style="--tag-color:var(--color-purple)">
-                      High-Performing Website
-                    </span>
-                  </div>
-                  <h3
-                    class="heading"
-                    data-color="foreground"
-                    data-font-size="1"
-                    data-trim="normal"
-                    data-weight="regular"
-                  >
-                    Empowering Communication. Connecting the Future
-                  </h3>
-                  <div class="prose prose--md">
-                    <p>
-                      At Electro Core Systems, we believe communication is more
-                      than just connection — it’s the pulse of every successful
-                      organization.
-                    </p>
-                  </div>
-                  <Button variant="secondary">
-View Project
-                      <span
-                        aria-hidden="true"
-                        class="icon"
-                        role="img"
-                        style="--icon-size:1em;"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          class="lucide lucide-arrow-right"
-                          fill="none"
-                          height="24"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          viewBox="0 0 24 24"
-                          width="24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M5 12h14"></path>
-                          <path d="m12 5 7 7-7 7"></path>
-                        </svg>
-</Button>
-                  </span>
-                </div>
-              </a>
-              <a
-                class="anchor-card anchor-card--rounded image"
-                href="/projects/wilderness"
-              >
-                <svg
-                  class="anchor-border"
-                  height="100%"
-                  preserveAspectRatio="none"
-                  width="100%"
-                >
-                  <rect
-                    height="calc(100% - 7px)"
-                    rx="16"
-                    ry="16"
-                    width="calc(100% - 7px)"
-                    x="3.5"
-                    y="3.5"></rect>
-                  <circle cx="19.5" cy="3.5" r="3"></circle>
-                  <circle cx="calc(100% - 19.5px)" cy="3.5" r="3"></circle>
-                  <circle cx="19.5" cy="calc(100% - 3.5px)" r="3"></circle>
-                  <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3"
-                  ></circle>
-                  <circle cx="3.5" cy="19.5" r="3"></circle>
-                  <circle cx="3.5" cy="calc(100% - 19.5px)" r="3"></circle>
-                  <circle cx="calc(100% - 3.5px)" cy="19.5" r="3"></circle>
-                  <circle cx="calc(100% - 3.5px)" cy="calc(100% - 19.5px)" r="3"
-                  ></circle>
-                </svg>
-                <div class="anchor-content">
-                  <div
-                    class="frame"
-                    style="--frame-ratio:250/543;--frame-pos:center;"
-                  >
-                    <img
-                      alt="Simpson Travel Website design."
-                      decoding="async"
-                      fetchpriority="auto"
-                      height="1629"
-                      loading="lazy"
-                      src="/images/MediaHouse10.jpg"
-                      width="750"
-                    />
-                  </div>
-                </div>
-              </a>
-            </li>
-
-            <!-- Slide 2: BBD Boom -->
-            <li
-              class="cluster item"
-              data-align="start"
-              data-gap="3xl"
-              data-justify="start"
-              data-nowrap=""
-            >
-            
-              <a
-                class="anchor-card anchor-card--rounded image"
-                href="thelaptopbazar.com"
-              >
-                <svg
-                  class="anchor-border"
-                  height="100%"
-                  preserveAspectRatio="none"
-                  width="100%"
-                >
-                  <rect
-                    height="calc(100% - 7px)"
-                    rx="16"
-                    ry="16"
-                    width="calc(100% - 7px)"
-                    x="3.5"
-                    y="3.5"></rect>
-                  <circle cx="19.5" cy="3.5" r="3"></circle>
-                  <circle cx="calc(100% - 19.5px)" cy="3.5" r="3"></circle>
-                  <circle cx="19.5" cy="calc(100% - 3.5px)" r="3"></circle>
-                  <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3"
-                  ></circle>
-                  <circle cx="3.5" cy="19.5" r="3"></circle>
-                  <circle cx="3.5" cy="calc(100% - 19.5px)" r="3"></circle>
-                  <circle cx="calc(100% - 3.5px)" cy="19.5" r="3"></circle>
-                  <circle cx="calc(100% - 3.5px)" cy="calc(100% - 19.5px)" r="3"
-                  ></circle>
-                </svg>
-                <div class="anchor-content">
-                  <div
-                    class="frame"
-                    style="--frame-ratio:250/543;--frame-pos:center;"
-                  >
-                    <img
-                      alt="Homepage mobile for BBD Boom."
-                      decoding="async"
-                      fetchpriority="auto"
-                      height="1629"
-                      loading="lazy"
-                      src="/images/Marketing14.jpg"
-                      width="750"
-                    />
-                  </div>
-                </div>
-              </a>
-            </li>
-
-            <!-- Slide 3: Roswell -->
-            <li
-              class="cluster item"
-              data-align="start"
-              data-gap="3xl"
-              data-justify="start"
-              data-nowrap=""
-            >
-              
-             
-                <svg
-                  class="anchor-border"
-                  height="100%"
-                  preserveAspectRatio="none"
-                  width="100%"
-                >
-                  <rect
-                    height="calc(100% - 7px)"
-                    rx="16"
-                    ry="16"
-                    width="calc(100% - 7px)"
-                    x="3.5"
-                    y="3.5"></rect>
-                  <circle cx="19.5" cy="3.5" r="3"></circle>
-                  <circle cx="calc(100% - 19.5px)" cy="3.5" r="3"></circle>
-                  <circle cx="19.5" cy="calc(100% - 3.5px)" r="3"></circle>
-                  <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3"
-                  ></circle>
-                  <circle cx="3.5" cy="19.5" r="3"></circle>
-                  <circle cx="3.5" cy="calc(100% - 19.5px)" r="3"></circle>
-                  <circle cx="calc(100% - 3.5px)" cy="19.5" r="3"></circle>
-                  <circle cx="calc(100% - 3.5px)" cy="calc(100% - 19.5px)" r="3"
-                  ></circle>
-                </svg>
-                <div class="anchor-content">
-                  <div
-                    class="frame"
-                    style="--frame-ratio:250/543;--frame-pos:center;"
-                  >
-                    <img
-                      alt="Mockup of Roswell website homepage design."
-                      decoding="async"
-                      fetchpriority="auto"
-                      height="1086"
-                      loading="lazy"
-                      src="https://media.salo.uk/salo-website-prod/Roswell Mobile 1.jpg"
-                      width="500"
-                    />
-                  </div>
-                </div>
-              </a>
-            </li>
-
-            <!-- Slide 4: Solent Rib Charter -->
-            <li
-              class="cluster item"
-              data-align="start"
-              data-gap="3xl"
-              data-justify="start"
-              data-nowrap=""
-            >
-            
-              <a
-                class="anchor-card anchor-card--rounded image"
-                href="http://venturechessacademy.com/"
-              >
-                <svg
-                  class="anchor-border"
-                  height="100%"
-                  preserveAspectRatio="none"
-                  width="100%"
-                >
-                  <rect
-                    height="calc(100% - 7px)"
-                    rx="16"
-                    ry="16"
-                    width="calc(100% - 7px)"
-                    x="3.5"
-                    y="3.5"></rect>
-                  <circle cx="19.5" cy="3.5" r="3"></circle>
-                  <circle cx="calc(100% - 19.5px)" cy="3.5" r="3"></circle>
-                  <circle cx="19.5" cy="calc(100% - 3.5px)" r="3"></circle>
-                  <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3"
-                  ></circle>
-                  <circle cx="3.5" cy="19.5" r="3"></circle>
-                  <circle cx="3.5" cy="calc(100% - 19.5px)" r="3"></circle>
-                  <circle cx="calc(100% - 3.5px)" cy="19.5" r="3"></circle>
-                  <circle cx="calc(100% - 3.5px)" cy="calc(100% - 19.5px)" r="3"
-                  ></circle>
-                </svg>
-                <div class="anchor-content">
-                  <div
-                    class="frame"
-                    style="--frame-ratio:250/543;--frame-pos:center;"
-                  >
-                    <img
-                      alt="Mockup of SRC website design."
-                      decoding="async"
-                      fetchpriority="auto"
-                      height="1086"
-                      loading="lazy"
-                      src="/images/ITService13.jpg"
-                      width="500"
-                    />
-                  </div>
-                </div>
-              </a>
-            </li>
-
-            <!-- Slide 5: PUP Exports -->
-            <li
-              class="cluster item"
-              data-align="start"
-              data-gap="3xl"
-              data-justify="start"
-              data-nowrap=""
-            >
-              <a
-                class="gradient-border content"
-                href="https://pupexports.com/"
-                target="_blank"
-                rel="noopener"
-              >
-                <div class="stack inner" data-align="start">
-                  <div
-                    class="frame mobile-image"
-                    style="--frame-ratio:4/3;--frame-pos:center;"
-                  >
-                    <img
-                      alt="Mockup of SRC website design."
-                      decoding="async"
-                      fetchpriority="auto"
-                      height="1086"
-                      loading="lazy"
-                      src="https://media.salo.uk/salo-website-prod/SRC Desktop 1.jpg"
-                      width="1440"
-                    />
-                  </div>
-                  <div class="anchor-card anchor-card--simple logoCard">
-                    <div class="anchor-content">
-                      <div data-color-scheme="dark">
-                        <img
-                          alt="PUP Exports logo."
-                          class="logo"
-                          decoding="async"
-                          fetchpriority="auto"
-                          height="120"
-                          loading="lazy"
-                          src="/images/Pup_Logo.jpg"
-                          width="160"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="cluster categories"
-                    data-align="center"
-                    data-gap-x="md"
-                    data-justify="start"
-                  >
-                    <span class="Tag" style="--tag-color:var(--color-purple)">
-                      PUP Exports Pvt Ltd
-                    </span>
-                  </div>
-                  <h3
-                    class="heading"
-                    data-color="foreground"
-                    data-font-size="1"
-                    data-trim="normal"
-                    data-weight="regular"
-                  >
-                    Let's Create Something Worth Keeping
-                  </h3>
-                  <div class="prose prose--md">
-                    <p>
-                      Whether you're looking for beautifully crafted customised
-                      diaries for your next corporate campaign, a curated set of
-                      leather gifts for a client event, or a fully bespoke range
-                      of vegan leather gifts that carry your brand with quiet
-                      confidence, we're ready to help.
-                    </p>
-                  </div>
-                  <Button variant="secondary">
-View Project
-                      <span
-                        aria-hidden="true"
-                        class="icon"
-                        role="img"
-                        style="--icon-size:1em;"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          class="lucide lucide-arrow-right"
-                          fill="none"
-                          height="24"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          viewBox="0 0 24 24"
-                          width="24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M5 12h14"></path>
-                          <path d="m12 5 7 7-7 7"></path>
-                        </svg>
-</Button>
-                  </span>
-                </div>
-              </a>
-              <a
-                class="anchor-card anchor-card--rounded image"
-                href="https://pupexports.com/"
-                target="_blank"
-                rel="noopener"
-              >
-                <svg
-                  class="anchor-border"
-                  height="100%"
-                  preserveAspectRatio="none"
-                  width="100%"
-                >
-                  <rect
-                    height="calc(100% - 7px)"
-                    rx="16"
-                    ry="16"
-                    width="calc(100% - 7px)"
-                    x="3.5"
-                    y="3.5"></rect>
-                  <circle cx="19.5" cy="3.5" r="3"></circle>
-                  <circle cx="calc(100% - 19.5px)" cy="3.5" r="3"></circle>
-                  <circle cx="19.5" cy="calc(100% - 3.5px)" r="3"></circle>
-                  <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3"
-                  ></circle>
-                  <circle cx="3.5" cy="19.5" r="3"></circle>
-                  <circle cx="3.5" cy="calc(100% - 19.5px)" r="3"></circle>
-                  <circle cx="calc(100% - 3.5px)" cy="19.5" r="3"></circle>
-                  <circle cx="calc(100% - 3.5px)" cy="calc(100% - 19.5px)" r="3"
-                  ></circle>
-                </svg>
-                <div class="anchor-content">
-                  <div
-                    class="frame"
-                    style="--frame-ratio:250/543;--frame-pos:center;"
-                  >
-                    <img
-                      alt="Mockup of SRC website design."
-                      decoding="async"
-                      fetchpriority="auto"
-                      height="1086"
-                      loading="lazy"
-                      src="/images/ITService11.jpg"
-                      width="500"
-                    />
-                  </div>
-                </div>
-              </a>
-            </li>
-          </ul>
         </div>
-      </section>
-    </div>
+
+      </div>
+    </section>
+
+    <!-- All Projects Directory Grid Section -->
+    <section class="section ProjectsGridSection">
+      <div class="container">
+        <div class="section-header">
+        
+          <h2 class="section-title">All Projects</h2>
+          <p class="section-desc">Click any project to preview it in the showcase slider above, or view its dedicated case study.</p>
+        </div>
+
+        <div class="projects-thumbnail-grid">
+          {projects.map((proj, idx) => (
+            <div 
+              class="project-thumb-card" 
+              :class={`{ 'active-thumb': active === ${idx} }`}
+              @click={`goTo(${idx}); window.scrollTo({ top: 0, behavior: 'smooth' })`}
+            >
+              <div class="thumb-image-box">
+                <img src={proj.image} alt={proj.imageAlt} loading="lazy" decoding="async" />
+              </div>
+              <div class="thumb-meta">
+                <div class="thumb-eyebrow">{proj.eyebrow}</div>
+                <h3 class="thumb-title">{proj.client}</h3>
+                <div class="thumb-actions" style="display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 0.5rem;">
+                  <span class="thumb-cta">Showcase &uarr;</span>
+                  <a href={proj.href} class="thumb-case-study" style="font-size: 0.85rem; font-weight: 600; color: var(--color-pink); text-decoration: none;" @click.stop>Case Study &rarr;</a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
 
     <CTA />
   </main>
@@ -588,69 +327,40 @@ View Project
 </Layout>
 
 <script>
-  function p() {
-    document.querySelectorAll<HTMLElement>("[data-reel-nav]").forEach((e) => {
-      if (e.dataset.reelNavBound) return;
-      e.dataset.reelNavBound = "1";
-      const c = e.dataset.reelId;
-      if (!c) return;
-      const t = document.getElementById(c);
-      const n = e.querySelector<HTMLButtonElement>("[data-reel-prev]");
-      const o = e.querySelector<HTMLButtonElement>("[data-reel-next]");
-      if (!t || !n || !o) return;
+  import Alpine from 'alpinejs';
 
-      const d = () => {
-        const s = t.firstElementChild as HTMLElement;
-        return s
-          ? s.offsetWidth + (parseFloat(getComputedStyle(t).gap) || 0)
-          : t.clientWidth;
-      };
+  function projectsHeroSlider(totalCount = 7) {
+    return {
+      active: 0,
+      total: totalCount,
+      timer: null,
 
-      const i = () => {
-        n.disabled = t.scrollLeft <= 0;
-        o.disabled = t.scrollLeft >= t.scrollWidth - t.clientWidth - 1;
-        const s = t.scrollWidth - t.clientWidth;
-        const a = s > 0 ? (t.scrollLeft / s) * 100 : 0;
-        if ((e as any)._x_dataStack) {
-          (e as any)._x_dataStack[0].progress = Math.min(100, Math.max(0, a));
-        }
-      };
+      init() {
+        // Keyboard arrow support
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowRight') this.next();
+          if (e.key === 'ArrowLeft') this.prev();
+        });
+      },
 
-      let r: number | undefined;
-      const m = (s: number) => {
-        const a = t.scrollLeft;
-        const S = t.scrollWidth - t.clientWidth;
-        const f = Math.min(Math.max(s, 0), S) - a;
-        if (f === 0) return;
-        if (r !== undefined) cancelAnimationFrame(r);
-        t.classList.add("is-animating");
-        const g = 250;
-        let l: number | undefined;
-        const u = (h: number) => {
-          if (l === undefined) l = h;
-          const L = Math.min((h - l) / g, 1);
-          const v = 1 - Math.pow(1 - L, 1.5);
-          t.scrollLeft = a + f * v;
-          i();
-          if (L < 1) {
-            r = requestAnimationFrame(u);
-          } else {
-            t.classList.remove("is-animating");
-            r = undefined;
-          }
-        };
-        r = requestAnimationFrame(u);
-      };
+      next() {
+        this.active = (this.active + 1) % this.total;
+      },
 
-      n.addEventListener("click", () => m(t.scrollLeft - d()));
-      o.addEventListener("click", () => m(t.scrollLeft + d()));
-      t.addEventListener("scroll", i);
-      setTimeout(i, 100);
-    });
+      prev() {
+        this.active = (this.active - 1 + this.total) % this.total;
+      },
+
+      goTo(idx: number) {
+        this.active = idx;
+      }
+    };
   }
 
-  p();
-  document.addEventListener("astro:page-load", p);
+  // Register with window
+  if (typeof window !== 'undefined') {
+    (window as any).projectsHeroSlider = projectsHeroSlider;
+  }
 
   function unlockScroll() {
     document.documentElement.style.overflow = "";
@@ -662,315 +372,419 @@ View Project
   ) {
     unlockScroll();
   } else {
-    document.addEventListener('astro:page-load', unlockScroll);
+    document.addEventListener("astro:page-load", unlockScroll);
   }
 </script>
 
 <style lang="scss">
-  main {
+  [x-cloak] {
+    display: none !important;
+  }
+
+  main.page--projects {
     position: relative;
     z-index: 1;
+    background-color: var(--color-bg, #0b0c0e);
+    color: var(--color-foreground, #f5f5f3);
+    min-height: 100vh;
   }
 
-  // Dark card theme, scoped to this block only. Overriding the design
-  // tokens locally means every rule below that already reads
-  // var(--color-bg) / var(--color-border) / var(--color-foreground)
-  // picks up the dark palette automatically, without needing a global
-  // theme change.
-  .ProjectCarouselBlock {
-    --color-bg: #0d0d0d;
-    --color-foreground: #f5f5f3;
-    --color-border: rgba(255, 255, 255, 0.14);
-    --color-muted: #a8a7a1;
-    --card-bg: #17181a;
-    --card-bg-hover: #1e2022;
-    --accent-start: #e2792e;
-    --accent-end: #f2c14e;
-
-    padding-top: calc(var(--space-3xl) + 5rem);
+  // ── Hero Showcase Slider Section (Exact Abbeygate England Style) ──
+  .ProjectsSliderSection {
+    padding-top: calc(var(--space-3xl) + 4.5rem);
     padding-bottom: var(--space-2xl);
-    background-color: var(--color-bg);
-    color: var(--color-foreground);
+  }
+
+  .hero-showcase-card {
+    background: #f7f5f0; // Luxury warm cream tone matching screenshot
+    color: #1a1a1a;
+    border-radius: 1.5rem;
     overflow: hidden;
-  }
-
-  .carousel-header {
-    margin-bottom: var(--space-2xl);
-  }
-
-  .carousel-header .heading {
-    font-family: var(--font-family-heading);
-    font-weight: 300;
-    letter-spacing: -0.01em;
-  }
-
-  .progress-bar {
     position: relative;
-    width: 200px;
-    height: 3px;
-    background: var(--color-border);
-    border-radius: 999px;
-    overflow: hidden;
-
-    @media (max-width: 767px) {
-      width: 100%;
-    }
-  }
-
-  .progress-fill {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
-    box-shadow: 0 0 8px rgba(226, 121, 46, 0.5);
-    border-radius: 999px;
-    transition: width 0.1s ease-out;
-  }
-
-  .carousel-nav {
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    min-height: 580px;
     display: flex;
-    align-items: center;
-    gap: var(--space-md);
+    align-items: stretch;
 
-    @media (max-width: 767px) {
-      width: 100%;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-    }
-
-    .btn.icon-only {
-      border-radius: 999px;
-      border: 1px solid var(--color-border);
-      background: transparent;
-      color: var(--color-foreground);
-      transition:
-        background 0.2s ease,
-        border-color 0.2s ease;
-
-      &:hover:not(:disabled) {
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.3);
-      }
-
-      &:disabled {
-        opacity: 0.35;
-        cursor: default;
-      }
+    @media (max-width: 991px) {
+      min-height: auto;
     }
   }
 
-  .reel {
-    --_offset: calc(
-      (
-          (
-              100% -
-                (
-                  min(var(--container-max-width, 110rem), 100%) +
-                    (var(--container-padding, var(--space-md-lg)) * 2)
-                )
-            ) /
-            2
-        ) +
-        (var(--container-padding, var(--space-md-lg)) * 2)
-    );
-    display: flex;
-    flex-wrap: nowrap;
-    gap: var(--space-3xl);
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding-inline: var(--_offset);
-    scroll-padding-inline-start: var(--_offset);
-
-    @media (max-width: 767px) {
-      gap: var(--space-lg);
-    }
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
-    &.is-animating {
-      scroll-snap-type: none !important;
-    }
-  }
-
-  .item {
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-
-    @media (max-width: 767px) {
-      max-width: 90%;
-      gap: var(--space-lg);
-    }
-
-    .logo {
-      max-width: clamp(6.25rem, 4.3321vw + 5.2347rem, 10rem) !important;
-    }
-
-    .logoCard {
-      margin-bottom: var(--space-sm);
-    }
-
-    .content {
-      width: 35ch;
-      flex-shrink: 0;
-      background: var(--card-bg);
-      border-radius: 1.25em;
-      transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-
-      &:hover {
-        background: var(--card-bg-hover);
-        transform: translateY(-2px);
-      }
-
-      @media (max-width: 767px) {
-        flex-basis: 60%;
-        flex-grow: 1;
-      }
-
-      @media (max-width: 519px) {
-        height: 100%;
-      }
-    }
-
-    .image {
-      flex-shrink: 0;
-      width: 30ch;
-
-      @media (max-width: 767px) {
-        flex-basis: 40%;
-        flex-shrink: 1;
-      }
-
-      @media (max-width: 519px) {
-        display: none;
-      }
-    }
-
-    .mobile-image {
-      display: none;
-      margin-inline: calc(var(--space-xl) * -1);
-      width: calc(100% + var(--space-xl) * 2);
-      margin-block-start: calc(var(--space-xl) * -1);
-      border-bottom: 1px solid var(--color-border);
-      border-radius: 1.25em 1.25em 0 0;
-      overflow: hidden;
-
-      @media (max-width: 519px) {
-        display: block;
-        margin-inline: calc(var(--space-md) * -1);
-        width: calc(100% + var(--space-md) * 2);
-        margin-block-start: calc(var(--space-md) * -1);
-      }
-    }
-
-    .prose {
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      color: var(--color-muted);
-    }
-
-    .Tag {
-      display: inline-block;
-      text-transform: uppercase;
-      font-size: 0.68rem;
-      letter-spacing: 0.08em;
-      font-weight: 600;
-      color: var(--tag-color, var(--color-foreground));
-      background: color-mix(
-        in srgb,
-        var(--tag-color, var(--color-foreground)) 14%,
-        transparent
-      );
-      border-radius: 999px;
-      padding: 5px 12px;
-    }
-
-    .btn.secondary {
-      background: #232527;
-      color: var(--color-foreground);
-      border-radius: 8px;
-      transition: background 0.2s ease;
-
-      &:hover {
-        background: #2d2f31;
-      }
-    }
-  }
-
-  .inner {
-    padding: var(--space-md);
-
-    @media (max-width: 519px) {
-      height: 100%;
-    }
-  }
-
-  // ── Anchor Card local styles ──
-  .anchor-card--rounded {
-    padding: 0.75em;
-    position: relative;
-    display: block;
-    border-radius: 1.5em;
-    overflow: hidden;
-    transition: transform 0.2s ease;
-
-    &:hover {
-      transform: translateY(-2px);
-    }
-  }
-
-  .anchor-content {
-    border-radius: 0.5em;
-    overflow: hidden;
-    position: relative;
-    height: 100%;
-  }
-
-  .anchor-border {
-    position: absolute;
-    inset: 0;
+  .hero-slide {
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    overflow: visible;
+    display: flex;
+    align-items: stretch;
+  }
 
-    rect {
-      fill: none;
-      stroke: var(--color-border);
-      stroke-width: 1px;
-      vector-effect: non-scaling-stroke;
-    }
+  .hero-slide-grid {
+    display: grid;
+    grid-template-columns: 44% 56%;
+    width: 100%;
+    align-items: center;
 
-    circle {
-      fill: var(--color-bg);
-      stroke: var(--color-border);
-      stroke-width: 1px;
+    @media (max-width: 991px) {
+      grid-template-columns: 1fr;
     }
   }
 
-  .frame {
-    aspect-ratio: var(--frame-ratio, 4/3);
-    overflow: hidden;
-    position: relative;
+  // 1. Left Column: Content
+  .hero-slide-content {
+    padding: clamp(3rem, 4vw, 5rem) clamp(2rem, 3.5vw, 4.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
 
-    > * {
-      position: absolute;
-      inset: 0;
+    @media (max-width: 991px) {
+      padding: 2.5rem 2rem 1.5rem;
+      order: 2;
+    }
+  }
+
+  .eyebrow-text {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #55524c;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.01em;
+  }
+
+  .hero-slide-title {
+    font-family: var(--font-family-heading, "Fraunces", Georgia, serif);
+    font-size: clamp(2rem, 3.2vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.16;
+    color: #1c1a17;
+    margin: 0 0 1.25rem 0;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-slide-desc {
+    font-size: clamp(1rem, 1.1vw, 1.15rem);
+    color: #48443e;
+    line-height: 1.62;
+    max-width: 44ch;
+    margin: 0 0 2.25rem 0;
+  }
+
+  .hero-slide-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    .btn-solid {
+      background: #3d233c; // Elegant deep plum matching Abbeygate screenshot
+      color: #ffffff;
+      padding: 13px 28px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.2s ease;
+
+      &:hover {
+        background: #2b172a;
+        transform: translateY(-1px);
+      }
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #3d233c;
+      border: 1.5px solid #3d233c;
+      padding: 12px 28px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: rgba(61, 35, 60, 0.08);
+        transform: translateY(-1px);
+      }
+    }
+  }
+
+  // 2. Right Column: Full Wide Image
+  .hero-slide-image-wrapper {
+    width: 100%;
+    height: 100%;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 2.5rem 2rem 1rem;
+    overflow: hidden;
+
+    @media (max-width: 991px) {
+      min-height: 320px;
+      padding: 2rem 2rem 0;
+      order: 1;
+    }
+
+    .image-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      text-decoration: none;
+    }
+
+    .hero-slide-img {
+      width: 100%;
+      max-width: 100%;
+      max-height: 480px;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      border-radius: 12px;
+      box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      transition: transform 0.4s ease;
+
+      @media (max-width: 991px) {
+        max-height: 320px;
+        object-position: center;
+      }
+
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+  }
+
+  // 3. Slider Controls (Bottom Right like screenshot)
+  .slider-controls {
+    position: absolute;
+    right: clamp(1.5rem, 3vw, 3rem);
+    bottom: clamp(1.25rem, 2.5vw, 2.25rem);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    z-index: 10;
+
+    @media (max-width: 991px) {
+      position: static;
+      justify-content: space-between;
+      padding: 0 2rem 2rem;
+      width: 100%;
+      order: 3;
+    }
+  }
+
+  .slider-dots {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .slider-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(61, 35, 60, 0.25);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: all 0.25s ease;
+
+      &.active {
+        width: 24px;
+        border-radius: 999px;
+        background: #3d233c;
+      }
+
+      &:hover:not(.active) {
+        background: rgba(61, 35, 60, 0.5);
+      }
+    }
+  }
+
+  .slider-arrows {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .arrow-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(61, 35, 60, 0.25);
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #3d233c;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: #3d233c;
+        color: #ffffff;
+        border-color: #3d233c;
+      }
+    }
+  }
+
+  // Transitions
+  .slide-enter {
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  }
+  .slide-enter-start {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  .slide-enter-end {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .slide-leave {
+    transition: opacity 0.25s ease-in, transform 0.25s ease-in;
+    position: absolute;
+    inset: 0;
+  }
+  .slide-leave-start {
+    opacity: 1;
+  }
+  .slide-leave-end {
+    opacity: 0;
+  }
+
+  // ── All Projects Directory Grid ──
+  .ProjectsGridSection {
+    padding-top: var(--space-xl);
+    // padding-bottom: var(--space-4xl);
+  }
+
+  .section-header {
+    margin-bottom: var(--space-2xl);
+
+    .section-eyebrow {
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      color: var(--accent-start, #e2792e);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 2.5vw, 2.4rem);
+      font-weight: 300;
+      margin: 0 0 0.5rem 0;
+      color: var(--color-foreground, #f5f5f3);
+    }
+
+    .section-desc {
+      color: var(--color-muted, #a8a7a1);
+      font-size: 1rem;
+      max-width: 60ch;
+      margin: 0;
+    }
+  }
+
+  .projects-thumbnail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+
+    @media (max-width: 991px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .project-thumb-card {
+    background: #141518;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.25rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    &.active-thumb {
+      border-color: var(--accent-start, #e2792e);
+      box-shadow: 0 0 0 2px rgba(226, 121, 46, 0.3);
+    }
+
+    .thumb-image-box {
+      width: 100%;
+      height: 200px;
+      background: #0f1012;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      overflow: hidden;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+      }
+    }
+
+    &:hover .thumb-image-box img {
+      transform: scale(1.05);
+    }
+
+    .thumb-meta {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+
+      .thumb-eyebrow {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--accent-start, #e22e2e);
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+
+      .thumb-title {
+        font-size: 1.15rem;
+        font-weight: 500;
+        color: var(--color-foreground, #f5f5f3);
+        margin: 0 0 0.75rem 0;
+      }
+
+      .thumb-cta {
+        margin-top: auto;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #a8a7a1;
+        transition: color 0.2s ease;
+      }
+    }
+
+    &:hover .thumb-cta {
+      color: #ffffff;
     }
   }
 </style>

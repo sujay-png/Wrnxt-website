@@ -9,9 +9,9 @@ import Button from './ui/Button.astro';
     <div class="container" data-size="prose">
       <div class="stack text-center" data-justify="center" data-gap="lg">
         <span class="heading eyebrow">Got a project in mind?</span>
-        <h2 class="heading" data-font-size="5" style="max-width: 25ch; margin: 0 auto;">Your strategic partner in digital transformation.</h2>
+        <h2 class="heading" data-font-size="5" style="max-width: 25ch; margin: 0 auto;">Your strategic partner in<br />digital transformation.</h2>
 
-        <div class="reactive-divider horizontal" x-data="reactiveDivider({ orientation: 'horizontal', unit: 'px' })">
+        <div class="reactive-divider horizontal" >
           <div class="anchor start-anchor"><div class="anchor-circle"></div></div>
           <div class="divider-line" x-ref="dividerLine">
             <div class="width-display" x-text="formattedWidth" x-cloak>0px</div>

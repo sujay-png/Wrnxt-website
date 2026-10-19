@@ -1,5 +1,16 @@
  ---
-const stacks = [
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  desc?: string;
+  stacks?: {
+    category: string;
+    icon?: string;
+    tools: string[];
+  }[];
+}
+
+const defaultStacks = [
   {
     category: "Frontend",
     icon: "◆",
@@ -21,17 +32,22 @@ const stacks = [
     tools: ["AWS", "Vercel", "Docker", "GitHub Actions", "Nginx", "Cloudflare"],
   },
 ];
+
+const {
+  eyebrow = "Technology",
+  title = "The right tool<br />for the work.",
+  desc = "We choose established technology that keeps products dependable, maintainable, and ready to grow with your business.",
+  stacks = defaultStacks
+} = Astro.props;
 ---
 <section class="tech-section" aria-labelledby="technology-heading">
   <div class="tech-section__inner">
     <header class="tech-intro">
       <div>
-        <p class="tech-eyebrow">Technology</p>
-        <h2 id="technology-heading" class="tech-heading">The right tool<br />for the work.</h2>
+        <p class="tech-eyebrow">{eyebrow}</p>
+        <h2 id="technology-heading" class="tech-heading" set:html={title} />
       </div>
-      <p class="tech-body">
-        We choose established technology that keeps products dependable, maintainable, and ready to grow with your business.
-      </p>
+      <p class="tech-body">{desc}</p>
     </header>
 
     <ol class="tech-ledger">

@@ -1,0 +1,1645 @@
+
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../layout/Header.astro';
+import Footer from '../layout/Footer.astro';
+import Button from '../ui/Button.astro';
+import ServiceCTA from './ServiceCTA.astro';
+import type { SubServiceData } from '../../data/subServicePages';
+
+interface Props {
+  service: SubServiceData;
+}
+
+const { service } = Astro.props;
+
+
+---
+
+<Layout title={`${service.title} — Akshara Digital`} description={service.subtitle}>
+  <Header />
+
+  <div class="bg-dots" aria-hidden="true"></div>
+
+  <!-- Sub-Header Navigation: Back to IT Services + Service Switcher -->
+
+
+  <!-- 1. Dedicated Service Hero -->
+  <section class="section sub-hero-section" data-padding="xl">
+    <div class="container" data-size="lg">
+      <div class="sub-hero-grid">
+        <!-- Left: Editorial Content -->
+        <div class="sub-hero-content">
+          <span class="service-kicker">◆ Our Services • IT Services</span>
+          <h1 class="heading" data-font-size="1">{service.title}</h1>
+          <p class="prose prose--lg sub-hero-body">{service.subtitle}</p>
+
+          <div class="cta-cluster">
+            <Button variant="primary" href="/contact">
+              Enquire About {service.title} 
+              <span class="icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </span>
+            </Button>
+           
+          </div>
+        </div>
+
+        <!-- Right: Intro Card -->
+        <div class="sub-hero-spec">
+          <div class="spec-card">
+            <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
+              <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1"></rect>
+              <circle cx="19.5" cy="3.5" r="3" fill="var(--color-bg)" stroke="rgba(255,255,255,0.4)" stroke-width="1"></circle>
+              <circle cx="calc(100% - 19.5px)" cy="3.5" r="3" fill="var(--color-bg)" stroke="rgba(255,255,255,0.4)" stroke-width="1"></circle>
+              <circle cx="19.5" cy="calc(100% - 3.5px)" r="3" fill="var(--color-bg)" stroke="rgba(255,255,255,0.4)" stroke-width="1"></circle>
+              <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3" fill="var(--color-bg)" stroke="rgba(255,255,255,0.4)" stroke-width="1"></circle>
+            </svg>
+
+            <div class="spec-card-inner">
+              <div class="spec-card-header">
+                <span class="spec-kicker">Introduction</span>
+              </div>
+
+              <div class="spec-intro-paragraphs">
+                {service.intro && service.intro.length > 0 ? (
+                  service.intro.map((p) => (
+                    <p class="prose spec-intro-text">{p}</p>
+                  ))
+                ) : (
+                  <p class="prose spec-intro-text">{service.subtitle}</p>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Complete Scope of Work / Process Flow -->
+  <section class="section scope-section" data-padding="xl" x-data="{ activeStep: 0 }">
+    <div class="container" data-size="lg">
+      <div class="section-intro">
+        <h2 class="heading" data-font-size="3">Our Process</h2>
+      </div>
+
+      <!-- Small Cards Row with Arrows in Between -->
+      <div class="process-flow-track" role="tablist" aria-label="Process Phases">
+        {service.deliverables.map((item, i) => (
+          <Fragment>
+            <button
+              type="button"
+              role="tab"
+              id={`process-tab-${i}`}
+              aria-selected={i === 0 ? "true" : "false"}
+              aria-controls={`process-panel-${i}`}
+              class={`process-step-btn ${i === 0 ? 'is-active' : ''}`}
+              :class={`{ 'is-active': activeStep === ${i} }`}
+              @click={`activeStep = ${i}`}
+              data-step-index={i}
+            >
+              <div class="step-btn-top">
+                <span class="step-btn-badge">0{i + 1}</span>
+                <span class="step-btn-dot" aria-hidden="true"></span>
+              </div>
+              <h3 class="step-btn-title">{item.title}</h3>
+            </button>
+
+            {i < service.deliverables.length - 1 && (
+              <div class="process-flow-arrow" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </div>
+            )}
+          </Fragment>
+        ))}
+      </div>
+
+      <!-- Detail Panels: Clicking a card reveals its particular details -->
+      <div class="process-detail-container">
+        {service.deliverables.map((item, i) => (
+          <article
+            class={`process-detail-panel ${i === 0 ? 'is-active' : ''}`}
+            :class={`{ 'is-active': activeStep === ${i} }`}
+            id={`process-panel-${i}`}
+            role="tabpanel"
+            aria-labelledby={`process-tab-${i}`}
+            data-panel-index={i}
+          >
+            <div class="detail-card-inner">
+              <div class="detail-card-top">
+                <div class="detail-meta">
+                  <span class="detail-phase-tag">PHASE 0{i + 1}</span>
+                  <span class="detail-scope-badge">INCLUDED IN SCOPE</span>
+                </div>
+                <span class="detail-star" aria-hidden="true">◆</span>
+              </div>
+
+              <h3 class="detail-card-title">{item.title}</h3>
+              <p class="prose detail-card-desc">{item.desc}</p>
+
+              {item.points && item.points.length > 0 && (
+                <div class="detail-breakdown">
+                  <span class="detail-breakdown-heading">Scope & Execution Activities:</span>
+                  <ul class="detail-bullets-grid">
+                    {item.points.map((pt) => (
+                      <li class="detail-bullet-item">
+                        <span class="bullet-arrow" aria-hidden="true">→</span>
+                        <span>{pt}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {item.extra && (
+                <div class="detail-extra-box">
+                  <div class="extra-icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="16" x2="12" y2="12"></line>
+                      <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                  </div>
+                  <p class="prose detail-extra-text">{item.extra}</p>
+                </div>
+              )}
+
+              <div class="detail-card-footer">
+                <div class="detail-step-nav">
+                  {i > 0 && (
+                    <button
+                      type="button"
+                      class="step-nav-btn prev"
+                      @click={`activeStep = ${i - 1}`}
+                      data-target-index={i - 1}
+                    >
+                      ← Previous Phase
+                    </button>
+                  )}
+                  {i < service.deliverables.length - 1 && (
+                    <button
+                      type="button"
+                      class="step-nav-btn next"
+                      @click={`activeStep = ${i + 1}`}
+                      data-target-index={i + 1}
+                    >
+                      Next Phase →
+                    </button>
+                  )}
+                </div>
+                <a href="/contact" class="detail-inquire">Inquire about this scope →</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. What We Offer (Capabilities Flow) -->
+  <section class="section offer-section" data-padding="xl">
+    <div class="container" data-size="lg">
+      <div class="offer-header">
+        <span class="service-kicker">What We Offer</span>
+        <h2 class="heading" data-font-size="3">End-to-End Capabilities</h2>
+      </div>
+
+      {service.capabilities && service.capabilities.length > 0 ? (
+        <div class="capabilities-column">
+          {service.capabilities.map((item, idx) => (
+            <Fragment>
+              <div class="cap-col-card">
+                <div class="cap-col-left">
+                  <span class="cap-col-badge">0{idx + 1}</span>
+                  <h4 class="cap-col-title">{item}</h4>
+                </div>
+                <div class="cap-col-right" aria-hidden="true">
+                  <span class="cap-col-indicator"></span>
+                  <span class="cap-col-star">◆</span>
+                </div>
+              </div>
+
+              {idx < service.capabilities.length - 1 && (
+                <div class="cap-col-arrow" aria-hidden="true">
+                 
+                </div>
+              )}
+            </Fragment>
+          ))}
+        </div>
+      ) : (
+        <div class="process-steps-col">
+          {service.process.map((step) => (
+            <div class="step-card">
+              <span class="step-badge">STEP {step.step}</span>
+              <h3 class="step-title">{step.title}</h3>
+              <p class="prose step-desc">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- 4. Key Benefits -->
+  {service.benefits && service.benefits.length > 0 && (
+    <section class="section benefits-section" data-padding="xl">
+      <div class="container" data-size="lg">
+        <div class="benefits-header">
+          <span class="service-kicker">Benefits</span>
+          <h2 class="heading" data-font-size="3">Measurable Business Impact</h2>
+        </div>
+
+        <div class="capabilities-column">
+          {service.benefits.map((item, idx) => (
+            <Fragment>
+              <div class="cap-col-card">
+                <div class="cap-col-left">
+                  <span class="cap-col-badge">0{idx + 1}</span>
+                  <h4 class="cap-col-title">{item}</h4>
+                </div>
+                <div class="cap-col-right" aria-hidden="true">
+                  <span class="cap-col-indicator"></span>
+                  <span class="cap-col-star">◆</span>
+                </div>
+              </div>
+
+              {idx < service.benefits.length - 1 && (
+                <div class="cap-col-arrow" aria-hidden="true">
+              
+                </div>
+              )}
+            </Fragment>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- 5. Our Commitment (Notice Board Design) -->
+  <section class="section commitment-section" data-padding="xl">
+    <div class="container" data-size="lg">
+      <div class="notice-board-wrapper">
+        <div class="notice-board">
+          <!-- Metallic Mounting Screws in 4 Corners -->
+          <div class="board-screw top-left" aria-hidden="true"><div class="screw-slot"></div></div>
+          <div class="board-screw top-right" aria-hidden="true"><div class="screw-slot"></div></div>
+          <div class="board-screw bottom-left" aria-hidden="true"><div class="screw-slot"></div></div>
+          <div class="board-screw bottom-right" aria-hidden="true"><div class="screw-slot"></div></div>
+
+          <!-- Pinned Memo Note -->
+          <article class="notice-note">
+            <!-- 3D Push Pin at top center -->
+            
+
+
+            <div class="notice-note-inner">
+            
+
+              <h2 class="notice-memo-title">{service.commitment?.title || 'Our Commitment'}</h2>
+
+              <div class="notice-memo-rule" aria-hidden="true"></div>
+
+              <p class="notice-memo-text">
+                {service.commitment?.text || "We act as your trusted advisor, bringing expertise and integrity to every engagement. We tailor our approach to your specific needs, drawing on our experience and flexibility to deliver the outcome you're after — efficiently and without surprises."}
+              </p>
+
+             
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Service Call To Action -->
+  <ServiceCTA 
+    title={`Let's Build Your Web App`}
+    description={`Partner with Akshara Digital to transform your business through a web app built around you — tailored, tested, and built to last.
+`}
+  />
+
+  <Footer />
+</Layout>
+
+<style lang="scss">
+  .bg-dots {
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Sub-header Navigation */
+  .sub-nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(10, 10, 10, 0.85);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .sub-nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .sub-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 0.88rem;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-foreground);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+
+    svg {
+      color: var(--color-burgundy);
+      transition: transform 0.2s ease;
+    }
+
+    &:hover {
+      color: var(--color-burgundy);
+      svg { transform: translateX(-3px); }
+    }
+  }
+
+  .sub-nav-sep {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .sub-nav-current {
+    font-family: var(--font-family-mono, monospace);
+    font-size: 0.82rem;
+    color: var(--color-burgundy);
+    font-weight: 600;
+  }
+
+  .sub-nav-pills {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    overflow-x: auto;
+  }
+
+  .nav-pill {
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-foreground-secondary);
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+
+    &:hover {
+      border-color: rgba(156, 8, 39, 0.6);
+      color: var(--color-foreground);
+    }
+
+    &--active {
+      background: var(--color-burgundy);
+      border-color: var(--color-burgundy);
+      color: #ffffff;
+
+      &:hover {
+        background: var(--color-burgundy-hover, #7b051e);
+        color: #ffffff;
+      }
+    }
+  }
+
+  /* Sub Hero */
+  .sub-hero-section {
+    position: relative;
+    z-index: 1;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .sub-hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: center;
+
+    @media (max-width: 980px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .sub-hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    h1 {
+      margin: 0;
+      line-height: 1.1;
+    }
+  }
+
+  .service-kicker {
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 650;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    display: block;
+  }
+
+  .intro-paragraphs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .sub-hero-body {
+    max-width: 58ch;
+    line-height: 1.65;
+  }
+
+  .cta-cluster {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-top: 0.5rem;
+  }
+
+  /* Spec Card */
+  .spec-card {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border-radius: 16px;
+    overflow: hidden;
+
+    .anchor-border {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+  }
+
+  .spec-card-inner {
+    padding: clamp(1.75rem, 3.5vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .spec-kicker {
+    font-family: var(--font-family-mono, monospace);
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #ffffff;
+    font-weight: 700;
+    display: block;
+  }
+
+  .spec-intro-paragraphs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .spec-intro-text {
+    font-size: 0.94rem;
+    line-height: 1.68;
+    color: #ffffff !important;
+    margin: 0;
+  }
+
+  /* Scope of Work Section */
+  .scope-section {
+    position: relative;
+    z-index: 1;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .section-intro {
+    max-width: 780px;
+    margin-bottom: clamp(2rem, 3.5vw, 3rem);
+
+    h2 {
+      margin: 0.5rem 0 0.75rem;
+    }
+  }
+
+  /* Process Flow Row with Small Cards & Arrows */
+  .process-flow-track {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 0.85rem;
+    width: 100%;
+    margin-bottom: 2rem;
+
+    @media (max-width: 960px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    @media (max-width: 580px) {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+  }
+
+  .process-step-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 110px;
+    padding: 1.15rem 1.25rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.85rem;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    position: relative;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      border-color: rgba(156, 8, 39, 0.55);
+      background: linear-gradient(135deg, rgba(156, 8, 39, 0.09) 0%, rgba(255, 255, 255, 0.02) 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.4), 0 0 15px rgba(156, 8, 39, 0.15);
+
+      .step-btn-dot {
+        background: var(--color-burgundy);
+        box-shadow: 0 0 8px var(--color-burgundy);
+      }
+    }
+
+    &.is-active {
+      border-color: var(--color-burgundy);
+      background: linear-gradient(135deg, rgba(156, 8, 39, 0.16) 0%, rgba(156, 8, 39, 0.04) 100%);
+      box-shadow: 0 0 25px rgba(156, 8, 39, 0.25), 0 8px 24px rgba(0, 0, 0, 0.4);
+
+      .step-btn-badge {
+        background: var(--color-burgundy);
+        border-color: var(--color-burgundy);
+        color: #ffffff;
+      }
+
+      .step-btn-dot {
+        background: var(--color-burgundy);
+        box-shadow: 0 0 10px var(--color-burgundy);
+      }
+
+      .step-btn-title {
+        color: #ffffff;
+      }
+
+      /* Active downward arrow indicator pointing to detail card */
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-top: 8px solid var(--color-burgundy);
+
+        @media (max-width: 960px) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .step-btn-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .step-btn-badge {
+    font-family: var(--font-family-mono, monospace);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--color-burgundy);
+    background: rgba(156, 8, 39, 0.12);
+    border: 1px solid rgba(156, 8, 39, 0.25);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+    transition: all 0.2s ease;
+  }
+
+  .step-btn-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    transition: all 0.25s ease;
+  }
+
+  .step-btn-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--color-foreground);
+    margin: 0;
+    transition: color 0.2s ease;
+  }
+
+  .process-flow-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 24px;
+    color: var(--color-burgundy);
+    filter: drop-shadow(0 0 6px rgba(156, 8, 39, 0.35));
+
+    svg {
+      display: block;
+    }
+
+    @media (max-width: 960px) {
+      display: none;
+    }
+
+    @media (max-width: 580px) {
+      display: flex;
+      transform: rotate(90deg);
+      margin: -0.2rem auto;
+      height: 18px;
+    }
+  }
+
+  /* Process Detail Panel */
+  .process-detail-container {
+    width: 100%;
+  }
+
+  .process-detail-panel {
+    display: none;
+
+    &.is-active {
+      display: block;
+      animation: detailFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  }
+
+  @keyframes detailFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .detail-card-inner {
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg, 16px);
+    padding: clamp(1.75rem, 3.5vw, 2.75rem);
+    position: relative;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  .detail-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+
+  .detail-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .detail-phase-tag {
+    font-family: var(--font-family-mono, monospace);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-burgundy);
+    background: rgba(156, 8, 39, 0.14);
+    border: 1px solid rgba(156, 8, 39, 0.3);
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    letter-spacing: 0.06em;
+  }
+
+  .detail-scope-badge {
+    font-family: var(--font-family-mono, monospace);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 0.08em;
+  }
+
+  .detail-star {
+    color: var(--color-burgundy);
+    font-size: 0.95rem;
+    filter: drop-shadow(0 0 6px rgba(156, 8, 39, 0.5));
+  }
+
+  .detail-card-title {
+    font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 0.85rem;
+    line-height: 1.25;
+  }
+
+  .detail-card-desc {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--color-foreground-secondary);
+    margin: 0 0 1.5rem;
+    max-width: 950px;
+  }
+
+  .detail-breakdown {
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .detail-breakdown-heading {
+    display: block;
+    font-family: var(--font-family-mono, monospace);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-burgundy);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+
+  .detail-bullets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 0.85rem 1.75rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .detail-bullet-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.9);
+
+    .bullet-arrow {
+      color: var(--color-burgundy);
+      font-weight: 700;
+      font-size: 1.05rem;
+      flex-shrink: 0;
+      line-height: 1.4;
+    }
+  }
+
+  .detail-extra-box {
+    background: rgba(156, 8, 39, 0.06);
+    border: 1px solid rgba(156, 8, 39, 0.25);
+    border-left: 3px solid var(--color-burgundy);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+
+    .extra-icon {
+      color: var(--color-burgundy);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .detail-extra-text {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.88);
+      margin: 0;
+    }
+  }
+
+  .detail-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .detail-step-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .step-nav-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgba(156, 8, 39, 0.15);
+      border-color: rgba(156, 8, 39, 0.4);
+      color: #ffffff;
+    }
+  }
+
+  .detail-inquire {
+    color: var(--color-foreground);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      color: var(--color-burgundy);
+      transform: translateX(4px);
+    }
+  }
+
+  /* What We Offer / Capabilities Flow Section */
+  .offer-section {
+    position: relative;
+    z-index: 1;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .offer-header {
+    margin-bottom: clamp(2rem, 3.5vw, 3rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    .heading {
+      margin: 0;
+      color: #ffffff;
+    }
+  }
+
+  .offer-desc {
+    max-width: 780px;
+    margin: 0;
+    color: var(--color-foreground-secondary);
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  /* Benefits Section */
+  .benefits-section {
+    position: relative;
+    z-index: 1;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .benefits-header {
+    margin-bottom: clamp(2rem, 3.5vw, 3rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    .heading {
+      margin: 0;
+      color: #ffffff;
+    }
+  }
+
+  .capabilities-column {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0;
+  }
+
+  .cap-col-card {
+    width: 100%;
+    min-height: 74px;
+    padding: 1.25rem 2rem;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      border-color: rgba(156, 8, 39, 0.6);
+      background: linear-gradient(135deg, rgba(156, 8, 39, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px -4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(156, 8, 39, 0.2);
+
+      .cap-col-badge {
+        background: var(--color-burgundy);
+        border-color: var(--color-burgundy);
+        color: #ffffff;
+      }
+
+      .cap-col-star {
+        color: var(--color-burgundy);
+        transform: rotate(45deg);
+      }
+
+      .cap-col-indicator {
+        background: var(--color-burgundy);
+        box-shadow: 0 0 8px var(--color-burgundy);
+      }
+    }
+
+    @media (max-width: 640px) {
+      padding: 1rem 1.25rem;
+      gap: 1rem;
+    }
+  }
+
+  .cap-col-left {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+
+    @media (max-width: 640px) {
+      gap: 0.85rem;
+    }
+  }
+
+  .cap-col-badge {
+    font-family: var(--font-family-mono, monospace);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-burgundy);
+    background: rgba(156, 8, 39, 0.12);
+    border: 1px solid rgba(156, 8, 39, 0.25);
+    padding: 0.3rem 0.65rem;
+    border-radius: 6px;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+
+  .cap-col-title {
+    font-size: 1.08rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #ffffff;
+    margin: 0;
+
+    @media (max-width: 640px) {
+      font-size: 0.95rem;
+    }
+  }
+
+  .cap-col-right {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .cap-col-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.25s ease;
+  }
+
+  .cap-col-star {
+    color: rgba(255, 255, 255, 0.25);
+    font-size: 0.85rem;
+    transition: all 0.25s ease;
+  }
+
+  .cap-col-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 38px;
+    color: var(--color-burgundy);
+    filter: drop-shadow(0 0 6px rgba(156, 8, 39, 0.45));
+
+    svg {
+      display: block;
+      transition: transform 0.2s ease;
+    }
+  }
+
+  /* 5. Our Commitment (Notice Board Styles) */
+  .commitment-section {
+    position: relative;
+    z-index: 1;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .notice-board-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .notice-board {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    background-color: #120f11;
+    background-image: 
+      radial-gradient(rgba(255, 255, 255, 0.08) 1.5px, transparent 1.5px),
+      linear-gradient(160deg, #181416 0%, #0d0a0c 100%);
+    background-size: 20px 20px, 100% 100%;
+    border: 3px solid rgba(255, 255, 255, 0.14);
+    border-radius: 20px;
+    box-shadow: 
+      inset 0 3px 20px rgba(0, 0, 0, 0.85),
+      0 25px 60px -15px rgba(0, 0, 0, 0.75),
+      0 0 30px rgba(156, 8, 39, 0.12);
+    padding: clamp(3rem, 6vw, 4.5rem) clamp(1.5rem, 4.5vw, 3.5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+  }
+
+  /* Mounting Screws in Corners */
+  .board-screw {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7a7577 0%, #2b2729 100%);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), 0 2px 5px rgba(0, 0, 0, 0.8);
+    display: grid;
+    place-items: center;
+    z-index: 5;
+
+    .screw-slot {
+      width: 9px;
+      height: 1.5px;
+      background: #111;
+      transform: rotate(45deg);
+    }
+
+    &.top-left {
+      top: 16px;
+      left: 16px;
+    }
+    &.top-right {
+      top: 16px;
+      right: 16px;
+    }
+    &.bottom-left {
+      bottom: 16px;
+      left: 16px;
+    }
+    &.bottom-right {
+      bottom: 16px;
+      right: 16px;
+    }
+  }
+
+  .board-kicker-row {
+    margin-bottom: 2.25rem;
+    text-align: center;
+  }
+
+  .board-kicker-tag {
+    font-family: var(--font-family-mono, monospace);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  /* Pinned Memo Note */
+  .notice-note {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    background: linear-gradient(175deg, #1c181a 0%, #131012 100%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 12px;
+    padding: clamp(2rem, 4.5vw, 3.25rem);
+    box-shadow: 
+      0 20px 45px -10px rgba(0, 0, 0, 0.85),
+      0 4px 15px rgba(0, 0, 0, 0.5);
+    transform: rotate(-0.5deg);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+
+    &:hover {
+      transform: rotate(0deg) translateY(-2px);
+      box-shadow: 
+        0 26px 55px -10px rgba(0, 0, 0, 0.9),
+        0 0 25px rgba(156, 8, 39, 0.15);
+    }
+  }
+
+  /* 3D Push Pin */
+  .notice-push-pin {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+
+    .pin-head {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ff3b68 0%, #9c0827 55%, #590314 100%);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.75), inset 0 1px 3px rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .pin-shadow {
+      position: absolute;
+      top: 14px;
+      left: 10px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.45);
+      filter: blur(3px);
+      z-index: -1;
+    }
+  }
+
+  /* Corner Frosted Tape */
+  .notice-tape {
+    position: absolute;
+    width: 55px;
+    height: 22px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    z-index: 4;
+
+    &.tape-tl {
+      top: -11px;
+      left: 28px;
+      transform: rotate(-12deg);
+    }
+
+    &.tape-tr {
+      top: -11px;
+      right: 28px;
+      transform: rotate(10deg);
+    }
+
+    @media (max-width: 580px) {
+      display: none;
+    }
+  }
+
+  .notice-note-inner {
+    position: relative;
+    z-index: 2;
+  }
+
+  .notice-memo-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .memo-badge {
+    font-family: var(--font-family-mono, monospace);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--color-burgundy);
+    background: rgba(156, 8, 39, 0.14);
+    border: 1px solid rgba(156, 8, 39, 0.32);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    letter-spacing: 0.08em;
+  }
+
+  .memo-ref {
+    font-family: var(--font-family-mono, monospace);
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 0.08em;
+  }
+
+  .notice-memo-title {
+    font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 1.25rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .notice-memo-rule {
+    width: 100%;
+    height: 1px;
+    background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0 6px, transparent 6px 12px);
+    margin-bottom: 1.75rem;
+  }
+
+  .notice-memo-text {
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    line-height: 1.85;
+    color: #f0edf0;
+    margin: 0 0 2.25rem;
+    font-weight: 400;
+    max-width: 100%;
+  }
+
+  .notice-memo-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    flex-wrap: wrap;
+  }
+
+  .memo-seal {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .seal-emblem {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(156, 8, 39, 0.15);
+    border: 1.5px solid var(--color-burgundy);
+    color: var(--color-burgundy);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    box-shadow: 0 0 16px rgba(156, 8, 39, 0.3);
+  }
+
+  .seal-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .seal-label {
+    font-family: var(--font-family-mono, monospace);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+  }
+
+  .seal-sub {
+    font-family: var(--font-family-mono, monospace);
+    font-size: 0.65rem;
+    color: var(--color-burgundy);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .memo-signoff {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+
+    @media (max-width: 640px) {
+      align-items: flex-start;
+      text-align: left;
+    }
+  }
+
+  .signoff-team {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #ffffff;
+    font-style: italic;
+  }
+
+  .signoff-company {
+    font-family: var(--font-family-mono, monospace);
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 0.2rem;
+  }
+
+  /* Fallback process cards */
+  .process-steps-col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .step-card {
+    padding: 1.35rem;
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    transition: border-color 0.25s ease;
+
+    &:hover {
+      border-color: rgba(156, 8, 39, 0.4);
+    }
+  }
+
+  .step-badge {
+    font-family: var(--font-family-mono, monospace);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--color-burgundy);
+    letter-spacing: 0.06em;
+  }
+
+  .step-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-foreground);
+    margin: 0.2rem 0;
+  }
+
+  .step-desc {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--color-foreground-secondary);
+    margin: 0;
+  }
+
+  /* Projects Section */
+  .projects-section {
+    position: relative;
+    z-index: 1;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .projects-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: clamp(2rem, 3.5vw, 3rem);
+    flex-wrap: wrap;
+
+    h2 {
+      margin: 0.4rem 0 0;
+    }
+  }
+
+  .view-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-foreground);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+    transition: color 0.2s ease;
+
+    svg {
+      transition: transform 0.2s ease;
+    }
+
+    &:hover {
+      color: var(--color-burgundy);
+      svg { transform: translateX(3px); }
+    }
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: var(--space-xl);
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .project-card {
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover {
+      transform: translateY(-4px);
+      border-color: rgba(156, 8, 39, 0.5);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+
+      .project-arrow {
+        background: var(--color-burgundy);
+        color: #ffffff;
+        border-color: var(--color-burgundy);
+        transform: rotate(45deg);
+      }
+
+      .project-explore {
+        color: var(--color-burgundy);
+        transform: translateX(3px);
+      }
+    }
+  }
+
+  .project-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .project-cat {
+    font-family: var(--font-family-mono, monospace);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-foreground-secondary);
+    padding: 0.25rem 0.65rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 999px;
+  }
+
+  .project-arrow {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: grid;
+    place-items: center;
+    color: var(--color-foreground);
+    transition: all 0.25s ease;
+  }
+
+  .project-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-foreground);
+    margin: 0 0 0.75rem;
+    line-height: 1.3;
+  }
+
+  .project-desc {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--color-foreground-secondary);
+    margin-bottom: 1.75rem;
+  }
+
+  .project-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    font-size: 0.82rem;
+  }
+
+  .project-client {
+    font-weight: 600;
+    color: var(--color-foreground);
+  }
+
+  .project-explore {
+    font-family: var(--font-family-mono, monospace);
+    font-size: 0.78rem;
+    color: var(--color-foreground-secondary);
+    transition: all 0.2s ease;
+  }
+</style>
+
+<script>
+  function setupProcessTabs() {
+    const scopeSections = document.querySelectorAll('.scope-section');
+    scopeSections.forEach((section) => {
+      const buttons = section.querySelectorAll<HTMLButtonElement>('.process-step-btn');
+      const panels = section.querySelectorAll<HTMLElement>('.process-detail-panel');
+      const navButtons = section.querySelectorAll<HTMLButtonElement>('.step-nav-btn');
+
+      function setActiveStep(index: number) {
+        buttons.forEach((btn, idx) => {
+          const isActive = idx === index;
+          btn.classList.toggle('is-active', isActive);
+          btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+        panels.forEach((panel, idx) => {
+          panel.classList.toggle('is-active', idx === index);
+        });
+      }
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt(btn.getAttribute('data-step-index') || '0', 10);
+          setActiveStep(idx);
+        });
+      });
+
+      navButtons.forEach((navBtn) => {
+        navBtn.addEventListener('click', () => {
+          const target = parseInt(navBtn.getAttribute('data-target-index') || '0', 10);
+          setActiveStep(target);
+        });
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', setupProcessTabs);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupProcessTabs);
+  } else {
+    setupProcessTabs();
+  }
+</script>
+

@@ -4,53 +4,524 @@ import Header from '../layout/Header.astro';
 import Footer from '../layout/Footer.astro';
 import ServiceHero from './ServiceHero.astro';
 import StatsBar from './StatsBar.astro';
+import TechStack from './TechStack.astro';
+import RelatedProjects from './RelatedProject.astro';
 import ServiceCTA from './ServiceCTA.astro';
 import type { ServicePageData } from '../../types/services';
-interface Props { service: ServicePageData; }
+
+interface Props {
+  service: ServicePageData;
+}
+
 const { service } = Astro.props;
+
+const isHardware = service.title.toLowerCase().includes('hardware');
+const isMarketing = service.title.toLowerCase().includes('marketing');
+const isMedia = service.title.toLowerCase().includes('media');
+
+const whoNeedsImage = isHardware 
+  ? '/images/Hardware30.jpeg'
+  : isMarketing
+  ? '/images/Marketing21.jpeg'
+  : isMedia
+  ? '/images/MediaHouse19.jpeg'
+  : service.image;
+
+const whoNeedsImageAlt = isHardware
+  ? 'Enterprise server infrastructure, network racks, and commercial CCTV installation'
+  : isMarketing
+  ? 'Performance marketing strategy, Google Analytics dashboards, and ad campaign planning'
+  : isMedia
+  ? 'Professional studio cameras, cinema lighting, and creative video editing workstations'
+  : service.imageAlt;
+
+const whoNeedsTag = isHardware
+  ? 'Enterprise-grade uptime & security'
+  : isMarketing
+  ? 'High-converting customer acquisition'
+  : isMedia
+  ? 'Studio-grade creative production'
+  : 'Built to scale with your business';
+
+const techData = isHardware ? {
+  eyebrow: "Infrastructure & Hardware",
+  title: "Industry-grade hardware<br />built for reliability.",
+  desc: "We deploy battle-tested enterprise equipment and certified hardware to guarantee maximum uptime, speed, and physical security.",
+  stacks: [
+    {
+      category: "Servers & Compute",
+      icon: "◆",
+      tools: ["Dell PowerEdge", "HPE ProLiant", "Lenovo ThinkSystem", "Intel Xeon", "AMD EPYC"]
+    },
+    {
+      category: "Networking & Fiber",
+      icon: "◈",
+      tools: ["Cisco Catalyst", "Ubiquiti UniFi", "MikroTik", "Aruba Networks", "CommScope Cat6/Fiber", "Fortinet Security"]
+    },
+    {
+      category: "Surveillance & Access",
+      icon: "◇",
+      tools: ["Hikvision IP CCTV", "Dahua Technology", "CP Plus", "ZKTeco Biometrics", "Matrix Comsec", "NVR/DVR Systems"]
+    },
+    {
+      category: "Storage & Power",
+      icon: "◉",
+      tools: ["Synology Enterprise NAS", "QNAP Storage", "APC Smart-UPS", "CyberPower", "RAID 1/5/10 Configurations"]
+    }
+  ]
+} : isMarketing ? {
+  eyebrow: "Marketing Platforms",
+  title: "Data-driven platforms<br />built for performance.",
+  desc: "We leverage industry-leading search, social, and analytics platforms to drive measurable revenue growth and lower customer acquisition costs.",
+  stacks: [
+    {
+      category: "Paid Advertising",
+      icon: "◆",
+      tools: ["Google Ads (Search & Shopping)", "Meta Ads Manager", "LinkedIn Campaign Manager", "YouTube Ads", "Retargeting Pixels"]
+    },
+    {
+      category: "Search & SEO",
+      icon: "◈",
+      tools: ["Ahrefs", "SEMrush", "Google Search Console", "Screaming Frog", "Yoast / RankMath", "Schema Structured Data"]
+    },
+    {
+      category: "Analytics & Tracking",
+      icon: "◇",
+      tools: ["Google Analytics 4", "Google Tag Manager", "Hotjar", "Looker Studio", "Meta Conversion API"]
+    },
+    {
+      category: "Automation & CRM",
+      icon: "◉",
+      tools: ["HubSpot CRM", "Mailchimp", "Klaviyo", "Meta Business Suite", "Zapier", "WhatsApp Business API"]
+    }
+  ]
+} : isMedia ? {
+  eyebrow: "Creative Arsenal",
+  title: "Professional tools<br />for studio-grade media.",
+  desc: "We combine high-end cinema equipment, professional studio audio, and industry-standard editing suites to make your brand impossible to ignore.",
+  stacks: [
+    {
+      category: "Design & Brand Identity",
+      icon: "◆",
+      tools: ["Adobe Photoshop", "Adobe Illustrator", "Figma", "Adobe InDesign", "Brand Identity Systems"]
+    },
+    {
+      category: "Post-Production & VFX",
+      icon: "◈",
+      tools: ["Adobe Premiere Pro", "After Effects", "DaVinci Resolve Studio", "Blender 3D", "Cinema 4D"]
+    },
+    {
+      category: "Cameras & Cinematography",
+      icon: "◇",
+      tools: ["Sony Cinema Line (FX6/FX3)", "DJI Ronin Gimbals", "DJI Cinema Drones", "4K/8K 10-Bit RAW", "Anamorphic Glass"]
+    },
+    {
+      category: "Audio & Lighting",
+      icon: "◉",
+      tools: ["Sennheiser Wireless Mics", "Shure SM7B Vocal Mics", "Aputure Studio Lighting", "Profoto Strobes", "Logic Pro X"]
+    }
+  ]
+} : undefined;
 ---
+
 <Layout title={`${service.title} — Akshara Digital`} description={service.description}>
   <Header />
+
   <div class="bg-dots" aria-hidden="true"></div>
-  <ServiceHero eyebrow="Our services" title={service.headline} desc={service.description} ctaText={`Talk to Our ${service.title === 'Media House' ? 'Media' : service.title === 'Hardware Solutions' ? 'Hardware' : service.title} Team`} ctaHref="/contact" imageSrc={service.image} imageAlt={service.imageAlt} />
+
+  <!-- 1. Service Hero (Identical to IT Services) -->
+  <ServiceHero
+    eyebrow="Our services"
+    title={service.headline}
+    desc={service.description}
+    imageSrc={service.image}
+    imageAlt={service.imageAlt}
+    ctaText={`Talk to Our ${service.title === 'Media House' ? 'Media' : service.title === 'Hardware Solutions' ? 'Hardware' : service.title} Team`}
+    ctaHref="/contact"
+  />
+
+  <!-- 2. Animated Stats Bar -->
   <StatsBar />
-  <section class="section service-intro" data-padding="xl"><div class="container" data-size="lg">
-    <span class="service-kicker">A partner for sustainable growth</span>
-    <div class="intro-copy">{service.intro.map((paragraph) => <p>{paragraph}</p>)}</div>
-  </div></section>
-  <section class="section service-offerings" data-padding="xl"><div class="container" data-size="lg">
-    <header class="section-heading"><span class="service-kicker">What we do</span><h2 class="heading" data-font-size="5">Our {service.title} Services</h2></header>
-    <div class="offer-grid">{service.sections.map((section, index) => <article class="offer-card">
-      <span class="offer-index">{String(index + 1).padStart(2, '0')}</span><h3 class="heading" data-font-size="2">{section.title}</h3><p>{section.description}</p>
-      <ul>{section.items.map((item) => <li>{item}</li>)}</ul>
-    </article>)}</div>
-  </div></section>
-  <section class="section service-audience" data-padding="xl"><div class="container" data-size="lg">
-    <div><span class="service-kicker">Who we help</span><h2 class="heading" data-font-size="5">Who Needs {service.title}</h2></div>
-    <ul class="audience-list">{service.audience.map((item) => <li>{item}</li>)}</ul>
-  </div></section>
+
+  <!-- 3. What We Do / Offerings Section (Exact same markup & CSS as ITServicesContent) -->
+  <section class="section ITServicesContent" data-padding="xl">
+    <div class="container" data-size="lg">
+      <div class="stack" data-gap="xl" style="margin-bottom: var(--space-2xl);">
+        <p class="eyebrow">What we do</p>
+        <h2 class="heading" data-font-size="5">We deliver {service.title.toLowerCase()} that solve real business problems.</h2>
+        {service.intro.map((paragraph) => (
+          <p class="prose prose--lg" style="max-width: 80ch;">
+            {paragraph}
+          </p>
+        ))}
+      </div>
+
+      <div class="cards-grid">
+        {service.sections.map((section) => (
+          <article class="service-detail-card">
+            <h3 class="heading" data-font-size="3">{section.title}</h3>
+            <p class="prose">{section.description}</p>
+            <ul class="bullets stack" data-gap="xs">
+              {section.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Who We Help Section (Exact same layout, audience cards, and sticky photo frame as ITServicesContent) -->
+  <section class="section WhoNeeds" data-padding="xl">
+    <div class="container" data-size="lg">
+      <header class="who-needs-header">
+        <span class="service-kicker">Who We Help</span>
+        <h2 class="heading" data-font-size="5">Who Needs {service.title}</h2>
+        <p class="prose prose--lg who-needs-intro">
+          Any business looking to scale operations, protect investments, and stay competitive needs the right partner behind it.
+        </p>
+      </header>
+
+      <div class="who-needs-layout">
+        <div class="audience-list">
+          {service.audience.map((item, index) => (
+            <article class="audience-card">
+              <span class="audience-index">{String(index + 1).padStart(2, '0')}</span>
+              <div class="audience-body">
+                <h3 class="audience-title">{item}</h3>
+              </div>
+              <span class="audience-arrow" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </span>
+            </article>
+          ))}
+        </div>
+
+        <div class="image-col">
+          <div class="anchor-card anchor-card--rounded who-needs-frame">
+            <svg class="anchor-border" width="100%" height="100%" preserveAspectRatio="none">
+              <rect x="3.5" y="3.5" width="calc(100% - 7px)" height="calc(100% - 7px)" rx="16" ry="16" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"></rect>
+              <circle cx="19.5" cy="3.5" r="3" fill="var(--color-bg)" stroke="rgba(255,255,255,0.5)" stroke-width="1"></circle>
+              <circle cx="calc(100% - 19.5px)" cy="3.5" r="3" fill="var(--color-bg)" stroke="rgba(255,255,255,0.5)" stroke-width="1"></circle>
+              <circle cx="19.5" cy="calc(100% - 3.5px)" r="3" fill="var(--color-bg)" stroke="rgba(255,255,255,0.5)" stroke-width="1"></circle>
+              <circle cx="calc(100% - 19.5px)" cy="calc(100% - 3.5px)" r="3" fill="var(--color-bg)" stroke="rgba(255,255,255,0.5)" stroke-width="1"></circle>
+            </svg>
+            <div class="anchor-content">
+              <img 
+                src={whoNeedsImage} 
+                alt={whoNeedsImageAlt} 
+                loading="lazy" 
+                decoding="async" 
+              />
+            </div>
+            <div class="frame-tag">
+              <span class="tag-pulse"></span>
+              <span class="tag-text">{whoNeedsTag}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Technology & Tools Section (Identical to IT Services) -->
+  <TechStack 
+    eyebrow={techData?.eyebrow} 
+    title={techData?.title} 
+    desc={techData?.desc} 
+    stacks={techData?.stacks} 
+  />
+
+  <!-- 6. Related Case Studies (Identical to IT Services) -->
+  <RelatedProjects />
+
+  <!-- 7. Service Call To Action (Identical to IT Services) -->
   <ServiceCTA title={service.ctaTitle} description={service.ctaDescription} />
+
+  <!-- 8. Footer -->
   <Footer />
 </Layout>
-<style>
-  .bg-dots { position: fixed; inset: 0; background-image: radial-gradient(var(--color-border) 1px, transparent 1px); background-size: 24px 24px; opacity: .12; pointer-events: none; z-index: 0; }
-  .service-intro, .service-offerings, .service-audience { position: relative; z-index: 1; }
-  .service-intro { background: var(--color-surface); border-block: 1px solid var(--color-border); }
-  .service-kicker { color: var(--color-burgundy); font-size: .78rem; font-weight: 650; letter-spacing: .16em; text-transform: uppercase; }
-  .intro-copy { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.5rem 3rem; margin-top: 1.25rem; }
-  .intro-copy p, .offer-card p { color: var(--color-foreground-secondary); line-height: 1.75; margin: 0; }
-  .section-heading { margin-bottom: var(--space-xl); }
-  .section-heading h2 { margin: .6rem 0 0; }
-  .offer-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; }
-  .offer-card { padding: clamp(1.3rem,2.5vw,2rem); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-bg-alt); }
-  .offer-index { color: var(--color-burgundy); font-size: .8rem; letter-spacing: .12em; }
-  .offer-card h3 { margin: 1rem 0 .65rem; }
-  .offer-card ul, .audience-list { list-style: none; padding: 0; margin: 1.2rem 0 0; display: grid; gap: .7rem; }
-  .offer-card li, .audience-list li { color: var(--color-foreground-secondary); line-height: 1.5; padding-left: 1.2rem; position: relative; }
-  .offer-card li::before, .audience-list li::before { content: '→'; position: absolute; left: 0; color: var(--color-burgundy); }
-  .service-audience { background: var(--color-surface); border-block: 1px solid var(--color-border); }
-  .service-audience h2 { margin: .6rem 0 0; }
-  .audience-list { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem 2rem; }
-  @media(max-width: 800px) { .offer-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
-  @media(max-width: 600px) { .offer-grid, .intro-copy, .audience-list { grid-template-columns: 1fr; } }
+
+<style lang="scss">
+  .bg-dots {
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-xl);
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .service-detail-card {
+    background: linear-gradient(160deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      border-color: rgba(156,8,39,0.5);
+    }
+    
+    h3 {
+      color: var(--color-foreground);
+    }
+    
+    .prose {
+      color: var(--color-foreground-secondary);
+      line-height: 1.6;
+    }
+  }
+
+  .bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      position: relative;
+      padding-left: 1.5rem;
+      color: var(--color-foreground-secondary);
+      line-height: 1.5;
+      
+      &::before {
+        content: '→';
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: var(--color-burgundy);
+      }
+    }
+  }
+
+  .WhoNeeds {
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+    z-index: 1;
+  }
+
+  .service-kicker {
+    color: var(--color-burgundy);
+    font-size: 0.78rem;
+    font-weight: 650;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .who-needs-header {
+    margin-bottom: clamp(2rem, 3.5vw, 3rem);
+    max-width: 820px;
+
+    h2 {
+      margin: 0 0 0.85rem;
+    }
+  }
+
+  .who-needs-intro {
+    color: var(--color-foreground-secondary);
+    line-height: 1.65;
+    max-width: 68ch;
+  }
+
+  .who-needs-layout {
+    display: grid;
+    grid-template-columns: 1.18fr 0.82fr;
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: start;
+
+    @media (max-width: 980px) {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  .audience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .audience-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.15rem;
+    padding: 1.1rem 1.35rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s ease,
+                background 0.25s ease,
+                box-shadow 0.25s ease;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+      transform: translateX(6px);
+      border-color: rgba(156, 8, 39, 0.45);
+      background: linear-gradient(135deg, rgba(156, 8, 39, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+
+      .audience-index {
+        background: var(--color-burgundy);
+        color: #ffffff;
+        border-color: transparent;
+      }
+
+      .audience-arrow {
+        color: var(--color-burgundy);
+        transform: translateX(3px);
+      }
+    }
+  }
+
+  .audience-index {
+    font-family: var(--font-family-mono, monospace);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--color-burgundy);
+    background: rgba(156, 8, 39, 0.12);
+    border: 1px solid rgba(156, 8, 39, 0.25);
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .audience-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .audience-title {
+    color: var(--color-foreground);
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.35;
+  }
+
+  .audience-arrow {
+    color: rgba(255, 255, 255, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .image-col {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: 980px) {
+      position: static;
+      margin-top: 1rem;
+    }
+  }
+
+  .who-needs-frame {
+    position: relative;
+    width: 100%;
+    min-height: 480px;
+    aspect-ratio: 4 / 3.6;
+
+    .anchor-border {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .anchor-content {
+      padding: 12px;
+      border-radius: 16px;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      position: relative;
+      z-index: 1;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+      }
+    }
+
+    .frame-tag {
+      position: absolute;
+      bottom: 22px;
+      left: 22px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(10, 10, 10, 0.78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+
+      .tag-pulse {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #22c55e;
+        box-shadow: 0 0 8px #22c55e;
+      }
+
+      .tag-text {
+        font-size: 0.78rem;
+        font-weight: 550;
+        color: rgba(255, 255, 255, 0.9);
+        letter-spacing: 0.02em;
+      }
+    }
+
+    @media (max-width: 980px) {
+      min-height: 320px;
+      aspect-ratio: 16 / 10;
+      max-width: 580px;
+    }
+  }
 </style>

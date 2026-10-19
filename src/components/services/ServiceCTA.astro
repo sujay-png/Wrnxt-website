@@ -10,7 +10,11 @@ const { title, description } = Astro.props;
       <h2 class="heading" data-font-size="5">{title}</h2>
       <div class="reactive-divider horizontal" aria-hidden="true"><div class="divider-line"></div></div>
       <p class="prose">{description}</p>
-      <Button href="/contact" variant="primary">Get a Free Consultation <span aria-hidden="true">&rarr;</span></Button>
+      <div class="service-cta__actions">
+        <Button href="/contact" variant="primary">Talk to Our Team <span aria-hidden="true">&rarr;</span></Button>
+        <Button href="/contact" variant="primary">Start Your Project <span aria-hidden="true">&rarr;</span></Button>
+      </div>
+
     </div>
   </div>
 </section>
@@ -20,5 +24,13 @@ const { title, description } = Astro.props;
   .service-cta__content h2, .service-cta__content p { margin: 0; }
   .service-cta__content p { max-width: 65ch; }
   .service-cta__content .reactive-divider { width: min(100%, 28rem); height: 1px; background: var(--color-border); }
-  .service-cta__content .btn { align-self: center; }
+  .service-cta__actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    width: 100%;
+  }
 </style>

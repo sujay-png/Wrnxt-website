@@ -73,8 +73,16 @@ const audiences = [
     <!-- The 3 Cards -->
     <div class="cards-grid">
       <!-- Web App Development -->
-      <article class="service-detail-card">
-        <h3 class="heading" data-font-size="3">Web App Development</h3>
+      <a href="/services/web-development/web-app-development" class="service-detail-card">
+        <div class="card-header-row">
+          <h3 class="heading" data-font-size="3">Web App Development</h3>
+          <span class="card-arrow" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17 17 7"></path>
+              <path d="M7 7h10v10"></path>
+            </svg>
+          </span>
+        </div>
         <p class="prose">We build web applications that simplify how your customers interact with your business — scalable, secure, and designed to perform across every device.</p>
         <ul class="bullets stack" data-gap="xs">
           <li>Custom web application development</li>
@@ -84,11 +92,23 @@ const audiences = [
           <li>Payment gateway and third-party integrations</li>
           <li>Ongoing maintenance and support</li>
         </ul>
-      </article>
+        <div class="card-footer-action">
+          <span>Explore web app development</span>
+          <span class="action-arrow">→</span>
+        </div>
+      </a>
       
       <!-- Mobile App Development -->
-      <article class="service-detail-card">
-        <h3 class="heading" data-font-size="3">Mobile App Development</h3>
+      <a href="/services/web-development/mobile-app-development" class="service-detail-card">
+        <div class="card-header-row">
+          <h3 class="heading" data-font-size="3">Mobile App Development</h3>
+          <span class="card-arrow" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17 17 7"></path>
+              <path d="M7 7h10v10"></path>
+            </svg>
+          </span>
+        </div>
         <p class="prose">We design and build mobile apps that turn downloads into daily users — fast, secure, and built to keep your customers coming back.</p>
         <ul class="bullets stack" data-gap="xs">
           <li>iOS and Android app development</li>
@@ -98,11 +118,23 @@ const audiences = [
           <li>Thorough pre-launch testing</li>
           <li>App Store and Google Play publishing</li>
         </ul>
-      </article>
+        <div class="card-footer-action">
+          <span>Explore mobile app development</span>
+          <span class="action-arrow">→</span>
+        </div>
+      </a>
 
       <!-- Website Development -->
-      <article class="service-detail-card">
-        <h3 class="heading" data-font-size="3">Website Development</h3>
+      <a href="/services/web-development/website-development" class="service-detail-card">
+        <div class="card-header-row">
+          <h3 class="heading" data-font-size="3">Website Development</h3>
+          <span class="card-arrow" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17 17 7"></path>
+              <path d="M7 7h10v10"></path>
+            </svg>
+          </span>
+        </div>
         <p class="prose">We build websites that do more than look good — they load fast, rank well, and turn visitors into customers.</p>
         <ul class="bullets stack" data-gap="xs">
           <li>Custom website design and development</li>
@@ -113,7 +145,11 @@ const audiences = [
           <li>Targeted Landing page with performance tracking</li>
           <li>Website maintenance and support</li>
         </ul>
-      </article>
+        <div class="card-footer-action">
+          <span>Explore website development</span>
+          <span class="action-arrow">→</span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -193,11 +229,27 @@ const audiences = [
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 
     &:hover {
       transform: translateY(-4px);
       border-color: rgba(156,8,39,0.5);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+
+      .card-arrow {
+        color: var(--color-burgundy);
+        transform: translate(3px, -3px);
+      }
+
+      .card-footer-action {
+        color: var(--color-burgundy);
+        .action-arrow {
+          transform: translateX(4px);
+        }
+      }
     }
     
     h3 {
@@ -207,6 +259,39 @@ const audiences = [
     .prose {
       color: var(--color-foreground-secondary);
       line-height: 1.6;
+    }
+  }
+
+  .card-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .card-arrow {
+    color: rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .card-footer-action {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-foreground-secondary);
+    margin-top: auto;
+    padding-top: var(--space-md);
+    border-top: 1px dashed rgba(255, 255, 255, 0.08);
+    transition: color 0.2s ease;
+
+    .action-arrow {
+      transition: transform 0.2s ease;
     }
   }
 

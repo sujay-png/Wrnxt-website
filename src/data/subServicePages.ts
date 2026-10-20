@@ -1,8 +1,14 @@
+export interface SubServiceSection {
+  heading: string;
+  paragraphs: string[];
+}
+
 export interface SubServiceDeliverable {
   title: string;
   desc: string;
   points?: string[];
   extra?: string;
+  sections?: SubServiceSection[];
 }
 
 export interface SubServiceMetric {
@@ -10,13 +16,24 @@ export interface SubServiceMetric {
   label: string;
 }
 
+export interface SubServiceAccordionItem {
+  title: string;
+  desc: string;
+}
+
 export interface SubServiceData {
   slug: string;
+  heading?: string;
+  heading2?: string;
+  subheading?: string;
+  subheading2?: string;
   title: string;
   eyebrow: string;
   subtitle: string;
   intro?: string[];
   capabilities?: string[];
+  accordion?: SubServiceAccordionItem[];
+  benefitsAccordion?: SubServiceAccordionItem[];
   benefits?: string[];
   commitment?: {
     title: string;
@@ -45,6 +62,10 @@ export interface SubServiceData {
 export const subServicesData: Record<string, SubServiceData> = {
   'web-app-development': {
     slug: 'web-app-development',
+    heading:"What We Offer",
+    subheading: "End-to-End Capabilities",
+    heading2: "Key Benefits",
+    subheading2: "Measurable Business Impact",
     title: 'Web App Development',
     eyebrow: 'Custom Software Engineering',
     subtitle: 'We build web applications that simplify how your customers interact with your business — scalable, secure, and designed to perform across every device.',
@@ -147,12 +168,42 @@ export const subServicesData: Record<string, SubServiceData> = {
 
   'mobile-app-development': {
     slug: 'mobile-app-development',
-    title: 'Mobile App Development',
+    heading: 'Benefits of a Mobile App',
+    subheading: 'Why Your Business Needs a Dedicated Mobile App',
+    heading2: 'Who Needs a Mobile App',
+    subheading2: 'A mobile app isn\'t only for tech giants and retail chains. If your business depends on repeat customers, time-sensitive transactions, or frequent customer contact, an app gives you a direct line to the people who keep your business running.',
+    title: 'Make Your Brand Stand Out With Custom Mobile App',
     eyebrow: 'iOS & Android Engineering',
     subtitle: 'We build mobile apps that drive sales, strengthen loyalty, and grow your lifetime customer value',
     intro: [
       "We design and build custom mobile apps so you spend less on winning customers back and more time growing the relationships you already have. We follow the same disciplined process that goes into enterprise software and web application development.",
       
+    ],
+    accordion: [
+      {
+        title: 'Build a stronger brand.',
+        desc: 'Mobile apps work as an extension of the brand by delivering the right service at the right moment. It also gives a direct line into how customers behave, so you can spot recurring issues and sharpen your product or service in response.'
+      },
+      {
+        title: 'Connect with customers better.',
+        desc: 'Users spend significantly more time using apps than mobile browsers. A mobile app reaches your customers wherever they are. Push notifications let you reach users with offers, updates, and reminders in a space with far less competition for attention than email or social media so your message is far more likely to actually get seen.'
+      },
+      {
+        title: 'Capitalize on a niche.',
+        desc: "A well-built app can help you stand out in a crowded market, especially if your competitors haven't invested in one yet. 85% shoppers prefer buying through an app over a mobile browser Features like an in-app chatbot or a faster, app-only checkout give customers a reason to choose you specifically, so you're meeting them where they already want to be."
+      },
+      {
+        title: 'Improve customer engagement.',
+        desc: 'People spend far more time inside apps than browsing a mobile site, which means more chances for you to engage them meaningfully. Features like saved favourites, wish lists, or built-in review prompts turn passive users into active participants and give you a direct channel to hear from your most engaged customers.'
+      },
+      {
+        title: 'Personalize a marketing channel.',
+        desc: "Today's customers expect offers that feel built for them. A mobile app lets you tailor discounts, recommendations, and promotions to each user individually, at scale. You can even use it to recognise meaningful moments such as a birthday, an anniversary, a milestone turning a transactional touchpoint into a personal one."
+      },
+      {
+        title: 'Boost profits.',
+        desc: 'Every investment you spend on improving customer experience shows up on your bottom line. Engaged, loyal app users convert more often and need less paid advertising to bring them back, which means your marketing budget stretches further. Investing in the user experience yields as much as 100% .'
+      }
     ],
     capabilities: [
       'Native iOS App Development (Swift)',
@@ -163,6 +214,44 @@ export const subServicesData: Record<string, SubServiceData> = {
       'Offline-First Storage & Data Caching',
       'Payment Gateways & Hardware APIs',
       'App Store & Play Store Deployment'
+    ],
+    benefitsAccordion: [
+      {
+        title: 'E-commerce & Retail',
+        desc: 'Retail brands compete for the same shoppers as everyone else in their category. An app gives a faster checkout and saved payment details so customers buy from you instead of opening a browser and comparing prices elsewhere.'
+      },
+      {
+        title: 'Healthcare & Clinics',
+        desc: 'Patients need to book appointments, access reports, and get reminders without calling front desk. An app enhances user engagement with automated reminders and gives patients a faster, more private way to manage their healthcare which builds trust and keeps them coming back.'
+      },
+      {
+        title: 'Real Estate',
+        desc: 'Buyers browse listings constantly. An app lets you push new listings, price drops, and viewing reminders directly to serious buyers, so you stay top of mind through a long, multi-week decision instead of getting lost in the email inbox.'
+      },
+      {
+        title: 'Education & E-learning',
+        desc: 'Students expect to learn on their schedule. An app gives them access to courses, assignments, and progress tracking from anywhere, which increases completion rates and keeps your institution relevant to a mobile-first generation.'
+      },
+      {
+        title: 'Logistics & Delivery Services',
+        desc: 'Customers want to know exactly where their order is, in real time. An app with live tracking and delivery notifications cuts down support calls and builds the kind of reliability customers talk about.'
+      },
+      {
+        title: 'Fitness & Wellness Studios',
+        desc: 'Members need to book classes, track progress, and stay motivated between visits. An app keeps your brand in their pocket every day not just on the days they walk through your door which directly improves membership renewals.'
+      },
+      {
+        title: 'Hospitality — Hotels & Resorts',
+        desc: "Your guests expect convenience before they even arrive. An app that handles bookings, digital check-in, and personalized offers turns a one-time stay into a direct relationship, so your next booking doesn't go through a third-party travel site."
+      },
+      {
+        title: 'Service-Based Businesses',
+        desc: 'If your business runs on appointments, an app that handles bookings, reminders, and repeat scheduling saves your staff time and reduces the missed appointments that cost you revenue.'
+      },
+      {
+        title: 'B2B & SaaS Companies',
+        desc: 'Your clients need to manage accounts, track usage, or access support without logging into a desktop portal. A mobile app makes your platform usable on the go, which strengthens retention and reduces the chance clients drift toward a more accessible competitor.'
+      }
     ],
     benefits: [
       'Higher daily active user engagement and retention',
@@ -184,29 +273,49 @@ export const subServicesData: Record<string, SubServiceData> = {
     ],
     deliverables: [
       {
-        title: 'iOS and Android app development',
-        desc: 'Native Swift/Kotlin builds and high-performance Flutter & React Native applications that run smoothly across every iPhone and Android device.'
+        title: 'Finding the Right Idea',
+        desc: 'Every app starts with a problem worth solving. We help you sharpen your idea around your target market, so you\'re not just building an app; you\'re building a solution people actually want. Once we\'ve nailed the problem, we move into development with a clear direction.'
       },
       {
-        title: 'UX-first interface design',
-        desc: 'Intuitive, thumb-friendly mobile interfaces, micro-interactions, and frictionless onboarding designed for daily user retention.'
+        title: 'Wireframes & Prototyping',
+        desc: 'Before we write a single line of code, we map out your app in wireframes so you see exactly how it will work for your users before we spend time building it. At this stage, we work through:',
+        points: [
+          "How the app solves the user's problem",
+          'The journey a user takes through the app',
+          'Where users might get stuck or drop off',
+          'Where menus, navigation, and content sit on the screen'
+        ],
+        extra: "A wireframe gives you a two-dimensional blueprint of your app. From there, we build a clickable prototype, so you can experience your app the way your users will before it's fully built. This means you catch design issues early, when they're cheap to fix during the initial stage."
       },
       {
-        title: 'Secure, encrypted architecture',
-        desc: 'Biometric authentication (FaceID / Fingerprint), encrypted local storage, secure token sessions, and protected API communication.'
+        title: 'Defining the Front End and Back End',
+        desc: 'With your prototype approved, we define the two halves of your app that work together behind the scenes.',
+        sections: [
+          {
+            heading: 'Front End — What Your Users See and Touch',
+            paragraphs: [
+              'The front end is everything your user interacts with: the visuals, the layout, the buttons, the flow. We focus here on making every interaction feel natural, so your users never have to think about how to use your app, they just use it. Front end is what gets downloaded on their phone and what they open every time they tap your app icon.',
+              'A small app might need just one or two developers; an enterprise-grade app gets a dedicated team covering each part of the workflow so you get the right level of resourcing for your project, not a one-size-fits-all team.'
+            ]
+          },
+          {
+            heading: 'Back End — What Keeps Your App Running',
+            paragraphs: [
+              'The back end handles the data and logic your app relies on, usually hosted by a third-party cloud provider or managed directly by you. We prefer trusted infrastructure partners like Supabase and Firebase, because they give your app reliable uptime and maintenance support.',
+              'We integrate Front end to back end through APIs — built by our team or provided by back-end service providers. User information gets stored in the cloud rather than on the user\'s device, which keeps your app lightweight and fast to download. We engineer these APIs carefully, so users never feel the lag of data traveling from the cloud and they just experience a fast, responsive app.'
+            ]
+          }
+        ]
       },
       {
-        title: 'API and backend integration',
-        desc: 'Real-time push notifications, live location tracking, payment SDKs, offline mode sync, and cloud media streaming.'
+        title: 'Local & Global Testing',
+        desc: 'We test apps from every angle before it reaches your users. Local testing confirms local servers run smoothly, checks user experience and front-end APIs integrate correctly. Global testing verifies the app performs reliably once the back end is live in the cloud so wherever users open your app, it works the way it should.'
       },
       {
-        title: 'Thorough pre-launch testing',
-        desc: 'Rigorous QA across physical iOS and Android devices, battery & memory profiling, and beta testing via TestFlight.'
+        title: 'Publishing Your App',
+        desc: 'Once your app passes every test, we take it live publishing to the App Store and Google Play, so your users can find it, download it, and start using what we built together.'
       },
-      {
-        title: 'App Store and Google Play publishing',
-        desc: 'End-to-end submission management, store listing assets, compliance approvals, and automated over-the-air release pipelines.'
-      }
+    
     ],
     stack: ['Flutter', 'React Native', 'Swift', 'Kotlin', 'Expo', 'Firebase', 'Node.js', 'UI/UX Design'],
     idealFor: 'Consumer brands, healthcare providers launching patient apps, educational institutions, and on-demand delivery or booking platforms.',
@@ -236,6 +345,7 @@ export const subServicesData: Record<string, SubServiceData> = {
 
   'website-development': {
     slug: 'website-development',
+    heading:"",
     title: 'Website Development',
     eyebrow: 'High-Performance Web',
     subtitle: 'We build websites that do more than look good — they load fast, rank well, and turn visitors into customers.',

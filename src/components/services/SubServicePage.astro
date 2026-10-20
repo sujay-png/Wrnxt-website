@@ -30,7 +30,7 @@ const { service } = Astro.props;
       <div class="sub-hero-grid">
         <!-- Left: Editorial Content -->
         <div class="sub-hero-content">
-          <span class="service-kicker">◆ Our Services • IT Services</span>
+      
           <h1 class="heading" data-font-size="1">{service.title}</h1>
           <p class="prose prose--lg sub-hero-body">{service.subtitle}</p>
 
@@ -144,6 +144,22 @@ const { service } = Astro.props;
               <h3 class="detail-card-title">{item.title}</h3>
               <p class="prose detail-card-desc">{item.desc}</p>
 
+              {item.sections && item.sections.length > 0 && (
+                <div class="detail-sections-container">
+                  {item.sections.map((sec, sIdx) => (
+                    <div class="detail-subsection">
+                      {sIdx > 0 && <div class="detail-subsection-divider" aria-hidden="true" />}
+                      <h4 class="detail-subsection-heading">{sec.heading}</h4>
+                      <div class="detail-subsection-paragraphs">
+                        {sec.paragraphs.map((p) => (
+                          <p class="prose detail-subsection-p">{p}</p>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
               {item.points && item.points.length > 0 && (
                 <div class="detail-breakdown">
                   <span class="detail-breakdown-heading">Scope & Execution Activities:</span>
@@ -171,31 +187,7 @@ const { service } = Astro.props;
                 </div>
               )}
 
-              <div class="detail-card-footer">
-                <div class="detail-step-nav">
-                  {i > 0 && (
-                    <button
-                      type="button"
-                      class="step-nav-btn prev"
-                      @click={`activeStep = ${i - 1}`}
-                      data-target-index={i - 1}
-                    >
-                      ← Previous Phase
-                    </button>
-                  )}
-                  {i < service.deliverables.length - 1 && (
-                    <button
-                      type="button"
-                      class="step-nav-btn next"
-                      @click={`activeStep = ${i + 1}`}
-                      data-target-index={i + 1}
-                    >
-                      Next Phase →
-                    </button>
-                  )}
-                </div>
-                <a href="/contact" class="detail-inquire">Inquire about this scope →</a>
-              </div>
+           
             </div>
           </article>
         ))}
@@ -207,11 +199,54 @@ const { service } = Astro.props;
   <section class="section offer-section" data-padding="xl">
     <div class="container" data-size="lg">
       <div class="offer-header">
-        <span class="service-kicker">What We Offer</span>
-        <h2 class="heading" data-font-size="3">End-to-End Capabilities</h2>
+        <span class="service-kicker">{service.heading || "What We Offer"}</span>
+        {service.subheading && <h2 class="heading" data-font-size="3">{service.subheading}</h2>}
       </div>
 
-      {service.capabilities && service.capabilities.length > 0 ? (
+      {service.slug === 'mobile-app-development' && service.accordion && service.accordion.length > 0 ? (
+        <div class="accordion-column" x-data="{ activeAccordion: 0 }">
+          {service.accordion.map((item, idx) => (
+            <div 
+              class="accordion-card"
+              :class={`{ 'is-open': activeAccordion === ${idx} }`}
+            >
+              <button
+                type="button"
+                class="accordion-header"
+                @click={`activeAccordion = activeAccordion === ${idx} ? null : ${idx}`}
+                :aria-expanded={`activeAccordion === ${idx}`}
+                aria-controls={`accordion-body-${idx}`}
+                id={`accordion-btn-${idx}`}
+              >
+                <div class="accordion-header-left">
+                  <span class="accordion-badge">0{idx + 1}</span>
+                  <h3 class="accordion-title">{item.title}</h3>
+                </div>
+                <div class="accordion-header-right" aria-hidden="true">
+                  <span class="accordion-star">◆</span>
+                  <span class="accordion-chevron">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M6 9l6 6 6-6"></path>
+                    </svg>
+                  </span>
+                </div>
+              </button>
+
+              <div 
+                id={`accordion-body-${idx}`}
+                role="region"
+                aria-labelledby={`accordion-btn-${idx}`}
+                class="accordion-body"
+              >
+                <div class="accordion-content">
+                  <div class="accordion-divider" aria-hidden="true"></div>
+                  <p class="prose accordion-desc">{item.desc}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : service.capabilities && service.capabilities.length > 0 ? (
         <div class="capabilities-column">
           {service.capabilities.map((item, idx) => (
             <Fragment>
@@ -249,81 +284,119 @@ const { service } = Astro.props;
   </section>
 
   <!-- 4. Key Benefits -->
-  {service.benefits && service.benefits.length > 0 && (
+  {((service.slug === 'mobile-app-development' && service.benefitsAccordion && service.benefitsAccordion.length > 0) || (service.benefits && service.benefits.length > 0)) && (
     <section class="section benefits-section" data-padding="xl">
       <div class="container" data-size="lg">
         <div class="benefits-header">
-          <span class="service-kicker">Benefits</span>
-          <h2 class="heading" data-font-size="3">Measurable Business Impact</h2>
+          <span class="service-kicker">{service.heading2 || 'Key Benefits'}</span>
+          <h2 class="heading" data-font-size="3">{service.subheading2 || 'Measurable Business Impact'}</h2>
         </div>
 
-        <div class="capabilities-column">
-          {service.benefits.map((item, idx) => (
-            <Fragment>
-              <div class="cap-col-card">
-                <div class="cap-col-left">
-                  <span class="cap-col-badge">0{idx + 1}</span>
-                  <h4 class="cap-col-title">{item}</h4>
-                </div>
-                <div class="cap-col-right" aria-hidden="true">
-                  <span class="cap-col-indicator"></span>
-                  <span class="cap-col-star">◆</span>
+        {service.slug === 'mobile-app-development' && service.benefitsAccordion && service.benefitsAccordion.length > 0 ? (
+          <div class="accordion-column" x-data="{ activeAccordion: 0 }">
+            {service.benefitsAccordion.map((item, idx) => (
+              <div 
+                class="accordion-card"
+                :class={`{ 'is-open': activeAccordion === ${idx} }`}
+              >
+                <button
+                  type="button"
+                  class="accordion-header"
+                  @click={`activeAccordion = activeAccordion === ${idx} ? null : ${idx}`}
+                  :aria-expanded={`activeAccordion === ${idx}`}
+                  aria-controls={`benefits-accordion-body-${idx}`}
+                  id={`benefits-accordion-btn-${idx}`}
+                >
+                  <div class="accordion-header-left">
+                    <span class="accordion-badge">0{idx + 1}</span>
+                    <h3 class="accordion-title">{item.title}</h3>
+                  </div>
+                  <div class="accordion-header-right" aria-hidden="true">
+                    <span class="accordion-star">◆</span>
+                    <span class="accordion-chevron">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 9l6 6 6-6"></path>
+                      </svg>
+                    </span>
+                  </div>
+                </button>
+
+                <div 
+                  id={`benefits-accordion-body-${idx}`}
+                  role="region"
+                  aria-labelledby={`benefits-accordion-btn-${idx}`}
+                  class="accordion-body"
+                >
+                  <div class="accordion-content">
+                    <div class="accordion-divider" aria-hidden="true"></div>
+                    <p class="prose accordion-desc">{item.desc}</p>
+                  </div>
                 </div>
               </div>
-
-              {idx < service.benefits.length - 1 && (
-                <div class="cap-col-arrow" aria-hidden="true">
-              
+            ))}
+          </div>
+        ) : (
+          <div class="capabilities-column">
+            {service.benefits && service.benefits.map((item, idx) => (
+              <Fragment>
+                <div class="cap-col-card">
+                  <div class="cap-col-left">
+                    <span class="cap-col-badge">0{idx + 1}</span>
+                    <h4 class="cap-col-title">{item}</h4>
+                  </div>
+                  <div class="cap-col-right" aria-hidden="true">
+                    <span class="cap-col-indicator"></span>
+                    <span class="cap-col-star">◆</span>
+                  </div>
                 </div>
-              )}
-            </Fragment>
-          ))}
-        </div>
+
+                {idx < service.benefits.length - 1 && (
+                  <div class="cap-col-arrow" aria-hidden="true">
+                
+                  </div>
+                )}
+              </Fragment>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   )}
 
   <!-- 5. Our Commitment (Notice Board Design) -->
-  <section class="section commitment-section" data-padding="xl">
-    <div class="container" data-size="lg">
-      <div class="notice-board-wrapper">
-        <div class="notice-board">
-          <!-- Metallic Mounting Screws in 4 Corners -->
-          <div class="board-screw top-left" aria-hidden="true"><div class="screw-slot"></div></div>
-          <div class="board-screw top-right" aria-hidden="true"><div class="screw-slot"></div></div>
-          <div class="board-screw bottom-left" aria-hidden="true"><div class="screw-slot"></div></div>
-          <div class="board-screw bottom-right" aria-hidden="true"><div class="screw-slot"></div></div>
+  {service.slug !== 'mobile-app-development' && (
+    <section class="section commitment-section" data-padding="xl">
+      <div class="container" data-size="lg">
+        <div class="notice-board-wrapper">
+          <div class="notice-board">
+            <!-- Metallic Mounting Screws in 4 Corners -->
+            <div class="board-screw top-left" aria-hidden="true"><div class="screw-slot"></div></div>
+            <div class="board-screw top-right" aria-hidden="true"><div class="screw-slot"></div></div>
+            <div class="board-screw bottom-left" aria-hidden="true"><div class="screw-slot"></div></div>
+            <div class="board-screw bottom-right" aria-hidden="true"><div class="screw-slot"></div></div>
 
-          <!-- Pinned Memo Note -->
-          <article class="notice-note">
-            <!-- 3D Push Pin at top center -->
-            
+            <!-- Pinned Memo Note -->
+            <article class="notice-note">
+              <div class="notice-note-inner">
+                <h2 class="notice-memo-title">{service.commitment?.title || 'Our Commitment'}</h2>
 
+                <div class="notice-memo-rule" aria-hidden="true"></div>
 
-            <div class="notice-note-inner">
-            
-
-              <h2 class="notice-memo-title">{service.commitment?.title || 'Our Commitment'}</h2>
-
-              <div class="notice-memo-rule" aria-hidden="true"></div>
-
-              <p class="notice-memo-text">
-                {service.commitment?.text || "We act as your trusted advisor, bringing expertise and integrity to every engagement. We tailor our approach to your specific needs, drawing on our experience and flexibility to deliver the outcome you're after — efficiently and without surprises."}
-              </p>
-
-             
-            </div>
-          </article>
+                <p class="notice-memo-text">
+                  {service.commitment?.text || "We act as your trusted advisor, bringing expertise and integrity to every engagement. We tailor our approach to your specific needs, drawing on our experience and flexibility to deliver the outcome you're after — efficiently and without surprises."}
+                </p>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- 6. Service Call To Action -->
   <ServiceCTA 
-    title={`Let's Build Your Web App`}
-    description={`Partner with Akshara Digital to transform your business through a web app built around you — tailored, tested, and built to last.
-`}
+    title={service.slug === 'mobile-app-development' ? "Ready to Make Your Brand Stand Out?" : service.slug === 'website-development' ? "Let's Build Your Website" : `Let's Build Your Web App`}
+    description={service.slug === 'mobile-app-development' ? "Tell us about your business, and we'll show you exactly how a mobile app fits into your growth plan." : service.slug === 'website-development' ? "Partner with Akshara Digital to build a lightning-fast, conversion-focused website that sets your brand apart and drives measurable growth." : `Partner with Akshara Digital to transform your business through a web app built around you — tailored, tested, and built to last.`}
   />
 
   <Footer />
@@ -439,6 +512,7 @@ const { service } = Astro.props;
   .sub-hero-section {
     position: relative;
     z-index: 1;
+    top:48px;
     border-bottom: 1px solid var(--color-border);
   }
 
@@ -746,6 +820,13 @@ const { service } = Astro.props;
     padding: clamp(1.75rem, 3.5vw, 2.75rem);
     position: relative;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    width: 100%;
+
+    :global(.prose),
+    .prose {
+      max-width: 100% !important;
+      width: 100%;
+    }
   }
 
   .detail-card-top {
@@ -801,7 +882,52 @@ const { service } = Astro.props;
     line-height: 1.65;
     color: var(--color-foreground-secondary);
     margin: 0 0 1.5rem;
-    max-width: 950px;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .detail-sections-container {
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+    padding: clamp(1.25rem, 2.5vw, 1.85rem);
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .detail-subsection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .detail-subsection-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 0.5rem 0 1.25rem;
+  }
+
+  .detail-subsection-heading {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .detail-subsection-paragraphs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .detail-subsection-p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--color-foreground-secondary);
+    margin: 0;
   }
 
   .detail-breakdown {
@@ -875,6 +1001,8 @@ const { service } = Astro.props;
       line-height: 1.6;
       color: rgba(255, 255, 255, 0.88);
       margin: 0;
+      max-width: 100%;
+      width: 100%;
     }
   }
 
@@ -973,6 +1101,163 @@ const { service } = Astro.props;
       margin: 0;
       color: #ffffff;
     }
+  }
+
+  /* Mobile App Accordion */
+  .accordion-column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.85rem;
+  }
+
+  .accordion-card {
+    width: 100%;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+
+    &:hover {
+      border-color: rgba(156, 8, 39, 0.4);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.015) 100%);
+    }
+
+    &.is-open {
+      border-color: rgba(156, 8, 39, 0.6);
+      background: linear-gradient(135deg, rgba(156, 8, 39, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+      box-shadow: 0 10px 28px -4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(156, 8, 39, 0.15);
+
+      .accordion-badge {
+        background: var(--color-burgundy);
+        border-color: var(--color-burgundy);
+        color: #ffffff;
+      }
+
+      .accordion-star {
+        color: var(--color-burgundy);
+        transform: rotate(45deg);
+      }
+
+      .accordion-chevron {
+        transform: rotate(180deg);
+        color: var(--color-burgundy);
+      }
+
+      .accordion-body {
+        grid-template-rows: 1fr;
+        opacity: 1;
+      }
+    }
+  }
+
+  .accordion-header {
+    width: 100%;
+    min-height: 74px;
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    color: inherit;
+
+    @media (max-width: 640px) {
+      padding: 1rem 1.25rem;
+      gap: 1rem;
+    }
+  }
+
+  .accordion-header-left {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    min-width: 0;
+
+    @media (max-width: 640px) {
+      gap: 0.85rem;
+    }
+  }
+
+  .accordion-badge {
+    font-family: var(--font-family-mono, monospace);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-burgundy);
+    background: rgba(156, 8, 39, 0.12);
+    border: 1px solid rgba(156, 8, 39, 0.25);
+    padding: 0.3rem 0.65rem;
+    border-radius: 6px;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+
+  .accordion-title {
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+
+  .accordion-header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .accordion-star {
+    color: rgba(255, 255, 255, 0.25);
+    font-size: 0.85rem;
+    transition: all 0.25s ease;
+  }
+
+  .accordion-chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.6);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+  }
+
+  .accordion-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+    opacity: 0;
+  }
+
+  .accordion-content {
+    overflow: hidden;
+    padding: 0 2rem 1.5rem 2rem;
+
+    @media (max-width: 640px) {
+      padding: 0 1.25rem 1.25rem 1.25rem;
+    }
+  }
+
+  .accordion-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin-bottom: 1.25rem;
+  }
+
+  .accordion-desc {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-foreground-secondary);
+    max-width: 100% !important;
+    width: 100%;
   }
 
   .capabilities-column {

@@ -107,7 +107,7 @@ $font-family-alt: "Space Grotesk", $font-family-body;
   --font-size-0: clamp(1rem, .1444vw + .9662rem, 1.125rem);
   --font-size-1: clamp(1.125rem, .4332vw + 1.0235rem, 1.5rem);
   --font-size-2: clamp(1.25rem, .8664vw + 1.0469rem, 2rem);
-  --font-size-3: clamp(1.5rem, .8664vw + 1.2969rem, 2.25rem);
+  --font-size-3: clamp(0.5rem, -0.1336vw + 1.2969rem, 2.25rem)
   --font-size-4: clamp(1.75rem, 1.444vw + 1.4116rem, 3rem);
   --font-size-5: clamp(2rem, 2.3105vw + 1.4585rem, 4rem);
   --font-size--2: clamp(.6875rem, .0722vw + .6706rem, .75rem);
